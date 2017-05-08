@@ -1,6 +1,6 @@
 # hackberlin
-
-## API:
+## Datenquellen
+### API:
 
 - [ ] Stationen (StaDa)
 - [ ] Fahrstühle (FaSta)
@@ -17,13 +17,41 @@
 - [ ] https://github.com/derhuerst/vbb-lines
 - [ ] https://github.com/derhuerst/db-stations
 
-## Statisch:
+### Statisch:
 - [ ] http://data.deutschebahn.com/dataset/data-bahnsteig
 - [ ] http://data.deutschebahn.com/dataset/data-bahnsteig-regio
 - [ ] http://data.deutschebahn.com/dataset/data-wagenreihungsplan-soll-daten
 - [ ] http://data.deutschebahn.com/dataset/luftschadstoffkataster
 
-## Databox:
+### Databox:
 - [ ] https://databox.noncd.bku-web.db.de/dataset/mengengerust-aufzuge-und-fahrtreppen
 - [ ] https://databox.noncd.bku-web.db.de/dataset/fahrtreppen-mit-geokoordinaten-und-osm-id
 - [ ] https://databox.noncd.bku-web.db.de/dataset/streckennetz
+
+
+## Root Queries
+
+### Verbindungssuche
+
+### Textsuche
+#### Station
+#### Zug
+
+### Geosuche
+#### Station
+#### Bahnsteig
+#### Flinkster
+#### Call a Bike
+#### (Parkplätze)
+#### Zug
+#### Fahrstühle / Rolltreppen
+
+### ID Access
+#### EvaId (Station)
+#### DS100 (BetrSt)
+#### Zug
+#### Flinkster
+#### Call a Bike
+#### Fahrstühle / Rolltreppen
+#### Parkplätze
+#### Bahnsteig
