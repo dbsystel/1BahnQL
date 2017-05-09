@@ -16,9 +16,9 @@ app.use('/graphql', graphqlHTTP({
   graphiql: true,
 }));
 // set the port of our application
- +// process.env.PORT lets the port be set by Heroku
- +const port = process.env.PORT || 8080;
- +
- +app.listen(port, () => console.log(`now browse to localhost:${port}/graphql`));
+ // process.env.PORT lets the port be set by Heroku
+ const port = process.env.PORT || 8080;
+ 
+ app.listen(port, () => console.log(`now browse to localhost:${port}/graphql`));
 
 
