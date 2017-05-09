@@ -3,8 +3,9 @@ var { buildSchema } = require('graphql');
 const schema = buildSchema(`
   type Query {
     hello: String,
-	route: Route
+	routeSearch(from: Int, to: Int): [Route]
   }
+  
   
   type Route {
 	  parts: [RoutePart]
