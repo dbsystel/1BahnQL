@@ -89,7 +89,11 @@ app.use('/graphql', graphqlHTTP({
   rootValue: root,
   graphiql: true,
 }));
-app.listen(4000, () => console.log('Now browse to localhost:4000/graphql'));
+// set the port of our application
+// process.env.PORT lets the port be set by Heroku
+const port = process.env.PORT || 8080;
+
+app.listen(port, () => console.log(`now browse to localhost:${port}/graphql`));
 
 var elevatorCache = {}
 function loadElevatorFor(bahnhofsnumer) {
