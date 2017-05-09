@@ -1,0 +1,37 @@
+{
+  "name": "hackberlin",
+  "version": "0.0.1",
+  "description": "- [ ] Stationen (StaDa) - [ ] Fahrstühle (FaSta) - [ ] Fahrplan (Fahrplan-Free) - [ ] Flinkster  - [ ] Betriebsstellen - [ ] Reisezentren - [ ] Parkplätze - [ ] https://github.com/derhuerst/db-zugradar-client - [ ] https://github.com/derhuerst/db-hafas - [ ] https://github.com/derhuerst/generate-db-shop-urls - [ ] https://github.com/derhuerst/find-db-station-by-name - [ ] https://github.com/derhuerst/european-transport-modules - [ ] https://github.com/derhuerst/vbb-lines - [ ] https://github.com/derhuerst/db-stations",
+  "main": "index.js",
+  "dependencies": {
+    "db-hafas": "^0.3.0",
+    "db-stations": "^1.0.0",
+    "express": "^4.15.2",
+    "express-graphql": "^0.6.4",
+    "graphiql": "^0.10.2",
+    "graphql": "^0.9.6",
+    "node-fetch": "^1.6.3",
+    "prop-types": "^15.5.8",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://lightsprint09@github.com/dennispost/hackberlin.git"
+  },
+  "keywords": [
+    "grapql",
+    "db",
+    "bahn"
+  ],
+  "author": "Dennis Post, Lukas Schmidt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dennispost/hackberlin/issues"
+  },
+  "homepage": "https://github.com/dennispost/hackberlin#readme"
+}
