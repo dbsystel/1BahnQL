@@ -118,6 +118,7 @@ const schema = buildSchema(`
   type ParkingSpace {
     id: Int
     name: String
+	station: Station
     lots: Int
     latitude: Float
     longitude: Float

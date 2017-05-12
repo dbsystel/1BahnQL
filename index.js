@@ -7,7 +7,6 @@ const ParkingSpaceQuery = require('./ParkingSpaceQuery.js');
 const { loadStationEva, searchStations } = require("./station.js")
 
 const root = {
-  hello: () => 'Hello world!',
   routeSearch: (args) => {
     const routeSearch = new TrainRouteSearch(args.from, args.to).options;
     return routeSearch.then(options => [options[0]]);

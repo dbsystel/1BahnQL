@@ -2,6 +2,7 @@
 
 const fetch = require('node-fetch');
 const Occupancy = require('./occupancy');
+const { loadStationEva } = require("./station.js")
 
 class ParkingSpace {
 
@@ -75,6 +76,10 @@ class ParkingSpace {
 
   get evaId() {
     return getEvaIdForBhfNr(this.parkraumBahnhofNummer);
+  }
+  
+  get station() {
+  	return evaId.then((evaId) => loadStationEva(evaId))
   }
 }
 
