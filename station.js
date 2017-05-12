@@ -5,6 +5,7 @@ const Location = require("./location.js")
 const MailAddress = require("./mailAddress")
 const OpeningTimes = require("./openingTimes.js")
 const loadElevatorFor = require("./facilities.js")
+const { loadTimeTableFor } = require("./timetables.js")
 
 class RegionalArea {
 	constructor(number, name, shortName) {
@@ -170,6 +171,10 @@ class Station {
 		return this.loadStation.then(function(station) {
 			return station.ril100Identifiers.filter((rill) => rill.isMain)[0].rilIdentifier
 		}) 
+	}
+	
+	get arrivalDepatureBoard() {
+		return this.primaryEvaId.then(evaId => loadTimeTableFor(evaId))
 	}
 }
 

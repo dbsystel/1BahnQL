@@ -54,6 +54,7 @@ const schema = buildSchema(`
 	  timeTableOffice: StationContact
 	  szentrale: StationContact
 	  stationManagement: StationContact
+	  arrivalDepatureBoard: ArrivalDepatureBoard
   }
   
   type Location {
@@ -190,6 +191,18 @@ const schema = buildSchema(`
     timeSegment: String
     category: Int
     text: String
+  }
+  
+  type ArrivalDepatureBoard {
+	  nextArrivals: [TrainInStation]
+	  nextDepatures: [TrainInStation]
+  }
+  
+  type TrainInStation {
+	  type: String
+	  trainNumber: String
+	  platform: String
+	  time: String
   }
 
 `);
