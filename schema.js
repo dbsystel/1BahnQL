@@ -203,6 +203,7 @@ const schema = buildSchema(`
 	  trainNumber: String
 	  platform: String
 	  time: String
+	  stops: [String]
   }
 
 `);

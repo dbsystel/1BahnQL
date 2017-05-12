@@ -244,7 +244,7 @@ function searchStations(searchTerm) {
 		return res.json()
 	})
 	.then(function(result) {
-		return result.result.map(function(station) {
+		return (result.result || []).map(function(station) {
 			return new Station(new Promise(function(resolve) {
 				resolve(station)
 			}))

@@ -3,11 +3,12 @@ var convert = require('xml-js');
 var moment = require('moment-timezone');
 
 class TrainOnStation {
-	constructor(trainType, trainNumber, timeStampString, platform) {
+	constructor(trainType, trainNumber, timeStampString, platform, stops) {
 		this.type = trainType
 		this.trainNumber = trainNumber
 		this.time = timeStampString
-		this.platform = platform
+		this.platform = platform,
+		this.stops = stops
 	}
 }
 const arrivalDepatingTypeKeyMap = {dp: "nextDepatures", ar: "nextArrivals"}
@@ -29,15 +30,38 @@ function loadTimeTableFor(evaId) {
 			var trainNumber = element.elements[0].attributes.n
 			var platform = element.elements[1].attributes.pp
 			var time = element.elements[1].attributes.pt
+			var stops = element.elements[1].attributes.ppth.split("|")
 			var type = element.elements[1].name
-			
-			var train = new TrainOnStation(trainType, trainNumber, new moment.tz(time, "YYMMDDHHmm", "Europe/Berlin").utc().toDate(), platform)
-			console.log(arrivalDepatingTypeKeyMap[type])
+			var train = new TrainOnStation(trainType, trainNumber, new moment.tz(time, "YYMMDDHHmm", "Europe/Berlin").utc().toDate(), platform, stops)
 			result[arrivalDepatingTypeKeyMap[type]].push(train)
+			if (element.elements.length > 2) {
+				platform = element.elements[2].attributes.pp
+				time = element.elements[2].attributes.pt
+				type = element.elements[2].name
+				stops = element.elements[2].attributes.ppth.split("|")
+				train = new TrainOnStation(trainType, trainNumber, new moment.tz(time, "YYMMDDHHmm", "Europe/Berlin").utc().toDate(), platform, stops)
+				result[arrivalDepatingTypeKeyMap[type]].push(train)
+			}
 		})
 		console.log(result)
+		// json.elements[].elements.map(function(element) {
+// 			var trainType = element.elements[0].attributes.c
+// 			var trainNumber = element.elements[0].attributes.n
+// 			var platform = element.elements[1].attributes.pp
+// 			var time = element.elements[1].attributes.pt
+// 			var type = element.elements[1].name
+// 			console.log(type)
+// 			var train = new TrainOnStation(trainType, trainNumber, new moment.tz(time, "YYMMDDHHmm", "Europe/Berlin").utc().toDate(), platform)
+// 			result[arrivalDepatingTypeKeyMap[type]].push(train)
+// 		})
 		return result
 	})
+}
+
+function parseX() {
+	var platform = element.elements[1].attributes.pp
+	var time = element.elements[1].attributes.pt
+	var type = element.elements[1].name
 }
 
 module.exports = { loadTimeTableFor }
