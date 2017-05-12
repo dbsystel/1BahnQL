@@ -34,7 +34,7 @@
 ### Verbindungssuche
 
 ### Textsuche
-#### Station
+#### Station [x]
 #### Zug
 
 ### Geosuche
@@ -42,16 +42,16 @@
 #### Bahnsteig
 #### Flinkster
 #### Call a Bike
-#### (Parkplätze)
+#### Parkplätze [x]
 #### Zug
 #### Fahrstühle / Rolltreppen
 
 ### ID Access
-#### EvaId (Station)
+#### EvaId (Station) [x]
 #### DS100 (BetrSt)
 #### Zug
 #### Flinkster
 #### Call a Bike
 #### Fahrstühle / Rolltreppen
-#### Parkplätze
+#### Parkplätze [x]
 #### Bahnsteig
