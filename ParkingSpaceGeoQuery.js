@@ -1,7 +1,5 @@
 const ParkingSpace = require('./ParkingSpace.js');
 const fetch = require('node-fetch');
-const geolib = require('geolib');
-
 
 function loadParkingSpaceByGeo(lat, lon) {
   // const cache = parkingSpaceCache[spaceId];
