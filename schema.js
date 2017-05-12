@@ -64,7 +64,9 @@ const schema = buildSchema(`
   type Facility {
 	  description: String
 	  type: String
-	  state: String
+	  state: String!
+	  equipmentnumber: Int
+	  location: Location
   }
   
   type Product {

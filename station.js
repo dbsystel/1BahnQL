@@ -4,6 +4,7 @@ const fetch = require("node-fetch")
 const Location = require("./location.js")
 const MailAddress = require("./mailAddress")
 const OpeningTimes = require("./openingTimes.js")
+const loadElevatorFor = require("./facilities.js")
 
 class RegionalArea {
 	constructor(number, name, shortName) {
@@ -161,7 +162,6 @@ class Station {
 	
 	get primaryEvaId() {
 		return this.loadStation.then(function(station) {
-			// console.log(station.evaNumbers, station.evaNumbers.filter((eva) => eva.isMain)[0].number)
 			return station.evaNumbers.filter((eva) => eva.isMain)[0].number
 		}) 
 	}
@@ -208,7 +208,6 @@ function loadStationEva(evaID) {
 	return new Station(fetch)
 }
 
-
 function loadStationPromise(bahnhofsnumer) {
 	let url = "https://api.deutschebahn.com/stada/v2/stations/" + bahnhofsnumer
 	var myInit = { method: 'GET',
@@ -249,25 +248,4 @@ function searchStations(searchTerm) {
 	
 	return promies 
 }
-
-//Move to elevator
-var elevatorCache = {}
-function loadElevatorFor(bahnhofsnumer) {
-	var cached = elevatorCache[bahnhofsnumer]
-	if (cached) {
-		return cached
-	}
-	let url = "https://api.deutschebahn.com/fasta/v1/stations/" + (bahnhofsnumer)
-	var myInit = { method: 'GET',
-	headers: {"Authorization": "Bearer 56ea8e077d1a829c588a2af479863601"}};
-	return fetch(url, myInit)
-	.then(function(res) {
-		return res.json()
-	})
-	.then(function(result) {
-		elevatorCache[bahnhofsnumer] = result.facilities
-		return result.facilities
-	})
-}
-
 module.exports = { Station, loadStationEva, searchStations};
