@@ -30,6 +30,11 @@ class RoutePart {
 	get end() {
 		return this.routePartPayload.end
 	}
+	
+    get product() {
+      return new Product(this.routePartPayload.product);
+    }
+
 }
 
-module.exports = RoutePart
+module.exports = RoutePart;
