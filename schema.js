@@ -4,8 +4,13 @@ const schema = buildSchema(`
   type Query {
     hello: String,
 	routeSearch(from: Int, to: Int): [Route]
+	stationWith(evaId: Int): Station 
+	search(searchTerm: String): Searchable
   }
   
+  type Searchable {
+	  stations: [Station]
+  }
   
   type Route {
 	  parts: [RoutePart]
@@ -22,6 +27,7 @@ const schema = buildSchema(`
 	  end: String
   }
   type Station {
+	  evaId: Int
 	  number: ID
 	  name: String
 	  location: Location
@@ -40,6 +46,12 @@ const schema = buildSchema(`
 	  id: Int
 	  facilities: [Facility]
 	  mailingAddress: MailingAddress
+	  DBInformationOpeningTimes: OpeningTimes
+	  localServiceStaffAvailability: OpeningTimes
+	  aufgabentraeger: StationContact
+	  timeTableOffice: StationContact
+	  szentrale: StationContact
+	  stationManagement: StationContact
   }
   
   type Location {
@@ -73,84 +85,33 @@ const schema = buildSchema(`
   }
   
   type OpeningTimes {
-	  open: [OpeningTime]
+	  monday: OpeningTime
+	  tuesday: OpeningTime
+	  wednesday: OpeningTime
+	  thursday: OpeningTime
+	  friday: OpeningTime
+	  saturday: OpeningTime
+	  sunday: OpeningTime
+	  holiday: OpeningTime
   }
   
   type OpeningTime {
-	  from: String
-	  to: String
+	  from: String!
+	  to: String!
+  }
+  
+  type StationContact {
+	  name: String!
+	  shortName: String
+	  email: String
+	  number: String
+	  phoneNumber: String
   }
 `);
 
 module.exports = schema
-// "DBinformation": {
-//         "availability": {
-//           "monday": {
-//             "fromTime": "00:00",
-//             "toTime": "24:00"
-//           },
-//           "tuesday": {
-//             "fromTime": "00:00",
-//             "toTime": "24:00"
-//           },
-//           "wednesday": {
-//             "fromTime": "00:00",
-//             "toTime": "24:00"
-//           },
-//           "thursday": {
-//             "fromTime": "00:00",
-//             "toTime": "24:00"
-//           },
-//           "friday": {
-//             "fromTime": "00:00",
-//             "toTime": "24:00"
-//           },
-//           "saturday": {
-//             "fromTime": "00:00",
-//             "toTime": "24:00"
-//           },
-//           "sunday": {
-//             "fromTime": "00:00",
-//             "toTime": "24:00"
-//           },
-//           "holiday": {
-//             "fromTime": "00:00",
-//             "toTime": "24:00"
-//           }
-//         }
-//       }
 
-//   aufgabentraeger:
-//    { shortName: 'Bayerische Eisenbahngesellschaft mbH',
-//      name: 'BEG' },
-//   DBinformation:
-//    { availability:
-//       { monday: [Object],
-//         tuesday: [Object],
-//         wednesday: [Object],
-//         thursday: [Object],
-//         friday: [Object],
-//         saturday: [Object],
-//         sunday: [Object],
-//         holiday: [Object] } },
-//   localServiceStaff:
-//    { availability:
-//       { monday: [Object],
-//         tuesday: [Object],
-//         wednesday: [Object],
-//         thursday: [Object],
-//         friday: [Object],
-//         saturday: [Object],
-//         sunday: [Object],
-//         holiday: [Object] } },
-//   timeTableOffice:
-//    { email: 'DBS.Fahrplan.SuedBayern@deutschebahn.com',
-//      name: 'Bahnhofsmanagement München' },
-//   szentrale:
-//    { number: 38,
-//      publicPhoneNumber: '089/13081055',
-//      name: 'München Hbf' },
-//   stationManagement: { number: 250, name: 'München' },
+
 //   evaNumbers:
 //    [ { number: 8000261,
 //        geographicCoordinates: [Object],

@@ -1,4 +1,5 @@
 const Station = require("./station.js")
+const { loadStationEva} = require("./station.js")
 
 class RoutePart {
 	
@@ -7,11 +8,11 @@ class RoutePart {
 	}
 	
 	get from() {
-		return new Station(this.routePartPayload.from.id)
+		return loadStationEva(this.routePartPayload.from.id)
 	}
 	
 	get to() {
-		return new Station(this.routePartPayload.to.id)
+		return loadStationEva(this.routePartPayload.to.id)
 	}
 	
 	get delay() {

@@ -3,11 +3,15 @@ const schema = require("./schema.js")
 const express = require('express');
 const graphqlHTTP = require('express-graphql');
 const TrainRouteSearch = require("./trainRouteSearch.js")
+const { loadStationEva, searchStations} = require("./station.js")
+
 
 var root = { hello: () => 'Hello world!', routeSearch: function(args) {
 	let routeSearch = new TrainRouteSearch(args.from, args.to).options
 	return routeSearch.then(function(options) { return [options[0]] })
-} };
+}, stationWith: (args) => loadStationEva(args.evaId),
+search: (args) => { return { stations: searchStations(args.searchTerm)} }
+};
 
 var app = express();
 app.use('/graphql', graphqlHTTP({
