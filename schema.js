@@ -1,11 +1,12 @@
-var { buildSchema } = require('graphql');
+const { buildSchema } = require('graphql');
 
 const schema = buildSchema(`
   type Query {
-    hello: String,
 	routeSearch(from: Int, to: Int): [Route]
 	stationWith(evaId: Int): Station 
 	search(searchTerm: String): Searchable
+    nearbySearch(lat: Float, lon: Float): Nearby
+    parkingSpace(id: Int): ParkingSpace
   }
   
   type Searchable {
@@ -108,10 +109,89 @@ const schema = buildSchema(`
 	  number: String
 	  phoneNumber: String
   }
+
+  type Nearby {
+    stations: [Station]
+    parkingSpaces: [ParkingSpace]
+  }
+
+  type ParkingSpace {
+    id: Int
+    name: String
+    lots: Int
+    latitude: Float
+    longitude: Float
+    occupancy: Occupancy
+    bundesland: String
+    isPublished: Boolean
+    parkraumAusserBetriebText: String
+    parkraumAusserBetrieb_en: String
+    parkraumBahnhofName: String
+    parkraumBahnhofNummer: String
+    parkraumBemerkung: String
+    parkraumBemerkung_en: String
+    parkraumBetreiber: String
+    parkraumDisplayName: String
+    parkraumEntfernung: String
+    parkraumGeoLatitude: String
+    parkraumGeoLongitude: String
+    parkraumId: String
+    parkraumIsAusserBetrieb: Boolean
+    parkraumIsDbBahnPark: Boolean
+    parkraumIsOpenData:  Boolean
+    parkraumIsParktagesproduktDbFern: Boolean
+    parkraumKennung: String
+    parkraumName: String
+    parkraumOeffnungszeiten: String
+    parkraumOeffnungszeiten_en: String
+    parkraumParkTypName: String
+    parkraumParkart: String
+    parkraumParkart_en: String
+    parkraumReservierung: String
+    parkraumStellplaetze: String
+    parkraumTechnik: String
+    parkraumTechnik_en: String
+    parkraumZufahrt: String
+    parkraumZufahrt_en: String
+    tarif1MonatAutomat: String
+    tarif1MonatDauerparken: String
+    tarif1MonatDauerparkenFesterStellplatz: String
+    tarif1Std: String
+    tarif1Tag: String
+    tarif1Woche: String
+    tarif30Min: String
+    tarifFreiparkzeit: String
+    tarifFreiparkzeit_en: String
+    tarifMonatIsDauerparken: Boolean
+    tarifMonatIsParkAndRide: Boolean
+    tarifMonatIsParkscheinautomat: Boolean
+    tarifParkdauer: String
+    tarifParkdauer_en: String
+    tarifRabattDBIsBahnCard: Boolean
+    tarifRabattDBIsParkAndRail: Boolean
+    tarifRabattDBIsbahncomfort: Boolean
+    tarifSondertarif: String
+    tarifSondertarif_en: String
+    tarifWieRabattDB: String
+    tarifWieRabattDB_en: String
+    tarifWoVorverkaufDB: String
+    tarifWoVorverkaufDB_en: String
+    zahlungMedien: String
+    zahlungMedien_en: String
+    evaId: Int
+  }
+
+  type Occupancy {
+    validData: Boolean
+    timestamp: String
+    timeSegment: String
+    category: Int
+    text: String
+  }
+
 `);
 
 module.exports = schema
-
 
 //   evaNumbers:
 //    [ { number: 8000261,
