@@ -1,7 +1,7 @@
 'use strict';
 
 const fetch = require('node-fetch');
-const Occupancy = require('./occupancy');
+const Occupancy = require('./Occupancy');
 
 class ParkingSpace {
 
