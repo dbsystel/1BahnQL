@@ -27,8 +27,9 @@ const schema = buildSchema(`
 	  end: String
   }
   type Station {
-	  evaId: Int
-	  number: ID
+	  primaryEvaId: Int
+	  bahnhofsNummer: Int
+	  primaryRill100: String
 	  name: String
 	  location: Location
 	  category: Int

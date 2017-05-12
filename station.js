@@ -41,7 +41,7 @@ class Station {
 	}
 	
 	get facilities() {
-		return this.bahnhofsnummer.then(bahnhofsnummer => loadElevatorFor(bahnhofsnummer))
+		return this.bahnhofsNummer.then(bahnhofsnummer => loadElevatorFor(bahnhofsnummer))
 	}
 	
 	get category() {
@@ -153,29 +153,51 @@ class Station {
 		}) 
 	}
 	
-	get bahnhofsnummer() {
-		var evaId = this.evaId
-		return new Promise(function(resolve) {
-			stations()
-			.on('data', function(station) {
-				if (station.id == evaId) {
-					resolve(station.nr)
-				}
-			})
+	get bahnhofsNummer() {
+		return this.primaryRill100.then(function(ds100) {
+			return getStationNumberFromDS100(ds100)
 		})
+	}
+	
+	get primaryEvaId() {
+		return this.loadStation.then(function(station) {
+			// console.log(station.evaNumbers, station.evaNumbers.filter((eva) => eva.isMain)[0].number)
+			return station.evaNumbers.filter((eva) => eva.isMain)[0].number
+		}) 
+	}
+	
+	get primaryRill100() {
+		return this.loadStation.then(function(station) {
+			return station.ril100Identifiers.filter((rill) => rill.isMain)[0].rilIdentifier
+		}) 
 	}
 }
 
-function loadStationEvaPromise(evaID) {
-	let fetch = new Promise(function(resolve) {
+function getStationNumberFrom(evaID) {
+	return new Promise(function(resolve) {
 		stations()
 		.on('data', function(station) {
 			if (station.id == evaID) {
-				resolve(station)
+				resolve(station.nr)
 			}
 		})
-	}).then(function(station) {
-		return loadStationPromise(station.nr)
+	})
+}
+
+function getStationNumberFromDS100(ds100) {
+	return new Promise(function(resolve) {
+		stations()
+		.on('data', function(station) {
+			if (station.ds100 == ds100) {
+				resolve(station.nr)
+			}
+		})
+	})
+}
+
+function loadStationEvaPromise(evaID) {
+	getStationNumberFrom(evaID).then(function(stationNumber) {
+		return loadStationPromise(stationNumber)
 	}) 
 	
 	return fetch
@@ -186,16 +208,11 @@ function loadStationEva(evaID) {
 	return new Station(fetch)
 }
 
-var stationCache = {}
 
 function loadStationPromise(bahnhofsnumer) {
-	let cache = stationCache[bahnhofsnumer]
-	if (cache) {
-		return new Promise((resolve) => resolve(cache))
-	}
 	let url = "https://api.deutschebahn.com/stada/v2/stations/" + bahnhofsnumer
 	var myInit = { method: 'GET',
-	               headers: {"Authorization": "Bearer 8462e8ba208e92a1c88477b81dad227a"}
+	               headers: {"Authorization": "Bearer 56ea8e077d1a829c588a2af479863601"}
 			   };
 	let promies = fetch(url, myInit)
 	.then(function(res) {
@@ -203,7 +220,6 @@ function loadStationPromise(bahnhofsnumer) {
 	})
 	.then(function(result) {
 		let station = result.result[0]
-		stationCache[bahnhofsnumer] = station
 		return station
 	})
 	
@@ -218,7 +234,7 @@ function loadStation(bahnhofsnumer) {
 function searchStations(searchTerm) {
 	let url = "https://api.deutschebahn.com/stada/v2/stations?searchstring=*" + searchTerm + "*"
 	var myInit = { method: 'GET',
-				headers: {"Authorization": "Bearer 8462e8ba208e92a1c88477b81dad227a"}};
+				headers: {"Authorization": "Bearer 56ea8e077d1a829c588a2af479863601"}};
 	let promies = fetch(url, myInit)
 	.then(function(res) {
 		return res.json()
@@ -243,7 +259,7 @@ function loadElevatorFor(bahnhofsnumer) {
 	}
 	let url = "https://api.deutschebahn.com/fasta/v1/stations/" + (bahnhofsnumer)
 	var myInit = { method: 'GET',
-	headers: {"Authorization": "Bearer 8462e8ba208e92a1c88477b81dad227a"}};
+	headers: {"Authorization": "Bearer 56ea8e077d1a829c588a2af479863601"}};
 	return fetch(url, myInit)
 	.then(function(res) {
 		return res.json()
