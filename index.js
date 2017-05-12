@@ -2,9 +2,10 @@ const { graphql } = require('graphql');
 const schema = require('./schema.js');
 const express = require('express');
 const graphqlHTTP = require('express-graphql');
-const TrainRouteSearch = require("./trainRouteSearch.js")
-const ParkingSpaceQuery = require('./ParkingSpaceQuery.js');
-const { loadStationEva, searchStations } = require("./station.js")
+const TrainRouteSearch = require('./trainRouteSearch');
+const ParkingSpaceQuery = require('./ParkingSpaceQuery');
+const loadParkingSpaceByGeo = require('./ParkingSpaceGeoQuery');
+const { loadStationEva, searchStations } = require('./station');
 
 const root = {
   routeSearch: (args) => {
@@ -16,8 +17,15 @@ const root = {
     return parkingSpaceQuery.then(options => options);
   },
   stationWith: (args) => loadStationEva(args.evaId),
-  search: (args) => { return { stations: searchStations(args.searchTerm) }
-}}
+  search: (args) => { 
+    return { stations: searchStations(args.searchTerm) } 
+  },
+  nearby: (args) => { 
+    return {
+      parkingSpaces: loadParkingSpaceByGeo(args.lat, args.lon)
+    };
+  },
+};
 
 const app = express();
 app.use('/graphql', graphqlHTTP({

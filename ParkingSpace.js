@@ -8,10 +8,11 @@ class ParkingSpace {
 
   constructor(space) {
     this.id = space.parkraumId;
-    this.name = space.parkraumId;
+    this.name = space.parkraumDisplayName;
     this.lots = space.parkraumStellplaetze;
     this.latitude = space.latitude;
     this.longitude = space.longitude;
+    this.distance = space.distance;
     this.bundesland = space.bundesland;
     this.isPublished = space.isPublished;
     this.parkraumAusserBetriebText = space.parkraumAusserBetriebText;
