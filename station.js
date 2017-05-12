@@ -1,6 +1,24 @@
 const stations = require('db-stations');
 const fetch = require("node-fetch")
 
+const Location = require("./location.js")
+
+class RegionalArea {
+	constructor(number, name, shortName) {
+		this.number = number
+		this.name = name
+		this.shortName = shortName
+	}
+}
+
+class MailingAddress {
+	constructor(city, zipcode, street) {
+		this.city = city
+		this.zipcode = zipcode
+		this.street = street
+	}
+}
+
 class Station {
 	
 	constructor(evaId) {
@@ -20,8 +38,73 @@ class Station {
 		return this.loadStation.then(station => station.name)
 	}
 	
+	get location() {
+		return this.loadStation.then(function(station) {
+			var coordinates = station.evaNumbers[0].geographicCoordinates.coordinates
+			return new Location(coordinates[1], coordinates[0])
+		})
+	}
+	
 	get facilities() {
 		return this.bahnhofsnummer.then(bahnhofsnummer => loadElevatorFor(bahnhofsnummer))
+	}
+	
+	get category() {
+		return this.loadStation.then(station => station.category)
+	}
+	
+	get hasParking() {
+		return this.loadStation.then(station => station.hasParking)
+	}
+	
+	get hasBicycleParking() {
+		return this.loadStation.then(station => station.hasBicycleParking)
+	}
+	
+	get hasLocalPublicTransport() {
+		return this.loadStation.then(station => station.hasLocalPublicTransport)
+	}
+	
+	get hasPublicFacilities() {
+		return this.loadStation.then(station => station.hasPublicFacilities)
+	}
+	
+	get hasLockerSystem() {
+		return this.loadStation.then(station => station.hasLockerSystem)
+	}
+	
+	get hasTaxiRank() {
+		return this.loadStation.then(station => station.hasTaxiRank)
+	}
+	
+	get hasTravelNecessities() {
+		return this.loadStation.then(station => station.hasTravelNecessities)
+	}
+	
+	get hasSteplessAccess() {
+		return this.loadStation.then(station => station.hasSteplessAccess)
+	}
+	
+	get hasMobilityService() {
+		return this.loadStation.then(station => station.hasMobilityService)
+	}
+	
+	get federalState() {
+		return this.loadStation.then(station => station.federalState)
+	}
+	
+	get regionalArea() {
+		return this.loadStation.then(function(station) {
+			var area = station.regionalbereich
+			return new RegionalArea(area.number, area.name, area.shortName)
+		})
+	}
+	
+	get mailingAddress() {
+		return this.loadStation.then(function(station) {
+			var adress = station.mailingAddress
+			return new MailingAddress(adress.city, adress.zipcode, adress.street)
+		})
 	}
 	
 	get bahnhofsnummer() {

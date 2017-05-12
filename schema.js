@@ -24,6 +24,7 @@ const schema = buildSchema(`
   type Station {
 	  number: ID
 	  name: String
+	  location: Location
 	  category: Int
 	  hasParking: Boolean
 	  hasBicycleParking: Boolean
@@ -35,9 +36,13 @@ const schema = buildSchema(`
 	  hasSteplessAccess: String
 	  hasMobilityService: String
 	  federalState: String
-	  regionalbereich: Regionalbereich
+	  regionalArea: RegionalArea
 	  id: Int
 	  facilities: [Facility]
+	  mailingAddress: MailingAddress
+  }
+  
+  type Location {
 	  latitude: Float
 	  longitude: Float
   }
@@ -55,37 +60,66 @@ const schema = buildSchema(`
 	  productName: String
   }
   
-  type MailingAdress {
+  type MailingAddress {
 	  city: String
 	  zipcode: String
 	  street: String
   }
   
-  type Regionalbereich {
+  type RegionalArea {
 	  number: Int
 	  name: String
 	  shortName: String
   }
+  
+  type OpeningTimes {
+	  open: [OpeningTime]
+  }
+  
+  type OpeningTime {
+	  from: String
+	  to: String
+  }
 `);
 
 module.exports = schema
+// "DBinformation": {
+//         "availability": {
+//           "monday": {
+//             "fromTime": "00:00",
+//             "toTime": "24:00"
+//           },
+//           "tuesday": {
+//             "fromTime": "00:00",
+//             "toTime": "24:00"
+//           },
+//           "wednesday": {
+//             "fromTime": "00:00",
+//             "toTime": "24:00"
+//           },
+//           "thursday": {
+//             "fromTime": "00:00",
+//             "toTime": "24:00"
+//           },
+//           "friday": {
+//             "fromTime": "00:00",
+//             "toTime": "24:00"
+//           },
+//           "saturday": {
+//             "fromTime": "00:00",
+//             "toTime": "24:00"
+//           },
+//           "sunday": {
+//             "fromTime": "00:00",
+//             "toTime": "24:00"
+//           },
+//           "holiday": {
+//             "fromTime": "00:00",
+//             "toTime": "24:00"
+//           }
+//         }
+//       }
 
-
-// { number: 4234,
-//   name: 'München Hbf',
-//   mailingAddress: { city: 'München', zipcode: '80335', street: 'Bayerstr. 10a' },
-//   category: 1,
-//   hasParking: Boolean,
-//   hasBicycleParking: Boolean,
-//   hasLocalPublicTransport: Boolean,
-//   hasPublicFacilities: Boolean,
-//   hasLockerSystem: Boolean,
-//   hasTaxiRank: Boolean,
-//   hasTravelNecessities: Boolean,
-//   hasSteplessAccess: 'yes',
-//   hasMobilityService: 'Ja, um Voranmeldung unter 01806 512 512 wird gebeten',
-//   federalState: 'Bayern',
-//   regionalbereich: { number: 7, name: 'RB Süd', shortName: 'RB S' },
 //   aufgabentraeger:
 //    { shortName: 'Bayerische Eisenbahngesellschaft mbH',
 //      name: 'BEG' },
