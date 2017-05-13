@@ -1,5 +1,6 @@
 const TravelCenter = require('./TravelCenter');
 const fetch = require('node-fetch');
+const APIToken = process.env.DBDeveloperAuthorization
 
 function loadNearbyTravelCenter(lat, lon) {
   // const cache = parkingSpaceCache[spaceId];
@@ -11,7 +12,7 @@ function loadNearbyTravelCenter(lat, lon) {
     method: 'GET',
     cache: 'force-cache',
     'cache-control': 'force-cache',
-    headers: { Authorization: 'Bearer a26069a09ba49f28c6748e54f1011ebd' },
+    headers: { Authorization: 'Bearer ' + APIToken },
   };
 
   const promise = fetch(url, myInit)

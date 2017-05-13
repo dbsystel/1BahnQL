@@ -1,5 +1,6 @@
 const fetch = require("node-fetch")
 const Location = require("./location.js")
+const APIToken = process.env.DBDeveloperAuthorization
 
 class Facility {
 	constructor(description, type, state, location, equipmentnumber) {
@@ -19,7 +20,7 @@ function loadElevatorFor(bahnhofsnumer) {
 	}
 	let url = "https://api.deutschebahn.com/fasta/v1/stations/" + (bahnhofsnumer)
 	var myInit = { method: 'GET',
-	headers: {"Authorization": "Bearer 56ea8e077d1a829c588a2af479863601"}};
+	headers: {"Authorization": "Bearer " + APIToken}};
 	return fetch(url, myInit)
 	.then(function(res) {
 		return res.json()

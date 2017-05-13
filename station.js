@@ -8,6 +8,7 @@ const OpeningTimes = require('./openingTimes.js');
 const loadElevatorFor = require('./facilities.js');
 const { getParkingSpacesByBhfNr } = require('./ParkingSpaceQuery');
 const { loadTimeTableFor } = require('./timetables.js');
+const APIToken = process.env.DBDeveloperAuthorization
 
 class RegionalArea {
   constructor(number, name, shortName) {
@@ -214,7 +215,7 @@ function loadStationEva(evaID) {
 function loadStationPromise(bahnhofsnummer) {
   const url = `https://api.deutschebahn.com/stada/v2/stations/${bahnhofsnummer}`;
   const myInit = { method: 'GET',
-	               headers: { Authorization: 'Bearer 56ea8e077d1a829c588a2af479863601' },
+	               headers: { Authorization: 'Bearer ' + APIToken },
 			   };
   const promise = fetch(url, myInit)
 	.then(res => res.json())
@@ -234,7 +235,7 @@ function loadStation(bahnhofsnummer) {
 function searchStations(searchTerm) {
   const url = `https://api.deutschebahn.com/stada/v2/stations?searchstring=*${searchTerm}*`;
   const myInit = { method: 'GET',
-    headers: { Authorization: 'Bearer 56ea8e077d1a829c588a2af479863601' } };
+    headers: { Authorization: 'Bearer ' + APIToken } };
   const promies = fetch(url, myInit)
 	.then(res => res.json())
 	.then(result => (result.result || []).map(station => new Station(new Promise((resolve) => {
@@ -270,7 +271,6 @@ function allStations(callback) {
 }
 
 function transformStationObject(station){
-	console.log(station)
 	station = transformStationCoordinates(station)
 	station = removeUnwantedStationDetails(station)
 	station.detailsPath = "stations/" + station.id

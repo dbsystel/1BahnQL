@@ -2,6 +2,7 @@
 
 const FlinksterCar = require('./FlinksterCar.js');
 const fetch = require('node-fetch');
+const APIToken = process.env.DBDeveloperAuthorization
 
 function loadNearbyCars(lat, lon) {
   const url = `https://api.deutschebahn.com/flinkster-api-ng/v1/bookingproposals?lat=${lat}&lon=${lon}&radius=10000&offset=0&limit=5&providernetwork=1&expand=area%2Crentalobject%2Cprice`;
@@ -9,7 +10,7 @@ function loadNearbyCars(lat, lon) {
     method: 'GET',
     cache: 'force-cache',
     'cache-control': 'force-cache',
-    headers: { Authorization: 'Bearer a26069a09ba49f28c6748e54f1011ebd' },
+    headers: { Authorization: 'Bearer ' + APIToken },
   };
 
   const promise = fetch(url, myInit)

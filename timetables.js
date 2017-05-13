@@ -1,6 +1,7 @@
 const fetch = require("node-fetch")
 var convert = require('xml-js');
 var moment = require('moment-timezone');
+const APIToken = process.env.DBDeveloperAuthorization
 
 class TrainOnStation {
 	constructor(trainType, trainNumber, timeStampString, platform, stops) {
@@ -17,7 +18,7 @@ function loadTimeTableFor(evaId) {
 	let nowString = now.format("YYMMDD/HH")
 	let url = "https://api.deutschebahn.com/timetables/v1/plan/" + evaId + "/" + nowString
 	var myInit = { method: 'GET',
-	headers: {"Authorization": "Bearer 56ea8e077d1a829c588a2af479863601" }};
+	headers: {"Authorization": "Bearer " + APIToken }};
 	return fetch(url, myInit)
 	.then(function(res) {
 		return res.text()
@@ -43,17 +44,7 @@ function loadTimeTableFor(evaId) {
 				result[arrivalDepatingTypeKeyMap[type]].push(train)
 			}
 		})
-		console.log(result)
-		// json.elements[].elements.map(function(element) {
-// 			var trainType = element.elements[0].attributes.c
-// 			var trainNumber = element.elements[0].attributes.n
-// 			var platform = element.elements[1].attributes.pp
-// 			var time = element.elements[1].attributes.pt
-// 			var type = element.elements[1].name
-// 			console.log(type)
-// 			var train = new TrainOnStation(trainType, trainNumber, new moment.tz(time, "YYMMDDHHmm", "Europe/Berlin").utc().toDate(), platform)
-// 			result[arrivalDepatingTypeKeyMap[type]].push(train)
-// 		})
+		
 		return result
 	})
 }
