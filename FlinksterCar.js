@@ -1,6 +1,7 @@
 'use strict';
 
 const Location = require('./location');
+const MailAddress = require('./mailAddress');
 
 class Attributes {
 
@@ -9,6 +10,9 @@ class Attributes {
     this.transmissionType = att.transmissionType;
     this.doors = att.doors;
     this.color = att.colour;
+    this.fuel = att.fuel;
+    this.licensePlate = att.licenseplate;
+    this.fillLevel = att.fillLevel;
   }
 }
 
@@ -34,6 +38,7 @@ class FlinksterCar {
     this.type = car.rentalObject.type;
     this.attributes = new Attributes(car.rentalObject.attributes);
     this.location = new Location(car.position.coordinates[0], car.position.coordinates[1]);
+    this.address = new MailAddress(car.area.address.city, car.area.address.zip, car.area.address.street);
     this.priceOptions = car.price.items.map(price => new PriceOption(price));
   }
 
