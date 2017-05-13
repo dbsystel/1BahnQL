@@ -126,8 +126,7 @@ const schema = buildSchema(`
     name: String
     station: Station
     lots: Int
-    latitude: Float
-    longitude: Float
+    location: Location
     occupancy: Occupancy
     bundesland: String
     isPublished: Boolean
