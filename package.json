@@ -4,8 +4,9 @@
   "description": "- [ ] Stationen (StaDa) - [ ] Fahrstühle (FaSta) - [ ] Fahrplan (Fahrplan-Free) - [ ] Flinkster  - [ ] Betriebsstellen - [ ] Reisezentren - [ ] Parkplätze - [ ] https://github.com/derhuerst/db-zugradar-client - [ ] https://github.com/derhuerst/db-hafas - [ ] https://github.com/derhuerst/generate-db-shop-urls - [ ] https://github.com/derhuerst/find-db-station-by-name - [ ] https://github.com/derhuerst/european-transport-modules - [ ] https://github.com/derhuerst/vbb-lines - [ ] https://github.com/derhuerst/db-stations",
   "main": "index.js",
   "dependencies": {
+    "csv-parse": "^1.2.0",
     "db-hafas": "^0.3.0",
-    "db-stations": "^1.0.0",
+    "db-stations": "^1.0.1",
     "express": "^4.15.2",
     "express-graphql": "^0.6.4",
     "graphiql": "^0.10.2",

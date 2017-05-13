@@ -30,7 +30,7 @@ const schema = buildSchema(`
   type Station {
 	  primaryEvaId: Int
 	  bahnhofsNummer: Int
-	  primaryRil100: String
+	  primaryRill100: String
 	  name: String
 	  location: Location
 	  category: Int
@@ -55,7 +55,6 @@ const schema = buildSchema(`
 	  szentrale: StationContact
 	  stationManagement: StationContact
 	  arrivalDepatureBoard: ArrivalDepatureBoard
-    parkingSpaces: [ParkingSpace]
   }
   
   type Location {
@@ -117,13 +116,12 @@ const schema = buildSchema(`
   type Nearby {
     stations: [Station]
     parkingSpaces: [ParkingSpace]
-    travelCenter: TravelCenter
-    flinksterCars: [FlinksterCar]
   }
 
   type ParkingSpace {
     id: Int
     name: String
+    station: Station
     lots: Int
     latitude: Float
     longitude: Float
@@ -133,7 +131,7 @@ const schema = buildSchema(`
     parkraumAusserBetriebText: String
     parkraumAusserBetrieb_en: String
     parkraumBahnhofName: String
-    parkraumBahnhofNummer: Int
+    parkraumBahnhofNummer: String
     parkraumBemerkung: String
     parkraumBemerkung_en: String
     parkraumBetreiber: String
@@ -208,43 +206,9 @@ const schema = buildSchema(`
 	  stops: [String]
   }
 
-  type TravelCenter {
-    id: Int
-    name: String 
-    address: MailingAddress
-    type: String
-    lat: Float
-    lon: Float
-  }
-
-  type FlinksterCar {
-    id: String
-    name: String
-    description: String
-    attributes: CarAttributes
-    location: Location
-    priceOptions: [PriceOption]
-  }
-
-  type CarAttributes {
-    seats: Int
-    color: String
-    doors: Int
-    transmissionType: String
-  }
-
-  type PriceOption {
-    interval: Int
-    type: String
-    grossamount: Float
-    currency: String
-    taxrate: Float
-    preferredprice: Boolean
-  }
-
 `);
 
-module.exports = schema;
+module.exports = schema
 
 //   evaNumbers:
 //    [ { number: 8000261,

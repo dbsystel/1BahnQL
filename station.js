@@ -1,5 +1,6 @@
 const stations = require('db-stations');
-const fetch = require('node-fetch');
+const fetch = require("node-fetch")
+const hafas = require('db-hafas')
 
 const Location = require('./location.js');
 const MailAddress = require('./mailAddress');
@@ -188,7 +189,6 @@ function getStationNumberFrom(evaID) {
     });
   });
 }
-
 function getStationNumberFromDS100(ds100) {
   console.log(`request ds100: ${ds100}`);
   return new Promise((resolve) => {
@@ -244,4 +244,100 @@ function searchStations(searchTerm) {
   return promies;
 }
 
-module.exports = { Station, loadStationEva, searchStations };
+var parse = require('csv-parse');
+var fs = require('fs');
+
+
+require.extensions['.csv'] = function (module, filename) {
+    module.exports = fs.readFileSync(filename, 'utf8');
+};
+var trainStations = require("./trainstations.csv");
+
+function nearbyStations(latitude,longitude,count,callback) {
+	allStations(function(err, stations) {
+		var result = stations.sort(function(a,b){
+			var distanceToA = calculateDistance(latitude * 1,longitude * 1,a.latitude * 1,a.longitude * 1)
+			var distanceToB = calculateDistance(latitude * 1,longitude * 1,b.latitude * 1,b.longitude * 1)
+			return distanceToA - distanceToB
+		}).slice(0, count)
+
+		callback(err, result)
+	})
+}
+
+function allStations(callback) {
+	parse(trainStations, {comment: '#', delimiter: ";", columns: true}, callback);
+}
+
+function transformStationObject(station){
+	console.log(station)
+	station = transformStationCoordinates(station)
+	station = removeUnwantedStationDetails(station)
+	station.detailsPath = "stations/" + station.id
+	station.displayPath = "stations/" + station.id + "/display"
+	return station
+}
+function transformStationCoordinates(station) {
+	var coordinate = {
+		latitude: station.latitude * 1,
+		longitude: station.longitude * 1
+	}
+	station.coordinate = coordinate
+	delete station.latitude
+	delete station.longitude
+	return station
+}
+
+// http://stackoverflow.com/questions/26836146/how-to-sort-array-items-by-longitude-latitude-distance-in-javascripts
+function calculateDistance(lat1, lon1, lat2, lon2) {
+        var radlat1 = Math.PI * lat1/180
+        var radlat2 = Math.PI * lat2/180
+        var radlon1 = Math.PI * lon1/180
+        var radlon2 = Math.PI * lon2/180
+        var theta = lon1-lon2
+        var radtheta = Math.PI * theta/180
+        var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+        dist = Math.acos(dist)
+        dist = dist * 180/Math.PI
+        dist = dist * 60 * 1.1515
+
+		// Miles to Kilometers
+		dist = dist * 1.609344
+
+        return dist
+}
+
+function getStationNumbersFrom(evaIDs) {
+
+  return new Promise((resolve) => {
+	  var result = []
+    stations()
+		.on('data', (station) => {
+      if (evaIDs.find((id) => id == station.id)) {
+        result.push({nr: station.nr, id: station.id});
+      }
+    }).on("end", function() {
+    	resolve(result.sort((ids1, ids2) => evaIDs.indexOf(ids1.id) > evaIDs.indexOf(ids2.id)).map(ids => ids.nr))
+    });
+  });
+}
+
+function stationNearby(latitude, longitude) {
+	var promise = new Promise(function(resolve) {
+		nearbyStations(latitude, longitude, 5, function(err, stations) {
+			resolve(stations)
+		})
+	}).then(function(stations) {
+		let evaIDs = stations.map(station => station.id) 
+		return getStationNumbersFrom(evaIDs).then(function(stationNrs) {
+			var loadingStations = stationNrs.map(function(nr) {
+				let stationLoad = loadStation(nr)
+				return stationLoad
+			})
+			return loadingStations
+		})
+	})
+	
+	return promise
+}
+module.exports = { Station, loadStationEva, searchStations, stationNearby };
