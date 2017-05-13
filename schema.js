@@ -221,6 +221,9 @@ const schema = buildSchema(`
     id: String
     name: String
     description: String
+    attributes: CarAttributes
+    location: Location
+    priceOptions: [PriceOption]
   }
 
   type CarAttributes {
@@ -228,6 +231,15 @@ const schema = buildSchema(`
     color: String
     doors: Int
     transmissionType: String
+  }
+
+  type PriceOption {
+    interval: Int
+    type: String
+    grossamount: Float
+    currency: String
+    taxrate: Float
+    preferredprice: Boolean
   }
 
 `);
