@@ -118,6 +118,7 @@ const schema = buildSchema(`
     stations: [Station]
     parkingSpaces: [ParkingSpace]
     travelCenter: TravelCenter
+    flinksterCars: [FlinksterCar]
   }
 
   type ParkingSpace {
@@ -216,9 +217,22 @@ const schema = buildSchema(`
     lon: Float
   }
 
+  type FlinksterCar {
+    id: String
+    name: String
+    description: String
+  }
+
+  type CarAttributes {
+    seats: Int
+    color: String
+    doors: Int
+    transmissionType: String
+  }
+
 `);
 
-module.exports = schema
+module.exports = schema;
 
 //   evaNumbers:
 //    [ { number: 8000261,
