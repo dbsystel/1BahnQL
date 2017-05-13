@@ -45,8 +45,45 @@ function loadParkingSpaceById(spaceId) {
   return promise;
 }
 
+const stationParkingSpacesCache = {};
 
-module.exports = ParkingSpaceQuery;
+function getParkingSpacesByBhfNr(bhfNr) {
+  // const cache = parkingSpaceCache[bhfNr];
+  // if (cache) {
+  //   return cache;
+  // }
+  const url = 'http://opendata.dbbahnpark.info/api/beta/sites';
+  const myInit = {
+    method: 'GET',
+    cache: 'force-cache',
+    'cache-control': 'force-cache',
+  };
+
+  const promise = fetch(url, myInit)
+  .then(res => res.json())
+  .then((result) => {
+    if (result.count > 0) {
+      const filteredResult = result.results.filter(elem => elem.parkraumBahnhofNummer == bhfNr);
+
+      if (filteredResult.length > 0) {
+
+        stationParkingSpacesCache[bhfNr] = filteredResult;
+        console.log(`found ${filteredResult.length} parking spaces for bhf nr ${bhfNr}`);
+
+        const parkingSpaces = filteredResult.map((space) => {
+          return new ParkingSpace(space);
+        });
+
+        return parkingSpaces;
+      }
+    }
+  });
+
+  return promise;
+}
+
+
+module.exports = { ParkingSpaceQuery, getParkingSpacesByBhfNr };
 
 /*
 {

@@ -2,7 +2,6 @@
 
 const fetch = require('node-fetch');
 const Occupancy = require('./Occupancy');
-const { loadStationEva } = require("./station.js")
 
 class ParkingSpace {
 
@@ -78,10 +77,6 @@ class ParkingSpace {
   get evaId() {
     return getEvaIdForBhfNr(this.parkraumBahnhofNummer);
   }
-  
-  get station() {
-  	return evaId.then((evaId) => loadStationEva(evaId))
-  }
 }
 
 const parkingSpaceOccupancyCache = {};
@@ -90,7 +85,7 @@ function getOccupancy(spaceId) {
   // if (cache) {
   //   return new Occupancy(cache.allocation);
   // }
-  
+
   const url = `http://opendata.dbbahnpark.info/api/beta/occupancy/${spaceId}`;
   const myInit = {
     method: 'GET',
@@ -102,12 +97,13 @@ function getOccupancy(spaceId) {
   .then(res => res.json())
   .then((result) => {
     const occupancyData = result;
+
     if (occupancyData.code == 5101) {
       return null;
-    } else {
-      parkingSpaceOccupancyCache[spaceId] = occupancyData;
-      return new Occupancy(occupancyData.allocation);
     }
+
+    parkingSpaceOccupancyCache[spaceId] = occupancyData;
+    return new Occupancy(occupancyData.allocation);
   });
 
   return promise;
@@ -120,7 +116,7 @@ function getEvaIdForBhfNr(bahnhofNummer) {
   //   return new Occupancy(cache.allocation);
   // }
 
-  const url = `http://opendata.dbbahnpark.info/api/beta/stations`;
+  const url = 'http://opendata.dbbahnpark.info/api/beta/stations';
   const myInit = {
     method: 'GET',
     cache: 'force-cache',
@@ -130,15 +126,13 @@ function getEvaIdForBhfNr(bahnhofNummer) {
   const promise = fetch(url, myInit)
   .then(res => res.json())
   .then((result) => {
-
-    console.log("Try to find" + bahnhofNummer);
+    console.log(`Try to find ${bahnhofNummer}`);
 
     if (result.count > 0) {
       const filteredResult = result.results.filter(elem => elem.bahnhofsNummer == bahnhofNummer);
 
       const parkingStation = filteredResult[0];
       parkingSpaceStationCache[bahnhofNummer] = parkingStation;
-      console.log(parkingStation, parkingStation.evaNummer)
       return parkingStation.evaNummer;
     }
   });
@@ -147,21 +141,3 @@ function getEvaIdForBhfNr(bahnhofNummer) {
 }
 
 module.exports = ParkingSpace;
-
-// {
-//   "site": {
-//     "id": 100023,
-//     "siteId": 100023,
-//     "flaechenNummer": 100023,
-//     "stationName": "Berlin Ostbahnhof",
-//     "siteName": "Parkplatz Berlin Ostbahnhof",
-//     "displayName": "Berlin Ostbahnhof Parkplatz Berlin Ostbahnhof"
-//   },
-//   "allocation": {
-//     "validData": true,
-//     "timestamp": "2017-05-12T13:04:00",
-//     "timeSegment": "2017-05-12T13:00:00",
-//     "category": 3,
-//     "text": "> 30"
-//   }
-// }
