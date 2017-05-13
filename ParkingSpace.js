@@ -2,6 +2,7 @@
 
 const fetch = require('node-fetch');
 const Occupancy = require('./Occupancy');
+const Location = require('./location');
 
 class ParkingSpace {
 
@@ -9,8 +10,7 @@ class ParkingSpace {
     this.id = space.parkraumId;
     this.name = space.parkraumDisplayName;
     this.lots = space.parkraumStellplaetze;
-    this.latitude = space.latitude;
-    this.longitude = space.longitude;
+    this.location = new Location(space.parkraumGeoLatitude, space.parkraumGeoLongitude);
     this.distance = space.distance;
     this.bundesland = space.bundesland;
     this.isPublished = space.isPublished;
@@ -23,9 +23,6 @@ class ParkingSpace {
     this.parkraumBetreiber = space.parkraumBetreiber;
     this.parkraumDisplayName = space.parkraumDisplayName;
     this.parkraumEntfernung = space.parkraumEntfernung;
-    this.parkraumGeoLatitude = space.parkraumGeoLatitude;
-    this.parkraumGeoLongitude = space.parkraumGeoLongitude;
-    this.parkraumId = space.parkraumId;
     this.parkraumIsAusserBetrieb = space.parkraumIsAusserBetrieb;
     this.parkraumIsDbBahnPark = space.parkraumIsDbBahnPark;
     this.parkraumIsOpenData = space.parkraumIsOpenData;

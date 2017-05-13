@@ -30,7 +30,7 @@ const schema = buildSchema(`
   type Station {
 	  primaryEvaId: Int
 	  bahnhofsNummer: Int
-	  primaryRill100: String
+	  primaryRil100: String
 	  name: String
 	  location: Location
 	  category: Int
@@ -55,6 +55,7 @@ const schema = buildSchema(`
 	  szentrale: StationContact
 	  stationManagement: StationContact
 	  arrivalDepatureBoard: ArrivalDepatureBoard
+    parkingSpaces: [ParkingSpace]
   }
   
   type Location {
@@ -126,15 +127,14 @@ const schema = buildSchema(`
     name: String
     station: Station
     lots: Int
-    latitude: Float
-    longitude: Float
+    location: Location
     occupancy: Occupancy
     bundesland: String
     isPublished: Boolean
     parkraumAusserBetriebText: String
     parkraumAusserBetrieb_en: String
     parkraumBahnhofName: String
-    parkraumBahnhofNummer: String
+    parkraumBahnhofNummer: Int
     parkraumBemerkung: String
     parkraumBemerkung_en: String
     parkraumBetreiber: String
@@ -264,7 +264,7 @@ const schema = buildSchema(`
   }
 `);
 
-module.exports = schema
+module.exports = schema;
 
 //   evaNumbers:
 //    [ { number: 8000261,
