@@ -210,9 +210,7 @@ const schema = buildSchema(`
   type TravelCenter {
     id: Int
     name: String 
-    address: String
-    postCode: String
-    city: String
+    address: MailingAddress
     type: String
     lat: Float
     lon: Float

@@ -1,13 +1,13 @@
 'use strict';
 
+const MailAddress = require('./mailAddress');
+
 class TravelCenter {
   
   constructor(travelCenterPayload) {
     this.id = travelCenterPayload.id;
     this.name = travelCenterPayload.name;
-    this.address = travelCenterPayload.address;
-    this.postCode = travelCenterPayload.postCode;
-    this.city = travelCenterPayload.city;
+    this.address = new MailAddress(travelCenterPayload.city, travelCenterPayload.postCode, travelCenterPayload.address);
     this.type = travelCenterPayload.type;
     this.lat = travelCenterPayload.lat;
     this.lon = travelCenterPayload.lon;
