@@ -4,7 +4,7 @@ const express = require('express');
 const graphqlHTTP = require('express-graphql');
 const TrainRouteSearch = require('./trainRouteSearch');
 const ParkingSpaceQuery = require('./ParkingSpaceQuery');
-const loadParkingSpaceByGeo = require('./ParkingSpaceGeoQuery');
+const NearbyQuery = require('./NearbyQuery');
 const { loadStationEva, searchStations } = require('./station');
 
 const root = {
@@ -21,9 +21,7 @@ const root = {
     return { stations: searchStations(args.searchTerm) } 
   },
   nearby: (args) => { 
-    return {
-      parkingSpaces: loadParkingSpaceByGeo(args.lat, args.lon)
-    };
+    return new NearbyQuery(args.lat, args.lon);
   },
 };
 

@@ -1,15 +1,21 @@
 'use strict';
 
-const parkingGeoSearch = require('./ParkingSpaceGeoQuery');
-const fetch = require('node-fetch');
+const loadParkingSpaceByGeo = require('./ParkingSpaceGeoQuery');
+const loadNearbyTravelCenter = require('./TravelCenterGeoQuery');
 
-class ParkingSpaceQuery {
-  constructor(id) {
-    this.id = id;
-    this.promise = loadParkingSpaceById(id);
+class NearbyQuery {
+  constructor(lat, lon) {
+    this.lat = lat;
+    this.lon = lon;
   }
 
   get parkingSpaces() {
-    return parkingGeoSearch;
+    return loadParkingSpaceByGeo(this.lat, this.lon);
+  }
+
+  get travelCenter() {
+    return loadNearbyTravelCenter(this.lat, this.lon);
   }
 }
+
+module.exports = NearbyQuery;

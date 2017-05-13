@@ -116,6 +116,7 @@ const schema = buildSchema(`
   type Nearby {
     stations: [Station]
     parkingSpaces: [ParkingSpace]
+    travelCenter: TravelCenter
   }
 
   type ParkingSpace {
@@ -204,6 +205,17 @@ const schema = buildSchema(`
 	  platform: String
 	  time: String
 	  stops: [String]
+  }
+
+  type TravelCenter {
+    id: Int
+    name: String 
+    address: String
+    postCode: String
+    city: String
+    type: String
+    lat: Float
+    lon: Float
   }
 
 `);
