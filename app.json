@@ -1,0 +1,6 @@
+{
+  "name": "1BahnQL",
+  "description": "Single unified API for all DBOpenData APIs implemented with GraphQL.",
+  "repository": "https://github.com/dennispost/1BahnQL",
+  "keywords": ["node", "graphQL", "dbopendata"]
+}
