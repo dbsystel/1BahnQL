@@ -5,7 +5,11 @@ Single unified API for all DBOpenData APIs implemented with GraphQL. We implemen
 ### Install
 `npm install`
 ### Run
-`Authorization=<Your DBOpenData Athetication Token> node index.js`
+`DBDeveloperAuthorization=<Your DBOpenData Athetication Token> node index.js`
+
+### Heroku Deploy
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/dennispost/1BahnQL])
+
 
 ## Datenquellen
 ### API:
