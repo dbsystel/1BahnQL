@@ -1,6 +1,16 @@
 {
-  "name": "1BahnQL",
-  "description": "Single unified API for all DBOpenData APIs implemented with GraphQL.",
-  "repository": "https://github.com/dennispost/1BahnQL",
-  "keywords": ["node", "graphQL", "dbopendata"]
+	"name": "1BahnQL",
+	"description": "Single unified API for all DBOpenData APIs implemented with GraphQL.",
+	"repository": "https://github.com/dennispost/1BahnQL",
+	"keywords": [
+		"node",
+		"graphQL",
+		"dbopendata"
+	],
+	"env": {
+		"DBDeveloperAuthorization": {
+			"description": "API Key from DB Developer Portal",
+			"required": true
+		}
+	}
 }
