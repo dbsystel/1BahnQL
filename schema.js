@@ -116,6 +116,9 @@ const schema = buildSchema(`
   type Nearby {
     stations: [Station]
     parkingSpaces: [ParkingSpace]
+    travelCenter: TravelCenter
+    flinksterCars: [FlinksterCar]
+    bikes: [CallABikeBike]
   }
 
   type ParkingSpace {
@@ -206,6 +209,59 @@ const schema = buildSchema(`
 	  stops: [String]
   }
 
+  type TravelCenter {
+    id: Int
+    name: String 
+    address: MailingAddress
+    type: String
+    lat: Float
+    lon: Float
+  }
+
+  type FlinksterCar {
+    id: String
+    name: String
+    description: String
+    attributes: CarAttributes
+    location: Location
+    priceOptions: [PriceOption]
+    address: MailingAddress
+    rentalModel: String
+    fillLevel: Int
+    fuel: String
+  }
+
+  type CallABikeBike {
+    id: String
+    name: String
+    description: String
+    location: Location
+    priceOptions: [PriceOption]
+    attributes: BikeAttributes
+    address: MailingAddress
+    rentalModel: String
+  }
+
+  type CarAttributes {
+    seats: Int
+    color: String
+    doors: Int
+    transmissionType: String
+    licensePlate: String
+  }
+
+  type BikeAttributes {
+    licensePlate: String
+  }
+
+  type PriceOption {
+    interval: Int
+    type: String
+    grossamount: Float
+    currency: String
+    taxrate: Float
+    preferredprice: Boolean
+  }
 `);
 
 module.exports = schema
