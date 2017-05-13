@@ -23,6 +23,7 @@ function loadNearbyCars(lat, lon) {
 
         return allCars;
     }
+	return []
   });
 
   return promise;
