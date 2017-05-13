@@ -25,35 +25,29 @@ Single unified API for all DBOpenData APIs implemented with GraphQL. We implemen
 - [ ] http://data.deutschebahn.com/dataset/data-wagenreihungsplan-soll-daten
 - [ ] http://data.deutschebahn.com/dataset/luftschadstoffkataster
 
-### Databox:
-- [ ] https://databox.noncd.bku-web.db.de/dataset/mengengerust-aufzuge-und-fahrtreppen
-- [ ] https://databox.noncd.bku-web.db.de/dataset/fahrtreppen-mit-geokoordinaten-und-osm-id
-- [ ] https://databox.noncd.bku-web.db.de/dataset/streckennetz
-
-
 ## Root Queries
 
 ### Verbindungssuche
 
 ### Textsuche
-#### Station [x]
-#### Zug
+- [x] Station
+- [ ] Zug
 
 ### Geosuche
-#### Station
-#### Bahnsteig
-#### Flinkster
-#### Call a Bike
-#### Parkplätze [x]
-#### Zug
-#### Fahrstühle / Rolltreppen
+- [x] Station
+- [ ] Bahnsteig
+- [x] Flinkster
+- [x] Call a Bike
+- [x] Parkplätze
+- [ ] Zug
+- [ ] Fahrstühle / Rolltreppen
 
 ### ID Access
-#### EvaId (Station) [x]
-#### DS100 (BetrSt)
-#### Zug
-#### Flinkster
-#### Call a Bike
-#### Fahrstühle / Rolltreppen
-#### Parkplätze [x]
-#### Bahnsteig
+- [x] EvaId (Station)
+- [x] DS100 (BetrSt)
+- [ ] Zug
+- [ ] Flinkster
+- [ ] Call a Bike
+- [ ] Fahrstühle / Rolltreppen
+- [x] Parkplätze
+- [ ] Bahnsteig
