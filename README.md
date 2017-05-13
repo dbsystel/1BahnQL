@@ -2,13 +2,13 @@
 ## Datenquellen
 ### API:
 
-- [ ] Stationen (StaDa)
-- [ ] Fahrstühle (FaSta)
-- [ ] Fahrplan (Fahrplan-Free)
-- [ ] Flinkster 
+- [x] Stationen (StaDa)
+- [x] Fahrstühle (FaSta)
+- [x] Fahrplan (Fahrplan-Free)
+- [x] Flinkster 
 - [ ] Betriebsstellen
-- [ ] Reisezentren
-- [ ] Parkplätze
+- [x] Reisezentren
+- [x] Parkplätze
 - [ ] https://github.com/derhuerst/db-zugradar-client
 - [ ] https://github.com/derhuerst/db-hafas
 - [ ] https://github.com/derhuerst/generate-db-shop-urls
