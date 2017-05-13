@@ -1,7 +1,7 @@
 'use strict';
 
 const MailAddress = require('./mailAddress');
-const Location = require("./Location")
+const Location = require("./location")
 
 class TravelCenter {
   
