@@ -44,7 +44,7 @@ Single unified API for all DBOpenData APIs implemented with GraphQL. We implemen
 
 ### ID Access
 - [x] EvaId (Station)
-- [x] DS100 (BetrSt)
+- [ ] DS100 (BetrSt)
 - [ ] Zug
 - [ ] Flinkster
 - [ ] Call a Bike
