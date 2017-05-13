@@ -1,6 +1,7 @@
 'use strict';
 
 const MailAddress = require('./mailAddress');
+const Location = require("./Location")
 
 class TravelCenter {
   
@@ -9,8 +10,7 @@ class TravelCenter {
     this.name = travelCenterPayload.name;
     this.address = new MailAddress(travelCenterPayload.city, travelCenterPayload.postCode, travelCenterPayload.address);
     this.type = travelCenterPayload.type;
-    this.lat = travelCenterPayload.lat;
-    this.lon = travelCenterPayload.lon;
+	this.location = new Location(travelCenterPayload.lat, travelCenterPayload.lon)
   }
 }
 

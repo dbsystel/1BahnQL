@@ -18,7 +18,6 @@ function loadNearbyTravelCenter(lat, lon) {
   const promise = fetch(url, myInit)
   .then(res => res.json())
   .then((result) => {
-    console.log(result);
       return new TravelCenter(result);
   });
 

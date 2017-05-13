@@ -214,8 +214,7 @@ const schema = buildSchema(`
     name: String 
     address: MailingAddress
     type: String
-    lat: Float
-    lon: Float
+	location: Location
   }
 
   type FlinksterCar {

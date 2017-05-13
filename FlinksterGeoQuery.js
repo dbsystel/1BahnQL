@@ -16,7 +16,7 @@ function loadNearbyCars(lat, lon) {
   const promise = fetch(url, myInit)
   .then(res => res.json())
   .then((result) => {
-    if (result.items.length > 0) {
+    if (result.items) {
 
         const allCars = result.items.map((car) => {
           return new FlinksterCar(car);
