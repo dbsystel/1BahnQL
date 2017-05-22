@@ -1,6 +1,9 @@
 # 1BahnQL
 Single unified API for all DBOpenData APIs implemented with GraphQL. We implemented the following APIs: StaDa, FaSta, TimeTables, Flinkster, CallABike, ParkplätzeAPI, ReiseCenter
 
+## GraphiQL Playground
+[1BahnQL GraphiQL](https://bahnql.herokuapp.com/graphq)
+
 ## Usage
 ### Install
 `npm install`
