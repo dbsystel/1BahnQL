@@ -27,40 +27,40 @@ const schema = buildSchema(`
 	  start: String
 	  end: String
   }
+  
   type Station {
-	  primaryEvaId: Int
-	  bahnhofsNummer: Int
-	  primaryRil100: String
-	  name: String
-	  location: Location
-	  category: Int
-	  hasParking: Boolean
-	  hasBicycleParking: Boolean
-	  hasLocalPublicTransport: Boolean
-	  hasPublicFacilities: Boolean
-	  hasLockerSystem: Boolean
-	  hasTaxiRank: Boolean
-	  hasTravelNecessities: Boolean
-	  hasSteplessAccess: String
-	  hasMobilityService: String
-	  federalState: String
-	  regionalArea: RegionalArea
-	  id: Int
-	  facilities: [Facility]
-	  mailingAddress: MailingAddress
+	  primaryEvaId: Int!
+	  bahnhofsNummer: Int!
+	  primaryRil100: String!
+	  name: String!
+	  location: Location!
+	  category: Int!
+	  hasParking: Boolean!
+	  hasBicycleParking: Boolean!
+	  hasLocalPublicTransport: Boolean!
+	  hasPublicFacilities: Boolean!
+	  hasLockerSystem: Boolean!
+	  hasTaxiRank: Boolean!
+	  hasTravelNecessities: Boolean!
+	  hasSteplessAccess: String!
+	  hasMobilityService: String!
+	  federalState: String!
+	  regionalArea: RegionalArea!
+	  facilities: [Facility!]!
+	  mailingAddress: MailingAddress!
 	  DBInformationOpeningTimes: OpeningTimes
 	  localServiceStaffAvailability: OpeningTimes
-	  aufgabentraeger: StationContact
-	  timeTableOffice: StationContact
-	  szentrale: StationContact
-	  stationManagement: StationContact
-	  arrivalDepatureBoard: ArrivalDepatureBoard
-    parkingSpaces: [ParkingSpace]
+	  aufgabentraeger: StationContact!
+	  timeTableOffice: StationContact!
+	  szentrale: StationContact!
+	  stationManagement: StationContact!
+	  arrivalDepatureBoard: ArrivalDepatureBoard!
+      parkingSpaces: [ParkingSpace!]!
   }
   
   type Location {
-	  latitude: Float
-	  longitude: Float
+	  latitude: Float!
+	  longitude: Float!
   }
   
   type Facility {
@@ -79,15 +79,15 @@ const schema = buildSchema(`
   }
   
   type MailingAddress {
-	  city: String
-	  zipcode: String
-	  street: String
+	  city: String!
+	  zipcode: String!
+	  street: String!
   }
   
   type RegionalArea {
-	  number: Int
-	  name: String
-	  shortName: String
+	  number: Int!
+	  name: String!
+	  shortName: String!
   }
   
   type OpeningTimes {
