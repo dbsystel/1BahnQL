@@ -1,29 +1,11 @@
-const stations = require('db-stations');
 const fetch = require("node-fetch")
 const hafas = require('db-hafas')
+const { stationNumberByEvaId } = require('./StationIdMappingService.js')
 
 const APIToken = process.env.DBDeveloperAuthorization
 
 //Models
 const Station = require('./station.js')
-
-function stationNumberByAttribute(attibute, matchingAttribute) {
-    return new Promise((resolve) => {
-		stations().on('data', (station) => {
-	        if (station[attibute] == matchingAttribute) {
-	          resolve(station.nr);
-	        }
-      	});
-    });
-}
-
-function stationNumberByEvaId(evaID) {
-	return stationNumberByAttribute("id", evaID)
-}
-
-function stationNumberFromDS100(ds100) {
-	return stationNumberByAttribute("ds100", ds100)
-}
 
 function loadStationEvaPromise(evaID) {
   return stationNumberByEvaId(evaID).then(stationNumber => loadStationPromise(stationNumber));
@@ -64,17 +46,4 @@ function searchStations(searchTerm) {
   return promies;
 }
 
-function stationNumbersByEvaIds(evaIDs) {
-  return new Promise((resolve) => {
-	var result = []
-	  stations().on('data', (station) => {
-	      if(evaIDs.find((id) => id == station.id)) {
-	        result.push({nr: station.nr, id: station.id});
-	      }
-    }).on("end", function() {
-    	resolve(result.sort((ids1, ids2) => evaIDs.indexOf(ids1.id) > evaIDs.indexOf(ids2.id)).map(ids => ids.nr))
-    });
-  });
-}
-
-module.exports = { searchStations, stationByEvaId, stationByBahnhofsnummer, stationNumberByEvaId, stationNumbersByEvaIds }
+module.exports = { searchStations, stationByEvaId, stationByBahnhofsnummer }

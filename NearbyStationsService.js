@@ -1,6 +1,7 @@
-var parse = require('csv-parse');
-var fs = require('fs');
-var { stationNumbersByEvaIds, stationByBahnhofsnummer } = require('./StationService.js')
+const parse = require('csv-parse');
+const fs = require('fs');
+const { stationNumbersByEvaIds } = require('./StationIdMappingService.js')
+const { stationByBahnhofsnummer } = require('./StationService.js')
 
 require.extensions['.csv'] = function (module, filename) {
     module.exports = fs.readFileSync(filename, 'utf8');

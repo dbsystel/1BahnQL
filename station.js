@@ -8,6 +8,7 @@ const StationContact = require('./StationContact.js')
 const loadElevatorFor = require('./facilities.js');
 const { getParkingSpacesByBhfNr } = require('./ParkingSpaceQuery');
 const { loadTimeTableFor } = require('./timetables.js');
+const { stationNumberByEvaId } = require('./StationIdMappingService.js')
 
 class Station {
 
@@ -140,7 +141,7 @@ class Station {
   }
 
   get bahnhofsNummer() {
-    return this.primaryEvaId.then(evaId => getStationNumberFrom(evaId));
+    return this.primaryEvaId.then(evaId => stationNumberByEvaId(evaId));
   }
 
   get primaryEvaId() {
