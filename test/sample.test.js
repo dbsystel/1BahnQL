@@ -1,3 +1,4 @@
+/*jslint node: true */
 /* eslint-env mocha */
 'use strict';
 
