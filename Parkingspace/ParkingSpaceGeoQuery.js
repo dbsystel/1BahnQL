@@ -1,4 +1,4 @@
-const ParkingSpace = require('./ParkingSpace.js');
+const Parkingspace = require('./Parkingspace.js');
 const fetch = require('node-fetch');
 
 function loadParkingSpaceByGeo(lat, lon) {
@@ -28,7 +28,7 @@ function loadParkingSpaceByGeo(lat, lon) {
       
       // sort by distance
       let sorted = mapped.sort((elem1, elem2) => { return elem1.distance - elem2.distance });
-      return sorted.slice(0, 5).map((elem) => { return new ParkingSpace(elem); } );
+      return sorted.slice(0, 5).map((elem) => { return new Parkingspace(elem); } );
     }
   });
 
