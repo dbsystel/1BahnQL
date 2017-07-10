@@ -10,7 +10,7 @@ const schema = buildSchema(`
   }
   
   type Searchable {
-	  stations: [Station]
+	  stations: [Station!]!
   }
   
   type Route {
@@ -30,7 +30,7 @@ const schema = buildSchema(`
   
   type Station {
 	  primaryEvaId: Int!
-	  bahnhofsNummer: Int!
+	  stationNumber: Int!
 	  primaryRil100: String!
 	  name: String!
 	  location: Location!

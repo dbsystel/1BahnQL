@@ -57,15 +57,13 @@ class Station {
 		}
 		this.primaryEvaId = station.evaNumbers.filter(eva => eva.isMain)[0].number
 		this.primaryRil100 = station.ril100Identifiers.filter(ril => ril.isMain)[0].rilIdentifier
-		this.ril100Identifiers = station.ril100Identifiers
-
 	}
 
 	get facilities() {
 		return this.bahnhofsNummer.then(bahnhofsnummer => loadElevatorFor(bahnhofsnummer));
 	}
 
-	get bahnhofsNummer() {
+	get stationNumber() {
 		return stationNumberByEvaId(this.primaryEvaId)
 	}
 	
