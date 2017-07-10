@@ -1,5 +1,4 @@
-const Station = require("./station.js")
-const { loadStationEva} = require("./station.js")
+const { stationByEvaId } = require("./Station/StationService.js")
 
 class RoutePart {
 	
@@ -8,11 +7,11 @@ class RoutePart {
 	}
 	
 	get from() {
-		return loadStationEva(this.routePartPayload.from.id)
+		return stationByEvaId(this.routePartPayload.from.id)
 	}
 	
 	get to() {
-		return loadStationEva(this.routePartPayload.to.id)
+		return stationByEvaId(this.routePartPayload.to.id)
 	}
 	
 	get delay() {

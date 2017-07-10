@@ -1,13 +1,13 @@
 //Models
-const Location = require('./location.js');
-const MailAddress = require('./mailAddress');
-const OpeningTimes = require('./openingTimes.js');
+const Location = require('../location.js');
+const MailAddress = require('../mailAddress');
+const OpeningTimes = require('../openingTimes.js');
 const RegionalArea = require('./RegionalArea.js')
 const StationContact = require('./StationContact.js')
 
-const loadElevatorFor = require('./facilities.js');
-const { getParkingSpacesByBhfNr } = require('./ParkingSpaceQuery');
-const { loadTimeTableFor } = require('./timetables.js');
+const loadElevatorFor = require('../facilities.js');
+const { getParkingSpacesByBhfNr } = require('../ParkingSpaceQuery');
+const { loadTimeTableFor } = require('../timetables.js');
 const { stationNumberByEvaId } = require('./StationIdMappingService.js')
 
 class Station {

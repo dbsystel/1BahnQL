@@ -5,7 +5,10 @@ const graphqlHTTP = require('express-graphql');
 const TrainRouteSearch = require('./trainRouteSearch');
 const { ParkingSpaceQuery } = require('./ParkingSpaceQuery');
 const NearbyQuery = require('./NearbyQuery');
-const { stationByEvaId, searchStations } = require('./StationService');
+
+const APIToken = process.env.DBDeveloperAuthorization
+const stationLoader = require('./Station/StationLoader')(APIToken);
+const stationService = require('./Station/StationService')(stationLoader);
 
 const root = {
   routeSearch: (args) => {
@@ -16,9 +19,9 @@ const root = {
     const parkingSpaceQuery = new ParkingSpaceQuery(args.id).options;
     return parkingSpaceQuery.then(options => options);
   },
-  stationWith: (args) => stationByEvaId(args.evaId),
+  stationWith: (args) => stationService.stationByEvaId(args.evaId),
   search: (args) => { 
-    return { stations: searchStations(args.searchTerm) } 
+    return { stations: stationService.searchStations(args.searchTerm) } 
   },
   nearby: (args) => { 
     return new NearbyQuery(args.lat, args.lon);
