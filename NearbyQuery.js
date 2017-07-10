@@ -1,6 +1,6 @@
 'use strict';
 
-const loadParkingSpaceByGeo = require('./ParkingSpaceGeoQuery');
+const loadParkingSpaceByGeo = require('./Parkingspace/ParkingSpaceGeoQuery');
 const loadNearbyTravelCenter = require('./TravelCenterGeoQuery');
 const loadNearbyCars = require('./FlinksterGeoQuery');
 const { stationNearby } = require('./station');

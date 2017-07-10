@@ -35,8 +35,7 @@ function loadParkingSpaceById(spaceId) {
       if (filteredResult.length > 0) {
 
         const parkingSpace = filteredResult[0];
-
-        parkingSpaceCache[spaceId] = parkingSpace;
+        
         return parkingSpace;
       }
     }
