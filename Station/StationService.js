@@ -4,27 +4,43 @@ const { stationNumberByEvaId } = require('./StationIdMappingService.js')
 //Models
 const Station = require('./Station.js')
 
-function StationService(stationLoader) {
+class StationService {
+	
+	constructor(stationLoader) {
+		this.stationLoader = stationLoader
+	}
 
-	function stationByEvaId(evaID) {
-		const promise = stationNumberByEvaId(evaID).then(stationNumber => stationLoader.stationByBahnhofsnummer(stationNumber));
+	stationByEvaId(evaID) {
+		let stationLoader = this.stationLoader
+		return stationNumberByEvaId(evaID).then(stationNumber => stationLoader.stationByBahnhofsnummer(stationNumber))
+		.then(function(station) {
+			if (station) {
+				return new Station(station)
+			} else {
+				return null
+			}
+		})
+	}
+
+	stationByBahnhofsnummer(bahnhofsnummer) {
+		return this.stationLoader.stationByBahnhofsnummer(bahnhofsnummer)
+		.then(function(station) {
+			if (station) {
+				return new Station(station)
+			} else {
+				return null
+			}
+		})
+
 		return new Station(promise);
 	}
 
-	function stationByBahnhofsnummer(bahnhofsnummer) {
-		const promise = stationLoader.stationByBahnhofsnummer(bahnhofsnummer)
-		return new Station(promise);
-	}
-
-	function searchStations(searchTerm) {
-		return stationLoader.searchStations(searchTerm)
-			.then(promises => promises.map(promise => new Station(promise)))
-	}
-
-	return {
-		searchStations,
-		stationByEvaId,
-		stationByBahnhofsnummer
+	searchStations(searchTerm) {
+		return this.stationLoader.searchStations(searchTerm)
+			.then(promises => promises.map(function(promise) {
+				
+				return promise.then(data => new Station(data))
+			}))
 	}
 }
 

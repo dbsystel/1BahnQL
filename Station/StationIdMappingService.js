@@ -1,11 +1,17 @@
 const stations = require('db-stations');
 
 function stationNumberByAttribute(attibute, matchingAttribute) {
+	var bool = false
     return new Promise((resolve) => {
 		stations().on('data', (station) => {
 	        if (station[attibute] == matchingAttribute) {
-	          resolve(station.nr);
+				bool = true
+	          	resolve(station.nr);
 	        }
+      	}).on('end', () => {
+			if (!bool) {
+				resolve(null)
+			}
       	});
     });
 }

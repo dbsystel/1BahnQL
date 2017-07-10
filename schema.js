@@ -2,10 +2,10 @@ const { buildSchema } = require('graphql');
 
 const schema = buildSchema(`
   type Query {
-    routeSearch(from: Int, to: Int): [Route]
-    stationWith(evaId: Int): Station 
-    search(searchTerm: String): Searchable
-    nearby(lat: Float, lon: Float): Nearby
+    routeSearch(from: Int, to: Int): [Route]!
+    stationWith(evaId: Int): Station
+    search(searchTerm: String): Searchable!
+    nearby(lat: Float, lon: Float): Nearby!
     parkingSpace(id: Int): ParkingSpace
   }
   

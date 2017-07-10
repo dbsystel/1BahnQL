@@ -6,9 +6,12 @@ const TrainRouteSearch = require('./trainRouteSearch');
 const { ParkingSpaceQuery } = require('./ParkingSpaceQuery');
 const NearbyQuery = require('./NearbyQuery');
 
+const StationLoader = require('./Station/StationLoader')
+const StationService = require('./Station/StationService')
+
 const APIToken = process.env.DBDeveloperAuthorization
-const stationLoader = require('./Station/StationLoader')(APIToken);
-const stationService = require('./Station/StationService')(stationLoader);
+const stationLoader = new StationLoader(APIToken);
+const stationService = new StationService(stationLoader);
 
 const root = {
   routeSearch: (args) => {

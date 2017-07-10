@@ -2,11 +2,14 @@
 const fetch = require("node-fetch")
 const baseURL = "https://api.deutschebahn.com"
 
-function StationLoader(APIToken) {
+class StationLoader {	
+	constructor(APIToken) {
+		this.APIToken = APIToken
+	}
 
-	function fetchConfiguration() {
+	get fetchConfiguration() {
 		let headers = {
-			Authorization: 'Bearer ' + APIToken
+			Authorization: 'Bearer ' + this.APIToken
 		} 
 		let configuration = {
 			method: 'GET',
@@ -16,19 +19,24 @@ function StationLoader(APIToken) {
 		return configuration
 	}
 
-	function stationByBahnhofsnummer(bahnhofsnummer) {
+	stationByBahnhofsnummer(bahnhofsnummer) {
 		const url = `${baseURL}/stada/v2/stations/${bahnhofsnummer}`;
-		const configuration = fetchConfiguration()
+		const configuration = this.fetchConfiguration
 		const promise = fetch(url, configuration)
 			.then(res => res.json())
-			.then((result) => result.result[0]);
+			.then(function(result) {
+				if (result && result.result && result.result.count > 0) {
+					return result.result[0]
+				}
+				return null
+			});
 
 		return promise;
 	}
 
-	function searchStations(searchTerm) {
+	searchStations(searchTerm) {
 		const url = `${baseURL}/stada/v2/stations?searchstring=*${searchTerm}*`;
-		const configuration = fetchConfiguration()
+		const configuration = this.fetchConfiguration
 		const promies = fetch(url, configuration)
 			.then(res => res.json())
 			.then(result => (result.result || []))
@@ -37,7 +45,6 @@ function StationLoader(APIToken) {
 		return promies;
 	}
 	
-	return { searchStations,  stationByBahnhofsnummer }
 }
 
 module.exports = StationLoader

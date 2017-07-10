@@ -6,159 +6,76 @@ const RegionalArea = require('./RegionalArea.js')
 const StationContact = require('./StationContact.js')
 
 const loadElevatorFor = require('../facilities.js');
-const { getParkingSpacesByBhfNr } = require('../ParkingSpaceQuery');
-const { loadTimeTableFor } = require('../timetables.js');
-const { stationNumberByEvaId } = require('./StationIdMappingService.js')
+const {
+	getParkingSpacesByBhfNr
+} = require('../ParkingSpaceQuery');
+const {
+	loadTimeTableFor
+} = require('../timetables.js');
+const {
+	stationNumberByEvaId
+} = require('./StationIdMappingService.js')
 
 class Station {
 
-  constructor(promise) {
-    this.loadStation = promise;
-  }
+	constructor(station) {
+		this.name = station.name
+		const coordinates = station.evaNumbers[0].geographicCoordinates.coordinates;
+		this.location = new Location(coordinates[1], coordinates[0]);
+		this.category = station.category
+		this.hasParking = station.hasParking
+		this.hasBicycleParking = station.hasBicycleParking
+		this.hasLocalPublicTransport = station.hasLocalPublicTransport
+		this.hasPublicFacilities = station.hasPublicFacilities
+		this.hasLockerSystem = station.hasLockerSystem
+		this.hasTravelNecessities = station.hasTravelNecessities
+		this.hasSteplessAccess = station.hasSteplessAccess
+		this.hasMobilityService = station.hasMobilityService
+		this.federalState = station.federalState
+		const area = station.regionalbereich
+		this.regionalArea = new RegionalArea(area.number, area.name, area.shortName)
+		const adress = station.mailingAddress;
+		this.mailingAddress = new MailAddress(adress.city, adress.zipcode, adress.street)
+		const contact = station.aufgabentraeger;
+		// ShortName & name switched -- see https://github.com/lightsprint09/DBOpenDataAPIBugs/issues/1
+		this.aufgabentraeger = new StationContact(contact.shortName, contact.name,
+			contact.email, contact.number, contact.phoneNumber)
+		const timeTableContact = station.timeTableOffice;
+		this.timeTableOffice = new StationContact(timeTableContact.name, timeTableContact.shortName,
+			timeTableContact.email, timeTableContact.number, timeTableContact.phoneNumber)
+		const szentraleContact = station.szentrale;
+		this.szentrale = new StationContact(szentraleContact.name, szentraleContact.shortName,
+			szentraleContact.email, szentraleContact.number, szentraleContact.publicPhoneNumber);
+		const stationManagementContact = station.stationManagement;
+		this.stationManagement = new StationContact(stationManagementContact.name, stationManagementContact.shortName,
+			stationManagementContact.email, stationManagementContact.number, stationManagementContact.phoneNumber)
+		if (station.DBinformation) {
+			this.DBInformationOpeningTimes = new OpeningTimes(station.DBinformation.availability)
+		}
+		if (station.localServiceStaff) {
+			this.localServiceStaffAvailability = new OpeningTimes(station.localServiceStaff.availability);
+		}
+		this.primaryEvaId = station.evaNumbers.filter(eva => eva.isMain)[0].number
+		this.primaryRil100 = station.ril100Identifiers.filter(ril => ril.isMain)[0].rilIdentifier
+		this.ril100Identifiers = station.ril100Identifiers
 
-  get name() {
-    return this.loadStation.then(station => station.name);
-  }
+	}
 
-  get location() {
-    return this.loadStation.then((station) => {
-      const coordinates = station.evaNumbers[0].geographicCoordinates.coordinates;
-      return new Location(coordinates[1], coordinates[0]);
-    });
-  }
+	get facilities() {
+		return this.bahnhofsNummer.then(bahnhofsnummer => loadElevatorFor(bahnhofsnummer));
+	}
 
-  get facilities() {
-    return this.bahnhofsNummer.then(bahnhofsnummer => loadElevatorFor(bahnhofsnummer));
-  }
+	get bahnhofsNummer() {
+		return stationNumberByEvaId(this.primaryEvaId)
+	}
+	
+	get arrivalDepatureBoard() {
+		return loadTimeTableFor(this.primaryEvaId)
+	}
 
-  get category() {
-    return this.loadStation.then(station => station.category);
-  }
-
-  get hasParking() {
-    return this.loadStation.then(station => station.hasParking);
-  }
-
-  get hasBicycleParking() {
-    return this.loadStation.then(station => station.hasBicycleParking);
-  }
-
-  get hasLocalPublicTransport() {
-    return this.loadStation.then(station => station.hasLocalPublicTransport);
-  }
-
-  get hasPublicFacilities() {
-    return this.loadStation.then(station => station.hasPublicFacilities);
-  }
-
-  get hasLockerSystem() {
-    return this.loadStation.then(station => station.hasLockerSystem);
-  }
-
-  get hasTaxiRank() {
-    return this.loadStation.then(station => station.hasTaxiRank);
-  }
-
-  get hasTravelNecessities() {
-    return this.loadStation.then(station => station.hasTravelNecessities);
-  }
-
-  get hasSteplessAccess() {
-    return this.loadStation.then(station => station.hasSteplessAccess);
-  }
-
-  get hasMobilityService() {
-    return this.loadStation.then(station => station.hasMobilityService);
-  }
-
-  get federalState() {
-    return this.loadStation.then(station => station.federalState);
-  }
-
-  get regionalArea() {
-    return this.loadStation.then((station) => {
-      const area = station.regionalbereich;
-      return new RegionalArea(area.number, area.name, area.shortName);
-    });
-  }
-
-  get mailingAddress() {
-    return this.loadStation.then((station) => {
-      const adress = station.mailingAddress;
-      return new MailAddress(adress.city, adress.zipcode, adress.street);
-    });
-  }
-
-  get aufgabentraeger() {
-    return this.loadStation.then((station) => {
-      const contact = station.aufgabentraeger;
-			// ShortName & name switched -- see https://github.com/lightsprint09/DBOpenDataAPIBugs/issues/1
-      return new StationContact(contact.shortName, contact.name,
-				 contact.email, contact.number, contact.phoneNumber);
-    });
-  }
-
-  get timeTableOffice() {
-    return this.loadStation.then((station) => {
-      const contact = station.timeTableOffice;
-      return new StationContact(contact.name, contact.shortName,
-				 contact.email, contact.number, contact.phoneNumber);
-    });
-  }
-
-  get szentrale() {
-    return this.loadStation.then((station) => {
-      const contact = station.szentrale;
-      return new StationContact(contact.name, contact.shortName,
-				 contact.email, contact.number, contact.publicPhoneNumber);
-    });
-  }
-
-  get stationManagement() {
-    return this.loadStation.then((station) => {
-      const contact = station.stationManagement;
-      return new StationContact(contact.name, contact.shortName,
-				 contact.email, contact.number, contact.phoneNumber);
-    });
-  }
-
-  get DBInformationOpeningTimes() {
-    return this.loadStation.then((station) => {
-      if (!station.DBinformation) {
-        return null;
-      }
-      return new OpeningTimes(station.DBinformation.availability);
-    });
-  }
-
-  get localServiceStaffAvailability() {
-    return this.loadStation.then((station) => {
-      if (!station.localServiceStaff) {
-        return null;
-      }
-      return new OpeningTimes(station.localServiceStaff.availability);
-    });
-  }
-
-  get bahnhofsNummer() {
-    return this.primaryEvaId.then(evaId => stationNumberByEvaId(evaId));
-  }
-
-  get primaryEvaId() {
-    return this.loadStation.then(station => station.evaNumbers.filter(eva => eva.isMain)[0].number);
-  }
-
-  get primaryRil100() {
-    return this.loadStation.then(station => station.ril100Identifiers.filter(ril => ril.isMain)[0].rilIdentifier);
-  }
-
-  get arrivalDepatureBoard() {
-    return this.primaryEvaId.then(evaId => loadTimeTableFor(evaId));
-  }
-
-  get parkingSpaces() {
-    return this.bahnhofsNummer.then(bhfNr => getParkingSpacesByBhfNr(bhfNr));
-  }
+	get parkingSpaces() {
+		return this.bahnhofsNummer.then(bhfNr => getParkingSpacesByBhfNr(bhfNr));
+	}
 }
 
 module.exports = Station
