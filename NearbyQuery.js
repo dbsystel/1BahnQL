@@ -1,4 +1,4 @@
-'use strict';
+
 
 const loadParkingSpaceByGeo = require('./ParkingSpaceGeoQuery');
 const loadNearbyTravelCenter = require('./TravelCenterGeoQuery');
@@ -8,7 +8,7 @@ const loadNearbyBikes = require('./CallABikeGeoQuery');
 
 class NearbyQuery {
   constructor(latitude, longitude, nearbyStationService) {
-	this.nearbyStationService = nearbyStationService
+    this.nearbyStationService = nearbyStationService;
     this.latitude = latitude;
     this.longitude = longitude;
   }
@@ -24,11 +24,11 @@ class NearbyQuery {
   get flinksterCars() {
     return loadNearbyCars(this.latitude, this.longitude);
   }
-  
+
   get stations() {
-  	return this.nearbyStationService.stationNearby(this.latitude, this.longitude, 5)
-	}
-	
+  	return this.nearbyStationService.stationNearby(this.latitude, this.longitude, 5);
+  }
+
   get bikes() {
     return loadNearbyBikes(this.lat, this.lon);
   }

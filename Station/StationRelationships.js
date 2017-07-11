@@ -1,28 +1,28 @@
 const loadElevatorFor = require('../facilities.js');
 const {
-	getParkingSpacesByBhfNr
+  getParkingSpacesByBhfNr,
 } = require('../ParkingSpaceQuery');
 const {
-	loadTimeTableFor
+  loadTimeTableFor,
 } = require('../timetables.js');
 const {
-	stationNumberByEvaId
-} = require('./StationIdMappingService.js')
+  stationNumberByEvaId,
+} = require('./StationIdMappingService.js');
 
 class StationRelationships {
-	constructor(station) {
-		station.facilities = function() {
-			return loadElevatorFor(station.stationNumber)
-		}
-	
-		station.arrivalDepatureBoard = function() {
-			return loadTimeTableFor(station.primaryEvaId)
-		}
+  constructor(station) {
+    station.facilities = function () {
+      return loadElevatorFor(station.stationNumber);
+    };
 
-		station.parkingSpaces = function() {
-			return getParkingSpacesByBhfNr(station.stationNumber)
-		}
-	} 
+    station.arrivalDepatureBoard = function () {
+      return loadTimeTableFor(station.primaryEvaId);
+    };
+
+    station.parkingSpaces = function () {
+      return getParkingSpacesByBhfNr(station.stationNumber);
+    };
+  }
 }
 
-module.exports = StationRelationships
+module.exports = StationRelationships;

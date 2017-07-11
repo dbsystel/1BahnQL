@@ -1,8 +1,9 @@
-'use strict';
+
 
 const CallABikeBike = require('./CallABikeBike');
 const fetch = require('node-fetch');
-const APIToken = process.env.DBDeveloperAuthorization
+
+const APIToken = process.env.DBDeveloperAuthorization;
 
 function loadNearbyBikes(lat, lon) {
   const url = `https://api.deutschebahn.com/flinkster-api-ng/v1/bookingproposals?lat=${lat}&lon=${lon}&radius=10000&offset=0&limit=5&providernetwork=2&expand=area%2Crentalobject%2Cprice`;
@@ -10,22 +11,19 @@ function loadNearbyBikes(lat, lon) {
     method: 'GET',
     cache: 'force-cache',
     'cache-control': 'force-cache',
-    headers: { Authorization: 'Bearer ' + APIToken },
+    headers: { Authorization: `Bearer ${APIToken}` },
   };
 
   const promise = fetch(url, myInit)
-  .then(res => res.json())
-  .then((result) => {
-    if (result.items.length > 0) {
-
-        const allBikes = result.items.map((bike) => {
-          return new CallABikeBike(bike);
-        });
+    .then(res => res.json())
+    .then((result) => {
+      if (result.items.length > 0) {
+        const allBikes = result.items.map(bike => new CallABikeBike(bike));
 
         return allBikes;
-    }
-	return []
-  });
+      }
+      return [];
+    });
 
   return promise;
 }

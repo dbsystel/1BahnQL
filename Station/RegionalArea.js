@@ -6,4 +6,4 @@ class RegionalArea {
   }
 }
 
-module.exports = RegionalArea
+module.exports = RegionalArea;

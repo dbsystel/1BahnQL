@@ -8,4 +8,4 @@ class StationContact {
   }
 }
 
-module.exports = StationContact
+module.exports = StationContact;
