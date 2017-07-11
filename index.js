@@ -8,10 +8,12 @@ const NearbyQuery = require('./NearbyQuery');
 
 const StationLoader = require('./Station/StationLoader')
 const StationService = require('./Station/StationService')
+const NearbyStationService = require('./Station/NearbyStationsService.js');
 
 const APIToken = process.env.DBDeveloperAuthorization
 const stationLoader = new StationLoader(APIToken);
 const stationService = new StationService(stationLoader);
+const nearbyStationService = new NearbyStationService(stationService)
 
 const root = {
   routeSearch: (args) => {
@@ -27,7 +29,7 @@ const root = {
     return { stations: stationService.searchStations(args.searchTerm) } 
   },
   nearby: (args) => { 
-    return new NearbyQuery(args.lat, args.lon);
+    return new NearbyQuery(args.latitude, args.longitude, nearbyStationService);
   },
 };
 

@@ -5,25 +5,16 @@ const OpeningTimes = require('../openingTimes.js');
 const RegionalArea = require('./RegionalArea.js')
 const StationContact = require('./StationContact.js')
 
-const loadElevatorFor = require('../facilities.js');
-const {
-	getParkingSpacesByBhfNr
-} = require('../ParkingSpaceQuery');
-const {
-	loadTimeTableFor
-} = require('../timetables.js');
-const {
-	stationNumberByEvaId
-} = require('./StationIdMappingService.js')
-
 class Station {
 
 	constructor(station) {
+		this.stationNumber = station.number
 		this.name = station.name
 		const coordinates = station.evaNumbers[0].geographicCoordinates.coordinates;
 		this.location = new Location(coordinates[1], coordinates[0]);
 		this.category = station.category
 		this.hasParking = station.hasParking
+		this.hasTaxiRank = station.hasTaxiRank
 		this.hasBicycleParking = station.hasBicycleParking
 		this.hasLocalPublicTransport = station.hasLocalPublicTransport
 		this.hasPublicFacilities = station.hasPublicFacilities
@@ -57,22 +48,6 @@ class Station {
 		}
 		this.primaryEvaId = station.evaNumbers.filter(eva => eva.isMain)[0].number
 		this.primaryRil100 = station.ril100Identifiers.filter(ril => ril.isMain)[0].rilIdentifier
-	}
-
-	get facilities() {
-		return this.bahnhofsNummer.then(bahnhofsnummer => loadElevatorFor(bahnhofsnummer));
-	}
-
-	get stationNumber() {
-		return stationNumberByEvaId(this.primaryEvaId)
-	}
-	
-	get arrivalDepatureBoard() {
-		return loadTimeTableFor(this.primaryEvaId)
-	}
-
-	get parkingSpaces() {
-		return this.bahnhofsNummer.then(bhfNr => getParkingSpacesByBhfNr(bhfNr));
 	}
 }
 

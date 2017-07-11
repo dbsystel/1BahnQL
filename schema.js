@@ -5,7 +5,7 @@ const schema = buildSchema(`
     routeSearch(from: Int, to: Int): [Route]!
     stationWith(evaId: Int): Station
     search(searchTerm: String): Searchable!
-    nearby(lat: Float, lon: Float): Nearby!
+    nearby(latitude: Float, longitude: Float): Nearby!
     parkingSpace(id: Int): ParkingSpace
   }
   
