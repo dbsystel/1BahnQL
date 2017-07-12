@@ -3,20 +3,37 @@ const { buildSchema } = require('graphql');
 const schema = buildSchema(`
   type Query {
     routeSearch(from: Int, to: Int): [Route]
-    stationWith(evaId: Int): Station 
+    stationWith(evaId: Int): Station
     search(searchTerm: String): Searchable
     nearby(lat: Float, lon: Float): Nearby
     parkingSpace(id: Int): ParkingSpace
   }
-  
+
   type Searchable {
 	  stations: [Station]
+    operationLocations: [OperationLocation!]!
   }
-  
+
+  type OperationLocation {
+    id: String
+    abbrev: String!
+    name: String!
+    shortName: String!
+    type: String!
+    status: String
+    locationCode: String
+    UIC: String!
+    regionId: String
+    validFrom: String!
+    validTill: String
+    timeTableRelevant: Boolean
+    borderStation: Boolean
+  }
+
   type Route {
 	  parts: [RoutePart]
   }
-  
+
   type RoutePart {
 	  # Station where the part begins
 	  from: Station
@@ -57,12 +74,12 @@ const schema = buildSchema(`
 	  arrivalDepatureBoard: ArrivalDepatureBoard
     parkingSpaces: [ParkingSpace]
   }
-  
+
   type Location {
 	  latitude: Float
 	  longitude: Float
   }
-  
+
   type Facility {
 	  description: String
 	  type: String
@@ -70,26 +87,26 @@ const schema = buildSchema(`
 	  equipmentnumber: Int
 	  location: Location
   }
-  
+
   type Product {
 	  name: String
 	  class: Int
 	  productCode: Int
 	  productName: String
   }
-  
+
   type MailingAddress {
 	  city: String
 	  zipcode: String
 	  street: String
   }
-  
+
   type RegionalArea {
 	  number: Int
 	  name: String
 	  shortName: String
   }
-  
+
   type OpeningTimes {
 	  monday: OpeningTime
 	  tuesday: OpeningTime
@@ -100,12 +117,12 @@ const schema = buildSchema(`
 	  sunday: OpeningTime
 	  holiday: OpeningTime
   }
-  
+
   type OpeningTime {
 	  from: String!
 	  to: String!
   }
-  
+
   type StationContact {
 	  name: String!
 	  shortName: String
@@ -195,12 +212,12 @@ const schema = buildSchema(`
     category: Int
     text: String
   }
-  
+
   type ArrivalDepatureBoard {
 	  nextArrivals: [TrainInStation]
 	  nextDepatures: [TrainInStation]
   }
-  
+
   type TrainInStation {
 	  type: String
 	  trainNumber: String
@@ -211,7 +228,7 @@ const schema = buildSchema(`
 
   type TravelCenter {
     id: Int
-    name: String 
+    name: String
     address: MailingAddress
     type: String
 	location: Location
