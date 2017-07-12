@@ -6,6 +6,12 @@ const TrainRouteSearch = require('./trainRouteSearch');
 const { ParkingSpaceQuery } = require('./ParkingSpaceQuery');
 const NearbyQuery = require('./NearbyQuery');
 const { loadStationEva, searchStations } = require('./station');
+const APIToken = process.env.DBDeveloperAuthorization
+const OperationLocationLoader = require(`./OperationLocation/OperationLocationLoader.js`)
+const OperationLocationService = require('./OperationLocation/OperationLocationService.js')
+
+const operationLocationLoader = new OperationLocationLoader(APIToken)
+const operationLocationService = new OperationLocationService(operationLocationLoader)
 
 const root = {
   routeSearch: (args) => {
@@ -17,10 +23,10 @@ const root = {
     return parkingSpaceQuery.then(options => options);
   },
   stationWith: (args) => loadStationEva(args.evaId),
-  search: (args) => { 
-    return { stations: searchStations(args.searchTerm) } 
+  search: (args) => {
+    return { stations: searchStations(args.searchTerm), operationLocations: operationLocationService.searchOperationLocations(args.searchTerm) }
   },
-  nearby: (args) => { 
+  nearby: (args) => {
     return new NearbyQuery(args.lat, args.lon);
   },
 };
@@ -36,4 +42,3 @@ app.use('/graphql', graphqlHTTP({
 const port = process.env.PORT || 8080;
 
 app.listen(port, () => console.log(`now browse to localhost:${port}/graphql`));
-
