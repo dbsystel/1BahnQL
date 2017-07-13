@@ -22,7 +22,7 @@ class ParkingspaceService {
   transformResultIntoEvaId(jsonData) {
     if (jsonData) {
       const parkingStation = jsonData[0];
-      return new Integer(parkingStation.evaNummer);
+      return parkingStation.evaNummer;
     }
   }
 
