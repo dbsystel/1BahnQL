@@ -8,15 +8,15 @@ const schema = buildSchema(`
     nearby(latitude: Float, longitude: Float): Nearby!
     parkingSpace(id: Int): ParkingSpace
   }
-  
+
   type Searchable {
 	  stations: [Station!]!
   }
-  
+
   type Route {
 	  parts: [RoutePart]
   }
-  
+
   type RoutePart {
 	  # Station where the part begins
 	  from: Station
@@ -27,7 +27,7 @@ const schema = buildSchema(`
 	  start: String
 	  end: String
   }
-  
+
   type Station {
 	  primaryEvaId: Int!
 	  stationNumber: Int!
@@ -55,14 +55,15 @@ const schema = buildSchema(`
 	  szentrale: StationContact!
 	  stationManagement: StationContact!
 	  arrivalDepatureBoard: ArrivalDepatureBoard!
-      parkingSpaces: [ParkingSpace!]!
+    parkingSpaces: [ParkingSpace!]!
+    hasSteamPermission: Bool!
   }
-  
+
   type Location {
 	  latitude: Float!
 	  longitude: Float!
   }
-  
+
   type Facility {
 	  description: String
 	  type: String
@@ -70,26 +71,26 @@ const schema = buildSchema(`
 	  equipmentnumber: Int
 	  location: Location
   }
-  
+
   type Product {
 	  name: String
 	  class: Int
 	  productCode: Int
 	  productName: String
   }
-  
+
   type MailingAddress {
 	  city: String!
 	  zipcode: String!
 	  street: String!
   }
-  
+
   type RegionalArea {
 	  number: Int!
 	  name: String!
 	  shortName: String!
   }
-  
+
   type OpeningTimes {
 	  monday: OpeningTime
 	  tuesday: OpeningTime
@@ -100,12 +101,12 @@ const schema = buildSchema(`
 	  sunday: OpeningTime
 	  holiday: OpeningTime
   }
-  
+
   type OpeningTime {
 	  from: String!
 	  to: String!
   }
-  
+
   type StationContact {
 	  name: String!
 	  shortName: String
@@ -195,12 +196,12 @@ const schema = buildSchema(`
     category: Int
     text: String
   }
-  
+
   type ArrivalDepatureBoard {
 	  nextArrivals: [TrainInStation]
 	  nextDepatures: [TrainInStation]
   }
-  
+
   type TrainInStation {
 	  type: String
 	  trainNumber: String
@@ -211,7 +212,7 @@ const schema = buildSchema(`
 
   type TravelCenter {
     id: Int
-    name: String 
+    name: String
     address: MailingAddress
     type: String
 	location: Location

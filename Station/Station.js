@@ -47,6 +47,7 @@ class Station {
     }
     this.primaryEvaId = station.evaNumbers.filter(eva => eva.isMain)[0].number;
     this.primaryRil100 = station.ril100Identifiers.filter(ril => ril.isMain)[0].rilIdentifier;
+    this.hasSteamPermission = station.ril100Identifiers.filter(ril => ril.isMain)[0].hasSteamPermission
   }
 }
 
