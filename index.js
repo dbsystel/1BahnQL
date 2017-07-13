@@ -8,7 +8,7 @@ const ParkingspaceLoader = require('./Parkingspace/ParkingspaceLoader');
 const ParkingspaceService = require('./Parkingspace/ParkingspaceService');
 
 const APIToken = process.env.DBDeveloperAuthorization;
-console.log(APIToken);
+
 const parkingspaceLoader = new ParkingspaceLoader(APIToken);
 const parkingspaceService = new ParkingspaceService(parkingspaceLoader);
 

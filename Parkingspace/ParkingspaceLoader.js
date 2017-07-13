@@ -45,9 +45,6 @@ class ParkingspaceLoader {
     const promise = fetch(url, configuration)
       .then(res => res.json())
       .then((result) => {
-        console.log('Result');
-        console.log(result);
-
         const occupancyData = result;
 
         if (occupancyData.code == 5101) {
@@ -60,17 +57,38 @@ class ParkingspaceLoader {
     return promise;
   }
 
-  evaIdForBhfNr(bahnhofNummer) {
+  evaIdForStationNumber(stationNumber) {
     const url = `${baseURL}/stations`;
     const configuration = this.fetchConfiguration;
 
     const promise = fetch(url, configuration)
       .then(res => res.json())
       .then((result) => {
-        console.log(`Try to find ${bahnhofNummer}`);
+        console.log(`Try to find ${stationNumber}`);
 
         if (result.count > 0) {
-          return result.results.filter(elem => elem.bahnhofsNummer == bahnhofNummer);
+          return result.results.filter(elem => elem.bahnhofsNummer == stationNumber);
+        }
+        return null;
+      });
+
+    return promise;
+  }
+
+  spacesForStationNumber(stationNumber) {
+    const url = `${baseURL}/sites`;
+    const configuration = this.fetchConfiguration;
+
+    const promise = fetch(url, configuration)
+      .then(res => res.json())
+      .then((result) => {
+        if (result.count > 0) {
+          const filteredResult = result.results.filter(elem => elem.parkraumBahnhofNummer == bhfNr);
+
+          if (filteredResult.length > 0) {
+            return filteredResult;
+          }
+          return null;
         }
       });
 

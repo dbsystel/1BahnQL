@@ -11,12 +11,22 @@ class ParkingspaceService {
     if (jsonData) {
       return new Parkingspace(jsonData, this);
     }
+    return null;
+  }
+
+  transformResultIntoParkingspaces(jsonArray) {
+    if (jsonArray) {
+      const parkingspaces = jsonArray.map(space => transformResultIntoParkingspace(space));
+
+      return [].concat(parkingspaces);
+    }
   }
 
   transformResultIntoOccupancy(jsonData) {
     if (jsonData) {
       return new Occupancy(jsonData);
     }
+    return null;
   }
 
   transformResultIntoEvaId(jsonData) {
@@ -24,6 +34,7 @@ class ParkingspaceService {
       const parkingStation = jsonData[0];
       return parkingStation.evaNummer;
     }
+    return null;
   }
 
   parkingspaceBySpaceId(spaceId) {
@@ -38,7 +49,12 @@ class ParkingspaceService {
 
   evaIdForSpaceId(stationNumber) {
     const self = this;
-    return this.parkingspaceLoader.evaIdForBhfNr(stationNumber).then(jsonData => self.transformResultIntoEvaId(jsonData));
+    return this.parkingspaceLoader.evaIdForStationNumber(stationNumber).then(jsonData => self.transformResultIntoEvaId(jsonData));
+  }
+
+  parkingspacesForStationNumber(stationNumber) {
+    const self = this;
+    return this.parkingspaceLoader.spacesForStationNumber(stationNumber).then(jsonArray => self.transformResultIntoParkingspaces(jsonArray));
   }
 }
 

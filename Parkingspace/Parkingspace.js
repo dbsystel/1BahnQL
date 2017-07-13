@@ -9,6 +9,8 @@ class Parkingspace {
     this.name = space.parkraumDisplayName;
     this.lots = space.parkraumStellplaetze;
     this.location = new Location(space.parkraumGeoLatitude, space.parkraumGeoLongitude);
+    this.location.parkraumGeoLatitude = space.parkraumGeoLatitude;
+    this.location.parkraumGeoLongitude = space.parkraumGeoLongitude;
     this.distance = space.distance;
     this.bundesland = space.bundesland;
     this.isPublished = space.isPublished;
@@ -64,8 +66,6 @@ class Parkingspace {
     this.tarifWoVorverkaufDB_en = space.tarifWoVorverkaufDB_en;
     this.zahlungMedien = space.zahlungMedien;
     this.zahlungMedien_en = space.zahlungMedien_en;
-
-    console.log(this.parkingspaceService);
   }
 
   get occupancy() {
