@@ -1,5 +1,7 @@
 {
   "extends": "airbnb",
-  "esversion": 6,
-  "import/no-extraneous-dependencies": [2, { "devDependencies": true }]
+  "parserOptions": {
+    "ecmaVersion": 6
+  }
+
 }

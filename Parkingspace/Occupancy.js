@@ -1,9 +1,5 @@
-'use strict';
-
 class Occupancy {
-
   constructor(occupancyData) {
-
     this.validData = occupancyData.validData;
     this.timestamp = occupancyData.timestamp;
     this.timeSegment = occupancyData.timeSegment;

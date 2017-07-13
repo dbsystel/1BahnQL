@@ -1,16 +1,16 @@
-'use strict';
-
 const fetch = require('node-fetch');
-const Occupancy = require('./Occupancy');
-const Location = require('./location');
+const Location = require('../location');
 
-class ParkingSpace {
+class Parkingspace {
+  constructor(space, service) {
+    this.parkingspaceService = service;
 
-  constructor(space) {
     this.id = space.parkraumId;
     this.name = space.parkraumDisplayName;
     this.lots = space.parkraumStellplaetze;
     this.location = new Location(space.parkraumGeoLatitude, space.parkraumGeoLongitude);
+    this.location.parkraumGeoLatitude = space.parkraumGeoLatitude;
+    this.location.parkraumGeoLongitude = space.parkraumGeoLongitude;
     this.distance = space.distance;
     this.bundesland = space.bundesland;
     this.isPublished = space.isPublished;
@@ -23,6 +23,7 @@ class ParkingSpace {
     this.parkraumBetreiber = space.parkraumBetreiber;
     this.parkraumDisplayName = space.parkraumDisplayName;
     this.parkraumEntfernung = space.parkraumEntfernung;
+    this.parkraumId = space.parkraumId;
     this.parkraumIsAusserBetrieb = space.parkraumIsAusserBetrieb;
     this.parkraumIsDbBahnPark = space.parkraumIsDbBahnPark;
     this.parkraumIsOpenData = space.parkraumIsOpenData;
@@ -68,73 +69,12 @@ class ParkingSpace {
   }
 
   get occupancy() {
-    return getOccupancy(this.id);
+    return this.parkingspaceService.occupancyForSpaceId(this.id);
   }
 
   get evaId() {
-    return getEvaIdForBhfNr(this.parkraumBahnhofNummer);
+    return this.parkingspaceService.evaIdForSpaceId(this.parkraumBahnhofNummer);
   }
 }
 
-const parkingSpaceOccupancyCache = {};
-
-function getOccupancy(spaceId) {
-  // if (cache) {
-  //   return new Occupancy(cache.allocation);
-  // }
-
-  const url = `http://opendata.dbbahnpark.info/api/beta/occupancy/${spaceId}`;
-  const myInit = {
-    method: 'GET',
-    cache: 'force-cache',
-    'cache-control': 'force-cache',
-  };
-
-  const promise = fetch(url, myInit)
-  .then(res => res.json())
-  .then((result) => {
-    const occupancyData = result;
-
-    if (occupancyData.code == 5101) {
-      return null;
-    }
-
-    parkingSpaceOccupancyCache[spaceId] = occupancyData;
-    return new Occupancy(occupancyData.allocation);
-  });
-
-  return promise;
-}
-
-const parkingSpaceStationCache = {};
-
-function getEvaIdForBhfNr(bahnhofNummer) {
-  // if (cache) {
-  //   return new Occupancy(cache.allocation);
-  // }
-
-  const url = 'http://opendata.dbbahnpark.info/api/beta/stations';
-  const myInit = {
-    method: 'GET',
-    cache: 'force-cache',
-    'cache-control': 'force-cache',
-  };
-
-  const promise = fetch(url, myInit)
-  .then(res => res.json())
-  .then((result) => {
-    console.log(`Try to find ${bahnhofNummer}`);
-
-    if (result.count > 0) {
-      const filteredResult = result.results.filter(elem => elem.bahnhofsNummer == bahnhofNummer);
-
-      const parkingStation = filteredResult[0];
-      parkingSpaceStationCache[bahnhofNummer] = parkingStation;
-      return parkingStation.evaNummer;
-    }
-  });
-
-  return promise;
-}
-
-module.exports = ParkingSpace;
+module.exports = Parkingspace;
