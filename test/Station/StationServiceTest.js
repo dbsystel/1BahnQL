@@ -146,10 +146,9 @@ describe('StationService', () => {
         expect(promise).to.eventually.have.deep.property("regionalArea", { number: 4, name: "RB West", shortName: "RB W" }),
         // expect(promise).to.eventually.deep.include("DBInformationOpeningTimes", {}),
         // expect(promise).to.eventually.deep.include("localServiceStaffAvailability", {}),
-         //expect(promise).to.eventually.have.deep.property("aufgabentraeger", {shortName: "Zweckverband Nahverkehr Rheinland GmbH", name: "NVR"}),
-        // expect(promise).to.eventually.deep.include("timeTableOffice", {}),
-        // expect(promise).to.eventually.deep.include("szentrale", {}),
-        // expect(promise).to.eventually.deep.include("stationManagement", {})
+         expect(promise).to.eventually.have.deep.property("aufgabentraeger", {shortName: "NVR", name: "Zweckverband Nahverkehr Rheinland GmbH", phoneNumber: undefined, number: undefined, email: undefined}),
+         expect(promise).to.eventually.have.deep.property("szentrale", {shortName: undefined, name: "Duisburg Hbf", phoneNumber: "0203/30171055", number: 15, email: undefined}),
+         expect(promise).to.eventually.have.deep.property("stationManagement", {shortName: undefined, name: "Düsseldorf", phoneNumber: undefined, number: 45, email: undefined})
 
     ]);
   });
