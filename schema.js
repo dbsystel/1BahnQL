@@ -265,33 +265,3 @@ const schema = buildSchema(`
 `);
 
 module.exports = schema;
-
-//   evaNumbers:
-//    [ { number: 8000261,
-//        geographicCoordinates: [Object],
-//        isMain: Boolean },
-//      { number: 8070193, isMain: Boolean },
-//      { number: 8098263,
-//        geographicCoordinates: [Object],
-//        isMain: Boolean },
-//      { number: 8098261,
-//        geographicCoordinates: [Object],
-//        isMain: Boolean },
-//      { number: 8098262,
-//        geographicCoordinates: [Object],
-//        isMain: Boolean } ],
-//   ril100Identifiers:
-//    [ { rilIdentifier: 'MH',
-//        isMain: Boolean,
-//        hasSteamPermission: Boolean,
-//        geographicCoordinates: [Object] },
-//      { rilIdentifier: 'MH  S',
-//        isMain: Boolean,
-//        hasSteamPermission: Boolean },
-//      { rilIdentifier: 'MH  N',
-//        isMain: Boolean,
-//        hasSteamPermission: Boolean },
-//      { rilIdentifier: 'MHT',
-//        isMain: Boolean,
-//        hasSteamPermission: Boolean,
-//        geographicCoordinates: [Object] } ] }
