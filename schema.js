@@ -59,8 +59,8 @@ const schema = buildSchema(`
   }
   
   type Location {
-	  latitude: Float
-	  longitude: Float
+	  latitude: Float!
+	  longitude: Float!
   }
   
   type Facility {
@@ -123,11 +123,11 @@ const schema = buildSchema(`
   }
 
   type ParkingSpace {
-    id: Int
-    name: String
+    id: Int!
+    name: String!
     station: Station
-    lots: Int
-    location: Location
+    lots: Int!
+    location: Location!
     occupancy: Occupancy
     bundesland: String
     isPublished: Boolean
@@ -142,7 +142,7 @@ const schema = buildSchema(`
     parkraumEntfernung: String
     parkraumGeoLatitude: String
     parkraumGeoLongitude: String
-    parkraumId: String
+    parkraumId: String!
     parkraumIsAusserBetrieb: Boolean
     parkraumIsDbBahnPark: Boolean
     parkraumIsOpenData:  Boolean
@@ -189,11 +189,11 @@ const schema = buildSchema(`
   }
 
   type Occupancy {
-    validData: Boolean
-    timestamp: String
-    timeSegment: String
-    category: Int
-    text: String
+    validData: Boolean!
+    timestamp: String!
+    timeSegment: String!
+    category: Int!
+    text: String!
   }
   
   type ArrivalDepatureBoard {

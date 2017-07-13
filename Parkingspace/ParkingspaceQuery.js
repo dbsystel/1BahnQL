@@ -1,4 +1,3 @@
-const ParkingSpace = require('./ParkingSpace.js');
 const fetch = require('node-fetch');
 
 class ParkingSpaceQuery {
@@ -27,20 +26,18 @@ function loadParkingSpaceById(spaceId) {
   };
 
   const promise = fetch(url, myInit)
-  .then(res => res.json())
-  .then((result) => {
-    if (result.count > 0) {
-      const filteredResult = result.results.filter(elem => elem.parkraumId == spaceId);
+    .then(res => res.json())
+    .then((result) => {
+      if (result.count > 0) {
+        const filteredResult = result.results.filter(elem => elem.parkraumId == spaceId);
 
-      if (filteredResult.length > 0) {
+        if (filteredResult.length > 0) {
+          const parkingSpace = filteredResult[0];
 
-        const parkingSpace = filteredResult[0];
-
-        parkingSpaceCache[spaceId] = parkingSpace;
-        return parkingSpace;
+          return parkingSpace;
+        }
       }
-    }
-  });
+    });
 
   return promise;
 }
@@ -60,24 +57,21 @@ function getParkingSpacesByBhfNr(bhfNr) {
   };
 
   const promise = fetch(url, myInit)
-  .then(res => res.json())
-  .then((result) => {
-    if (result.count > 0) {
-      const filteredResult = result.results.filter(elem => elem.parkraumBahnhofNummer == bhfNr);
+    .then(res => res.json())
+    .then((result) => {
+      if (result.count > 0) {
+        const filteredResult = result.results.filter(elem => elem.parkraumBahnhofNummer == bhfNr);
 
-      if (filteredResult.length > 0) {
+        if (filteredResult.length > 0) {
+          stationParkingSpacesCache[bhfNr] = filteredResult;
+          console.log(`found ${filteredResult.length} parking spaces for bhf nr ${bhfNr}`);
 
-        stationParkingSpacesCache[bhfNr] = filteredResult;
-        console.log(`found ${filteredResult.length} parking spaces for bhf nr ${bhfNr}`);
+          const parkingSpaces = filteredResult.map(space => new ParkingSpace(space));
 
-        const parkingSpaces = filteredResult.map((space) => {
-          return new ParkingSpace(space);
-        });
-
-        return parkingSpaces;
+          return parkingSpaces;
+        }
       }
-    }
-  });
+    });
 
   return promise;
 }

@@ -6,7 +6,7 @@ const Location = require('./location.js');
 const MailAddress = require('./mailAddress');
 const OpeningTimes = require('./openingTimes.js');
 const loadElevatorFor = require('./facilities.js');
-const { getParkingSpacesByBhfNr } = require('./ParkingSpaceQuery');
+const { getParkingSpacesByBhfNr } = require('./Parkingspace/ParkingSpaceQuery');
 const { loadTimeTableFor } = require('./timetables.js');
 const APIToken = process.env.DBDeveloperAuthorization
 
