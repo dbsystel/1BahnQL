@@ -5,12 +5,12 @@ class StationLoaderMock {
 
   stationByBahnhofsnummer(stationNumber) {
     this.stationNumber = stationNumber
-    return Promise.resolve(this.result)
+    return Promise.resolve(this.result);
   }
 
   searchStations(searchTerm) {
     this.searchTerm = searchTerm
-    return Promise.resolve(this.result)
+    return Promise.resolve(this.result);
   }
 }
 
