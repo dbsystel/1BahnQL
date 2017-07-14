@@ -56,7 +56,7 @@ const schema = buildSchema(`
 	  stationManagement: StationContact!
 	  arrivalDepatureBoard: ArrivalDepatureBoard!
     parkingSpaces: [ParkingSpace!]!
-    hasSteamPermission: Bool!
+    hasSteamPermission: Boolean!
   }
 
   type Location {
