@@ -1,6 +1,6 @@
 const parse = require('csv-parse');
 const fs = require('fs');
-const { stationNumbersByEvaIds } = require('./StationIdMappingService.js');
+const StationIdMappingService = require('./StationIdMappingService.js');
 
 require.extensions['.csv'] = function (module, filename) {
   module.exports = fs.readFileSync(filename, 'utf8');
@@ -29,6 +29,7 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
 class NearbyStationService {
   constructor(stationService) {
     this.stationService = stationService;
+    this.stationIdMappingService = new StationIdMappingService()
   }
 
   allStationsSortedByDistance(latitude, longitude, count) {
@@ -55,12 +56,12 @@ class NearbyStationService {
 	 * @return {Promise<Array<Station>S} promise of a list of stations - A promise which resolves to a list of stations.
 	 */
   stationNearby(latitude, longitude, count) {
-    const stationService = this.stationService;
+    const self = this;
     const promise = this.allStationsSortedByDistance(latitude, longitude, count)
       .then((stations) => {
         const evaIDs = stations.map(station => station.id);
-        return stationNumbersByEvaIds(evaIDs);
-      }).then(stationNrs => stationNrs.map(nr => stationService.stationByBahnhofsnummer(nr)));
+        return self.stationIdMappingService.stationNumbersByEvaIds(evaIDs);
+      }).then(stationNrs => stationNrs.map(nr => self.stationService.stationByBahnhofsnummer(nr)));
 
     return promise;
   }

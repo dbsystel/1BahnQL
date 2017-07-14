@@ -1,5 +1,5 @@
 const hafas = require('db-hafas');
-const { stationNumberByEvaId } = require('./StationIdMappingService.js');
+const StationIdMappingService = require('./StationIdMappingService.js');
 const StationRelationships = require('./StationRelationships.js');
 
 // Models
@@ -10,8 +10,9 @@ class StationService {
 	* A Stations service provides capability of loading stations via IDs, text search.
 	* @constructor
 	*/
-  constructor(stationLoader) {
+  constructor(stationLoader, stationIdMappingService) {
     this.stationLoader = stationLoader;
+    this.stationIdMappingService = stationIdMappingService || new StationIdMappingService()
   }
 
   transformStationResultIntoStation(jsonStation) {
@@ -31,7 +32,7 @@ class StationService {
 	 */
   stationByEvaId(evaId) {
     const stationLoader = this.stationLoader;
-    return stationNumberByEvaId(evaId).then(stationNumber => stationLoader.stationByBahnhofsnummer(stationNumber))
+    return this.stationIdMappingService.stationNumberByEvaId(evaId).then(stationNumber => stationLoader.stationByBahnhofsnummer(stationNumber))
       .then(this.transformStationResultIntoStation);
   }
 
@@ -53,7 +54,7 @@ class StationService {
   searchStations(searchTerm) {
     const self = this;
     return this.stationLoader.searchStations(searchTerm)
-      .then(promises => promises.map(promise => promise.then(self.transformStationResultIntoStation)));
+      .then(stations => stations.map(self.transformStationResultIntoStation));
   }
 }
 

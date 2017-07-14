@@ -54,7 +54,6 @@ class StationLoader {
     const promies = fetch(url, configuration)
       .then(res => res.json())
       .then(result => (result.result || []))
-      .then(stationsData => stationsData.map(station => new Promise(resolve => resolve(station))));
 
     return promies;
   }
