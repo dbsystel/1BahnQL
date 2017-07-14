@@ -28,7 +28,7 @@ class OperationLocationLoader {
 		const url = `${baseURL}/betriebsstellen/v1/betriebsstellen?name=${name}`;
 		const configuration = this.fetchConfiguration;
 		const promies = fetch(url, configuration)
-			.then(res => res.json())
+		.then(res => res.json())
 
 		return promies;
 	}
