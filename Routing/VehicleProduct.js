@@ -1,6 +1,6 @@
 'use strict';
 
-class Product {
+class VehicleProduct {
 
   constructor(payload) {
     this.name = payload.name;
@@ -13,13 +13,3 @@ class Product {
 }
 
 module.exports = Product;
-
-/*
-      product: {
-        name: 'S 42',
-        nr: 42,
-        class: 16,
-        productCode: 4,
-        productName: 's'
-      }
- */
