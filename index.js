@@ -6,12 +6,12 @@ const TrainRouteSearch = require('./trainRouteSearch');
 const { ParkingSpaceQuery } = require('./ParkingSpaceQuery');
 const NearbyQuery = require('./NearbyQuery');
 const { loadStationEva, searchStations } = require('./station');
-const APIToken = process.env.DBDeveloperAuthorization
-const OperationLocationLoader = require(`./OperationLocation/OperationLocationLoader.js`)
-const OperationLocationService = require('./OperationLocation/OperationLocationService.js')
+const APIToken = process.env.DBDeveloperAuthorization;
+const OperationLocationLoader = require('./OperationLocation/OperationLocationLoader.js');
+const OperationLocationService = require('./OperationLocation/OperationLocationService.js');
 
-const operationLocationLoader = new OperationLocationLoader(APIToken)
-const operationLocationService = new OperationLocationService(operationLocationLoader)
+const operationLocationLoader = new OperationLocationLoader(APIToken);
+const operationLocationService = new OperationLocationService(operationLocationLoader);
 
 const root = {
   routeSearch: (args) => {
@@ -24,7 +24,7 @@ const root = {
   },
   stationWith: (args) => loadStationEva(args.evaId),
   search: (args) => {
-    return { stations: searchStations(args.searchTerm), operationLocations: operationLocationService.searchOperationLocations(args.searchTerm) }
+    return { stations: searchStations(args.searchTerm), operationLocations: operationLocationService.searchOperationLocations(args.searchTerm) };
   },
   nearby: (args) => {
     return new NearbyQuery(args.lat, args.lon);

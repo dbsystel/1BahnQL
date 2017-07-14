@@ -1,10 +1,10 @@
 "use strict"
-const fetch = require("node-fetch")
-const baseURL = "https://api.deutschebahn.com"
+const fetch = require("node-fetch");
+const baseURL = "https://api.deutschebahn.com";
 
 class OperationLocationLoader {
   constructor(APIToken) {
-    this.APIToken = APIToken
+    this.APIToken = APIToken;
   }
 
   get fetchConfiguration() {
@@ -16,7 +16,7 @@ class OperationLocationLoader {
 			headers: headers
 		}
 
-		return configuration
+		return configuration;
 	}
 
   /**
@@ -26,7 +26,7 @@ class OperationLocationLoader {
 	 */
 	search(name) {
 		const url = `${baseURL}/betriebsstellen/v1/betriebsstellen?name=${name}`;
-		const configuration = this.fetchConfiguration
+		const configuration = this.fetchConfiguration;
 		const promies = fetch(url, configuration)
 			.then(res => res.json())
 
@@ -34,4 +34,4 @@ class OperationLocationLoader {
 	}
 }
 
-module.exports = OperationLocationLoader
+module.exports = OperationLocationLoader;
