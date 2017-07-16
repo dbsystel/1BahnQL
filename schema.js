@@ -56,6 +56,15 @@ const schema = buildSchema(`
 	  stationManagement: StationContact
 	  arrivalDepatureBoard: ArrivalDepatureBoard
     parkingSpaces: [ParkingSpace]
+    tracks: [Track!]!
+  }
+  
+  type Track {
+	  platform: String!
+	  number: Int!
+	  name: String!
+	  length: Int
+	  height: Int!
   }
   
   type Location {

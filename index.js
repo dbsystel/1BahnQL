@@ -7,6 +7,7 @@ const { ParkingSpaceQuery } = require('./ParkingSpaceQuery');
 const NearbyQuery = require('./NearbyQuery');
 const { loadStationEva, searchStations } = require('./station');
 
+
 const root = {
   routeSearch: (args) => {
     const routeSearch = new TrainRouteSearch(args.from, args.to).options;

@@ -10,6 +10,9 @@ const { getParkingSpacesByBhfNr } = require('./ParkingSpaceQuery');
 const { loadTimeTableFor } = require('./timetables.js');
 const APIToken = process.env.DBDeveloperAuthorization
 
+ const TrackService = require('./Platforms/TrackService.js');
+  const trackService = new TrackService()
+
 class RegionalArea {
   constructor(number, name, shortName) {
     this.number = number;
@@ -176,6 +179,11 @@ class Station {
 
   get parkingSpaces() {
     return this.bahnhofsNummer.then(bhfNr => getParkingSpacesByBhfNr(bhfNr));
+  }
+  
+  get tracks() {
+	  
+	  return this.bahnhofsNummer.then(stationNumber => trackService.tracksForStationNumber(stationNumber))
   }
 }
 
