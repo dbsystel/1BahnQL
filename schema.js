@@ -11,6 +11,23 @@ const schema = buildSchema(`
 
   type Searchable {
 	  stations: [Station!]!
+    operationLocations: [OperationLocation!]!
+  }
+
+  type OperationLocation {
+    id: String
+    abbrev: String!
+    name: String!
+    shortName: String!
+    type: String!
+    status: String
+    locationCode: String
+    UIC: String!
+    regionId: String
+    validFrom: String!
+    validTill: String
+    timeTableRelevant: Boolean
+    borderStation: Boolean
   }
 
   type Route {
