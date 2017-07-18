@@ -1,11 +1,10 @@
-'use strict';
+
 
 const fetch = require('node-fetch');
 const Occupancy = require('./Occupancy');
 const Location = require('./location');
 
 class ParkingSpace {
-
   constructor(space) {
     this.id = space.parkraumId;
     this.name = space.parkraumDisplayName;
@@ -91,17 +90,17 @@ function getOccupancy(spaceId) {
   };
 
   const promise = fetch(url, myInit)
-  .then(res => res.json())
-  .then((result) => {
-    const occupancyData = result;
+    .then(res => res.json())
+    .then((result) => {
+      const occupancyData = result;
 
-    if (occupancyData.code == 5101) {
-      return null;
-    }
+      if (occupancyData.code == 5101) {
+        return null;
+      }
 
-    parkingSpaceOccupancyCache[spaceId] = occupancyData;
-    return new Occupancy(occupancyData.allocation);
-  });
+      parkingSpaceOccupancyCache[spaceId] = occupancyData;
+      return new Occupancy(occupancyData.allocation);
+    });
 
   return promise;
 }
@@ -121,18 +120,18 @@ function getEvaIdForBhfNr(bahnhofNummer) {
   };
 
   const promise = fetch(url, myInit)
-  .then(res => res.json())
-  .then((result) => {
-    console.log(`Try to find ${bahnhofNummer}`);
+    .then(res => res.json())
+    .then((result) => {
+      console.log(`Try to find ${bahnhofNummer}`);
 
-    if (result.count > 0) {
-      const filteredResult = result.results.filter(elem => elem.bahnhofsNummer == bahnhofNummer);
+      if (result.count > 0) {
+        const filteredResult = result.results.filter(elem => elem.bahnhofsNummer == bahnhofNummer);
 
-      const parkingStation = filteredResult[0];
-      parkingSpaceStationCache[bahnhofNummer] = parkingStation;
-      return parkingStation.evaNummer;
-    }
-  });
+        const parkingStation = filteredResult[0];
+        parkingSpaceStationCache[bahnhofNummer] = parkingStation;
+        return parkingStation.evaNummer;
+      }
+    });
 
   return promise;
 }
