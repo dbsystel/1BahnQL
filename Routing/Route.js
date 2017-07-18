@@ -11,7 +11,6 @@ class Route {
 	}
 
 	from() {
-		console.log("From From")
 		let parts = this.data.parts
 		return loadStationEva(parts[0].from.id)
 	}
