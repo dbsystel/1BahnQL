@@ -2,7 +2,7 @@
 
 const fetch = require('node-fetch');
 const Occupancy = require('./Occupancy');
-const Location = require('./location');
+const Location = require('./Location');
 
 class ParkingSpace {
   constructor(space) {
