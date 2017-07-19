@@ -1,10 +1,9 @@
-'use strict';
+
 
 const Location = require('./location');
 const MailAddress = require('./mailAddress');
 
 class Attributes {
-
   constructor(att) {
     this.seats = att.seats;
     this.transmissionType = att.transmissionType;
@@ -17,7 +16,6 @@ class Attributes {
 }
 
 class PriceOption {
-
   constructor(price) {
     this.interval = price.interval;
     this.type = price.type;
@@ -29,7 +27,6 @@ class PriceOption {
 }
 
 class FlinksterCar {
-
   constructor(car) {
     this.id = car.rentalObject.uid;
     this.name = car.rentalObject.name;
@@ -41,7 +38,6 @@ class FlinksterCar {
     this.address = new MailAddress(car.area.address.city, car.area.address.zip, car.area.address.street);
     this.priceOptions = car.price.items.map(price => new PriceOption(price));
   }
-
 }
 
 module.exports = FlinksterCar;

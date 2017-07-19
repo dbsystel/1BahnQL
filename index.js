@@ -13,7 +13,18 @@ const parkingspaceLoader = new ParkingspaceLoader(APIToken);
 const parkingspaceService = new ParkingspaceService(parkingspaceLoader);
 
 const NearbyQuery = require('./NearbyQuery');
-const { loadStationEva, searchStations } = require('./station');
+const APIToken = process.env.DBDeveloperAuthorization;
+const OperationLocationLoader = require('./OperationLocation/OperationLocationLoader.js');
+const OperationLocationService = require('./OperationLocation/OperationLocationService.js');
+const StationLoader = require('./Station/StationLoader');
+const StationService = require('./Station/StationService');
+const NearbyStationService = require('./Station/NearbyStationsService.js');
+
+const operationLocationLoader = new OperationLocationLoader(APIToken);
+const operationLocationService = new OperationLocationService(operationLocationLoader);
+const stationLoader = new StationLoader(APIToken);
+const stationService = new StationService(stationLoader);
+const nearbyStationService = new NearbyStationService(stationService);
 
 const root = {
   routeSearch: (args) => {
@@ -21,9 +32,9 @@ const root = {
     return routeSearch.then(options => [options[0]]);
   },
   parkingSpace: args => parkingspaceService.parkingspaceBySpaceId(args.id),
-  stationWith: args => loadStationEva(args.evaId),
-  search: args => ({ stations: searchStations(args.searchTerm) }),
-  nearby: args => new NearbyQuery(args.lat, args.lon),
+  stationWith: args => stationService.stationByEvaId(args.evaId),
+  search: args => ({ stations: stationService.searchStations(args.searchTerm), operationLocations: operationLocationService.searchOperationLocations(args.searchTerm) }),
+  nearby: args => new NearbyQuery(args.latitude, args.longitude, nearbyStationService),
 };
 
 const app = express();
@@ -37,4 +48,3 @@ app.use('/graphql', graphqlHTTP({
 const port = process.env.PORT || 8080;
 
 app.listen(port, () => console.log(`now browse to localhost:${port}/graphql`));
-

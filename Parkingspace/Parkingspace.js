@@ -1,10 +1,7 @@
 const fetch = require('node-fetch');
 const Location = require('../location');
-
-class Parkingspace {
-  constructor(space, service) {
-    this.parkingspaceService = service;
-
+class ParkingSpace {
+  constructor(space) {
     this.id = space.parkraumId;
     this.name = space.parkraumDisplayName;
     this.lots = space.parkraumStellplaetze;

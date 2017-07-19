@@ -1,7 +1,6 @@
-'use strict';
+
 
 class Product {
-
   constructor(payload) {
     this.name = payload.name;
     this.number = payload.nr;
@@ -9,7 +8,6 @@ class Product {
     this.productCode = payload.productCode;
     this.productName = payload.productName;
   }
-
 }
 
 module.exports = Product;
