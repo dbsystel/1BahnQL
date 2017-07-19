@@ -1,10 +1,15 @@
 const loadElevatorFor = require('../facilities.js');
-const {
-  getParkingSpacesByBhfNr,
-} = require('../ParkingSpaceQuery');
 
 class StationRelationships {
-  constructor(station, timeTableServcie) {
+  constructor(parkingSpaceService, timeTableServcie) {
+    this.parkingSpaceService = parkingSpaceService
+    this.timeTableServcie = timeTableServcie
+  }
+
+  resolve(station) {
+    const parkingSpaceService = this.parkingSpaceService;
+    const timeTableServcie = this.timeTableServcie;
+
     station.facilities = function () {
       return loadElevatorFor(station.stationNumber);
     };
@@ -14,7 +19,7 @@ class StationRelationships {
     };
 
     station.parkingSpaces = function () {
-      return getParkingSpacesByBhfNr(station.stationNumber);
+      return parkingSpaceService.parkingspacesForStationNumber(station.stationNumber);
     };
   }
 }

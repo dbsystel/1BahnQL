@@ -6,18 +6,21 @@ const StationService = require('../../Station/StationService.js')
 const StationLoaderMock = require('./StationLoaderMock.js')
 const StationIdMappingService = require('../../Station/StationIdMappingService.js')
 const chaiAsPromised = require("chai-as-promised");
+const StationRelationships = require("../../Station/StationRelationships");
+
 chai.use(chaiAsPromised);
 const expect = chai.expect;
 
 const stationIdMappingService = new StationIdMappingService()
 
 describe('StationService', () => {
-  var stationLoaderMock = new StationLoaderMock()
+  let stationLoaderMock = new StationLoaderMock()
   let stationService = new StationService(stationLoaderMock, stationIdMappingService)
 
   beforeEach(function() {
     stationLoaderMock = new StationLoaderMock()
     stationService = new StationService(stationLoaderMock)
+    stationService.relationships =  { resolve: function(station) {} }
   });
 
   it('stationByEvaId should return valid station', () => {
@@ -29,12 +32,19 @@ describe('StationService', () => {
         expect(promise).to.eventually.have.property("primaryRil100", "KA"),
         expect(promise).to.eventually.have.property("name", "Aachen Hbf"),
         expect(promise).to.eventually.have.property("category", 2),
+        expect(promise).to.eventually.have.property("priceCategory", 2),
         expect(promise).to.eventually.have.property("hasParking", true),
         expect(promise).to.eventually.have.property("hasBicycleParking", true),
         expect(promise).to.eventually.have.property("hasLocalPublicTransport", true),
         expect(promise).to.eventually.have.property("hasPublicFacilities", true),
         expect(promise).to.eventually.have.property("hasLockerSystem", true),
         expect(promise).to.eventually.have.property("hasTaxiRank", true),
+        expect(promise).to.eventually.have.property("hasWiFi", true),
+        expect(promise).to.eventually.have.property("hasTravelCenter", true),
+        expect(promise).to.eventually.have.property("hasRailwayMission", true),
+        expect(promise).to.eventually.have.property("hasDBLounge", false),
+        expect(promise).to.eventually.have.property("hasLostAndFound", true),
+        expect(promise).to.eventually.have.property("hasCarRental", false),
         expect(promise).to.eventually.have.property("hasTravelNecessities", true),
         expect(promise).to.eventually.have.property("hasSteplessAccess", "yes"),
         expect(promise).to.eventually.have.property("hasMobilityService", "Ja, um Voranmeldung unter 01806 512 512 wird gebeten"),

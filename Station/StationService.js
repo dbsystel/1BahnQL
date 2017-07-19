@@ -10,16 +10,16 @@ class StationService {
 	* A Stations service provides capability of loading stations via IDs, text search.
 	* @constructor
 	*/
-  constructor(stationLoader, stationIdMappingService, timtetableService) {
+  constructor(stationLoader, stationIdMappingService) {
     this.stationLoader = stationLoader;
-    this.stationIdMappingService = stationIdMappingService || new StationIdMappingService()
-    this.timtetableService = timtetableService
+    this.stationIdMappingService = stationIdMappingService || new StationIdMappingService();
+    this.relationships;
   }
 
   transformStationResultIntoStation(jsonStation) {
     if (jsonStation) {
       const station = new Station(jsonStation);
-      new StationRelationships(station, this.timtetableService);
+      this.relationships.resolve(station)
 
       return station;
     }

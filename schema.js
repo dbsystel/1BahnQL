@@ -52,6 +52,7 @@ const schema = buildSchema(`
 	  name: String!
 	  location: Location!
 	  category: Int!
+    priceCategory: Int!
 	  hasParking: Boolean!
 	  hasBicycleParking: Boolean!
 	  hasLocalPublicTransport: Boolean!
@@ -74,6 +75,12 @@ const schema = buildSchema(`
 	  timetable: Timetable!
     parkingSpaces: [ParkingSpace!]!
     hasSteamPermission: Boolean!
+    hasWiFi: Boolean!
+    hasTravelCenter: Boolean!
+    hasRailwayMission: Boolean!
+    hasDBLounge: Boolean!
+    hasLostAndFound: Boolean!
+    hasCarRental: Boolean!
   }
 
   type Location {
@@ -141,11 +148,11 @@ const schema = buildSchema(`
   }
 
   type ParkingSpace {
-    id: Int
-    name: String
+    id: Int!
+    name: String!
     station: Station
-    lots: Int
-    location: Location
+    lots: Int!
+    location: Location!
     occupancy: Occupancy
     bundesland: String
     isPublished: Boolean
@@ -158,9 +165,7 @@ const schema = buildSchema(`
     parkraumBetreiber: String
     parkraumDisplayName: String
     parkraumEntfernung: String
-    parkraumGeoLatitude: String
-    parkraumGeoLongitude: String
-    parkraumId: String
+    parkraumId: String!
     parkraumIsAusserBetrieb: Boolean
     parkraumIsDbBahnPark: Boolean
     parkraumIsOpenData:  Boolean
@@ -203,15 +208,14 @@ const schema = buildSchema(`
     tarifWoVorverkaufDB_en: String
     zahlungMedien: String
     zahlungMedien_en: String
-    evaId: Int
   }
 
   type Occupancy {
-    validData: Boolean
-    timestamp: String
-    timeSegment: String
-    category: Int
-    text: String
+    validData: Boolean!
+    timestamp: String!
+    timeSegment: String!
+    category: Int!
+    text: String!
   }
 
   type Timetable {
