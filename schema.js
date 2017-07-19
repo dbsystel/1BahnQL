@@ -203,7 +203,6 @@ const schema = buildSchema(`
     tarifWoVorverkaufDB_en: String
     zahlungMedien: String
     zahlungMedien_en: String
-    evaId: Int
   }
 
   type Occupancy {

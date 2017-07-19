@@ -1,6 +1,7 @@
 const fetch = require('node-fetch');
 const Location = require('../location');
-class ParkingSpace {
+
+class Parkingspace {
   constructor(space) {
     this.id = space.parkraumId;
     this.name = space.parkraumDisplayName;
@@ -63,14 +64,6 @@ class ParkingSpace {
     this.tarifWoVorverkaufDB_en = space.tarifWoVorverkaufDB_en;
     this.zahlungMedien = space.zahlungMedien;
     this.zahlungMedien_en = space.zahlungMedien_en;
-  }
-
-  get occupancy() {
-    return this.parkingspaceService.occupancyForSpaceId(this.id);
-  }
-
-  get evaId() {
-    return this.parkingspaceService.evaIdForSpaceId(this.parkraumBahnhofNummer);
   }
 }
 
