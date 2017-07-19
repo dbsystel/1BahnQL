@@ -137,15 +137,15 @@ const schema = buildSchema(`
     parkingSpaces: [ParkingSpace]
     travelCenter: TravelCenter
     flinksterCars: [FlinksterCar]
-    bikes: [CallABikeBike]
+    bikes: [FlinksterBike]
   }
 
   type ParkingSpace {
-    id: Int
-    name: String
+    id: Int!
+    name: String!
     station: Station
-    lots: Int
-    location: Location
+    lots: Int!
+    location: Location!
     occupancy: Occupancy
     bundesland: String
     isPublished: Boolean
@@ -158,9 +158,7 @@ const schema = buildSchema(`
     parkraumBetreiber: String
     parkraumDisplayName: String
     parkraumEntfernung: String
-    parkraumGeoLatitude: String
-    parkraumGeoLongitude: String
-    parkraumId: String
+    parkraumId: String!
     parkraumIsAusserBetrieb: Boolean
     parkraumIsDbBahnPark: Boolean
     parkraumIsOpenData:  Boolean
@@ -203,15 +201,14 @@ const schema = buildSchema(`
     tarifWoVorverkaufDB_en: String
     zahlungMedien: String
     zahlungMedien_en: String
-    evaId: Int
   }
 
   type Occupancy {
-    validData: Boolean
-    timestamp: String
-    timeSegment: String
-    category: Int
-    text: String
+    validData: Boolean!
+    timestamp: String!
+    timeSegment: String!
+    category: Int!
+    text: String!
   }
 
   type ArrivalDepatureBoard {
@@ -242,14 +239,18 @@ const schema = buildSchema(`
     attributes: CarAttributes
     location: Location
     priceOptions: [PriceOption]
-    address: MailingAddress
+    equipment: CarEquipment
     rentalModel: String
     fillLevel: Int
     fuel: String
+    parkingArea: FlinksterParkingArea
+    category: String
+    url: String
   }
 
-  type CallABikeBike {
+  type FlinksterBike {
     id: String
+    url: String
     name: String
     description: String
     location: Location
@@ -257,6 +258,10 @@ const schema = buildSchema(`
     attributes: BikeAttributes
     address: MailingAddress
     rentalModel: String
+    type: String
+    providerRentalObjectId: Int
+    parkingArea: FlinksterParkingArea
+    bookingUrl: String
   }
 
   type CarAttributes {
@@ -265,6 +270,42 @@ const schema = buildSchema(`
     doors: Int
     transmissionType: String
     licensePlate: String
+    fillLevel: Int
+    fuel: String
+  }
+
+  type CarEquipment {
+    cdPlayer: Boolean
+    airConditioning: Boolean
+    navigationSystem: Boolean
+    roofRailing: Boolean
+    particulateFilter: Boolean
+    audioInline: Boolean
+    tyreType: String
+    bluetoothHandsFreeCalling: Boolean
+    cruiseControl: Boolean
+    passengerAirbagTurnOff: Boolean
+    isofixSeatFittings: Boolean
+  }
+
+  type FlinksterParkingArea {
+    id: String
+    url: String
+    name: String
+    address: MailingAddress
+    parkingDescription: String 
+    accessDescription: String
+    locationDescription: String
+    publicTransport: String
+    provider: FlinksterProvider
+    type: String
+    position: Location
+  }
+
+  type FlinksterProvider {
+    url: String
+    areaId: Int
+    networkIds: [Int]
   }
 
   type BikeAttributes {

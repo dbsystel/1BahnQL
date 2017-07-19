@@ -1,10 +1,7 @@
-
-
 const fetch = require('node-fetch');
-const Occupancy = require('./Occupancy');
-const Location = require('./location');
+const Location = require('../location');
 
-class ParkingSpace {
+class Parkingspace {
   constructor(space) {
     this.id = space.parkraumId;
     this.name = space.parkraumDisplayName;
@@ -22,6 +19,7 @@ class ParkingSpace {
     this.parkraumBetreiber = space.parkraumBetreiber;
     this.parkraumDisplayName = space.parkraumDisplayName;
     this.parkraumEntfernung = space.parkraumEntfernung;
+    this.parkraumId = space.parkraumId;
     this.parkraumIsAusserBetrieb = space.parkraumIsAusserBetrieb;
     this.parkraumIsDbBahnPark = space.parkraumIsDbBahnPark;
     this.parkraumIsOpenData = space.parkraumIsOpenData;
@@ -65,75 +63,6 @@ class ParkingSpace {
     this.zahlungMedien = space.zahlungMedien;
     this.zahlungMedien_en = space.zahlungMedien_en;
   }
-
-  get occupancy() {
-    return getOccupancy(this.id);
-  }
-
-  get evaId() {
-    return getEvaIdForBhfNr(this.parkraumBahnhofNummer);
-  }
 }
 
-const parkingSpaceOccupancyCache = {};
-
-function getOccupancy(spaceId) {
-  // if (cache) {
-  //   return new Occupancy(cache.allocation);
-  // }
-
-  const url = `http://opendata.dbbahnpark.info/api/beta/occupancy/${spaceId}`;
-  const myInit = {
-    method: 'GET',
-    cache: 'force-cache',
-    'cache-control': 'force-cache',
-  };
-
-  const promise = fetch(url, myInit)
-    .then(res => res.json())
-    .then((result) => {
-      const occupancyData = result;
-
-      if (occupancyData.code == 5101) {
-        return null;
-      }
-
-      parkingSpaceOccupancyCache[spaceId] = occupancyData;
-      return new Occupancy(occupancyData.allocation);
-    });
-
-  return promise;
-}
-
-const parkingSpaceStationCache = {};
-
-function getEvaIdForBhfNr(bahnhofNummer) {
-  // if (cache) {
-  //   return new Occupancy(cache.allocation);
-  // }
-
-  const url = 'http://opendata.dbbahnpark.info/api/beta/stations';
-  const myInit = {
-    method: 'GET',
-    cache: 'force-cache',
-    'cache-control': 'force-cache',
-  };
-
-  const promise = fetch(url, myInit)
-    .then(res => res.json())
-    .then((result) => {
-      console.log(`Try to find ${bahnhofNummer}`);
-
-      if (result.count > 0) {
-        const filteredResult = result.results.filter(elem => elem.bahnhofsNummer == bahnhofNummer);
-
-        const parkingStation = filteredResult[0];
-        parkingSpaceStationCache[bahnhofNummer] = parkingStation;
-        return parkingStation.evaNummer;
-      }
-    });
-
-  return promise;
-}
-
-module.exports = ParkingSpace;
+module.exports = Parkingspace;
