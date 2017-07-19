@@ -16,6 +16,25 @@ class FlinksterParkingArea {
     this.publicTransport = access(parkingArea, '.attributes.publictransportation');
     this.provider = new FlinksterAreaProvider(parkingArea.provider, parkingArea.providerAreaId, parkingArea.providerNetworkIds);
     this.type = parkingArea.type;
+    if (parkingArea.geometry.position.type == 'Point') {
+      this.position = new Location(parkingArea.geometry.position.coordinates[0], parkingArea.geometry.position.coordinates[1]);
+    } else {
+      this.position = new Location(parkingArea.geometry.centroid.coordinates[0], parkingArea.geometry.centroid.coordinates[1]);
+      this.GeoJSON = {
+        type: 'FeatureCollection',
+        features: [{
+          type: 'Feature',
+          properties: null,
+          geometry: {
+            type: 'MultiPolygon',
+            coordinates: parkingArea.geometry.position.coordinates,
+          },
+        }] };
+
+      for (const p of parkingArea.geometry.position.coordinates) {
+        // this.polygons.push(polygon);
+      }
+    }
   }
 }
 

@@ -300,6 +300,23 @@ const schema = buildSchema(`
     provider: FlinksterProvider
     type: String
     position: Location
+    GeoJSON: GeoJSON
+  }
+
+  type GeoGeometry {
+    type: String
+    coordinates: [[[[Float]]]]
+  }
+
+  type GeoJSON {
+    type: String
+    features: [GeoPolygon]
+  }
+
+  type GeoPolygon {
+    type: String
+    properties: String
+    geometry: GeoGeometry
   }
 
   type FlinksterProvider {
