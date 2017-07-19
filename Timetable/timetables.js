@@ -4,15 +4,7 @@ const moment = require('moment-timezone');
 
 const APIToken = process.env.DBDeveloperAuthorization;
 
-class TrainOnStation {
-  constructor(trainType, trainNumber, timeStampString, platform, stops) {
-    this.type = trainType;
-    this.trainNumber = trainNumber;
-    this.time = timeStampString;
-    this.platform = platform,
-    this.stops = stops;
-  }
-}
+
 const arrivalDepatingTypeKeyMap = { dp: 'nextDepatures', ar: 'nextArrivals' };
 function loadTimeTableFor(evaId) {
   const now = moment();

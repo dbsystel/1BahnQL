@@ -11,11 +11,15 @@ const OperationLocationService = require('./OperationLocation/OperationLocationS
 const StationLoader = require('./Station/StationLoader');
 const StationService = require('./Station/StationService');
 const NearbyStationService = require('./Station/NearbyStationsService.js');
+const TimetableLoader = require('./Timetable/TimetableLoader.js');
+const TimetableService = require('./Timetable/TimetableService.js');
 
+const timetableLoader = new TimetableLoader(APIToken);
+const timetableServcie = new TimetableService(timetableLoader);
 const operationLocationLoader = new OperationLocationLoader(APIToken);
 const operationLocationService = new OperationLocationService(operationLocationLoader);
 const stationLoader = new StationLoader(APIToken);
-const stationService = new StationService(stationLoader);
+const stationService = new StationService(stationLoader, null, timetableServcie);
 const nearbyStationService = new NearbyStationService(stationService);
 
 const root = {
