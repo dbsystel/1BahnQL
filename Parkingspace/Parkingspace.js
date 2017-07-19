@@ -7,8 +7,6 @@ class Parkingspace {
     this.name = space.parkraumDisplayName;
     this.lots = space.parkraumStellplaetze;
     this.location = new Location(space.parkraumGeoLatitude, space.parkraumGeoLongitude);
-    this.location.parkraumGeoLatitude = space.parkraumGeoLatitude;
-    this.location.parkraumGeoLongitude = space.parkraumGeoLongitude;
     this.distance = space.distance;
     this.bundesland = space.bundesland;
     this.isPublished = space.isPublished;

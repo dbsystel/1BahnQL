@@ -158,8 +158,6 @@ const schema = buildSchema(`
     parkraumBetreiber: String
     parkraumDisplayName: String
     parkraumEntfernung: String
-    parkraumGeoLatitude: String
-    parkraumGeoLongitude: String
     parkraumId: String!
     parkraumIsAusserBetrieb: Boolean
     parkraumIsDbBahnPark: Boolean
