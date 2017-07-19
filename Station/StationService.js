@@ -13,12 +13,13 @@ class StationService {
   constructor(stationLoader, stationIdMappingService) {
     this.stationLoader = stationLoader;
     this.stationIdMappingService = stationIdMappingService || new StationIdMappingService()
+    this.relationships;
   }
 
   transformStationResultIntoStation(jsonStation) {
     if (jsonStation) {
       const station = new Station(jsonStation);
-      new StationRelationships(station);
+      this.relationships.resolve(station)
 
       return station;
     }
@@ -31,9 +32,10 @@ class StationService {
 	 * @return {Promise<Station>} promise of a station - A promise which resolves to the fetched Station or null if the Id is not valid.
 	 */
   stationByEvaId(evaId) {
+    const self = this;
     const stationLoader = this.stationLoader;
     return this.stationIdMappingService.stationNumberByEvaId(evaId).then(stationNumber => stationLoader.stationByBahnhofsnummer(stationNumber))
-      .then(this.transformStationResultIntoStation);
+      .then(station => self.transformStationResultIntoStation(station));
   }
 
   /**
@@ -42,8 +44,9 @@ class StationService {
 	 * @return {Promise<Station>} promise of a station - A promise which resolves to the fetched Station or null if the Id is not valid.
 	 */
   stationByBahnhofsnummer(stationNumber) {
+    const self = this;
     return this.stationLoader.stationByBahnhofsnummer(stationNumber)
-      .then(this.transformStationResultIntoStation);
+      .then(station => self.transformStationResultIntoStation(station));
   }
 
   /**

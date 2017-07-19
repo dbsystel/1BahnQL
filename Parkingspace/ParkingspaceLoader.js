@@ -57,23 +57,23 @@ class ParkingspaceLoader {
     return promise;
   }
 
-  evaIdForStationNumber(stationNumber) {
-    const url = `${baseURL}/stations`;
-    const configuration = this.fetchConfiguration;
+  // evaIdForStationNumber(stationNumber) {
+  //   const url = `${baseURL}/stations`;
+  //   const configuration = this.fetchConfiguration;
 
-    const promise = fetch(url, configuration)
-      .then(res => res.json())
-      .then((result) => {
-        console.log(`Try to find ${stationNumber}`);
+  //   const promise = fetch(url, configuration)
+  //     .then(res => res.json())
+  //     .then((result) => {
+  //       console.log(`Try to find ${stationNumber}`);
 
-        if (result.count > 0) {
-          return result.results.filter(elem => elem.bahnhofsNummer == stationNumber);
-        }
-        return null;
-      });
+  //       if (result.count > 0) {
+  //         return result.results.filter(elem => elem.bahnhofsNummer == stationNumber);
+  //       }
+  //       return null;
+  //     });
 
-    return promise;
-  }
+  //   return promise;
+  // }
 
   spacesForStationNumber(stationNumber) {
     const url = `${baseURL}/sites`;
@@ -83,7 +83,7 @@ class ParkingspaceLoader {
       .then(res => res.json())
       .then((result) => {
         if (result.count > 0) {
-          const filteredResult = result.results.filter(elem => elem.parkraumBahnhofNummer == bhfNr);
+          const filteredResult = result.results.filter(elem => elem.parkraumBahnhofNummer == stationNumber);
 
           if (filteredResult.length > 0) {
             return filteredResult;

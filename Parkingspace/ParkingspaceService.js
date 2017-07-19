@@ -5,21 +5,21 @@ const Occupancy = require('./Occupancy');
 class ParkingspaceService {
   constructor(parkingspaceLoader) {
     this.parkingspaceLoader = parkingspaceLoader;
+    this.relationships;
   }
 
   transformResultIntoParkingspace(jsonData) {
     if (jsonData) {
-      return new Parkingspace(jsonData, this);
+      const parkingspace = new Parkingspace(jsonData, this);
+      this.relationships.resolve(parkingspace)
+      return parkingspace;
     }
     return null;
   }
 
   transformResultIntoParkingspaces(jsonArray) {
-    if (jsonArray) {
-      const parkingspaces = jsonArray.map(space => transformResultIntoParkingspace(space));
-
-      return [].concat(parkingspaces);
-    }
+    const self = this;
+    return (jsonArray || []).map(space => self.transformResultIntoParkingspace(space));
   }
 
   transformResultIntoOccupancy(jsonData) {
@@ -45,11 +45,6 @@ class ParkingspaceService {
   occupancyForSpaceId(spaceId) {
     const self = this;
     return this.parkingspaceLoader.occupancyForId(spaceId).then(jsonData => self.transformResultIntoOccupancy(jsonData));
-  }
-
-  evaIdForSpaceId(stationNumber) {
-    const self = this;
-    return this.parkingspaceLoader.evaIdForStationNumber(stationNumber).then(jsonData => self.transformResultIntoEvaId(jsonData));
   }
 
   parkingspacesForStationNumber(stationNumber) {
