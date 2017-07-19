@@ -27,8 +27,7 @@ class Station {
     const adress = station.mailingAddress;
     this.mailingAddress = new MailAddress(adress.city, adress.zipcode, adress.street);
     const contact = station.aufgabentraeger;
-    // ShortName & name switched -- see https://github.com/lightsprint09/DBOpenDataAPIBugs/issues/1
-    this.aufgabentraeger = new StationContact(contact.shortName, contact.name,
+    this.aufgabentraeger = new StationContact(contact.name, contact.shortName,
       contact.email, contact.number, contact.phoneNumber);
     const timeTableContact = station.timeTableOffice;
     this.timeTableOffice = new StationContact(timeTableContact.name, timeTableContact.shortName,
@@ -48,6 +47,13 @@ class Station {
     this.primaryEvaId = station.evaNumbers.filter(eva => eva.isMain)[0].number;
     this.primaryRil100 = station.ril100Identifiers.filter(ril => ril.isMain)[0].rilIdentifier;
     this.hasSteamPermission = station.ril100Identifiers.filter(ril => ril.isMain)[0].hasSteamPermission
+    this.priceCategory = station.priceCategory
+    this.hasWiFi = station.hasWiFi
+    this.hasTravelCenter = station.hasTravelCenter
+    this.hasRailwayMission = station.hasRailwayMission
+    this.hasDBLounge = station.hasDBLounge
+    this.hasLostAndFound = station.hasLostAndFound
+    this.hasCarRental = station.hasCarRental
   }
 }
 

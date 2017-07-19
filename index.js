@@ -3,38 +3,54 @@ const schema = require('./schema.js');
 const express = require('express');
 const graphqlHTTP = require('express-graphql');
 const TrainRouteSearch = require('./trainRouteSearch');
-const { ParkingSpaceQuery } = require('./ParkingSpaceQuery');
-const NearbyQuery = require('./NearbyQuery');
-const APIToken = process.env.DBDeveloperAuthorization;
-const OperationLocationLoader = require('./OperationLocation/OperationLocationLoader.js');
-const OperationLocationService = require('./OperationLocation/OperationLocationService.js');
+
+const ParkingspaceLoader = require('./Parkingspace/ParkingspaceLoader');
 const StationLoader = require('./Station/StationLoader');
-const StationService = require('./Station/StationService');
-const NearbyStationService = require('./Station/NearbyStationsService.js');
+const OperationLocationLoader = require('./OperationLocation/OperationLocationLoader');
 const FacilityLoader = require('./Facility/FacilityLoader.js');
+
+const ParkingspaceService = require('./Parkingspace/ParkingspaceService');
+const OperationLocationService = require('./OperationLocation/OperationLocationService');
+const StationService = require('./Station/StationService');
+const NearbyStationService = require('./Station/NearbyStationsService');
 const FacilityService = require('./Facility/FacilityService.js');
 
-const operationLocationLoader = new OperationLocationLoader(APIToken);
-const operationLocationService = new OperationLocationService(operationLocationLoader);
-const facilityLoader = new FacilityLoader(APIToken);
-const facilityService = new FacilityService(facilityLoader)
+const StationRelationships = require('./Station/StationRelationships');
+const ParkingspaceRelationships = require('./Parkingspace/ParkingspaceRelationships');
+
+const NearbyQuery = require('./NearbyQuery');
+
+// --------- //
+
+const APIToken = process.env.DBDeveloperAuthorization;
+
+// Loader
+const parkingspaceLoader = new ParkingspaceLoader(APIToken);
 const stationLoader = new StationLoader(APIToken);
-const stationService = new StationService(stationLoader, null, facilityService);
+const operationLocationLoader = new OperationLocationLoader(APIToken);
+const facilityLoader = new FacilityLoader(APIToken);
+
+// Services
+const parkingspaceService = new ParkingspaceService(parkingspaceLoader);
+const operationLocationService = new OperationLocationService(operationLocationLoader);
+const stationService = new StationService(stationLoader);
 const nearbyStationService = new NearbyStationService(stationService);
+const facilityService = new FacilityService(facilityLoader)
 
+// Relationships
+stationService.relationships = new StationRelationships(parkingspaceService, facilityService);
+parkingspaceService.relationships = new ParkingspaceRelationships(parkingspaceService, stationService);
 
+// Queries
 const root = {
   routeSearch: (args) => {
     const routeSearch = new TrainRouteSearch(args.from, args.to).options;
     return routeSearch.then(options => [options[0]]);
   },
-  parkingSpace: (args) => {
-    const parkingSpaceQuery = new ParkingSpaceQuery(args.id).options;
-    return parkingSpaceQuery.then(options => options);
-  },
+  parkingSpace: args => parkingspaceService.parkingspaceBySpaceId(args.id),
   stationWith: args => stationService.stationByEvaId(args.evaId),
   search: args => ({ stations: stationService.searchStations(args.searchTerm), operationLocations: operationLocationService.searchOperationLocations(args.searchTerm) }),
-  nearby: args => new NearbyQuery(args.latitude, args.longitude, nearbyStationService),
+  nearby: args => new NearbyQuery(args.latitude, args.longitude, nearbyStationService, parkingspaceService),
 };
 
 const app = express();

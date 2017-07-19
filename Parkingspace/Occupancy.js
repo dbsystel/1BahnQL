@@ -1,5 +1,3 @@
-
-
 class Occupancy {
   constructor(occupancyData) {
     this.validData = occupancyData.validData;

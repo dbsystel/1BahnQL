@@ -10,16 +10,16 @@ class StationService {
 	* A Stations service provides capability of loading stations via IDs and text search.
 	* @constructor
 	*/
-  constructor(stationLoader, stationIdMappingService, facilityService) {
+  constructor(stationLoader, stationIdMappingService) {
     this.stationLoader = stationLoader;
     this.stationIdMappingService = stationIdMappingService || new StationIdMappingService()
-    this.facilityService = facilityService
+    this.relationships;
   }
 
   transformStationResultIntoStation(jsonStation) {
     if (jsonStation) {
       const station = new Station(jsonStation);
-      new StationRelationships(station, this.facilityService);
+      this.relationships.resolve(station)
 
       return station;
     }
@@ -33,7 +33,8 @@ class StationService {
 	 */
   stationByEvaId(evaId) {
     const self = this;
-    return this.stationIdMappingService.stationNumberByEvaId(evaId).then(stationNumber => self.stationLoader.stationByBahnhofsnummer(stationNumber))
+    return this.stationIdMappingService.stationNumberByEvaId(evaId)
+      .then(stationNumber => self.stationLoader.stationByBahnhofsnummer(stationNumber))
       .then(station => self.transformStationResultIntoStation(station));
   }
 

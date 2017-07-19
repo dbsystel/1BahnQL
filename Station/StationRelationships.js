@@ -1,7 +1,4 @@
 const {
-  getParkingSpacesByBhfNr,
-} = require('../ParkingSpaceQuery');
-const {
   loadTimeTableFor,
 } = require('../timetables.js');
 
@@ -11,7 +8,15 @@ class StationRelationships {
 	* A StationRelationships connects different datasources related to a station.
 	* @constructor
 	*/
-  constructor(station, facilityService) {
+  constructor(parkingSpaceService, facilityService) {
+    this.parkingSpaceService = parkingSpaceService
+    this.facilityService = facilityService
+  }
+
+  resolve(station) {
+    const parkingSpaceService = this.parkingSpaceService;
+    const facilityService = this.facilityService;
+
     station.facilities = function () {
       return facilityService.facilitiesForStationNumber(station.stationNumber);
     };
@@ -21,7 +26,7 @@ class StationRelationships {
     };
 
     station.parkingSpaces = function () {
-      return getParkingSpacesByBhfNr(station.stationNumber);
+      return parkingSpaceService.parkingspacesForStationNumber(station.stationNumber);
     };
   }
 }
