@@ -10,8 +10,8 @@ class NearbyQuery {
     this.longitude = longitude;
   }
 
-  get parkingSpaces() {
-    return this.parkingspaceService.nearbyParkingspaces(this.latitude, this.longitude);
+  parkingSpaces(args) {
+    return this.parkingspaceService.nearbyParkingspaces(this.latitude, this.longitude, args.radius, args.count, args.offset);
   }
 
   get travelCenter() {

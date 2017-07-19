@@ -47,9 +47,9 @@ class ParkingspaceService {
     return this.parkingspaceLoader.spacesForStationNumber(stationNumber).then(parkingspaces => parkingspaces.map(parkingspace => self.transformResultIntoParkingspace(parkingspace)));
   }
 
-  nearbyParkingspaces(latitude, longitude) {
+  nearbyParkingspaces(latitude, longitude, radius, count, offset) {
     const self = this;
-    return this.parkingspaceLoader.nearbyParkingspaces(latitude, longitude).then(parkingspaces => parkingspaces.slice(0, 5).map(parkingspace => self.transformResultIntoParkingspace(parkingspace)));
+    return this.parkingspaceLoader.nearbyParkingspaces(latitude, longitude, radius).then(parkingspaces => parkingspaces.slice(offset, offset+count).map(parkingspace => self.transformResultIntoParkingspace(parkingspace)));
   }
 }
 

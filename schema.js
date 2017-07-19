@@ -134,7 +134,7 @@ const schema = buildSchema(`
 
   type Nearby {
     stations (radius: Int = 10000, count: Int = 10, offset: Int = 0): [Station]
-    parkingSpaces: [ParkingSpace]
+    parkingSpaces (radius: Int = 10000, count: Int = 10, offset: Int = 0): [ParkingSpace]
     travelCenter: TravelCenter
     flinksterCars (radius: Int = 10000, count: Int = 10, offset: Int = 0): [FlinksterCar]
     bikes (radius: Int = 10000, count: Int = 10, offset: Int = 0): [FlinksterBike]
