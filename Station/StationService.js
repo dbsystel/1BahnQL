@@ -57,7 +57,7 @@ class StationService {
   searchStations(searchTerm) {
     const self = this;
     return this.stationLoader.searchStations(searchTerm)
-      .then(stations => stations.map(self.transformStationResultIntoStation));
+      .then(stations => stations.map(station => self.transformStationResultIntoStation(station)));
   }
 }
 

@@ -6,18 +6,21 @@ const StationService = require('../../Station/StationService.js')
 const StationLoaderMock = require('./StationLoaderMock.js')
 const StationIdMappingService = require('../../Station/StationIdMappingService.js')
 const chaiAsPromised = require("chai-as-promised");
+const StationRelationships = require("../../Station/StationRelationships");
+
 chai.use(chaiAsPromised);
 const expect = chai.expect;
 
 const stationIdMappingService = new StationIdMappingService()
 
 describe('StationService', () => {
-  var stationLoaderMock = new StationLoaderMock()
+  let stationLoaderMock = new StationLoaderMock()
   let stationService = new StationService(stationLoaderMock, stationIdMappingService)
 
   beforeEach(function() {
     stationLoaderMock = new StationLoaderMock()
     stationService = new StationService(stationLoaderMock)
+    stationService.relationships =  { resolve: function(station) {} }
   });
 
   it('stationByEvaId should return valid station', () => {
