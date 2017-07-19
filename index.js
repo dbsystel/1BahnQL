@@ -11,12 +11,17 @@ const OperationLocationService = require('./OperationLocation/OperationLocationS
 const StationLoader = require('./Station/StationLoader');
 const StationService = require('./Station/StationService');
 const NearbyStationService = require('./Station/NearbyStationsService.js');
+const FacilityLoader = require('./Facility/FacilityLoader.js');
+const FacilityService = require('./Facility/FacilityService.js');
 
 const operationLocationLoader = new OperationLocationLoader(APIToken);
 const operationLocationService = new OperationLocationService(operationLocationLoader);
+const facilityLoader = new FacilityLoader(APIToken);
+const facilityService = new FacilityService(facilityLoader)
 const stationLoader = new StationLoader(APIToken);
-const stationService = new StationService(stationLoader);
+const stationService = new StationService(stationLoader, null, facilityService);
 const nearbyStationService = new NearbyStationService(stationService);
+
 
 const root = {
   routeSearch: (args) => {
