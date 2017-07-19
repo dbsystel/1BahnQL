@@ -20,19 +20,21 @@ class TimetableService {
           let time = element.elements[1].attributes.pt;
           let stops = element.elements[1].attributes.ppth.split('|');
           let type = element.elements[1].name;
-          let train = new TrainOnStation(trainType, trainNumber, new moment.tz(time, 'YYMMDDHHmm', 'Europe/Berlin').utc().toDate(), platform, stops);
+          let train = new TrainOnStation(trainType, trainNumber, time, platform, stops);
           result[arrivalDepatingTypeKeyMap[type]].push(train);
           if (element.elements.length > 2) {
             platform = element.elements[2].attributes.pp;
             time = element.elements[2].attributes.pt;
             type = element.elements[2].name;
             stops = element.elements[2].attributes.ppth.split('|');
-            train = new TrainOnStation(trainType, trainNumber, new moment.tz(time, 'YYMMDDHHmm', 'Europe/Berlin').utc().toDate(), platform, stops);
+            train = new TrainOnStation(trainType, trainNumber, time, platform, stops);
             result[arrivalDepatingTypeKeyMap[type]].push(train);
           }
         });
+        result.nextDepatures = result.nextDepatures.sort((lhs, rhs) => lhs.time - rhs.time);
+        result.nextArrivals = result.nextArrivals.sort((lhs, rhs) => lhs.time - rhs.time);
 
-        return result;
+        return result
       });
   }
 }
