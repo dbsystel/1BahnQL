@@ -26,14 +26,14 @@ class FlinksterService {
     return null;
   }
 
-  nearbyFlinksterCars(latitude, longitude) {
+  nearbyFlinksterCars(latitude, longitude, radius, count, offset) {
     const self = this;
-    return this.flinksterLoader.nearbyCars(latitude, longitude).then(flinksterCars => flinksterCars.map(car => self.transformResultIntoFlinksterCar(car)));
+    return this.flinksterLoader.nearbyCars(latitude, longitude, radius, count, offset).then(flinksterCars => flinksterCars.map(car => self.transformResultIntoFlinksterCar(car)));
   }
 
-  nearbyFlinksterBikes(latitude, longitude) {
+  nearbyFlinksterBikes(latitude, longitude, radius, count, offset) {
     const self = this;
-    return this.flinksterLoader.nearbyBikes(latitude, longitude).then(flinksterBikes => flinksterBikes.map(bike => self.transformResultIntoFlinksterBike(bike)));
+    return this.flinksterLoader.nearbyBikes(latitude, longitude, radius, count, offset).then(flinksterBikes => flinksterBikes.map(bike => self.transformResultIntoFlinksterBike(bike)));
   }
 }
 

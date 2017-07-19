@@ -20,12 +20,8 @@ class FlinksterLoader {
   }
 
 
-  nearbyCars(latitude, longitude) {
-    const radius = 10000;
-    const offset = 0;
-    const limit = 5;
-
-    const url = `${baseURL}/bookingproposals?lat=${latitude}&lon=${longitude}&radius=${radius}&offset=${offset}&limit=${limit}&providernetwork=1&expand=area%2Crentalobject%2Cprice`;
+  nearbyCars(latitude, longitude, radius, count, offset) {
+    const url = `${baseURL}/bookingproposals?lat=${latitude}&lon=${longitude}&radius=${radius}&offset=${offset}&limit=${count}&providernetwork=1&expand=area%2Crentalobject%2Cprice`;
     const configuration = this.fetchConfiguration;
 
     const promise = fetch(url, configuration)
@@ -40,12 +36,8 @@ class FlinksterLoader {
     return promise;
   }
 
-  nearbyBikes(latitude, longitude) {
-    const radius = 10000;
-    const offset = 0;
-    const limit = 5;
-
-    const url = `${baseURL}/bookingproposals?lat=${latitude}&lon=${longitude}&radius=${radius}&offset=${offset}&limit=${limit}&providernetwork=2&expand=area%2Crentalobject%2Cprice`;
+  nearbyBikes(latitude, longitude, radius, count, offset) {
+    const url = `${baseURL}/bookingproposals?lat=${latitude}&lon=${longitude}&radius=${radius}&offset=${offset}&limit=${count}&providernetwork=2&expand=area%2Crentalobject%2Cprice`;
     const configuration = this.fetchConfiguration;
 
     const promise = fetch(url, configuration)

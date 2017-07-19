@@ -5,7 +5,7 @@ const schema = buildSchema(`
     routeSearch(from: Int, to: Int): [Route]!
     stationWith(evaId: Int): Station
     search(searchTerm: String): Searchable!
-    nearby(latitude: Float, longitude: Float): Nearby!
+    nearby(latitude: Float!, longitude: Float!, radius: Int = 10000): Nearby!
     parkingSpace(id: Int): ParkingSpace
   }
 
@@ -133,11 +133,11 @@ const schema = buildSchema(`
   }
 
   type Nearby {
-    stations: [Station]
+    stations (radius: Int = 10000, count: Int = 10, offset: Int = 0): [Station]
     parkingSpaces: [ParkingSpace]
     travelCenter: TravelCenter
-    flinksterCars: [FlinksterCar]
-    bikes: [FlinksterBike]
+    flinksterCars (radius: Int = 10000, count: Int = 10, offset: Int = 0): [FlinksterCar]
+    bikes (radius: Int = 10000, count: Int = 10, offset: Int = 0): [FlinksterBike]
   }
 
   type ParkingSpace {
