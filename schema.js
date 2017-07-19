@@ -133,11 +133,11 @@ const schema = buildSchema(`
   }
 
   type Nearby {
-    stations (radius: Int = 10000, count: Int = 10, offset: Int = 0): [Station]
-    parkingSpaces (radius: Int = 10000, count: Int = 10, offset: Int = 0): [ParkingSpace]
+    stations (radius: Int = 10000, count: Int = 10, offset: Int = 0): [Station]!
+    parkingSpaces (radius: Int = 10000, count: Int = 10, offset: Int = 0): [ParkingSpace]!
     travelCenter: TravelCenter
-    flinksterCars (radius: Int = 10000, count: Int = 10, offset: Int = 0): [FlinksterCar]
-    bikes (radius: Int = 10000, count: Int = 10, offset: Int = 0): [FlinksterBike]
+    flinksterCars (radius: Int = 10000, count: Int = 10, offset: Int = 0): [FlinksterCar]!
+    bikes (radius: Int = 10000, count: Int = 10, offset: Int = 0): [FlinksterBike]!
   }
 
   type ParkingSpace {
@@ -147,8 +147,8 @@ const schema = buildSchema(`
     lots: Int!
     location: Location!
     occupancy: Occupancy
-    bundesland: String
-    isPublished: Boolean
+    bundesland: String!
+    isPublished: Boolean!
     parkraumAusserBetriebText: String
     parkraumAusserBetrieb_en: String
     parkraumBahnhofName: String
@@ -159,12 +159,12 @@ const schema = buildSchema(`
     parkraumDisplayName: String
     parkraumEntfernung: String
     parkraumId: String!
-    parkraumIsAusserBetrieb: Boolean
-    parkraumIsDbBahnPark: Boolean
-    parkraumIsOpenData:  Boolean
-    parkraumIsParktagesproduktDbFern: Boolean
+    parkraumIsAusserBetrieb: Boolean!
+    parkraumIsDbBahnPark: Boolean!
+    parkraumIsOpenData:  Boolean!
+    parkraumIsParktagesproduktDbFern: Boolean!
     parkraumKennung: String
-    parkraumName: String
+    parkraumName: String!
     parkraumOeffnungszeiten: String
     parkraumOeffnungszeiten_en: String
     parkraumParkTypName: String
@@ -229,46 +229,44 @@ const schema = buildSchema(`
     name: String
     address: MailingAddress
     type: String
-	location: Location
+    location: Location
   }
 
   type FlinksterCar {
-    id: String
-    name: String
-    description: String
-    attributes: CarAttributes
-    location: Location
-    priceOptions: [PriceOption]
-    equipment: CarEquipment
-    rentalModel: String
-    fillLevel: Int
-    fuel: String
-    parkingArea: FlinksterParkingArea
-    category: String
-    url: String
+    id: String!
+    name: String!
+    description: String!
+    attributes: CarAttributes!
+    location: Location!
+    priceOptions: [PriceOption]!
+    equipment: CarEquipment!
+    rentalModel: String!
+    parkingArea: FlinksterParkingArea!
+    category: String!
+    url: String!
   }
 
   type FlinksterBike {
-    id: String
-    url: String
-    name: String
-    description: String
-    location: Location
-    priceOptions: [PriceOption]
-    attributes: BikeAttributes
-    address: MailingAddress
-    rentalModel: String
-    type: String
-    providerRentalObjectId: Int
-    parkingArea: FlinksterParkingArea
-    bookingUrl: String
+    id: String!
+    url: String!
+    name: String!
+    description: String!
+    location: Location!
+    priceOptions: [PriceOption]!
+    attributes: BikeAttributes!
+    address: MailingAddress!
+    rentalModel: String!
+    type: String!
+    providerRentalObjectId: Int!
+    parkingArea: FlinksterParkingArea!
+    bookingUrl: String!
   }
 
   type CarAttributes {
-    seats: Int
-    color: String
-    doors: Int
-    transmissionType: String
+    seats: Int!
+    color: String!
+    doors: Int!
+    transmissionType: String!
     licensePlate: String
     fillLevel: Int
     fuel: String
@@ -289,53 +287,53 @@ const schema = buildSchema(`
   }
 
   type FlinksterParkingArea {
-    id: String
-    url: String
-    name: String
-    address: MailingAddress
-    parkingDescription: String 
+    id: String!
+    url: String!
+    name: String!
+    address: MailingAddress!
+    parkingDescription: String
     accessDescription: String
     locationDescription: String
     publicTransport: String
-    provider: FlinksterProvider
-    type: String
-    position: Location
+    provider: FlinksterProvider!
+    type: String!
+    position: Location!
     GeoJSON: GeoJSON
   }
 
   type GeoGeometry {
-    type: String
-    coordinates: [[[[Float]]]]
+    type: String!
+    coordinates: [[[[Float]]]]!
   }
 
   type GeoJSON {
-    type: String
-    features: [GeoPolygon]
+    type: String!
+    features: [GeoPolygon!]!
   }
 
   type GeoPolygon {
-    type: String
-    properties: String
-    geometry: GeoGeometry
+    type: String!
+    properties: String!
+    geometry: GeoGeometry!
   }
 
   type FlinksterProvider {
-    url: String
-    areaId: Int
-    networkIds: [Int]
+    url: String!
+    areaId: Int!
+    networkIds: [Int!]!
   }
 
   type BikeAttributes {
-    licensePlate: String
+    licensePlate: String!
   }
 
   type PriceOption {
     interval: Int
-    type: String
-    grossamount: Float
-    currency: String
-    taxrate: Float
-    preferredprice: Boolean
+    type: String!
+    grossamount: Float!
+    currency: String!
+    taxrate: Float!
+    preferredprice: Boolean!
   }
 `);
 
