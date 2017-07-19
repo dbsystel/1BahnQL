@@ -137,7 +137,7 @@ const schema = buildSchema(`
     parkingSpaces: [ParkingSpace]
     travelCenter: TravelCenter
     flinksterCars: [FlinksterCar]
-    bikes: [CallABikeBike]
+    bikes: [FlinksterBike]
   }
 
   type ParkingSpace {
@@ -248,8 +248,9 @@ const schema = buildSchema(`
     url: String
   }
 
-  type CallABikeBike {
+  type FlinksterBike {
     id: String
+    url: String
     name: String
     description: String
     location: Location
@@ -257,6 +258,10 @@ const schema = buildSchema(`
     attributes: BikeAttributes
     address: MailingAddress
     rentalModel: String
+    type: String
+    providerRentalObjectId: Int
+    parkingArea: FlinksterParkingArea
+    bookingUrl: String
   }
 
   type CarAttributes {
@@ -294,6 +299,7 @@ const schema = buildSchema(`
     publicTransport: String
     provider: FlinksterProvider
     type: String
+    position: Location
   }
 
   type FlinksterProvider {

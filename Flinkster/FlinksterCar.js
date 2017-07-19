@@ -44,9 +44,8 @@ class CarEquipment {
   }
 }
 
-class CarParkingArea {
+class ParkingArea {
   constructor(parkingArea) {
-    console.log(parkingArea);
     this.id = parkingArea.uid;
     this.url = parkingArea.href;
     this.name = parkingArea.name;
@@ -61,6 +60,7 @@ class CarParkingArea {
     this.type = parkingArea.type;
   }
 }
+
 class FlinksterAreaProvider {
   constructor(provider, areaId, networkIds) {
     this.url = provider.href;
@@ -79,7 +79,7 @@ class FlinksterCar {
     this.attributes = new Attributes(car.rentalObject.attributes);
     this.equipment = new CarEquipment(car.rentalObject.equipment);
     this.location = new Location(car.position.coordinates[0], car.position.coordinates[1]);
-    this.parkingArea = new CarParkingArea(car.area);
+    this.parkingArea = new ParkingArea(car.area);
     this.priceOptions = car.price.items.map(price => new PriceOption(price));
     this.url = car.rentalObject.href;
     this.category = car.rentalObject.category.href;

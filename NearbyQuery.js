@@ -1,6 +1,4 @@
 const loadNearbyTravelCenter = require('./TravelCenterGeoQuery');
-const loadNearbyBikes = require('./CallABike/CallABikeGeoQuery');
-
 
 class NearbyQuery {
   constructor(latitude, longitude, nearbyStationService, parkingspaceService, flinksterService) {
@@ -28,7 +26,7 @@ class NearbyQuery {
   }
 
   get bikes() {
-    return loadNearbyBikes(this.lat, this.lon);
+    return this.flinksterService.nearbyFlinksterBikes(this.latitude, this.longitude);
   }
 }
 
