@@ -52,6 +52,7 @@ const schema = buildSchema(`
 	  name: String!
 	  location: Location!
 	  category: Int!
+    priceCategory: Int!
 	  hasParking: Boolean!
 	  hasBicycleParking: Boolean!
 	  hasLocalPublicTransport: Boolean!
@@ -74,6 +75,12 @@ const schema = buildSchema(`
 	  arrivalDepatureBoard: ArrivalDepatureBoard!
     parkingSpaces: [ParkingSpace!]!
     hasSteamPermission: Boolean!
+    hasWiFi: Boolean!
+    hasTravelCenter: Boolean!
+    hasRailwayMission: Boolean!
+    hasDBLounge: Boolean!
+    hasLostAndFound: Boolean!
+    hasCarRental: Boolean!
   }
 
   type Location {
