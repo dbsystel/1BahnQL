@@ -11,15 +11,10 @@ class ParkingspaceService {
   transformResultIntoParkingspace(jsonData) {
     if (jsonData) {
       const parkingspace = new Parkingspace(jsonData, this);
-      this.relationships.resolve(parkingspace)
+      this.relationships.resolve(parkingspace);
       return parkingspace;
     }
     return null;
-  }
-
-  transformResultIntoParkingspaces(jsonArray) {
-    const self = this;
-    return (jsonArray || []).map(space => self.transformResultIntoParkingspace(space));
   }
 
   transformResultIntoOccupancy(jsonData) {
@@ -49,7 +44,12 @@ class ParkingspaceService {
 
   parkingspacesForStationNumber(stationNumber) {
     const self = this;
-    return this.parkingspaceLoader.spacesForStationNumber(stationNumber).then(jsonArray => self.transformResultIntoParkingspaces(jsonArray));
+    return this.parkingspaceLoader.spacesForStationNumber(stationNumber).then(parkingspaces => parkingspaces.map(parkingspace => self.transformResultIntoParkingspace(parkingspace)));
+  }
+
+  nearbyParkingspaces(latitude, longitude) {
+    const self = this;
+    return this.parkingspaceLoader.nearbyParkingspaces(latitude, longitude).then(parkingspaces => parkingspaces.slice(0, 5).map(parkingspace => self.transformResultIntoParkingspace(parkingspace)));
   }
 }
 

@@ -46,7 +46,7 @@ const root = {
   parkingSpace: args => parkingspaceService.parkingspaceBySpaceId(args.id),
   stationWith: args => stationService.stationByEvaId(args.evaId),
   search: args => ({ stations: stationService.searchStations(args.searchTerm), operationLocations: operationLocationService.searchOperationLocations(args.searchTerm) }),
-  nearby: args => new NearbyQuery(args.latitude, args.longitude, nearbyStationService),
+  nearby: args => new NearbyQuery(args.latitude, args.longitude, nearbyStationService, parkingspaceService),
 };
 
 const app = express();

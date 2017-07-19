@@ -57,24 +57,6 @@ class ParkingspaceLoader {
     return promise;
   }
 
-  // evaIdForStationNumber(stationNumber) {
-  //   const url = `${baseURL}/stations`;
-  //   const configuration = this.fetchConfiguration;
-
-  //   const promise = fetch(url, configuration)
-  //     .then(res => res.json())
-  //     .then((result) => {
-  //       console.log(`Try to find ${stationNumber}`);
-
-  //       if (result.count > 0) {
-  //         return result.results.filter(elem => elem.bahnhofsNummer == stationNumber);
-  //       }
-  //       return null;
-  //     });
-
-  //   return promise;
-  // }
-
   spacesForStationNumber(stationNumber) {
     const url = `${baseURL}/sites`;
     const configuration = this.fetchConfiguration;
@@ -94,6 +76,47 @@ class ParkingspaceLoader {
 
     return promise;
   }
+
+  nearbyParkingspaces(latitude, longitude) {
+    const url = `${baseURL}/sites`;
+    const configuration = this.fetchConfiguration;
+
+    const promise = fetch(url, configuration)
+      .then(res => res.json())
+      .then((result) => {
+        if (result.count > 0) {
+          // Sort by distance
+          // geolib.orderByDistance(object latlng, mixed coords)
+          const mapped = result.results.map((elem) => {
+            elem.distance = calculateDistance(latitude, longitude, parseFloat(elem.parkraumGeoLatitude), parseFloat(elem.parkraumGeoLongitude));
+            return elem;
+          });
+
+          // sort by distance
+          return mapped.sort((elem1, elem2) => elem1.distance - elem2.distance);
+        }
+      });
+
+    return promise;
+  }
+}
+
+function calculateDistance(lat1, lon1, lat2, lon2) {
+  const radlat1 = Math.PI * lat1 / 180;
+  const radlat2 = Math.PI * lat2 / 180;
+  const radlon1 = Math.PI * lon1 / 180;
+  const radlon2 = Math.PI * lon2 / 180;
+  const theta = lon1 - lon2;
+  const radtheta = Math.PI * theta / 180;
+  let dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+  dist = Math.acos(dist);
+  dist = dist * 180 / Math.PI;
+  dist = dist * 60 * 1.1515;
+
+  // Miles to Kilometers
+  dist *= 1.609344;
+
+  return dist;
 }
 
 module.exports = ParkingspaceLoader;
