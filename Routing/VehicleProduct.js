@@ -1,10 +1,4 @@
-
-<<<<<<< HEAD:Routing/VehicleProduct.js
 class VehicleProduct {
-=======
->>>>>>> develop:product.js
-
-class Product {
   constructor(payload) {
     this.name = payload.name;
     this.number = payload.nr;
@@ -14,4 +8,4 @@ class Product {
   }
 }
 
-module.exports = Product;
+module.exports = VehicleProduct;

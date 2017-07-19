@@ -33,13 +33,15 @@ const experimentalQuerys = experimental ? `
 
 const schema = buildSchema(`
   type Query {
-
     ${experimentalQuerys}
     stationWith(evaId: Int): Station
     search(searchTerm: String): Searchable!
     nearby(latitude: Float, longitude: Float): Nearby!
     parkingSpace(id: Int): ParkingSpace
   }
+
+  ${experimentalTypes}
+
   type Searchable {
 	  stations: [Station!]!
     operationLocations: [OperationLocation!]!
@@ -104,16 +106,6 @@ const schema = buildSchema(`
 	  location: Location
   }
 
-<<<<<<< HEAD
-=======
-  type Product {
-	  name: String
-	  class: Int
-	  productCode: Int
-	  productName: String
-  }
-
->>>>>>> develop
   type MailingAddress {
 	  city: String!
 	  zipcode: String!

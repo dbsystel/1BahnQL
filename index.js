@@ -5,19 +5,23 @@ const graphqlHTTP = require('express-graphql');
 const RoutingService = require('./Routing/RoutingService.js');
 const { ParkingSpaceQuery } = require('./ParkingSpaceQuery');
 const NearbyQuery = require('./NearbyQuery');
-const routingService = new RoutingService()
 const APIToken = process.env.DBDeveloperAuthorization;
 const OperationLocationLoader = require('./OperationLocation/OperationLocationLoader.js');
 const OperationLocationService = require('./OperationLocation/OperationLocationService.js');
 const StationLoader = require('./Station/StationLoader');
 const StationService = require('./Station/StationService');
 const NearbyStationService = require('./Station/NearbyStationsService.js');
+const RouteRelationships = require('./Routing/RouteRelationships');
 
 const operationLocationLoader = new OperationLocationLoader(APIToken);
 const operationLocationService = new OperationLocationService(operationLocationLoader);
 const stationLoader = new StationLoader(APIToken);
 const stationService = new StationService(stationLoader);
 const nearbyStationService = new NearbyStationService(stationService);
+const routeRelationships = new RouteRelationships(stationService);
+const routingService = new RoutingService();
+
+routingService.relationships = routeRelationships;
 
 let root = {
   parkingSpace: (args) => {

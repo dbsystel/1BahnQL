@@ -1,76 +1,15 @@
-<<<<<<< HEAD:Routing/RoutePart.js
-const Station = require("./../station.js")
-const { loadStationEva} = require("./../station.js")
+const VehicleProduct = require("./VehicleProduct.js");
 
 class RoutePart {
-
-	constructor(routePartPayload) {
-		this.routePartPayload = routePartPayload
+	constructor(route) {
+		this.delay = route.delay || 0;
+		this.direction = route.direction;
+		this.start = route.start;
+		this.end = route.end;
+		this.product = new VehicleProduct(route.product);
+		this.fromEvaId = route.from.id;
+		this.toEvaId = route.to.id;
 	}
-
-	get from() {
-		return loadStationEva(this.routePartPayload.from.id)
-	}
-
-	get to() {
-		return loadStationEva(this.routePartPayload.to.id)
-	}
-
-	get delay() {
-		return this.routePartPayload.delay
-	}
-
-	get direction() {
-		return this.routePartPayload.direction
-	}
-
-	get start() {
-		return this.routePartPayload.start
-	}
-
-	get end() {
-		return this.routePartPayload.end
-	}
-
-    get product() {
-      return new Product(this.routePartPayload.product);
-    }
-=======
-const { stationByEvaId } = require('./Station/StationService.js');
-
-class RoutePart {
-  constructor(routePartPayload) {
-    this.routePartPayload = routePartPayload;
-  }
->>>>>>> develop:routePart.js
-
-  get from() {
-    return stationByEvaId(this.routePartPayload.from.id);
-  }
-
-  get to() {
-    return stationByEvaId(this.routePartPayload.to.id);
-  }
-
-  get delay() {
-    return this.routePartPayload.delay;
-  }
-
-  get direction() {
-    return this.routePartPayload.direction;
-  }
-
-  get start() {
-    return this.routePartPayload.start;
-  }
-
-  get end() {
-    return this.routePartPayload.end;
-  }
-
-  get product() {
-    return new Product(this.routePartPayload.product);
-  }
 }
 
 module.exports = RoutePart;
