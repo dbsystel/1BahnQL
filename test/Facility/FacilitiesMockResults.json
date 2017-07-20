@@ -1,0 +1,38 @@
+[
+    {
+      "equipmentnumber": 10355942,
+      "type": "ELEVATOR",
+      "description": "zu Gleis 6/7",
+      "geocoordX": 6.09134,
+      "geocoordY": 50.767629,
+      "state": "ACTIVE",
+      "stationnumber": 1
+    },
+    {
+      "equipmentnumber": 10355941,
+      "type": "ELEVATOR",
+      "description": "zu Gleis 8/9",
+      "geocoordX": 6.0914006,
+      "geocoordY": 50.7675157,
+      "state": "ACTIVE",
+      "stationnumber": 1
+    },
+    {
+      "equipmentnumber": 10318681,
+      "type": "ELEVATOR",
+      "description": "zu Gleis 1",
+      "geocoordX": 6.0911305,
+      "geocoordY": 50.7680045,
+      "state": "ACTIVE",
+      "stationnumber": 1
+    },
+    {
+      "equipmentnumber": 10355943,
+      "type": "ELEVATOR",
+      "description": "zu Gleis 2/3",
+      "geocoordX": 6.0912217,
+      "geocoordY": 50.767839,
+      "state": "ACTIVE",
+      "stationnumber": 1
+    }
+  ]

@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const Location = require('../location');
+const Location = require('./../Location');
 
 class Parkingspace {
   constructor(space) {
