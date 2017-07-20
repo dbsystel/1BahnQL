@@ -1,3 +1,4 @@
+const TravelCenter = require('./TravelCenter');
 class TravelCenterService {
   constructor(travelCenterLoader) {
     this.travelCenterLoader = travelCenterLoader
@@ -8,3 +9,5 @@ class TravelCenterService {
     .then(result => new TravelCenter(result));
   }
 }
+
+module.exports = TravelCenterService

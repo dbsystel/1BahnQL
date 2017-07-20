@@ -23,7 +23,7 @@ class TravelCenterLoader {
   travelCenterAtLocation(latitude, longitude) {
     const url = `${baseUrl}/reisezentren/loc/${latitude}/${longitude}`;
 
-    return fetch(url, this.fetchConfiguration
+    return fetch(url, this.fetchConfiguration)
       .then(res => res.json())
   }
 }
