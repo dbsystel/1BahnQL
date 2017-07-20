@@ -2,7 +2,7 @@ const fetch = require('node-fetch');
 const convert = require('xml-js');
 const moment = require('moment-timezone');
 
-const baseURL = 'https://api.deutschebahn.com';
+const baseURL = 'https://api.deutschebahn.com/timetables/v1';
 
 class TimetableLoader {
   constructor(APIToken) {
@@ -12,7 +12,7 @@ class TimetableLoader {
   timetableForEvaId(evaId) {
     const now = moment();
     const nowString = now.format('YYMMDD/HH');
-    const url = `${baseURL}/timetables/v1/plan/${evaId}/${nowString}`;
+    const url = `${baseURL}/plan/${evaId}/${nowString}`;
     const myInit = { method: 'GET',
       headers: { Authorization: `Bearer ${this.APIToken}` } };
     return fetch(url, myInit)
