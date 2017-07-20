@@ -24,7 +24,7 @@ describe('FacilityService', () => {
     let promise = facilityServcie.facilitiesForStationNumber(1).then(facilities => facilities[0]);
 
     return Promise.all([
-        expect(promise).to.eventually.have.property("equipmentnumber", 10355942),
+        expect(promise).to.eventually.have.property("equipmentNumber", 10355942),
         expect(promise).to.eventually.have.property("type", "ELEVATOR"),
         expect(promise).to.eventually.have.property("description", "zu Gleis 6/7"),
         expect(promise).to.eventually.have.property("state", "ACTIVE"),
