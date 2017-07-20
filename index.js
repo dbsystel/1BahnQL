@@ -4,10 +4,12 @@ const express = require('express');
 const graphqlHTTP = require('express-graphql');
 
 const ParkingspaceLoader = require('./Parkingspace/ParkingspaceLoader');
+const FlinksterLoader = require('./Flinkster/FlinksterLoader');
 const StationLoader = require('./Station/StationLoader');
 const OperationLocationLoader = require('./OperationLocation/OperationLocationLoader');
 
 const ParkingspaceService = require('./Parkingspace/ParkingspaceService');
+const FlinksterService = require('./Flinkster/FlinksterService');
 const OperationLocationService = require('./OperationLocation/OperationLocationService');
 const StationService = require('./Station/StationService');
 const NearbyStationService = require('./Station/NearbyStationsService');
@@ -27,6 +29,7 @@ const APIToken = process.env.DBDeveloperAuthorization;
 const parkingspaceLoader = new ParkingspaceLoader(APIToken);
 const stationLoader = new StationLoader(APIToken);
 const operationLocationLoader = new OperationLocationLoader(APIToken);
+const flinksterLoader = new FlinksterLoader(APIToken);
 
 // Services
 const parkingspaceService = new ParkingspaceService(parkingspaceLoader);
@@ -34,6 +37,7 @@ const operationLocationService = new OperationLocationService(operationLocationL
 const stationService = new StationService(stationLoader);
 const nearbyStationService = new NearbyStationService(stationService);
 const routingService = new RoutingService();
+const flinksterService = new FlinksterService(flinksterLoader);
 
 // Relationships
 stationService.relationships = new StationRelationships(parkingspaceService);
@@ -45,7 +49,7 @@ const root = {
   parkingSpace: args => parkingspaceService.parkingspaceBySpaceId(args.id),
   stationWith: args => stationService.stationByEvaId(args.evaId),
   search: args => ({ stations: stationService.searchStations(args.searchTerm), operationLocations: operationLocationService.searchOperationLocations(args.searchTerm) }),
-  nearby: args => new NearbyQuery(args.latitude, args.longitude, nearbyStationService, parkingspaceService),
+  nearby: args => new NearbyQuery(args.latitude, args.longitude, args.radius, nearbyStationService, parkingspaceService, flinksterService),
 };
 
 const experimental = process.env.experimental

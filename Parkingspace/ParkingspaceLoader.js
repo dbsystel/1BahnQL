@@ -77,7 +77,7 @@ class ParkingspaceLoader {
     return promise;
   }
 
-  nearbyParkingspaces(latitude, longitude) {
+  nearbyParkingspaces(latitude, longitude, radius) {
     const url = `${baseURL}/sites`;
     const configuration = this.fetchConfiguration;
 
@@ -93,7 +93,8 @@ class ParkingspaceLoader {
           });
 
           // sort by distance
-          return mapped.sort((elem1, elem2) => elem1.distance - elem2.distance);
+          mapped.sort((elem1, elem2) => elem1.distance - elem2.distance);
+          return mapped.filter(elem => elem.distance <= radius/1000);
         }
       });
 

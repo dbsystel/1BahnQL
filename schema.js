@@ -36,7 +36,7 @@ const schema = buildSchema(`
     ${experimentalQuerys}
     stationWith(evaId: Int): Station
     search(searchTerm: String): Searchable!
-    nearby(latitude: Float, longitude: Float): Nearby!
+    nearby(latitude: Float!, longitude: Float!, radius: Int = 10000): Nearby!
     parkingSpace(id: Int): ParkingSpace
   }
 
@@ -150,11 +150,11 @@ const schema = buildSchema(`
   }
 
   type Nearby {
-    stations: [Station]
-    parkingSpaces: [ParkingSpace]
+    stations (count: Int = 10, offset: Int = 0): [Station!]!
+    parkingSpaces (radius: Int = 10000, count: Int = 10, offset: Int = 0): [ParkingSpace!]!
     travelCenter: TravelCenter
-    flinksterCars: [FlinksterCar]
-    bikes: [CallABikeBike]
+    flinksterCars (count: Int = 10, offset: Int = 0): [FlinksterCar!]!
+    bikes (count: Int = 10, offset: Int = 0): [FlinksterBike!]!
   }
 
   type ParkingSpace {
@@ -164,8 +164,8 @@ const schema = buildSchema(`
     lots: Int!
     location: Location!
     occupancy: Occupancy
-    bundesland: String
-    isPublished: Boolean
+    bundesland: String!
+    isPublished: Boolean!
     parkraumAusserBetriebText: String
     parkraumAusserBetrieb_en: String
     parkraumBahnhofName: String
@@ -176,12 +176,12 @@ const schema = buildSchema(`
     parkraumDisplayName: String
     parkraumEntfernung: String
     parkraumId: String!
-    parkraumIsAusserBetrieb: Boolean
-    parkraumIsDbBahnPark: Boolean
-    parkraumIsOpenData:  Boolean
-    parkraumIsParktagesproduktDbFern: Boolean
+    parkraumIsAusserBetrieb: Boolean!
+    parkraumIsDbBahnPark: Boolean!
+    parkraumIsOpenData:  Boolean!
+    parkraumIsParktagesproduktDbFern: Boolean!
     parkraumKennung: String
-    parkraumName: String
+    parkraumName: String!
     parkraumOeffnungszeiten: String
     parkraumOeffnungszeiten_en: String
     parkraumParkTypName: String
@@ -246,52 +246,115 @@ const schema = buildSchema(`
     name: String
     address: MailingAddress
     type: String
-	location: Location
+    location: Location
   }
 
   type FlinksterCar {
-    id: String
-    name: String
-    description: String
-    attributes: CarAttributes
-    location: Location
-    priceOptions: [PriceOption]
-    address: MailingAddress
-    rentalModel: String
+    id: String!
+    name: String!
+    description: String!
+    attributes: CarAttributes!
+    location: Location!
+    priceOptions: [PriceOption]!
+    equipment: CarEquipment!
+    rentalModel: String!
+    parkingArea: FlinksterParkingArea!
+    category: String!
+    url: String!
+  }
+
+  type FlinksterBike {
+    id: String!
+    url: String!
+    name: String!
+    description: String!
+    location: Location!
+    priceOptions: [PriceOption]!
+    attributes: BikeAttributes!
+    address: MailingAddress!
+    rentalModel: String!
+    type: String!
+    providerRentalObjectId: Int!
+    parkingArea: FlinksterParkingArea!
+    bookingUrl: String!
+  }
+
+  type CarAttributes {
+    seats: Int!
+    color: String!
+    doors: Int!
+    transmissionType: String!
+    licensePlate: String
     fillLevel: Int
     fuel: String
   }
 
-  type CallABikeBike {
-    id: String
-    name: String
-    description: String
-    location: Location
-    priceOptions: [PriceOption]
-    attributes: BikeAttributes
-    address: MailingAddress
-    rentalModel: String
+  type CarEquipment {
+    cdPlayer: Boolean
+    airConditioning: Boolean
+    navigationSystem: Boolean
+    roofRailing: Boolean
+    particulateFilter: Boolean
+    audioInline: Boolean
+    tyreType: String
+    bluetoothHandsFreeCalling: Boolean
+    cruiseControl: Boolean
+    passengerAirbagTurnOff: Boolean
+    isofixSeatFittings: Boolean
   }
 
-  type CarAttributes {
-    seats: Int
-    color: String
-    doors: Int
-    transmissionType: String
-    licensePlate: String
+  type FlinksterParkingArea {
+    id: String!
+    url: String!
+    name: String!
+    address: MailingAddress!
+    parkingDescription: String
+    accessDescription: String
+    locationDescription: String
+    publicTransport: String
+    provider: FlinksterProvider!
+    type: String!
+    position: Location!
+    GeoJSON: GeoJSON
+  }
+
+  type GeoJSON {
+    type: String!
+    features: [GeoFeature!]!
+  }
+
+  type GeoFeature {
+    type: String!
+    properties: GeoProperties!
+    geometry: GeoPolygon!
+  }
+
+  type GeoPolygon {
+    type: String!
+    coordinates: [[[[Float!]!]!]!]!
+  }
+
+  type GeoProperties {
+    name: String!
+  }
+
+  type FlinksterProvider {
+    url: String!
+    areaId: Int!
+    networkIds: [Int!]!
   }
 
   type BikeAttributes {
-    licensePlate: String
+    licensePlate: String!
   }
 
   type PriceOption {
     interval: Int
-    type: String
-    grossamount: Float
-    currency: String
-    taxrate: Float
-    preferredprice: Boolean
+    type: String!
+    grossamount: Float!
+    currency: String!
+    taxrate: Float!
+    preferredprice: Boolean!
   }
 `);
 
