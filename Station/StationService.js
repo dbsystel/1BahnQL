@@ -12,15 +12,14 @@ class StationService {
 	*/
   constructor(stationLoader, stationIdMappingService) {
     this.stationLoader = stationLoader;
-    this.stationIdMappingService = stationIdMappingService || new StationIdMappingService()
+    this.stationIdMappingService = stationIdMappingService || new StationIdMappingService();
     this.relationships;
   }
 
   transformStationResultIntoStation(jsonStation) {
     if (jsonStation) {
       const station = new Station(jsonStation);
-      this.relationships.resolve(station)
-
+      this.relationships.resolve(station);
       return station;
     }
     return null;

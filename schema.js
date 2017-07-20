@@ -89,7 +89,7 @@ const schema = buildSchema(`
 	  timeTableOffice: StationContact!
 	  szentrale: StationContact!
 	  stationManagement: StationContact!
-	  arrivalDepatureBoard: ArrivalDepatureBoard!
+	  timetable: Timetable!
     parkingSpaces: [ParkingSpace!]!
     hasSteamPermission: Boolean!
     hasWiFi: Boolean!
@@ -238,17 +238,17 @@ const schema = buildSchema(`
     text: String!
   }
 
-  type ArrivalDepatureBoard {
-	  nextArrivals: [TrainInStation]
-	  nextDepatures: [TrainInStation]
+  type Timetable {
+	  nextArrivals: [TrainInStation!]!
+	  nextDepatures: [TrainInStation!]!
   }
 
   type TrainInStation {
-	  type: String
-	  trainNumber: String
-	  platform: String
-	  time: String
-	  stops: [String]
+	  type: String!
+	  trainNumber: String!
+	  platform: String!
+	  time: String!
+	  stops: [String!]!
   }
 
   type TravelCenter {
