@@ -69,7 +69,7 @@ const schema = buildSchema(`
 	  DBInformationOpeningTimes: OpeningTimes
 	  localServiceStaffAvailability: OpeningTimes
     aufgabentraeger: StationContact!
-	  timeTableOffice: StationContact!
+	  timeTableOffice: StationContact
 	  szentrale: StationContact!
 	  stationManagement: StationContact!
 	  arrivalDepatureBoard: ArrivalDepatureBoard!
@@ -88,7 +88,9 @@ const schema = buildSchema(`
 	  platform: String!
 	  number: String!
 	  name: String!
+    # Length of the platform in cm
 	  length: Int
+    # Height of the platform in cm
 	  height: Int!
   }
 
