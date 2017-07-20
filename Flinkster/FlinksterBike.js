@@ -1,11 +1,12 @@
+const access = require('safe-access');
 
-
-const Location = require('./location');
-const MailAddress = require('./mailAddress');
+const Location = require('../location');
+const MailAddress = require('../mailAddress');
+const FlinksterParkingArea = require('../FlinksterParkingArea');
 
 class Attributes {
-  constructor(att) {
-    this.licensePlate = att.licenseplate;
+  constructor(attributes) {
+    this.licensePlate = attributes.licenseplate;
   }
 }
 
@@ -20,18 +21,22 @@ class PriceOption {
   }
 }
 
-class CallABikeBike {
+class FlinksterBike {
   constructor(bike) {
     this.id = bike.rentalObject.uid;
+    this.url = bike.rentalObject.href;
     this.name = bike.rentalObject.name;
     this.description = bike.rentalObject.description;
     this.rentalModel = bike.rentalObject.rentalModel;
+    this.providerRentalObjectId = bike.rentalObject.providerRentalObjectId;
     this.type = bike.rentalObject.type;
     this.attributes = new Attributes(bike.rentalObject.attributes);
-    this.location = new Location(bike.area.geometry.position.coordinates[0], bike.area.geometry.position.coordinates[1]);
+    this.location = new Location(bike.position.coordinates[0], bike.position.coordinates[1]);
     this.address = new MailAddress(bike.area.address.city, bike.area.address.zip, bike.area.address.street);
     this.priceOptions = bike.price.items.map(price => new PriceOption(price));
+    this.parkingArea = new FlinksterParkingArea(bike.area);
+    this.bookingUrl = access(bike, '_links[0].href');
   }
 }
 
-module.exports = CallABikeBike;
+module.exports = FlinksterBike;
