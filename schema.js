@@ -86,7 +86,7 @@ const schema = buildSchema(`
 
   type Track {
 	  platform: String!
-	  number: Int!
+	  number: String!
 	  name: String!
 	  length: Int
 	  height: Int!
