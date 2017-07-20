@@ -1,6 +1,6 @@
 const access = require('safe-access');
 
-const Location = require('./location');
+const Location = require('./Location');
 const MailAddress = require('./mailAddress');
 
 class FlinksterParkingArea {
