@@ -5,8 +5,8 @@ const MailAddress = require('../mailAddress');
 const FlinksterParkingArea = require('../FlinksterParkingArea');
 
 class Attributes {
-  constructor(att) {
-    this.licensePlate = att.licenseplate;
+  constructor(attributes) {
+    this.licensePlate = attributes.licenseplate;
   }
 }
 

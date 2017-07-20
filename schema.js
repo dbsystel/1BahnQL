@@ -133,11 +133,11 @@ const schema = buildSchema(`
   }
 
   type Nearby {
-    stations (radius: Int = 10000, count: Int = 10, offset: Int = 0): [Station]!
-    parkingSpaces (radius: Int = 10000, count: Int = 10, offset: Int = 0): [ParkingSpace]!
+    stations (radius: Int = 10000, count: Int = 10, offset: Int = 0): [Station!]!
+    parkingSpaces (radius: Int = 10000, count: Int = 10, offset: Int = 0): [ParkingSpace!]!
     travelCenter: TravelCenter
-    flinksterCars (radius: Int = 10000, count: Int = 10, offset: Int = 0): [FlinksterCar]!
-    bikes (radius: Int = 10000, count: Int = 10, offset: Int = 0): [FlinksterBike]!
+    flinksterCars (radius: Int = 10000, count: Int = 10, offset: Int = 0): [FlinksterCar!]!
+    bikes (radius: Int = 10000, count: Int = 10, offset: Int = 0): [FlinksterBike!]!
   }
 
   type ParkingSpace {
@@ -301,20 +301,24 @@ const schema = buildSchema(`
     GeoJSON: GeoJSON
   }
 
-  type GeoGeometry {
-    type: String!
-    coordinates: [[[[Float]]]]!
-  }
-
   type GeoJSON {
     type: String!
-    features: [GeoPolygon!]!
+    features: [GeoFeature!]!
+  }
+
+  type GeoFeature {
+    type: String!
+    properties: GeoProperties!
+    geometry: GeoPolygon!
   }
 
   type GeoPolygon {
     type: String!
-    properties: String!
-    geometry: GeoGeometry!
+    coordinates: [[[[Float!]!]!]!]!
+  }
+
+  type GeoProperties {
+    name: String!
   }
 
   type FlinksterProvider {

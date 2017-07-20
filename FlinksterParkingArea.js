@@ -1,4 +1,5 @@
 const access = require('safe-access');
+
 const Location = require('./location');
 const MailAddress = require('./mailAddress');
 
@@ -18,22 +19,21 @@ class FlinksterParkingArea {
     this.type = parkingArea.type;
     if (parkingArea.geometry.position.type == 'Point') {
       this.position = new Location(parkingArea.geometry.position.coordinates[0], parkingArea.geometry.position.coordinates[1]);
-    } else {
+    } else if (parkingArea.geometry.position.type == 'MultiPolygon') {
       this.position = new Location(parkingArea.geometry.centroid.coordinates[0], parkingArea.geometry.centroid.coordinates[1]);
       this.GeoJSON = {
         type: 'FeatureCollection',
         features: [{
           type: 'Feature',
-          properties: null,
+          properties: {
+            name: parkingArea.name,
+          },
           geometry: {
             type: 'MultiPolygon',
             coordinates: parkingArea.geometry.position.coordinates,
           },
-        }] };
-
-      for (const p of parkingArea.geometry.position.coordinates) {
-        // this.polygons.push(polygon);
-      }
+        }],
+      };
     }
   }
 }

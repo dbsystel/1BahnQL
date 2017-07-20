@@ -5,14 +5,14 @@ const MailAddress = require('../mailAddress');
 const FlinksterParkingArea = require('../FlinksterParkingArea');
 
 class Attributes {
-  constructor(att) {
-    this.seats = att.seats;
-    this.transmissionType = att.transmissionType;
-    this.doors = att.doors;
-    this.color = att.colour;
-    this.fuel = att.fuel;
-    this.licensePlate = att.licenseplate;
-    this.fillLevel = att.fillLevel;
+  constructor(attributes) {
+    this.seats = attributes.seats;
+    this.transmissionType = attributes.transmissionType;
+    this.doors = attributes.doors;
+    this.color = attributes.colour;
+    this.fuel = attributes.fuel;
+    this.licensePlate = attributes.licenseplate;
+    this.fillLevel = attributes.fillLevel;
   }
 }
 
@@ -29,19 +29,21 @@ class PriceOption {
 
 class CarEquipment {
   constructor(equipment) {
-    this.cdPlayer = access(equipment, 'cdPlayer');
-    this.emissionsStickers = access(equipment, 'emissionsStickers');
-    this.childSeats = access(equipment, 'childSeats');
-    this.airConditioning = access(equipment, 'airConditioning');
-    this.navigationSystem = access(equipment, 'navigationSystem');
-    this.roofRailing = access(equipment, 'roofRailing');
-    this.particulateFilter = access(equipment, 'particulateFilter');
-    this.audioInline = access(equipment, 'audioInline');
-    this.tyreType = access(equipment, 'tyreType');
-    this.bluetoothHandsFreeCalling = access(equipment, 'bluetoothHandsFreeCalling');
-    this.cruiseControl = access(equipment, 'cruiseControl');
-    this.passengerAirbagTurnOff = access(equipment, 'passengerAirbagTurnOff');
-    this.isofixSeatFittings = access(equipment, 'isofixSeatFittings');
+    if (!equipment) { return; }
+
+    this.cdPlayer = equipment.cdPlayer;
+    this.emissionsStickers = equipment.emissionsStickers;
+    this.childSeats = equipment.childSeats;
+    this.airConditioning = equipment.airConditioning;
+    this.navigationSystem = equipment.navigationSystem;
+    this.roofRailing = equipment.roofRailing;
+    this.particulateFilter = equipment.particulateFilte;
+    this.audioInline = equipment.audioInlin;
+    this.tyreType = equipment.tyreType;
+    this.bluetoothHandsFreeCalling = equipment.bluetoothHandsFreeCalling;
+    this.cruiseControl = equipment.cruiseControl;
+    this.passengerAirbagTurnOff = equipment.passengerAirbagTurnOff;
+    this.isofixSeatFittings = equipment.isofixSeatFittings;
   }
 }
 
@@ -58,7 +60,7 @@ class FlinksterCar {
     this.parkingArea = new FlinksterParkingArea(car.area);
     this.priceOptions = car.price.items.map(price => new PriceOption(price));
     this.url = car.rentalObject.href;
-    this.category = car.rentalObject.category.href;
+    this.category = access(car, 'rentalObject.category.href');
   }
 }
 
