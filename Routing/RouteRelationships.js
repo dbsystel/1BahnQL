@@ -10,7 +10,7 @@ class RouteRelationShips {
 		}
 
 		route.to = () => {
-			return stationService.stationByEvaId(route.parts[parts.length - 1].toEvaId)
+			return stationService.stationByEvaId(route.parts[route.parts.length - 1].toEvaId)
 		}
 
 		route.parts = route.parts.map((part) => {
