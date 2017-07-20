@@ -8,11 +8,12 @@ class TravelCenterService {
     return new TravelCenter(result);
   }
 
-  travelCenterAtLocation(latitude, longitude, radius) {
+  travelCentersAtLocation(latitude, longitude, radius, count, offset) {
     const self = this;
     return this.travelCenterLoader.travelCenterAtLocation(latitude, longitude)
     .then(result => [self.transformResultIntoTravleCenter(result)])
     .then(travelCenters => travelCenters.filter(center => calculateDistance(latitude, longitude, center.location.latitude, center.location.longitude) <= radius))
+    .then(travelCenters => travelCenters.slice(offset, count))
   }
 
 }

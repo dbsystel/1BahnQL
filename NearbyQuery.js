@@ -14,8 +14,8 @@ class NearbyQuery {
     return this.parkingspaceService.nearbyParkingspaces(this.latitude, this.longitude, this.radius, args.count, args.offset);
   }
 
-  get travelCenter() {
-    return this.travelCenterService.travelCenterAtLocation(this.latitude, this.longitude, this.radius);
+  travelCenters(args) {
+    return this.travelCenterService.travelCentersAtLocation(this.latitude, this.longitude, this.radius, args.count, args.offset);
   }
 
   flinksterCars(args) {
