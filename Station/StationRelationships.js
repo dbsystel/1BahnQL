@@ -1,23 +1,24 @@
-const loadElevatorFor = require('../facilities.js');
-
 const {
   loadTimeTableFor,
 } = require('../timetables.js');
-const {
-  stationNumberByEvaId,
-} = require('./StationIdMappingService.js');
+
 
 class StationRelationships {
-  constructor(parkingSpaceService) {
+  /**
+	* A StationRelationships connects different datasources related to a station.
+	* @constructor
+	*/
+  constructor(parkingSpaceService, facilityService) {
     this.parkingSpaceService = parkingSpaceService
+    this.facilityService = facilityService
   }
 
   resolve(station) {
-
-    const parkingSpaceService = this.parkingSpaceService
+    const parkingSpaceService = this.parkingSpaceService;
+    const facilityService = this.facilityService;
 
     station.facilities = function () {
-      return loadElevatorFor(station.stationNumber);
+      return facilityService.facilitiesForStationNumber(station.stationNumber);
     };
 
     station.arrivalDepatureBoard = function () {

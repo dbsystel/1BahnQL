@@ -7,7 +7,7 @@ const Station = require('./Station.js');
 
 class StationService {
   /**
-	* A Stations service provides capability of loading stations via IDs, text search.
+	* A Stations service provides capability of loading stations via IDs and text search.
 	* @constructor
 	*/
   constructor(stationLoader, stationIdMappingService) {
@@ -33,8 +33,8 @@ class StationService {
 	 */
   stationByEvaId(evaId) {
     const self = this;
-    const stationLoader = this.stationLoader;
-    return this.stationIdMappingService.stationNumberByEvaId(evaId).then(stationNumber => stationLoader.stationByBahnhofsnummer(stationNumber))
+    return this.stationIdMappingService.stationNumberByEvaId(evaId)
+      .then(stationNumber => self.stationLoader.stationByBahnhofsnummer(stationNumber))
       .then(station => self.transformStationResultIntoStation(station));
   }
 

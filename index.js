@@ -7,12 +7,14 @@ const ParkingspaceLoader = require('./Parkingspace/ParkingspaceLoader');
 const FlinksterLoader = require('./Flinkster/FlinksterLoader');
 const StationLoader = require('./Station/StationLoader');
 const OperationLocationLoader = require('./OperationLocation/OperationLocationLoader');
+const FacilityLoader = require('./Facility/FacilityLoader.js');
 
 const ParkingspaceService = require('./Parkingspace/ParkingspaceService');
 const FlinksterService = require('./Flinkster/FlinksterService');
 const OperationLocationService = require('./OperationLocation/OperationLocationService');
 const StationService = require('./Station/StationService');
 const NearbyStationService = require('./Station/NearbyStationsService');
+const FacilityService = require('./Facility/FacilityService.js');
 const RoutingService = require('./Routing/RoutingService.js');
 
 const StationRelationships = require('./Station/StationRelationships');
@@ -29,6 +31,7 @@ const APIToken = process.env.DBDeveloperAuthorization;
 const parkingspaceLoader = new ParkingspaceLoader(APIToken);
 const stationLoader = new StationLoader(APIToken);
 const operationLocationLoader = new OperationLocationLoader(APIToken);
+const facilityLoader = new FacilityLoader(APIToken);
 const flinksterLoader = new FlinksterLoader(APIToken);
 
 // Services
@@ -36,11 +39,12 @@ const parkingspaceService = new ParkingspaceService(parkingspaceLoader);
 const operationLocationService = new OperationLocationService(operationLocationLoader);
 const stationService = new StationService(stationLoader);
 const nearbyStationService = new NearbyStationService(stationService);
+const facilityService = new FacilityService(facilityLoader)
 const routingService = new RoutingService();
 const flinksterService = new FlinksterService(flinksterLoader);
 
 // Relationships
-stationService.relationships = new StationRelationships(parkingspaceService);
+stationService.relationships = new StationRelationships(parkingspaceService, facilityService);
 parkingspaceService.relationships = new ParkingspaceRelationships(parkingspaceService, stationService);
 routingService.relationships = new RouteRelationships(stationService);
 

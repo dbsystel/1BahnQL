@@ -1,5 +1,5 @@
 // Models
-const Location = require('../location.js');
+const Location = require('../Location.js');
 const MailAddress = require('../mailAddress');
 const OpeningTimes = require('../openingTimes.js');
 const RegionalArea = require('./RegionalArea.js');

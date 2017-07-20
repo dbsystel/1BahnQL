@@ -107,10 +107,20 @@ const schema = buildSchema(`
 
   type Facility {
 	  description: String
-	  type: String
-	  state: String!
-	  equipmentnumber: Int
+	  type: FacilityType!
+	  state: FacilityState!
+	  equipmentNumber: Int
 	  location: Location
+  }
+
+  enum FacilityState {
+    ACTIVE
+    INACTIVE
+  }
+
+  enum FacilityType {
+    ESCALATOR
+    ELEVATOR
   }
 
   type MailingAddress {
@@ -246,7 +256,7 @@ const schema = buildSchema(`
     name: String
     address: MailingAddress
     type: String
-    location: Location
+	  location: Location
   }
 
   type FlinksterCar {
