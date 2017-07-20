@@ -65,11 +65,7 @@ class ParkingspaceLoader {
       .then(res => res.json())
       .then((result) => {
         if (result.count > 0) {
-          const filteredResult = result.results.filter(elem => elem.parkraumBahnhofNummer == stationNumber);
-
-          if (filteredResult.length > 0) {
-            return filteredResult;
-          }
+          return result.results.filter(elem => elem.parkraumBahnhofNummer == stationNumber);
         }
         return [];
       });
@@ -94,11 +90,7 @@ class ParkingspaceLoader {
 
           // sort by distance
           mapped.sort((elem1, elem2) => elem1.distance - elem2.distance);
-          const filteredResult = mapped.filter(elem => elem.distance <= radius/1000);
-
-          if (filteredResult.length > 0) {
-            return filteredResult;
-          }
+          return mapped.filter(elem => elem.distance <= radius/1000);
         }
         return [];
       });
