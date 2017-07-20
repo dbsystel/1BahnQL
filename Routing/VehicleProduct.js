@@ -1,6 +1,4 @@
-
-
-class Product {
+class VehicleProduct {
   constructor(payload) {
     this.name = payload.name;
     this.number = payload.nr;
@@ -10,14 +8,4 @@ class Product {
   }
 }
 
-module.exports = Product;
-
-/*
-      product: {
-        name: 'S 42',
-        nr: 42,
-        class: 16,
-        productCode: 4,
-        productName: 's'
-      }
- */
+module.exports = VehicleProduct;
