@@ -19,6 +19,7 @@
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "safe-access": "^0.1.0",
     "xml-js": "^1.2.2"
   },
   "devDependencies": {

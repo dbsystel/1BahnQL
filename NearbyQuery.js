@@ -1,34 +1,33 @@
-const loadNearbyCars = require('./FlinksterGeoQuery');
-const loadNearbyBikes = require('./CallABikeGeoQuery');
-
-
 class NearbyQuery {
-  constructor(latitude, longitude, nearbyStationService, parkingspaceService, travelCenterService) {
-    this.nearbyStationService = nearbyStationService;
-    this.parkingspaceService = parkingspaceService;
-    this.travelCenterService = travelCenterService;
+  constructor(latitude, longitude, radius, nearbyStationService, parkingspaceService, flinksterService, travelCenterService) {
     this.latitude = latitude;
     this.longitude = longitude;
+    this.radius = radius;
+    //Service Dependencies
+    this.nearbyStationService = nearbyStationService;
+    this.parkingspaceService = parkingspaceService;
+    this.flinksterService = flinksterService;
+    this.travelCenterService = travelCenterService;
   }
 
-  get parkingSpaces() {
-    return this.parkingspaceService.nearbyParkingspaces(this.latitude, this.longitude);
+  parkingSpaces(args) {
+    return this.parkingspaceService.nearbyParkingspaces(this.latitude, this.longitude, this.radius, args.count, args.offset);
   }
 
   get travelCenter() {
-    return this.travelCenterService.travelCenterAtLocation(this.latitude, this.longitude);
+    return this.travelCenterService.travelCenterAtLocation(this.latitude, this.longitude, this.radius);
   }
 
-  get flinksterCars() {
-    return loadNearbyCars(this.latitude, this.longitude);
+  flinksterCars(args) {
+    return this.flinksterService.nearbyFlinksterCars(this.latitude, this.longitude, this.radius, args.count, args.offset);
   }
 
-  get stations() {
-  	return this.nearbyStationService.stationNearby(this.latitude, this.longitude, 5);
+  stations(args) {
+  	return this.nearbyStationService.stationNearby(this.latitude, this.longitude, this.radius, args.count, args.offset);
   }
 
-  get bikes() {
-    return loadNearbyBikes(this.lat, this.lon);
+  bikes(args) {
+    return this.flinksterService.nearbyFlinksterBikes(this.latitude, this.longitude, this.radius, args.count, args.offset);
   }
 }
 

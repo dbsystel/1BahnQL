@@ -1,5 +1,5 @@
 const MailAddress = require('./../mailAddress');
-const Location = require('./../location');
+const Location = require('./../Location');
 
 class TravelCenter {
   constructor(travelCenterPayload) {

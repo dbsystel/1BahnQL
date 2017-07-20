@@ -7,20 +7,19 @@ const Station = require('./Station.js');
 
 class StationService {
   /**
-	* A Stations service provides capability of loading stations via IDs, text search.
+	* A Stations service provides capability of loading stations via IDs and text search.
 	* @constructor
 	*/
   constructor(stationLoader, stationIdMappingService) {
     this.stationLoader = stationLoader;
-    this.stationIdMappingService = stationIdMappingService || new StationIdMappingService()
+    this.stationIdMappingService = stationIdMappingService || new StationIdMappingService();
     this.relationships;
   }
 
   transformStationResultIntoStation(jsonStation) {
     if (jsonStation) {
       const station = new Station(jsonStation);
-      this.relationships.resolve(station)
-
+      this.relationships.resolve(station);
       return station;
     }
     return null;
@@ -33,8 +32,8 @@ class StationService {
 	 */
   stationByEvaId(evaId) {
     const self = this;
-    const stationLoader = this.stationLoader;
-    return this.stationIdMappingService.stationNumberByEvaId(evaId).then(stationNumber => stationLoader.stationByBahnhofsnummer(stationNumber))
+    return this.stationIdMappingService.stationNumberByEvaId(evaId)
+      .then(stationNumber => self.stationLoader.stationByBahnhofsnummer(stationNumber))
       .then(station => self.transformStationResultIntoStation(station));
   }
 
