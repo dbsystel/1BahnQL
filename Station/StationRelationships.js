@@ -1,7 +1,5 @@
 const loadElevatorFor = require('../facilities.js');
-const {
-  getParkingSpacesByBhfNr,
-} = require('../ParkingSpaceQuery');
+
 const {
   loadTimeTableFor,
 } = require('../timetables.js');
@@ -9,11 +7,17 @@ const {
   stationNumberByEvaId,
 } = require('./StationIdMappingService.js');
 
-const TrackService = require('./../Platforms/TrackService.js');
-const trackService = new TrackService()
-
 class StationRelationships {
-  constructor(station) {
+  constructor(parkingSpaceService, trackService) {
+    this.parkingSpaceService = parkingSpaceService;
+    this.trackService = trackService;
+  }
+
+  resolve(station) {
+
+    const parkingSpaceService = this.parkingSpaceService;
+    const trackService = this.trackService;
+
     station.facilities = function () {
       return loadElevatorFor(station.stationNumber);
     };
@@ -23,7 +27,7 @@ class StationRelationships {
     };
 
     station.parkingSpaces = function () {
-      return getParkingSpacesByBhfNr(station.stationNumber);
+      return parkingSpaceService.parkingspacesForStationNumber(station.stationNumber);
     };
 
     station.tracks = function() {
