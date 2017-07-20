@@ -1,21 +1,21 @@
-const loadNearbyTravelCenter = require('./TravelCenterGeoQuery');
-
 class NearbyQuery {
-  constructor(latitude, longitude, radius, nearbyStationService, parkingspaceService, flinksterService) {
+  constructor(latitude, longitude, radius, nearbyStationService, parkingspaceService, flinksterService, travelCenterService) {
+    this.latitude = latitude;
+    this.longitude = longitude;
     this.radius = radius;
+    //Service Dependencies
     this.nearbyStationService = nearbyStationService;
     this.parkingspaceService = parkingspaceService;
     this.flinksterService = flinksterService;
-    this.latitude = latitude;
-    this.longitude = longitude;
+    this.travelCenterService = travelCenterService;
   }
 
   parkingSpaces(args) {
     return this.parkingspaceService.nearbyParkingspaces(this.latitude, this.longitude, this.radius, args.count, args.offset);
   }
 
-  get travelCenter() {
-    return loadNearbyTravelCenter(this.latitude, this.longitude);
+  travelCenters(args) {
+    return this.travelCenterService.travelCentersAtLocation(this.latitude, this.longitude, this.radius, args.count, args.offset);
   }
 
   flinksterCars(args) {
