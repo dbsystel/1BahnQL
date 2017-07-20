@@ -90,10 +90,20 @@ const schema = buildSchema(`
 
   type Facility {
 	  description: String
-	  type: String
-	  state: String!
+	  type: FacilityType!
+	  state: FacilityState!
 	  equipmentNumber: Int
 	  location: Location
+  }
+
+  enum FacilityState {
+    ACTIVE
+    INACTIVE
+  }
+
+  enum FacilityType {
+    ESCALATOR
+    ELEVATOR
   }
 
   type Product {
