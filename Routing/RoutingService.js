@@ -4,6 +4,7 @@ const Route = require("./Route.js")
 class RoutingService {
 
 	constructor() {
+		this.relationships;
 	}
 
 	routes(from, to) {
