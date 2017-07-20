@@ -85,8 +85,8 @@ const schema = buildSchema(`
 	  mailingAddress: MailingAddress!
 	  DBInformationOpeningTimes: OpeningTimes
 	  localServiceStaffAvailability: OpeningTimes
-	  aufgabentraeger: StationContact!
-	  timeTableOffice: StationContact!
+    aufgabentraeger: StationContact!
+	  timeTableOffice: StationContact
 	  szentrale: StationContact!
 	  stationManagement: StationContact!
 	  timetable: Timetable!
@@ -98,6 +98,17 @@ const schema = buildSchema(`
     hasDBLounge: Boolean!
     hasLostAndFound: Boolean!
     hasCarRental: Boolean!
+    tracks: [Track!]!
+  }
+
+  type Track {
+	  platform: String!
+	  number: String!
+	  name: String!
+    # Length of the platform in cm
+	  length: Int
+    # Height of the platform in cm
+	  height: Int!
   }
 
   type Location {

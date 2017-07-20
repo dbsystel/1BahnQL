@@ -30,8 +30,10 @@ class Station {
     this.aufgabentraeger = new StationContact(contact.name, contact.shortName,
       contact.email, contact.number, contact.phoneNumber);
     const timeTableContact = station.timeTableOffice;
-    this.timeTableOffice = new StationContact(timeTableContact.name, timeTableContact.shortName,
-      timeTableContact.email, timeTableContact.number, timeTableContact.phoneNumber);
+    if (timeTableContact){
+      this.timeTableOffice = new StationContact(timeTableContact.name, timeTableContact.shortName,
+        timeTableContact.email, timeTableContact.number, timeTableContact.phoneNumber);
+    }
     const szentraleContact = station.szentrale;
     this.szentrale = new StationContact(szentraleContact.name, szentraleContact.shortName,
       szentraleContact.email, szentraleContact.number, szentraleContact.publicPhoneNumber);
