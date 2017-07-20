@@ -352,7 +352,7 @@ const schema = buildSchema(`
 
   type GeoPolygon {
     type: String!
-    coordinates: [[[[Float!]!]!]!]!
+    coordinates: [[[[Float]]]]!
   }
 
   type GeoProperties {
