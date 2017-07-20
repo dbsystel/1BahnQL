@@ -70,8 +70,8 @@ class ParkingspaceLoader {
           if (filteredResult.length > 0) {
             return filteredResult;
           }
-          return null;
         }
+        return [];
       });
 
     return promise;
@@ -94,8 +94,13 @@ class ParkingspaceLoader {
 
           // sort by distance
           mapped.sort((elem1, elem2) => elem1.distance - elem2.distance);
-          return mapped.filter(elem => elem.distance <= radius/1000);
+          const filteredResult = mapped.filter(elem => elem.distance <= radius/1000);
+
+          if (filteredResult.length > 0) {
+            return filteredResult;
+          }
         }
+        return [];
       });
 
     return promise;
