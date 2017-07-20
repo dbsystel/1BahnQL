@@ -92,7 +92,7 @@ const schema = buildSchema(`
 	  description: String
 	  type: String
 	  state: String!
-	  equipmentnumber: Int
+	  equipmentNumber: Int
 	  location: Location
   }
 
@@ -236,7 +236,7 @@ const schema = buildSchema(`
     name: String
     address: MailingAddress
     type: String
-	location: Location
+	  location: Location
   }
 
   type FlinksterCar {

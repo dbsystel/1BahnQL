@@ -1,10 +1,10 @@
 class Facility {
-  constructor(description, type, state, location, equipmentnumber) {
+  constructor(description, type, state, location, equipmentNumber) {
     this.description = description;
     this.type = type;
     this.state = state;
     this.location = location;
-    this.equipmentnumber = equipmentnumber;
+    this.equipmentNumber = equipmentNumber;
   }
 }
 
