@@ -1,5 +1,3 @@
-
-
 const MailAddress = require('./mailAddress');
 const Location = require('./location');
 

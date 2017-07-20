@@ -4,10 +4,6 @@ const fetch = require('node-fetch');
 const APIToken = process.env.DBDeveloperAuthorization;
 
 function loadNearbyTravelCenter(lat, lon) {
-  // const cache = parkingSpaceCache[spaceId];
-  // if (cache) {
-  //   return cache;
-  // }
   const url = `https://api.deutschebahn.com/reisezentren/v1/reisezentren/loc/${lat}/${lon}`;
   const myInit = {
     method: 'GET',
