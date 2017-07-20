@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 
-const baseURL = 'https://api.deutschebahn.com';
+const baseURL = 'https://api.deutschebahn.com/fasta/v1';
 
 class FacilityLoader {
   constructor(APIToken) {
@@ -8,7 +8,7 @@ class FacilityLoader {
   }
 
   facilitiesForStationNumber(stationNumber) {
-    const url = `${baseURL}/fasta/v1/stations/${stationNumber}`;
+    const url = `${baseURL}/stations/${stationNumber}`;
     const myInit = { method: 'GET',
       headers: { Authorization: `Bearer ${this.APIToken}` } };
     return fetch(url, myInit)
