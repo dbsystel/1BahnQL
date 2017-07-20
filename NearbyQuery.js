@@ -11,7 +11,7 @@ class NearbyQuery {
   }
 
   parkingSpaces(args) {
-    return this.parkingspaceService.nearbyParkingspaces(this.latitude, this.longitude, args.radius, args.count, args.offset);
+    return this.parkingspaceService.nearbyParkingspaces(this.latitude, this.longitude, this.radius, args.count, args.offset);
   }
 
   get travelCenter() {
@@ -19,15 +19,15 @@ class NearbyQuery {
   }
 
   flinksterCars(args) {
-    return this.flinksterService.nearbyFlinksterCars(this.latitude, this.longitude, args.radius, args.count, args.offset);
+    return this.flinksterService.nearbyFlinksterCars(this.latitude, this.longitude, this.radius, args.count, args.offset);
   }
 
   stations(args) {
-  	return this.nearbyStationService.stationNearby(this.latitude, this.longitude, args.radius, args.count, args.offset);
+  	return this.nearbyStationService.stationNearby(this.latitude, this.longitude, this.radius, args.count, args.offset);
   }
 
   bikes(args) {
-    return this.flinksterService.nearbyFlinksterBikes(this.latitude, this.longitude, args.radius, args.count, args.offset);
+    return this.flinksterService.nearbyFlinksterBikes(this.latitude, this.longitude, this.radius, args.count, args.offset);
   }
 }
 
