@@ -1,5 +1,4 @@
 const fetch = require('node-fetch');
-const Parkingspace = require('./Parkingspace.js');
 
 const baseURL = 'https://api.deutschebahn.com/bahnpark/v1';
 
@@ -38,7 +37,7 @@ class ParkingspaceLoader {
     const promise = fetch(url, configuration)
       .then(res => res.json())
       .then((occupancyData) => {
-        if (occupancyData.code == 5101) {
+        if (occupancyData.code === 5101) {
           return null;
         }
 
