@@ -70,5 +70,20 @@ describe('StationRelationships', () => {
     expect(capturedStationNumber).to.be.equal(1);
   });
 
+  it('resolve should connect stationPictureService & picture', () => {
+    //Given
+    var capturedStationNumber;
+    let relationships = new StationRelationships();
+    relationships.stationPictureService = { stationPictureForStationNumber: (stationNumber) => { capturedStationNumber = stationNumber; return "Sucess" } }
+    let station = { stationNumber: 1 };
+
+    //When
+    relationships.resolve(station);
+
+    //Then
+    expect(station.picture()).to.be.equal("Sucess");
+    expect(capturedStationNumber).to.be.equal(1);
+  });
+
 
 });
