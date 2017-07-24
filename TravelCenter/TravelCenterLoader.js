@@ -1,10 +1,11 @@
 const fetch = require('node-fetch');
 
-const baseUrl = 'https://api.deutschebahn.com/reisezentren/v1'
+const serviceUrl = '/reisezentren/v1'
 
 class TravelCenterLoader {
-  constructor(APIToken) {
+  constructor(APIToken, baseURL) {
     this.APIToken = APIToken;
+    this.baseURL = baseURL
   }
 
   get fetchConfiguration() {
@@ -21,7 +22,7 @@ class TravelCenterLoader {
   }
 
   travelCenterAtLocation(latitude, longitude) {
-    const url = `${baseUrl}/reisezentren/loc/${latitude}/${longitude}`;
+    const url = `${this.baseUrl}${serviceURL}/reisezentren/loc/${latitude}/${longitude}`;
 
     return fetch(url, this.fetchConfiguration)
       .then(res => res.json())

@@ -33,16 +33,17 @@ const NearbyQuery = require('./NearbyQuery');
 // --------- //
 
 const APIToken = process.env.DBDeveloperAuthorization;
+const baseURL = process.env.DBBaseURL || 'https://api.deutschebahn.com';
 
 // Loader
-const parkingspaceLoader = new ParkingspaceLoader(APIToken);
-const stationLoader = new StationLoader(APIToken);
-const timetableLoader = new TimetableLoader(APIToken);
-const operationLocationLoader = new OperationLocationLoader(APIToken);
-const travelCenterLoader = new TravelCenterLoader(APIToken);
-const facilityLoader = new FacilityLoader(APIToken);
-const flinksterLoader = new FlinksterLoader(APIToken);
-const stationPictureLoader = new StationPictureLoader(APIToken);
+const parkingspaceLoader = new ParkingspaceLoader(APIToken, baseURL);
+const stationLoader = new StationLoader(APIToken, baseURL);
+const timetableLoader = new TimetableLoader(APIToken, baseURL);
+const operationLocationLoader = new OperationLocationLoader(APIToken, baseURL);
+const travelCenterLoader = new TravelCenterLoader(APIToken, baseURL);
+const facilityLoader = new FacilityLoader(APIToken, baseURL);
+const flinksterLoader = new FlinksterLoader(APIToken, baseURL);
+const stationPictureLoader = new StationPictureLoader(APIToken, baseURL);
 
 // Services
 const parkingspaceService = new ParkingspaceService(parkingspaceLoader);

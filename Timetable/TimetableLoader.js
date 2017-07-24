@@ -2,17 +2,18 @@ const fetch = require('node-fetch');
 const convert = require('xml-js');
 const moment = require('moment-timezone');
 
-const baseURL = 'https://api.deutschebahn.com/timetables/v1';
+const serviceURL = '/timetables/v1';
 
 class TimetableLoader {
-  constructor(APIToken) {
+  constructor(APIToken, baseURL) {
     this.APIToken = APIToken;
+    this.baseURL = baseURL;
   }
 
   timetableForEvaId(evaId) {
     const now = moment();
     const nowString = now.format('YYMMDD/HH');
-    const url = `${baseURL}/plan/${evaId}/${nowString}`;
+    const url = `${this.baseURL}${serviceURL}/plan/${evaId}/${nowString}`;
     const myInit = { method: 'GET',
       headers: { Authorization: `Bearer ${this.APIToken}` } };
     return fetch(url, myInit)

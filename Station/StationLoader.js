@@ -1,11 +1,11 @@
-
 const fetch = require('node-fetch');
 
-const baseURL = 'https://api.deutschebahn.com';
+const serviceURL = '';
 
 class StationLoader {
-  constructor(APIToken) {
+  constructor(APIToken, baseURL) {
     this.APIToken = APIToken;
+    this.baseURL = baseURL;
   }
 
   get fetchConfiguration() {
@@ -29,7 +29,7 @@ class StationLoader {
     if (!stationNumber) {
       return Promise.resolve(null);
     }
-    const url = `${baseURL}/stada/v2/stations/${stationNumber}`;
+    const url = `${this.baseURL}${serviceURL}/stada/v2/stations/${stationNumber}`;
     const configuration = this.fetchConfiguration;
     const promise = fetch(url, configuration)
       .then(res => res.json())
@@ -49,7 +49,7 @@ class StationLoader {
 	 * @return {Promise<Array<StationJSON>>}
 	 */
   searchStations(searchTerm) {
-    const url = `${baseURL}/stada/v2/stations?searchstring=*${searchTerm}*`;
+    const url = `${this.baseURL}${serviceURL}/stada/v2/stations?searchstring=*${searchTerm}*`;
     const configuration = this.fetchConfiguration;
     const promies = fetch(url, configuration)
       .then(res => res.json())

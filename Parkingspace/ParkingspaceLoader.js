@@ -1,11 +1,12 @@
 const fetch = require('node-fetch');
 const Parkingspace = require('./Parkingspace.js');
 
-const baseURL = 'http://opendata.dbbahnpark.info/api/beta';
+const serviceURL = '/bahnpark/v1';
 
 class ParkingspaceLoader {
-  constructor(APIToken) {
+  constructor(APIToken, baseURL) {
     this.APIToken = APIToken;
+    this.baseURL = baseURL;
   }
 
   get fetchConfiguration() {
@@ -19,7 +20,7 @@ class ParkingspaceLoader {
   }
 
   spaceById(spaceId) {
-    const url = `${baseURL}/sites`;
+    const url = `${this.baseURL}${serviceURL}/sites`;
     const configuration = this.fetchConfiguration;
 
     const promise = fetch(url, configuration)
@@ -33,13 +34,15 @@ class ParkingspaceLoader {
           }
           return null;
         }
+      }, (error) => {
+        console.error(error);
       });
 
     return promise;
   }
 
   occupancyForId(spaceId) {
-    const url = `${baseURL}/occupancy/${spaceId}`;
+    const url = `${this.baseURL}${serviceURL}/occupancy/${spaceId}`;
     const configuration = this.fetchConfiguration;
 
     const promise = fetch(url, configuration)
@@ -52,13 +55,15 @@ class ParkingspaceLoader {
         }
 
         return occupancyData.allocation;
+      }, (error) => {
+        console.error(error);
       });
 
     return promise;
   }
 
   spacesForStationNumber(stationNumber) {
-    const url = `${baseURL}/sites`;
+    const url = `${this.baseURL}${serviceURL}/sites`;
     const configuration = this.fetchConfiguration;
 
     const promise = fetch(url, configuration)
@@ -68,13 +73,15 @@ class ParkingspaceLoader {
           return result.results.filter(elem => elem.parkraumBahnhofNummer == stationNumber);
         }
         return [];
+      }, (error) => {
+        console.error(error);
       });
 
     return promise;
   }
 
   nearbyParkingspaces(latitude, longitude, radius) {
-    const url = `${baseURL}/sites`;
+    const url = `${this.baseURL}${serviceURL}/sites`;
     const configuration = this.fetchConfiguration;
 
     const promise = fetch(url, configuration)
@@ -93,6 +100,8 @@ class ParkingspaceLoader {
           return mapped.filter(elem => elem.distance <= radius/1000);
         }
         return [];
+      }, (error) => {
+        console.error(error);
       });
 
     return promise;
