@@ -4,11 +4,12 @@ class StationRelationships {
 	* A StationRelationships connects different datasources related to a station.
 	* @constructor
 	*/
-  constructor(parkingSpaceService, facilityService, timetableService, trackService) {
+  constructor(parkingSpaceService, facilityService, timetableService, trackService, stationPictureService) {
     this.parkingSpaceService = parkingSpaceService
     this.facilityService = facilityService
-    this.timeTableService = timetableService
+    this.timetableService = timetableService
     this.trackService = trackService;
+    this.stationPictureService = stationPictureService
   }
 
   resolve(station) {
@@ -16,6 +17,7 @@ class StationRelationships {
     const facilityService = this.facilityService;
     const timetableService = this.timetableService;
     const trackService = this.trackService;
+    const stationPictureService = this.stationPictureService;
 
     station.parkingSpaces = function () {
       return parkingSpaceService.parkingspacesForStationNumber(station.stationNumber);
@@ -30,7 +32,11 @@ class StationRelationships {
     };
 
     station.tracks = function() {
-  	  return trackService.tracksForStationNumber(station.stationNumber)
+  	  return trackService.tracksForStationNumber(station.stationNumber);
+    }
+
+    station.picture = () => {
+      return stationPictureService.stationPictureForStationNumber(station.stationNumber);
     }
 
   }
