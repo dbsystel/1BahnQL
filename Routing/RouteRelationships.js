@@ -1,4 +1,4 @@
-class RouteRelationShips {
+class RouteRelationships {
   constructor(stationService) {
     this.stationService = stationService
   }
@@ -27,4 +27,4 @@ class RouteRelationShips {
   }
 }
 
-module.exports = RouteRelationShips
+module.exports = RouteRelationships
