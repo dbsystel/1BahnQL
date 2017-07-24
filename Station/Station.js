@@ -9,6 +9,9 @@ const StationContact = require('./StationContact.js');
 
 class Station {
   constructor(station) {
+    if (!station) {
+      console.log("No station");
+    }
     this.stationNumber = station.number;
     this.name = station.name;
     const coordinates = access(station, 'evaNumbers[0].geographicCoordinates.coordinates');
@@ -26,15 +29,15 @@ class Station {
     this.hasSteplessAccess = station.hasSteplessAccess;
     this.hasMobilityService = station.hasMobilityService;
     this.federalState = station.federalState;
-    
+
     const area = station.regionalbereich;
     if (area) {
         this.regionalArea = new RegionalArea(area.number, area.name, area.shortName);
     }
-    
+
     const adress = station.mailingAddress;
     this.mailingAddress = new MailAddress(adress.city, adress.zipcode, adress.street);
-    
+
     const contact = station.aufgabentraeger;
     if (contact) {
     this.aufgabentraeger = new StationContact(contact.name, contact.shortName,
@@ -46,7 +49,7 @@ class Station {
       this.timeTableOffice = new StationContact(timeTableContact.name, timeTableContact.shortName,
         timeTableContact.email, timeTableContact.number, timeTableContact.phoneNumber);
     }
-    
+
     const szentraleContact = station.szentrale;
     if (szentraleContact) {
         this.szentrale = new StationContact(szentraleContact.name, szentraleContact.shortName,
@@ -62,14 +65,15 @@ class Station {
     if (station.DBinformation) {
       this.DBInformationOpeningTimes = new OpeningTimes(station.DBinformation.availability);
     }
-    
+
     if (station.localServiceStaff) {
       this.localServiceStaffAvailability = new OpeningTimes(station.localServiceStaff.availability);
     }
 
-    this.primaryEvaId = station.evaNumbers.filter(eva => access(eva, isMain[0]).number;
-    this.primaryRil100 = station.ril100Identifiers.filter(ril => access(ril, isMain[0]).rilIdentifier;
-    this.hasSteamPermission = station.ril100Identifiers.filter(ril => ril, isMain[0]).hasSteamPermission;
+    this.primaryEvaId = station.evaNumbers.filter(eva => eva.isMain)[0].number;
+    let ril100Identifiers = (station.ril100Identifiers || []).filter(ril => ril.isMain)[0]
+    this.primaryRil100 = (ril100Identifiers || {}).rilIdentifier;
+    this.hasSteamPermission = (ril100Identifiers || {}).hasSteamPermission;
     this.priceCategory = station.priceCategory;
     this.hasWiFi = station.hasWiFi;
     this.hasTravelCenter = station.hasTravelCenter;

@@ -1,24 +1,11 @@
 
 const fetch = require('node-fetch');
+const BaseLoader = require('./../Core/BaseLoader');
 
 const baseURL = 'https://api.deutschebahn.com';
 
-class StationLoader {
-  constructor(APIToken) {
-    this.APIToken = APIToken;
-  }
 
-  get fetchConfiguration() {
-    const headers = {
-      Authorization: `Bearer ${this.APIToken}`,
-    };
-    const configuration = {
-      method: 'GET',
-      headers,
-    };
-
-    return configuration;
-  }
+class StationLoader extends BaseLoader {
 
   /**
 	 * Loads a singe station JSON from StaDa API.
@@ -32,25 +19,12 @@ class StationLoader {
     const url = `${baseURL}/stada/v2/stations/${stationNumber}`;
     const configuration = this.fetchConfiguration;
     const promise = fetch(url, configuration)
-      .then(res => res.json())
+      .then(res => StationLoader.parseJSON(res, "StaDa"))
       .then((result) => {
-        if (result && result.total > 0 && result.result) {
+        if (result && result.total) {
           return result.result[0];
         }
         return null;
-      }, (error) => {
-        console.error(error);
-        switch (error.type) {
-          case 'system': {
-            throw new Error('Failed to load StaDa API Data');
-          }
-          case 'invalid-json': {
-            throw new Error('Failed to parse StaDa API Data');
-          }
-          default: {
-            throw new Error('Unknown Error');
-          }
-        }
       });
 
     return promise;
@@ -65,22 +39,9 @@ class StationLoader {
     const url = `${baseURL}/stada/v2/stations?searchstring=*${searchTerm}*`;
     const configuration = this.fetchConfiguration;
     const promies = fetch(url, configuration)
-      .then(res => res.json())
+      .then(res => StationLoader.parseJSON(res, "StaDa"))
       .then((result) => {
         return (result.result || []);
-      }, (error) => {
-        console.error(error);
-        switch (error.type) {
-          case 'system': {
-            throw new Error('Failed to load StaDa API Data');
-          }
-          case 'invalid-json': {
-            throw new Error('Failed to parse StaDa API Data');
-          }
-          default: {
-            throw new Error('Unknown Error');
-          }
-        }
       });
 
     return promies;
