@@ -38,6 +38,19 @@ class StationLoader {
           return result.result[0];
         }
         return null;
+      }, (error) => {
+        console.error(error);
+        switch (error.type) {
+          case 'system': {
+            throw new Error('Failed to load StaDa API Data');
+          }
+          case 'invalid-json': {
+            throw new Error('Failed to parse StaDa API Data');
+          }
+          default: {
+            throw new Error('Unknown Error');
+          }
+        }
       });
 
     return promise;
@@ -53,7 +66,22 @@ class StationLoader {
     const configuration = this.fetchConfiguration;
     const promies = fetch(url, configuration)
       .then(res => res.json())
-      .then(result => (result.result || []))
+      .then((result) => {
+        return (result.result || []);
+      }, (error) => {
+        console.error(error);
+        switch (error.type) {
+          case 'system': {
+            throw new Error('Failed to load StaDa API Data');
+          }
+          case 'invalid-json': {
+            throw new Error('Failed to parse StaDa API Data');
+          }
+          default: {
+            throw new Error('Unknown Error');
+          }
+        }
+      });
 
     return promies;
   }

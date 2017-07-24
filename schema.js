@@ -63,11 +63,11 @@ const schema = buildSchema(`
     borderStation: Boolean
   }
   type Station {
-	  primaryEvaId: Int!
-	  stationNumber: Int!
-	  primaryRil100: String!
+	  primaryEvaId: Int
+	  stationNumber: Int
+	  primaryRil100: String
 	  name: String!
-	  location: Location!
+	  location: Location
 	  category: Int!
     priceCategory: Int!
 	  hasParking: Boolean!

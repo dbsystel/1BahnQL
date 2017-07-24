@@ -65,7 +65,9 @@ class NearbyStationService {
       .then((stations) => {
         const evaIDs = stations.map(station => station.id);
         return self.stationIdMappingService.stationNumbersByEvaIds(evaIDs);
-      }).then(stationNrs => stationNrs.map(nr => self.stationService.stationByBahnhofsnummer(nr)));
+      }).then((stationNrs) => {
+        return stationNrs.map((nr) => self.stationService.stationByBahnhofsnummer(nr));
+      });
 
     return promise;
   }
