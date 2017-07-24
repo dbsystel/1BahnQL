@@ -1,10 +1,13 @@
 class RouteRelationships {
-  constructor(stationService) {
-    this.stationService = stationService
+  constructor(stationService, trackService) {
+    this.stationService = stationService;
+    this.trackService = trackService;
   }
 
   resolve(route) {
     const stationService = this.stationService;
+    const trackService = this.trackService;
+
 		route.from = () => {
 			return stationService.stationByEvaId(route.parts[0].fromEvaId)
 		}
@@ -19,6 +22,12 @@ class RouteRelationships {
 			}
 			part.to = () => {
 				return stationService.stationByEvaId(part.toEvaId);
+			}
+      part.departingTrack = () => {
+				return trackService.trackAtStationEvaIdWithTrackNumberNumber(part.fromEvaId, part.platform);
+			}
+      part.arrivingTrack = () => {
+				return trackService.trackAtStationEvaIdWithTrackNumberNumber(part.toEvaId, part.arrivingPlatformNumber);
 			}
 			return part
 		})

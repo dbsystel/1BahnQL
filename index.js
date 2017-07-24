@@ -21,6 +21,7 @@ const FacilityService = require('./Facility/FacilityService.js');
 const RoutingService = require('./Routing/RoutingService.js');
 const TimetableService = require('./Timetable/TimetableService.js');
 const TrackService = require('./Platforms/TrackService.js');
+const StationIdMappingService = require('./Station/StationIdMappingService');
 
 const StationRelationships = require('./Station/StationRelationships');
 const ParkingspaceRelationships = require('./Parkingspace/ParkingspaceRelationships');
@@ -44,19 +45,20 @@ const flinksterLoader = new FlinksterLoader(APIToken);
 // Services
 const parkingspaceService = new ParkingspaceService(parkingspaceLoader);
 const operationLocationService = new OperationLocationService(operationLocationLoader);
-const stationService = new StationService(stationLoader);
+const stationIdMappingService = new StationIdMappingService();
+const stationService = new StationService(stationLoader, stationIdMappingService);
 const nearbyStationService = new NearbyStationService(stationService);
 const travelCenterService = new TravelCenterService(travelCenterLoader);
 const facilityService = new FacilityService(facilityLoader)
 const routingService = new RoutingService();
 const flinksterService = new FlinksterService(flinksterLoader);
 const timetableServcie = new TimetableService(timetableLoader);
-const trackService = new TrackService()
+const trackService = new TrackService(stationIdMappingService);
 
 // Relationships
 stationService.relationships = new StationRelationships(parkingspaceService, facilityService, timetableServcie, trackService);
 parkingspaceService.relationships = new ParkingspaceRelationships(parkingspaceService, stationService);
-routingService.relationships = new RouteRelationships(stationService);
+routingService.relationships = new RouteRelationships(stationService, trackService);
 
 // Queries
 const root = {

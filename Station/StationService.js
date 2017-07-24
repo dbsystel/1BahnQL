@@ -1,7 +1,3 @@
-const hafas = require('db-hafas');
-const StationIdMappingService = require('./StationIdMappingService.js');
-const StationRelationships = require('./StationRelationships.js');
-
 // Models
 const Station = require('./Station.js');
 
@@ -12,7 +8,7 @@ class StationService {
 	*/
   constructor(stationLoader, stationIdMappingService) {
     this.stationLoader = stationLoader;
-    this.stationIdMappingService = stationIdMappingService || new StationIdMappingService();
+    this.stationIdMappingService = stationIdMappingService;
     this.relationships;
   }
 

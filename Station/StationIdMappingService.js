@@ -15,22 +15,13 @@ class StationIdMappingService {
   }
 
   stationNumberByAttribute(attibute, matchingAttribute) {
-    return this.stationMap.then(map => (map[attibute][matchingAttribute] || {}).stationNumber)
-
-    //Read alwasy file
-    // let bool = false;
-    // return new Promise((resolve) => {
-    //   stations().on('data', (station) => {
-  	//         if (station[attibute] === matchingAttribute) {
-    //       bool = true;
-  	//           	resolve(station.nr);
-  	//         }
-    //     	}).on('end', () => {
-    //     if (!bool) {
-    //       resolve(null);
-    //     }
-    //     	});
-    // });
+    return this.stationMap.then(map => {
+      let station = map[attibute];
+      if (!station) {
+        console.log("Missing", attibute, matchingAttribute);
+      }
+      return (map[attibute][matchingAttribute] || {}).stationNumber;
+    });
   }
 
   stationNumberByEvaId(evaID) {
@@ -45,7 +36,7 @@ class StationIdMappingService {
     return new Promise((resolve) => {
       const result = [];
   	  stations().on('data', (station) => {
-  	      if (evaIDs.find(id => id === station.id)) {
+  	      if (evaIDs.find(id => id == station.id)) {
   	        result.push({ nr: station.nr, id: station.id });
   	      }
       }).on('end', () => {

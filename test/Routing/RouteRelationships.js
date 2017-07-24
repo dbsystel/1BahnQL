@@ -74,5 +74,41 @@ describe('RouteRelationships', () => {
     expect(capturedEvaId).to.be.equal(1);
   });
 
+  it('resolve should connect trackService & route.parts.departingTrack', () => {
+    //Given
+    var capturedEvaId;
+    var capturedPlatform;
+    let relationships = new RouteRelationships();
+    relationships.trackService = { trackAtStationEvaIdWithTrackNumberNumber: (evaId, trackNumber) => { capturedEvaId = evaId; capturedPlatform = trackNumber; return "Sucess" } }
+    let firstRoutePart = { fromEvaId: 1, platform: "1"  };
+    let route = { parts: [firstRoutePart] };
+
+    //When
+    relationships.resolve(route);
+
+    //Then
+    expect(route.parts[0].departingTrack()).to.be.equal("Sucess");
+    expect(capturedEvaId).to.be.equal(1);
+    expect(capturedPlatform).to.be.equal("1");
+  });
+
+  it('resolve should connect trackService & route.parts.arrivingTrack', () => {
+    //Given
+    var capturedEvaId;
+    var capturedPlatform;
+    let relationships = new RouteRelationships();
+    relationships.trackService = { trackAtStationEvaIdWithTrackNumberNumber: (evaId, trackNumber) => { capturedEvaId = evaId; capturedPlatform = trackNumber; return "Sucess" } }
+    let firstRoutePart = { toEvaId: 1, platform: "1"  };
+    let route = { parts: [firstRoutePart] };
+
+    //When
+    relationships.resolve(route);
+
+    //Then
+    expect(route.parts[0].arrivingTrack()).to.be.equal("Sucess");
+    expect(capturedEvaId).to.be.equal(1);
+    expect(capturedPlatform).to.be.equal("1");
+  });
+
 
 });

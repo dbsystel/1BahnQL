@@ -9,6 +9,9 @@ class RoutePart {
 		this.product = new VehicleProduct(route.product);
 		this.fromEvaId = route.from.id;
 		this.toEvaId = route.to.id;
+		this.arrivingPlatformNumber = route.from.platform;
+		this.departingPlatformNumber = route.to.platform;
+		console.log(route.to.platform)
 	}
 }
 

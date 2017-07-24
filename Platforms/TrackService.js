@@ -8,6 +8,10 @@ const tracksFile = require("./DBSuS-Bahnsteigdaten-Stand2017-04.csv");
 
 class TrackService {
 
+  constructor(stationMappingService) {
+    this.stationMappingService = stationMappingService;
+  }
+
   get tracks() {
       if (!this.tracksPromise) {
         this.tracksPromise = new Promise(function(resolve) {
@@ -29,6 +33,14 @@ class TrackService {
 	tracksForStationNumber(stationNumber) {
 		return this.tracks.then(tracks => tracks[stationNumber] || []);
 	}
+
+  trackAtStationEvaIdWithTrackNumberNumber(evaId, trackNumber) {
+    const self = this;
+    console.log(arguments);
+    return this.stationMappingService.stationNumberByEvaId(evaId)
+      .then(stationNumber => self.tracksForStationNumber(stationNumber))
+      .then(tracks => tracks.filter(track => track.number == trackNumber)[0]);
+  }
 
 }
 

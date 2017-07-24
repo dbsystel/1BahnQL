@@ -17,6 +17,8 @@ type RoutePart {
   direction: String!
   start: String!
   end: String!
+  departingTrack: Track
+  arrivingTrack: Track
 }
 
 type Product {
