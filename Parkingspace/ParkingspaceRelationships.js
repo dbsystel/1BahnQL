@@ -8,7 +8,7 @@ class ParkingspaceRelationships {
     const parkingsspaceService = this.parkingsspaceService;
     const stationService = this.stationService;
 
-    parkingspace.station = () => stationService.stationByBahnhofsnummer(parkingspace.parkraumBahnhofNummer);
+    parkingspace.station = () => stationService.stationByBahnhofsnummer(parkingspace.stationId);
     parkingspace.occupancy = () => parkingsspaceService.occupancyForSpaceId(parkingspace.id);
   }
 }

@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 const Parkingspace = require('./Parkingspace.js');
 
-const baseURL = 'http://opendata.dbbahnpark.info/api/beta';
+const baseURL = 'https://api.deutschebahn.com/bahnpark/v1';
 
 class ParkingspaceLoader {
   constructor(APIToken) {
@@ -9,7 +9,9 @@ class ParkingspaceLoader {
   }
 
   get fetchConfiguration() {
-    const headers = {};
+    const headers = {
+      Authorization: `Bearer ${this.APIToken}`,
+    };
     const configuration = {
       method: 'GET',
       headers,
@@ -19,34 +21,23 @@ class ParkingspaceLoader {
   }
 
   spaceById(spaceId) {
-    const url = `${baseURL}/sites`;
+    const url = `${baseURL}/spaces/${spaceId}`;
     const configuration = this.fetchConfiguration;
 
     const promise = fetch(url, configuration)
       .then(res => res.json())
-      .then((result) => {
-        if (result.count > 0) {
-          const filteredResult = result.results.filter(elem => elem.parkraumId == spaceId);
-
-          if (filteredResult.length > 0) {
-            return filteredResult[0];
-          }
-          return null;
-        }
-      });
+      .then(result => result);
 
     return promise;
   }
 
   occupancyForId(spaceId) {
-    const url = `${baseURL}/occupancy/${spaceId}`;
+    const url = `${baseURL}/spaces/${spaceId}/occupancies`;
     const configuration = this.fetchConfiguration;
 
     const promise = fetch(url, configuration)
       .then(res => res.json())
-      .then((result) => {
-        const occupancyData = result;
-
+      .then((occupancyData) => {
         if (occupancyData.code == 5101) {
           return null;
         }
@@ -58,14 +49,14 @@ class ParkingspaceLoader {
   }
 
   spacesForStationNumber(stationNumber) {
-    const url = `${baseURL}/sites`;
+    const url = `${baseURL}/spaces?limit=1000`;
     const configuration = this.fetchConfiguration;
 
     const promise = fetch(url, configuration)
       .then(res => res.json())
       .then((result) => {
         if (result.count > 0) {
-          return result.results.filter(elem => elem.parkraumBahnhofNummer == stationNumber);
+          return result.items.filter(elem => elem.station.id == stationNumber);
         }
         return [];
       });
@@ -74,7 +65,7 @@ class ParkingspaceLoader {
   }
 
   nearbyParkingspaces(latitude, longitude, radius) {
-    const url = `${baseURL}/sites`;
+    const url = `${baseURL}/spaces?limit=100`;
     const configuration = this.fetchConfiguration;
 
     const promise = fetch(url, configuration)
@@ -83,14 +74,14 @@ class ParkingspaceLoader {
         if (result.count > 0) {
           // Sort by distance
           // geolib.orderByDistance(object latlng, mixed coords)
-          const mapped = result.results.map((elem) => {
-            elem.distance = calculateDistance(latitude, longitude, parseFloat(elem.parkraumGeoLatitude), parseFloat(elem.parkraumGeoLongitude));
+          const mapped = result.items.map((elem) => {
+            elem.distance = calculateDistance(latitude, longitude, parseFloat(elem.geoLocation.latitude), parseFloat(elem.geoLocation.longitude));
             return elem;
           });
 
           // sort by distance
           mapped.sort((elem1, elem2) => elem1.distance - elem2.distance);
-          return mapped.filter(elem => elem.distance <= radius/1000);
+          return mapped.filter(elem => elem.distance <= radius / 1000);
         }
         return [];
       });
