@@ -26,9 +26,6 @@ class StationLoader {
 	 * @return {Promise<Station>} promise of a JSO station
 	 */
   stationByBahnhofsnummer(stationNumber) {
-    if (!stationNumber) {
-      return Promise.resolve(null);
-    }
     const url = `${baseURL}/stations/${stationNumber}`;
     const configuration = this.fetchConfiguration;
     const promise = fetch(url, configuration)
