@@ -101,6 +101,7 @@ const schema = buildSchema(`
     hasLostAndFound: Boolean!
     hasCarRental: Boolean!
     tracks: [Track!]!
+    picture: Picture
   }
 
   type Track {
@@ -124,6 +125,18 @@ const schema = buildSchema(`
 	  state: FacilityState!
 	  equipmentNumber: Int
 	  location: Location
+  }
+
+  type Picture {
+    id: Int!
+    url: String!
+    license: String!
+    photographer: Photographer!
+  }
+
+  type Photographer {
+    name: String!
+    url: String!
   }
 
   enum FacilityState {

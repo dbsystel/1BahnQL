@@ -10,6 +10,7 @@ const OperationLocationLoader = require('./OperationLocation/OperationLocationLo
 const TravelCenterLoader = require('./TravelCenter/TravelCenterLoader');
 const TimetableLoader = require('./Timetable/TimetableLoader.js');
 const FacilityLoader = require('./Facility/FacilityLoader.js');
+const StationPictureLoader = require('./StationPicture/StationPictureLoader');
 
 const ParkingspaceService = require('./Parkingspace/ParkingspaceService');
 const FlinksterService = require('./Flinkster/FlinksterService');
@@ -22,6 +23,7 @@ const RoutingService = require('./Routing/RoutingService.js');
 const TimetableService = require('./Timetable/TimetableService.js');
 const TrackService = require('./Platforms/TrackService.js');
 const StationIdMappingService = require('./Station/StationIdMappingService');
+const StationPictureService = require('./StationPicture/StationPictureService');
 
 const StationRelationships = require('./Station/StationRelationships');
 const ParkingspaceRelationships = require('./Parkingspace/ParkingspaceRelationships');
@@ -41,6 +43,7 @@ const operationLocationLoader = new OperationLocationLoader(APIToken);
 const travelCenterLoader = new TravelCenterLoader(APIToken);
 const facilityLoader = new FacilityLoader(APIToken);
 const flinksterLoader = new FlinksterLoader(APIToken);
+const stationPictureLoader = new StationPictureLoader(APIToken);
 
 // Services
 const parkingspaceService = new ParkingspaceService(parkingspaceLoader);
@@ -54,9 +57,10 @@ const routingService = new RoutingService();
 const flinksterService = new FlinksterService(flinksterLoader);
 const timetableServcie = new TimetableService(timetableLoader);
 const trackService = new TrackService(stationIdMappingService);
+const stationPictureService = new StationPictureService(stationPictureLoader)
 
 // Relationships
-stationService.relationships = new StationRelationships(parkingspaceService, facilityService, timetableServcie, trackService);
+stationService.relationships = new StationRelationships(parkingspaceService, facilityService, timetableServcie, trackService, stationPictureService);
 parkingspaceService.relationships = new ParkingspaceRelationships(parkingspaceService, stationService);
 routingService.relationships = new RouteRelationships(stationService, trackService);
 
