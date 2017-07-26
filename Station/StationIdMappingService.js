@@ -6,7 +6,7 @@ class StationIdMappingService {
     //In Memory map for mapping. Could be faster.
     this.stationMap = new Promise((resolve) => {
       let stationMap = {evaId: {}, ds100: {}, stationNumber: {}}
-      stations().on('data', (station) => {
+      stations.full().on('data', (station) => {
         stationMap.evaId[station.id] = {stationNumber: station.nr, ds100: station.ds100}
         stationMap.ds100[station.ds100] = {stationNumber: station.nr, evaId: station.id}
         stationMap.stationNumber[station.nr] = {ds100: station.ds100, evaId: station.id}
@@ -17,7 +17,7 @@ class StationIdMappingService {
   stationNumberByAttribute(attibute, matchingAttribute) {
     return this.stationMap.then(map => {
       let station = map[attibute];
-      if (!station) {
+      if (!(map[attibute][matchingAttribute] || {}).stationNumber) {
         console.log("Missing", attibute, matchingAttribute);
       }
       return (map[attibute][matchingAttribute] || {}).stationNumber;

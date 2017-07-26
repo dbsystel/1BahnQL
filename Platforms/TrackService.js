@@ -36,7 +36,6 @@ class TrackService {
 
   trackAtStationEvaIdWithTrackNumberNumber(evaId, trackNumber) {
     const self = this;
-    console.log(arguments);
     return this.stationMappingService.stationNumberByEvaId(evaId)
       .then(stationNumber => self.tracksForStationNumber(stationNumber))
       .then(tracks => tracks.filter(track => track.number == trackNumber)[0]);
