@@ -9,7 +9,7 @@ class RoutingService {
 
 	routes(from, to) {
 		const self = this
-		return hafas.routes(from, to)
+		return hafas.journeys(from + "", to + "")
 		.then(result => result.map(element => self.relationships.resolve(new Route(element))))
 	}
 }

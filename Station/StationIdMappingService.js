@@ -7,6 +7,9 @@ class StationIdMappingService {
       this.stationMapPromise = new Promise((resolve) => {
         let stationMap = {evaId: {}, ds100: {}, stationNumber: {}}
         stations.full().on('data', (station) => {
+          station.additionalIds.forEach(id => {
+            stationMap.evaId[id] = {stationNumber: station.nr, ds100: station.ds100}
+          })
           stationMap.evaId[station.id] = {stationNumber: station.nr, ds100: station.ds100}
           stationMap.ds100[station.ds100] = {stationNumber: station.nr, evaId: station.id}
           stationMap.stationNumber[station.nr] = {ds100: station.ds100, evaId: station.id}
