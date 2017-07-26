@@ -19,7 +19,8 @@ describe('StationService', () => {
 
   beforeEach(function() {
     stationLoaderMock = new StationLoaderMock()
-    stationService = new StationService(stationLoaderMock)
+    let idMapping = {stationNumberByEvaId: () => { return Promise.resolve(1) }}
+    stationService = new StationService(stationLoaderMock, idMapping)
     stationService.relationships =  { resolve: function(station) {} }
   });
 

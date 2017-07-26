@@ -80,7 +80,7 @@ describe('RouteRelationships', () => {
     var capturedPlatform;
     let relationships = new RouteRelationships();
     relationships.trackService = { trackAtStationEvaIdWithTrackNumberNumber: (evaId, trackNumber) => { capturedEvaId = evaId; capturedPlatform = trackNumber; return "Sucess" } }
-    let firstRoutePart = { fromEvaId: 1, platform: "1"  };
+    let firstRoutePart = { fromEvaId: 1, departingPlatformNumber: "1" };
     let route = { parts: [firstRoutePart] };
 
     //When
@@ -98,7 +98,7 @@ describe('RouteRelationships', () => {
     var capturedPlatform;
     let relationships = new RouteRelationships();
     relationships.trackService = { trackAtStationEvaIdWithTrackNumberNumber: (evaId, trackNumber) => { capturedEvaId = evaId; capturedPlatform = trackNumber; return "Sucess" } }
-    let firstRoutePart = { toEvaId: 1, platform: "1"  };
+    let firstRoutePart = { toEvaId: 1, arrivingPlatformNumber: "1"  };
     let route = { parts: [firstRoutePart] };
 
     //When
