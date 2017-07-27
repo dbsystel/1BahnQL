@@ -29,6 +29,7 @@ class RouteRelationships {
       part.arrivingTrack = () => {
 				return trackService.trackAtStationEvaIdWithTrackNumberNumber(part.toEvaId, part.arrivingPlatformNumber);
 			}
+      
 			return part
 		})
 

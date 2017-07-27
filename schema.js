@@ -13,14 +13,12 @@ type RoutePart {
   from: Station!
   to: Station!
   delay: Int
-  product: Product!
+  product: Product
   direction: String!
   start: String!
   end: String!
   departingTrack: Track
   arrivingTrack: Track
-  #If the connection train departs from the same platform
-  samePlatform: Bool!
 }
 
 type Product {
