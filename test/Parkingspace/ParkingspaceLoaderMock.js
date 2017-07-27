@@ -1,28 +1,29 @@
 class ParkingspaceLoaderMock {
-  constructor(result) {
-    this.result = result;
+  constructor() {
+    this.parkingspaceMockResult;
+    this.occupancyMockResult;
   }
 
   spaceById(spaceId) {
     this.spaceId = spaceId;
-    return Promise.resolve(this.result);
+    return Promise.resolve(this.parkingspaceMockResult);
   }
 
   occupancyForId(spaceId) {
     this.spaceId = spaceId;
-    return Promise.resolve(this.result);
+    return Promise.resolve(this.occupancyMockResult);
   }
 
   spacesForStationNumber(stationNumber) {
     this.stationNumber = stationNumber;
-    return Promise.resolve(this.result.items.filter(elem => elem.station.id === stationNumber));
+    return Promise.resolve(this.parkingspaceMockResult);
   }
 
   nearbyParkingspaces(latitude, longitude, radius) {
     this.latitude = latitude;
     this.longitude = longitude;
     this.radius = radius;
-    return Promise.resolve(this.result);
+    return Promise.resolve(this.parkingspaceMockResult);
   }
 }
 

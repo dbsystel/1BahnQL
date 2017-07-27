@@ -1,0 +1,21 @@
+{
+    "space": {
+        "id": 100082,
+        "title": "Frankfurt (Main) Hbf P2 Frankfurt (Main) Hbf P2 Vorfahrt I",
+        "station": {
+            "id": 1866,
+            "name": "Frankfurt (Main) Hbf"
+        },
+        "label": "P2",
+        "name": "Hauptbahnhof Vorfahrt I",
+        "nameDisplay": "Frankfurt (Main) Hbf P2 Vorfahrt I"
+    },
+    "allocation": {
+        "validData": true,
+        "timestamp": "2017-07-27T17:10:00",
+        "timeSegment": "2017-07-27T17:10:00",
+        "capacity": 47,
+        "category": 2,
+        "text": "> 10"
+    }
+}
