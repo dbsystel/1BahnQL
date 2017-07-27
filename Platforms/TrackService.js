@@ -34,7 +34,7 @@ class TrackService {
 		return this.tracks.then(tracks => tracks[stationNumber] || []);
 	}
 
-  trackAtStationEvaIdWithTrackNumberNumber(evaId, trackNumber) {
+  trackByEvaIdAndTrackNumber(evaId, trackNumber) {
     const self = this;
     return this.stationMappingService.stationNumberByEvaId(evaId)
       .then(stationNumber => self.tracksForStationNumber(stationNumber))
