@@ -1,5 +1,3 @@
-
-const fetch = require('node-fetch');
 const BaseLoader = require('./../Core/BaseLoader');
 
 const baseURL = 'https://api.deutschebahn.com/stada/v2';
@@ -15,7 +13,7 @@ class StationLoader extends BaseLoader {
   stationByBahnhofsnummer(stationNumber) {
     const url = `${baseURL}/stations/${stationNumber}`;
     const configuration = this.fetchConfiguration;
-    const promise = fetch(url, configuration)
+    const promise = this.fetch(url, configuration)
       .then(res => StationLoader.parseJSON(res, "StaDa"))
       .then((result) => {
         if (result && result.total) {
@@ -35,7 +33,7 @@ class StationLoader extends BaseLoader {
   searchStations(searchTerm) {
     const url = `${baseURL}/stations?searchstring=*${searchTerm}*`;
     const configuration = this.fetchConfiguration;
-    const promies = fetch(url, configuration)
+    const promies = this.fetch(url, configuration)
       .then(res => StationLoader.parseJSON(res, "StaDa"))
       .then((result) => {
         return (result.result || []);

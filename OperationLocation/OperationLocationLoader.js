@@ -1,23 +1,8 @@
-"use strict"
-const fetch = require("node-fetch");
+const BaseLoader = require('./../Core/BaseLoader');
+
 const baseURL = "https://api.deutschebahn.com";
 
-class OperationLocationLoader {
-  constructor(APIToken) {
-    this.APIToken = APIToken;
-  }
-
-  get fetchConfiguration() {
-		let headers = {
-			Authorization: 'Bearer ' + this.APIToken
-		}
-		let configuration = {
-			method: 'GET',
-			headers: headers
-		}
-
-		return configuration;
-	}
+class OperationLocationLoader extends BaseLoader {
 
   /**
 	 * Search for bestriebsstellen with a given searchterm.
@@ -27,8 +12,8 @@ class OperationLocationLoader {
 	search(name) {
 		const url = `${baseURL}/betriebsstellen/v1/betriebsstellen?name=${name}`;
 		const configuration = this.fetchConfiguration;
-		const promies = fetch(url, configuration)
-		.then(res => res.json())
+		const promies = this.fetch(url, configuration)
+		.then(res => FacilityLoader.parseJSON(res, "FaSta"))
 
 		return promies;
 	}

@@ -1,7 +1,10 @@
+const fetch = require('node-fetch');
+
 class BaseLoader {
 
   constructor(APIToken) {
     this.APIToken = APIToken;
+    this.fetch = fetch
   }
 
   get fetchConfiguration() {

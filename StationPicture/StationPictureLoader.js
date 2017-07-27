@@ -1,23 +1,8 @@
-const fetch = require('node-fetch');
+const BaseLoader = require('./../Core/BaseLoader');
 
 const baseURL = 'https://api.deutschebahn.com/bahnhofsfotos/v1';
 
-class StationPictureLoader {
-  constructor(APIToken) {
-    this.APIToken = APIToken;
-  }
-
-  get fetchConfiguration() {
-    const headers = {
-      Authorization: `Bearer ${this.APIToken}`,
-    };
-    const configuration = {
-      method: 'GET',
-      headers,
-    };
-
-    return configuration;
-  }
+class StationPictureLoader extends BaseLoader {
 
   /**
 	 *
@@ -25,13 +10,10 @@ class StationPictureLoader {
 	 * @return {Promise<Station>} promise of JSON station pictures.
 	 */
   stationPictureForStationNumber(stationNumber) {
-    if (!stationNumber) {
-      return Promise.resolve(null);
-    }
     const url = `http://api.railway-stations.org/de/stations/${stationNumber}`;
     const configuration = this.fetchConfiguration;
-    const promise = fetch(url, configuration)
-      .then(res => res.json());
+    const promise = this.fetch(url, configuration)
+      .then(res => StationPictureLoader.parseJSON(res, "Bahnhofsfotos"));
 
     return promise;
   }
