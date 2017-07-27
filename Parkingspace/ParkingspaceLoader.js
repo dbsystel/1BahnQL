@@ -41,7 +41,7 @@ class ParkingspaceLoader {
   }
 
   nearbyParkingspaces(latitude, longitude, radius) {
-    const url = `${baseURL}/spaces?limit=100`;
+    const url = `${baseURL}/spaces?limit=1000`;
     const configuration = this.fetchConfiguration;
 
     return fetch(url, configuration).then(res => res.json());
