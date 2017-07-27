@@ -24,16 +24,7 @@ class FlinksterLoader {
     const url = `${baseURL}/bookingproposals?lat=${latitude}&lon=${longitude}&radius=${radius}&offset=${offset}&limit=${count}&providernetwork=${type}&expand=area%2Crentalobject%2Cprice`;
     const configuration = this.fetchConfiguration;
 
-    const promise = fetch(url, configuration)
-      .then(res => res.json())
-      .then((result) => {
-        if (result.items) {
-          return result.items;
-        }
-        return [];
-      });
-
-    return promise;
+    return fetch(url, configuration).then(res => res.json());
   }
 }
 
