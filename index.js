@@ -65,7 +65,9 @@ routingService.relationships = new RouteRelationships(stationService);
 // Queries
 const root = {
   parkingSpace: args => parkingspaceService.parkingspaceBySpaceId(args.id),
-  stationWith: args => stationService.stationByEvaId(args.evaId),
+  stationWithEvaId: args => stationService.stationByEvaId(args.evaId),
+  stationWithStationNumber: args => stationService.stationByBahnhofsnummer(args.stationNumber),
+  stationWithRill100: args => stationService.stationByRil100(args.rill100),
   search: args => ({ stations: stationService.searchStations(args.searchTerm), operationLocations: operationLocationService.searchOperationLocations(args.searchTerm) }),
   nearby: args => new NearbyQuery(args.latitude, args.longitude, args.radius, nearbyStationService, parkingspaceService, flinksterService, travelCenterService),
 };

@@ -23,10 +23,50 @@ class StationLoader {
   /**
 	 * Loads a singe station JSON from StaDa API.
 	 * @param {int} stationNumber - The stationNumber of the requested station - aka Bahnhofsnummer in StaDa API.
-	 * @return {Promise<Station>} promise of a JSO station
+	 * @return {Promise<Station>} promise of a JSON station
 	 */
   stationByBahnhofsnummer(stationNumber) {
     const url = `${baseURL}/stations/${stationNumber}`;
+    const configuration = this.fetchConfiguration;
+    const promise = fetch(url, configuration)
+      .then(res => res.json())
+      .then((result) => {
+        if (result && result.total > 0 && result.result) {
+          return result.result[0];
+        }
+        return null;
+      });
+
+    return promise;
+  }
+
+  /**
+	 * Loads a singe station JSON from StaDa API.
+	 * @param {int} evaId - The evaId of the requested station
+	 * @return {Promise<Station>} promise of a JSON station
+	 */
+  stationByEvaId(evaId) {
+    const url = `${baseURL}/stations?eva=${evaId}`;
+    const configuration = this.fetchConfiguration;
+    const promise = fetch(url, configuration)
+      .then(res => res.json())
+      .then((result) => {
+        if (result && result.total > 0 && result.result) {
+          return result.result[0];
+        }
+        return null;
+      });
+
+    return promise;
+  }
+
+  /**
+	 * Loads a singe station JSON from StaDa API.
+	 * @param {String} evaId - The evaId of the requested station
+	 * @return {Promise<Station>} promise of a JSON station
+	 */
+  stationByRil100(ril100) {
+    const url = `${baseURL}/stations?ril=${ril100}`;
     const configuration = this.fetchConfiguration;
     const promise = fetch(url, configuration)
       .then(res => res.json())
