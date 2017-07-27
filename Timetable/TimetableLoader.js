@@ -16,8 +16,13 @@ class TimetableLoader extends BaseLoader {
       .then(res => res.text())
       .then(result => {
         const options = { ignoreComment: true, alwaysChildren: true };
-        return JSON.parse(convert.xml2json(result, options));
-      });
+        const json = JSON.parse(convert.xml2json(result, options));
+        let timtetable = json.elements[0].elements
+        if (!timtetable) {
+          throw new Error("Error loading timetables");
+        }
+        return timtetable;
+      }).catch(error => {throw new Error("Error loading timetables")});
   }
 }
 
