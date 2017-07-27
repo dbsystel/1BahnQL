@@ -215,8 +215,8 @@ const schema = buildSchema(`
     openingHoursEn: String
     numberParkingPlaces: String
     numberHandicapedPlaces: String
-    isSpecialProductDb: Boolean
-    isOutOfService: Boolean
+    isSpecialProductDb: Boolean!
+    isOutOfService: Boolean!
     station: Station
     occupancy: Occupancy
     outOfServiceText: String
@@ -243,6 +243,7 @@ const schema = buildSchema(`
     tariffPaymentOptionsEn: String
     slogan: String
     sloganEn: String
+    occupancy: Occupancy
   }
 
   type ParkingPriceOption {

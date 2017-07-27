@@ -1,4 +1,3 @@
-const fetch = require('node-fetch');
 const access = require('safe-access');
 
 const Location = require('./../Location');
@@ -16,11 +15,11 @@ class Parkingspace {
     this.spaceType = space.spaceType;
     this.spaceTypeEn = space.spaceTypeEn;
     this.spaceTypeName = space.spaceTypeName;
-    this.location = new Location(space.geoLocation.longitude, space.geoLocation.latitude);
+    this.location = new Location(access(space, 'geoLocation.longitude'), access(space, 'geoLocation.latitude'));
     this.url = space.url;
     this.operator = space.operator;
     this.operatorUrl = space.operatorUrl;
-    this.address = new MailAddress(space.address.cityName, space.address.postalCode, space.address.street);
+    this.address = new MailAddress(access(space, 'address.cityName'), access(space, 'address.postalCode'), access(space, 'address.street'));
     this.distance = space.distance;
     this.facilityType = space.facilityType;
     this.facilityTypeEn = space.facilityTypeEn;
@@ -33,10 +32,10 @@ class Parkingspace {
     this.type = space.type;
 
     // space info
-    this.clearanceWidth =  access(space, 'spaceInfo.clearanceWidth');
-    this.clearanceHeight =  access(space, 'spaceInfo.clearanceHeight');
-    this.allowedPropulsions =  access(space, 'spaceInfo.allowedPropulsions');
-    this.hasChargingStation =  access(space, 'spaceInfo.chargingStation');
+    this.clearanceWidth = access(space, 'spaceInfo.clearanceWidth');
+    this.clearanceHeight = access(space, 'spaceInfo.clearanceHeight');
+    this.allowedPropulsions = access(space, 'spaceInfo.allowedPropulsions');
+    this.hasChargingStation = access(space, 'spaceInfo.chargingStation');
 
     // space flags
     this.spaceFlags = space.spaceFlags;
@@ -54,14 +53,14 @@ class Parkingspace {
     this.isDiscountDbBahnCard = access(space, 'tariffFlags.isDiscountDbBahnCard');
     this.isDiscountDbBahnComfort = access(space, 'tariffFlags.isDiscountDbBahnComfort');
     this.isDiscountDbParkAndRail = access(space, 'tariffFlags.isDiscountDbParkAndRail');
-    this.isDiscountDbBahnCard = access(space, 'tariffFlags.isMonthParkAndRide')
-    this.isMonthSeason = access(space, 'tariffFlags.isMonthSeason')
-    this.isMonthVendingMachine = access(space, 'tariffFlags.isMonthVendingMachine')
-    this.isMonthParkAndRide = access(space, 'tariffFlags.isMonthParkAndRide')
+    this.isDiscountDbBahnCard = access(space, 'tariffFlags.isMonthParkAndRide');
+    this.isMonthSeason = access(space, 'tariffFlags.isMonthSeason');
+    this.isMonthVendingMachine = access(space, 'tariffFlags.isMonthVendingMachine');
+    this.isMonthParkAndRide = access(space, 'tariffFlags.isMonthParkAndRide');
 
     this.tariffPrices = space.tariffPrices;
 
-    this.stationId = space.station.id;
+    this.stationId = access(space, 'station.id');
     this.outOfServiceText = space.outOfServiceText;
     this.outOfServiceTextEn = space.outOfServiceTextEn;
     this.reservation = space.reservation;
