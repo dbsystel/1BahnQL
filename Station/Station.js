@@ -9,9 +9,6 @@ const StationContact = require('./StationContact.js');
 
 class Station {
   constructor(station) {
-    if (!station) {
-      console.log("No station");
-    }
     this.stationNumber = station.number;
     this.name = station.name;
     const coordinates = access(station, 'evaNumbers[0].geographicCoordinates.coordinates');
@@ -69,11 +66,10 @@ class Station {
     if (station.localServiceStaff) {
       this.localServiceStaffAvailability = new OpeningTimes(station.localServiceStaff.availability);
     }
-
     this.primaryEvaId = station.evaNumbers.filter(eva => eva.isMain)[0].number;
     let ril100Identifiers = (station.ril100Identifiers || []).filter(ril => ril.isMain)[0]
     this.primaryRil100 = (ril100Identifiers || {}).rilIdentifier;
-    this.hasSteamPermission = (ril100Identifiers || {}).hasSteamPermission;
+    this.hasSteamPermission = (ril100Identifiers || {}).hasSteamPermission || false;
     this.priceCategory = station.priceCategory;
     this.hasWiFi = station.hasWiFi;
     this.hasTravelCenter = station.hasTravelCenter;
