@@ -11,8 +11,7 @@ class RouteRelationships {
     route.from = () => {
       return stationService.stationByEvaId(route.parts[0].fromEvaId);
     }
-
-		route.to = () => {
+    route.to = () => {
       return stationService.stationByEvaId(route.parts[route.parts.length - 1].toEvaId);
     }
 
@@ -24,7 +23,7 @@ class RouteRelationships {
         return stationService.stationByEvaId(part.toEvaId);
 			}
       part.departingTrack = () => {
-        return trackService.trackAtStationEvaIdWithTrackNumberNumber(part.fromEvaId, part.departingPlatformNumber);
+        return trackService.trackByEvaIdAndTrackNumber(part.fromEvaId, part.departingPlatformNumber);
       }
       part.arrivingTrack = () => {
         return trackService.trackByEvaIdAndTrackNumber(part.toEvaId, part.arrivingPlatformNumber);
