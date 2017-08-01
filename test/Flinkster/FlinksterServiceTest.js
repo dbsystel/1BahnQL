@@ -20,6 +20,16 @@ describe('FlinksterService', () => {
   });
 
   describe('Cars', () => {
+    it('passes over correct parameters to loader', () => {
+      const promise = flinksterService.nearbyFlinksterCars(50.11, 8.66, 1000, 10, 0);
+      expect(flinksterLoaderMock.type).to.be.equal(1);
+      expect(flinksterLoaderMock.latitude).to.be.equal(50.11);
+      expect(flinksterLoaderMock.longitude).to.be.equal(8.66);
+      expect(flinksterLoaderMock.radius).to.be.equal(1000);
+      expect(flinksterLoaderMock.count).to.be.equal(10);
+      expect(flinksterLoaderMock.offset).to.be.equal(0);
+    })
+
     it('should return nearby cars', () => {
       flinksterLoaderMock.flinksterMockResult = require('./NearbyCarsMockResult');
       const promise = flinksterService.nearbyFlinksterCars(50.11, 8.66, 1000, 10, 0);
@@ -32,6 +42,15 @@ describe('FlinksterService', () => {
   });
 
   describe('Bikes', () => {
+    it('passes over correct parameters to loader', () => {
+      const promise = flinksterService.nearbyFlinksterBikes(50.11, 8.66, 1000, 10, 0);
+      expect(flinksterLoaderMock.type).to.be.equal(2);
+      expect(flinksterLoaderMock.latitude).to.be.equal(50.11);
+      expect(flinksterLoaderMock.longitude).to.be.equal(8.66);
+      expect(flinksterLoaderMock.radius).to.be.equal(1000);
+      expect(flinksterLoaderMock.count).to.be.equal(10);
+      expect(flinksterLoaderMock.offset).to.be.equal(0);
+    })
     it('should return nearby bikes', () => {
       flinksterLoaderMock.flinksterMockResult = require('./NearbyBikesMockResult');
       const promise = flinksterService.nearbyFlinksterBikes(50.11, 8.66, 1000, 10, 0);
