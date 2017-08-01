@@ -13,10 +13,12 @@ type RoutePart {
   from: Station!
   to: Station!
   delay: Int
-  product: Product!
+  product: Product
   direction: String!
   start: String!
   end: String!
+  departingTrack: Track
+  arrivingTrack: Track
 }
 
 type Product {
@@ -63,11 +65,11 @@ const schema = buildSchema(`
     borderStation: Boolean
   }
   type Station {
-	  primaryEvaId: Int!
-	  stationNumber: Int!
-	  primaryRil100: String!
+	  primaryEvaId: Int
+	  stationNumber: Int
+	  primaryRil100: String
 	  name: String!
-	  location: Location!
+	  location: Location
 	  category: Int!
     priceCategory: Int!
 	  hasParking: Boolean!
@@ -192,66 +194,64 @@ const schema = buildSchema(`
   }
 
   type ParkingSpace {
+    type: String
     id: Int!
-    name: String!
+    name: String
+    label: String
+    spaceNumber: String
+    responsibility: String
+    source: String
+    nameDisplay: String
+    spaceType: String
+    spaceTypeEn: String
+    spaceTypeName: String
+    location: Location
+    url: String
+    operator: String
+    operatorUrl: String
+    address: MailingAddress
+    distance: String
+    facilityType: String
+    facilityTypeEn: String
+    openingHours: String
+    openingHoursEn: String
+    numberParkingPlaces: String
+    numberHandicapedPlaces: String
+    isSpecialProductDb: Boolean!
+    isOutOfService: Boolean!
     station: Station
-    lots: Int!
-    location: Location!
     occupancy: Occupancy
-    bundesland: String!
-    isPublished: Boolean!
-    parkraumAusserBetriebText: String
-    parkraumAusserBetrieb_en: String
-    parkraumBahnhofName: String
-    parkraumBahnhofNummer: Int
-    parkraumBemerkung: String
-    parkraumBemerkung_en: String
-    parkraumBetreiber: String
-    parkraumDisplayName: String
-    parkraumEntfernung: String
-    parkraumId: String!
-    parkraumIsAusserBetrieb: Boolean!
-    parkraumIsDbBahnPark: Boolean!
-    parkraumIsOpenData:  Boolean!
-    parkraumIsParktagesproduktDbFern: Boolean!
-    parkraumKennung: String
-    parkraumName: String!
-    parkraumOeffnungszeiten: String
-    parkraumOeffnungszeiten_en: String
-    parkraumParkTypName: String
-    parkraumParkart: String
-    parkraumParkart_en: String
-    parkraumReservierung: String
-    parkraumStellplaetze: String
-    parkraumTechnik: String
-    parkraumTechnik_en: String
-    parkraumZufahrt: String
-    parkraumZufahrt_en: String
-    tarif1MonatAutomat: String
-    tarif1MonatDauerparken: String
-    tarif1MonatDauerparkenFesterStellplatz: String
-    tarif1Std: String
-    tarif1Tag: String
-    tarif1Woche: String
-    tarif30Min: String
-    tarifFreiparkzeit: String
-    tarifFreiparkzeit_en: String
-    tarifMonatIsDauerparken: Boolean
-    tarifMonatIsParkAndRide: Boolean
-    tarifMonatIsParkscheinautomat: Boolean
-    tarifParkdauer: String
-    tarifParkdauer_en: String
-    tarifRabattDBIsBahnCard: Boolean
-    tarifRabattDBIsParkAndRail: Boolean
-    tarifRabattDBIsbahncomfort: Boolean
-    tarifSondertarif: String
-    tarifSondertarif_en: String
-    tarifWieRabattDB: String
-    tarifWieRabattDB_en: String
-    tarifWoVorverkaufDB: String
-    tarifWoVorverkaufDB_en: String
-    zahlungMedien: String
-    zahlungMedien_en: String
+    outOfServiceText: String
+    outOfServiceTextEn: String
+    reservation: String
+    clearanceWidth: String
+    clearanceHeight: String
+    allowedPropulsions: String
+    hasChargingStation: String
+    tariffPrices: [ParkingPriceOption!]!
+    outOfService: Boolean!
+    isDiscountDbBahnCard: Boolean!
+    isMonthVendingMachine: Boolean!
+    isDiscountDbBahnComfort: Boolean!
+    isDiscountDbParkAndRail: Boolean!
+    isMonthParkAndRide: Boolean!
+    isMonthSeason: Boolean!
+    tariffDiscount: String
+    tariffFreeParkingTime: String
+    tariffDiscountEn: String
+    tariffPaymentOptions: String
+    tariffPaymentCustomerCards: String
+    tariffFreeParkingTimeEn: String
+    tariffPaymentOptionsEn: String
+    slogan: String
+    sloganEn: String
+    occupancy: Occupancy
+  }
+
+  type ParkingPriceOption {
+    id: Int!
+    duration: String!
+    price: Float
   }
 
   type Occupancy {

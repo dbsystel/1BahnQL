@@ -1,67 +1,72 @@
-const fetch = require('node-fetch');
+const access = require('safe-access');
+
 const Location = require('./../Location');
+const MailAddress = require('./../mailAddress');
 
 class Parkingspace {
   constructor(space) {
-    this.id = space.parkraumId;
-    this.name = space.parkraumDisplayName;
-    this.lots = space.parkraumStellplaetze;
-    this.location = new Location(space.parkraumGeoLatitude, space.parkraumGeoLongitude);
+    this.id = space.id;
+    this.name = space.title;
+    this.label = space.label;
+    this.spaceNumber = space.spaceNumber;
+    this.responsibility = space.responsibility;
+    this.source = space.source;
+    this.nameDisplay = space.nameDisplay;
+    this.spaceType = space.spaceType;
+    this.spaceTypeEn = space.spaceTypeEn;
+    this.spaceTypeName = space.spaceTypeName;
+    this.location = new Location(access(space, 'geoLocation.longitude'), access(space, 'geoLocation.latitude'));
+    this.url = space.url;
+    this.operator = space.operator;
+    this.operatorUrl = space.operatorUrl;
+    this.address = new MailAddress(access(space, 'address.cityName'), access(space, 'address.postalCode'), access(space, 'address.street'));
     this.distance = space.distance;
-    this.bundesland = space.bundesland;
-    this.isPublished = space.isPublished;
-    this.parkraumAusserBetriebText = space.parkraumAusserBetriebText;
-    this.parkraumAusserBetrieb_en = space.parkraumAusserBetrieb_en;
-    this.parkraumBahnhofName = space.parkraumBahnhofName;
-    this.parkraumBahnhofNummer = space.parkraumBahnhofNummer;
-    this.parkraumBemerkung = space.parkraumBemerkung;
-    this.parkraumBemerkung_en = space.parkraumBemerkung_en;
-    this.parkraumBetreiber = space.parkraumBetreiber;
-    this.parkraumDisplayName = space.parkraumDisplayName;
-    this.parkraumEntfernung = space.parkraumEntfernung;
-    this.parkraumId = space.parkraumId;
-    this.parkraumIsAusserBetrieb = space.parkraumIsAusserBetrieb;
-    this.parkraumIsDbBahnPark = space.parkraumIsDbBahnPark;
-    this.parkraumIsOpenData = space.parkraumIsOpenData;
-    this.parkraumIsParktagesproduktDbFern = space.parkraumIsParktagesproduktDbFern;
-    this.parkraumKennung = space.parkraumKennung;
-    this.parkraumName = space.parkraumName;
-    this.parkraumOeffnungszeiten = space.parkraumOeffnungszeiten;
-    this.parkraumOeffnungszeiten_en = space.parkraumOeffnungszeiten_en;
-    this.parkraumParkTypName = space.parkraumParkTypName;
-    this.parkraumParkart = space.parkraumParkart;
-    this.parkraumParkart_en = space.parkraumParkart_en;
-    this.parkraumReservierung = space.parkraumReservierung;
-    this.parkraumStellplaetze = space.parkraumStellplaetze;
-    this.parkraumTechnik = space.parkraumTechnik;
-    this.parkraumTechnik_en = space.parkraumTechnik_en;
-    this.parkraumZufahrt = space.parkraumZufahrt;
-    this.parkraumZufahrt_en = space.parkraumZufahrt_en;
-    this.tarif1MonatAutomat = space.tarif1MonatAutomat;
-    this.tarif1MonatDauerparken = space.tarif1MonatDauerparken;
-    this.tarif1MonatDauerparkenFesterStellplatz = space.tarif1MonatDauerparkenFesterStellplatz;
-    this.tarif1Std = space.tarif1Std;
-    this.tarif1Tag = space.tarif1Tag;
-    this.tarif1Woche = space.tarif1Woche;
-    this.tarif30Min = space.tarif30Min;
-    this.tarifFreiparkzeit = space.tarifFreiparkzeit;
-    this.tarifFreiparkzeit_en = space.tarifFreiparkzeit_en;
-    this.tarifMonatIsDauerparken = space.tarifMonatIsDauerparken;
-    this.tarifMonatIsParkAndRide = space.tarifMonatIsParkAndRide;
-    this.tarifMonatIsParkscheinautomat = space.tarifMonatIsParkscheinautomat;
-    this.tarifParkdauer = space.tarifParkdauer;
-    this.tarifParkdauer_en = space.tarifParkdauer_en;
-    this.tarifRabattDBIsBahnCard = space.tarifRabattDBIsBahnCard;
-    this.tarifRabattDBIsParkAndRail = space.tarifRabattDBIsParkAndRail;
-    this.tarifRabattDBIsbahncomfort = space.tarifRabattDBIsbahncomfort;
-    this.tarifSondertarif = space.tarifSondertarif;
-    this.tarifSondertarif_en = space.tarifSondertarif_en;
-    this.tarifWieRabattDB = space.tarifWieRabattDB;
-    this.tarifWieRabattDB_en = space.tarifWieRabattDB_en;
-    this.tarifWoVorverkaufDB = space.tarifWoVorverkaufDB;
-    this.tarifWoVorverkaufDB_en = space.tarifWoVorverkaufDB_en;
-    this.zahlungMedien = space.zahlungMedien;
-    this.zahlungMedien_en = space.zahlungMedien_en;
+    this.facilityType = space.facilityType;
+    this.facilityTypeEn = space.facilityTypeEn;
+    this.openingHours = space.openingHours;
+    this.openingHoursEn = space.openingHoursEn;
+    this.numberParkingPlaces = space.numberParkingPlaces;
+    this.numberHandicapedPlaces = space.numberHandicapedPlaces;
+    this.isSpecialProductDb = space.isSpecialProductDb;
+    this.isOutOfService = space.isOutOfService;
+    this.type = space.type;
+
+    // space info
+    this.clearanceWidth = access(space, 'spaceInfo.clearanceWidth');
+    this.clearanceHeight = access(space, 'spaceInfo.clearanceHeight');
+    this.allowedPropulsions = access(space, 'spaceInfo.allowedPropulsions');
+    this.hasChargingStation = access(space, 'spaceInfo.chargingStation');
+
+    // space flags
+    this.spaceFlags = space.spaceFlags;
+
+    // tariff info
+    this.tariffDiscount = access(space, 'tariffInfo.tariffDiscount');
+    this.tariffFreeParkingTime = access(space, 'tariffInfo.tariffFreeParkingTime');
+    this.tariffPaymentOptions = access(space, 'tariffInfo.tariffPaymentOptions');
+    this.tariffPaymentCustomerCards = access(space, 'tariffInfo.tariffPaymentCustomerCards');
+    this.tariffDiscountEn = access(space, 'tariffInfo.tariffDiscountEn');
+    this.tariffFreeParkingTimeEn = access(space, 'tariffInfo.tariffFreeParkingTimeEn');
+    this.tariffPaymentOptionsEn = access(space, 'tariffInfo.tariffPaymentOptionsEn');
+
+    // tariff flags
+    this.isDiscountDbBahnCard = access(space, 'tariffFlags.isDiscountDbBahnCard');
+    this.isDiscountDbBahnComfort = access(space, 'tariffFlags.isDiscountDbBahnComfort');
+    this.isDiscountDbParkAndRail = access(space, 'tariffFlags.isDiscountDbParkAndRail');
+    this.isDiscountDbBahnCard = access(space, 'tariffFlags.isMonthParkAndRide');
+    this.isMonthSeason = access(space, 'tariffFlags.isMonthSeason');
+    this.isMonthVendingMachine = access(space, 'tariffFlags.isMonthVendingMachine');
+    this.isMonthParkAndRide = access(space, 'tariffFlags.isMonthParkAndRide');
+
+    this.tariffPrices = space.tariffPrices;
+
+    this.stationId = access(space, 'station.id');
+    this.outOfServiceText = space.outOfServiceText;
+    this.outOfServiceTextEn = space.outOfServiceTextEn;
+    this.reservation = space.reservation;
+    this.outOfService = space.isOutOfService;
+    this.slogan = space.slogan;
+    this.sloganEn = space.sloganEn;
   }
 }
 

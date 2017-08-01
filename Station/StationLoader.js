@@ -1,24 +1,8 @@
+const BaseLoader = require('./../Core/BaseLoader');
 
-const fetch = require('node-fetch');
+const serviceURL = '/stada/v2';
 
-const baseURL = 'https://api.deutschebahn.com/stada/v2';
-
-class StationLoader {
-  constructor(APIToken) {
-    this.APIToken = APIToken;
-  }
-
-  get fetchConfiguration() {
-    const headers = {
-      Authorization: `Bearer ${this.APIToken}`,
-    };
-    const configuration = {
-      method: 'GET',
-      headers,
-    };
-
-    return configuration;
-  }
+class StationLoader extends BaseLoader {
 
   /**
 	 * Loads a singe station JSON from StaDa API.
@@ -26,12 +10,15 @@ class StationLoader {
 	 * @return {Promise<Station>} promise of a JSO station
 	 */
   stationByBahnhofsnummer(stationNumber) {
-    const url = `${baseURL}/stations/${stationNumber}`;
+    if (!stationNumber) {
+      return Promise.resolve(null);
+    }
+    const url = `${this.baseURL}${serviceURL}/stations/${stationNumber}`;
     const configuration = this.fetchConfiguration;
-    const promise = fetch(url, configuration)
-      .then(res => res.json())
+    const promise = this.fetch(url, configuration)
+      .then(res => StationLoader.parseJSON(res, "StaDa"))
       .then((result) => {
-        if (result && result.total > 0 && result.result) {
+        if (result && result.total) {
           return result.result[0];
         }
         return null;
@@ -46,11 +33,13 @@ class StationLoader {
 	 * @return {Promise<Array<StationJSON>>}
 	 */
   searchStations(searchTerm) {
-    const url = `${baseURL}/stations?searchstring=*${searchTerm}*`;
+    const url = `${this.baseURL}${serviceURL}/stations?searchstring=*${searchTerm}*`;
     const configuration = this.fetchConfiguration;
-    const promies = fetch(url, configuration)
-      .then(res => res.json())
-      .then(result => (result.result || []))
+    const promies = this.fetch(url, configuration)
+      .then(res => StationLoader.parseJSON(res, "StaDa"))
+      .then((result) => {
+        return (result.result || []);
+      });
 
     return promies;
   }

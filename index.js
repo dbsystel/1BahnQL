@@ -22,6 +22,7 @@ const FacilityService = require('./Facility/FacilityService.js');
 const RoutingService = require('./Routing/RoutingService.js');
 const TimetableService = require('./Timetable/TimetableService.js');
 const TrackService = require('./Platforms/TrackService.js');
+const StationIdMappingService = require('./Station/StationIdMappingService');
 const StationPictureService = require('./StationPicture/StationPictureService');
 
 const StationRelationships = require('./Station/StationRelationships');
@@ -33,34 +34,36 @@ const NearbyQuery = require('./NearbyQuery');
 // --------- //
 
 const APIToken = process.env.DBDeveloperAuthorization;
+const baseURL = process.env.DBBaseURL || 'https://api.deutschebahn.com';
 
 // Loader
-const parkingspaceLoader = new ParkingspaceLoader(APIToken);
-const stationLoader = new StationLoader(APIToken);
-const timetableLoader = new TimetableLoader(APIToken);
-const operationLocationLoader = new OperationLocationLoader(APIToken);
-const travelCenterLoader = new TravelCenterLoader(APIToken);
-const facilityLoader = new FacilityLoader(APIToken);
-const flinksterLoader = new FlinksterLoader(APIToken);
-const stationPictureLoader = new StationPictureLoader(APIToken);
+const parkingspaceLoader = new ParkingspaceLoader(APIToken, baseURL);
+const stationLoader = new StationLoader(APIToken, baseURL);
+const timetableLoader = new TimetableLoader(APIToken, baseURL);
+const operationLocationLoader = new OperationLocationLoader(APIToken, baseURL);
+const travelCenterLoader = new TravelCenterLoader(APIToken, baseURL);
+const facilityLoader = new FacilityLoader(APIToken, baseURL);
+const flinksterLoader = new FlinksterLoader(APIToken, baseURL);
+const stationPictureLoader = new StationPictureLoader(APIToken, baseURL);
 
 // Services
 const parkingspaceService = new ParkingspaceService(parkingspaceLoader);
 const operationLocationService = new OperationLocationService(operationLocationLoader);
-const stationService = new StationService(stationLoader);
+const stationIdMappingService = new StationIdMappingService();
+const stationService = new StationService(stationLoader, stationIdMappingService);
 const nearbyStationService = new NearbyStationService(stationService);
 const travelCenterService = new TravelCenterService(travelCenterLoader);
 const facilityService = new FacilityService(facilityLoader)
 const routingService = new RoutingService();
 const flinksterService = new FlinksterService(flinksterLoader);
 const timetableServcie = new TimetableService(timetableLoader);
-const trackService = new TrackService()
+const trackService = new TrackService(stationIdMappingService);
 const stationPictureService = new StationPictureService(stationPictureLoader)
 
 // Relationships
 stationService.relationships = new StationRelationships(parkingspaceService, facilityService, timetableServcie, trackService, stationPictureService);
 parkingspaceService.relationships = new ParkingspaceRelationships(parkingspaceService, stationService);
-routingService.relationships = new RouteRelationships(stationService);
+routingService.relationships = new RouteRelationships(stationService, trackService);
 
 // Queries
 const root = {

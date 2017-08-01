@@ -10,6 +10,9 @@ Single unified API for all DBOpenData APIs implemented with GraphQL. We implemen
 ### Run
 `DBDeveloperAuthorization=<Your DBOpenData Athetication Token> node index.js`
 
+Optional parameters:
+- DBBaseURL
+
 ### Heroku Deploy
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/dennispost/1BahnQL])
 
@@ -21,9 +24,10 @@ Single unified API for all DBOpenData APIs implemented with GraphQL. We implemen
 - [x] Fahrstühle (FaSta)
 - [x] Fahrplan (Fahrplan-Free)
 - [x] Flinkster 
-- [ ] Betriebsstellen
+- [x] Betriebsstellen
 - [x] Reisezentren
 - [x] Parkplätze
+- [x] Bahnhofsfotos
 - [ ] https://github.com/derhuerst/db-zugradar-client
 - [ ] https://github.com/derhuerst/db-hafas
 - [ ] https://github.com/derhuerst/generate-db-shop-urls
@@ -33,7 +37,7 @@ Single unified API for all DBOpenData APIs implemented with GraphQL. We implemen
 - [ ] https://github.com/derhuerst/db-stations
 
 ### Statisch:
-- [ ] http://data.deutschebahn.com/dataset/data-bahnsteig
+- [x] http://data.deutschebahn.com/dataset/data-bahnsteig
 - [ ] http://data.deutschebahn.com/dataset/data-bahnsteig-regio
 - [ ] http://data.deutschebahn.com/dataset/data-wagenreihungsplan-soll-daten
 - [ ] http://data.deutschebahn.com/dataset/luftschadstoffkataster
