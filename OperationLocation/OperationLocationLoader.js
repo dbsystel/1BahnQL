@@ -1,24 +1,8 @@
-const fetch = require("node-fetch");
+const BaseLoader = require('./../Core/BaseLoader');
 
-const serviceURL = '';
+const serviceURL = '/betriebsstellen/v1';
 
-class OperationLocationLoader {
-  constructor(APIToken, baseURL) {
-    this.APIToken = APIToken;
-    this.baseURL = baseURL;
-  }
-
-  get fetchConfiguration() {
-		let headers = {
-			Authorization: 'Bearer ' + this.APIToken
-		}
-		let configuration = {
-			method: 'GET',
-			headers: headers
-		}
-
-		return configuration;
-	}
+class OperationLocationLoader extends BaseLoader {
 
   /**
 	 * Search for bestriebsstellen with a given searchterm.
@@ -26,10 +10,10 @@ class OperationLocationLoader {
 	 * @return {Promise<Array<BetriebsstellenJSON>>}
 	 */
 	search(name) {
-		const url = `${this.baseURL}${serviceURL}/betriebsstellen/v1/betriebsstellen?name=${name}`;
+		const url = `${this.baseURL}${serviceURL}/betriebsstellen?name=${name}`;
 		const configuration = this.fetchConfiguration;
-		const promies = fetch(url, configuration)
-		.then(res => res.json())
+		const promies = this.fetch(url, configuration)
+		.then(res => OperationLocationLoader.parseJSON(res, "FaSta"))
 
 		return promies;
 	}

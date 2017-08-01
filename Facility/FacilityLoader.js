@@ -1,19 +1,14 @@
-const fetch = require('node-fetch');
+const BaseLoader = require('./../Core/BaseLoader');
 
 const serviceURL = '/fasta/v1';
 
-class FacilityLoader {
-  constructor(APIToken, baseURL) {
-    this.APIToken = APIToken
-    this.baseURL = baseURL;
-  }
+class FacilityLoader extends BaseLoader {
 
   facilitiesForStationNumber(stationNumber) {
     const url = `${this.baseURL}${serviceURL}/stations/${stationNumber}`;
-    const myInit = { method: 'GET',
-      headers: { Authorization: `Bearer ${this.APIToken}` } };
-    return fetch(url, myInit)
-      .then(res => res.json())
+    const configuration = this.fetchConfiguration;
+    return this.fetch(url, configuration)
+      .then(res => FacilityLoader.parseJSON(res, "FaSta"))
       .then(result => result.facilities || []);
     }
 }

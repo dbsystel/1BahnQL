@@ -6,7 +6,7 @@ class StationPictureService {
   }
 
   transformResult(jsonStationPicture) {
-    if (jsonStationPicture) {
+    if (jsonStationPicture && jsonStationPicture.photoUrl) {
       const picture = new Picture(jsonStationPicture);
       return picture;
     }

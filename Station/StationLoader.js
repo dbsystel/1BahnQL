@@ -1,24 +1,8 @@
-const fetch = require('node-fetch');
+const BaseLoader = require('./../Core/BaseLoader');
 
 const serviceURL = '/stada/v2';
 
-class StationLoader {
-  constructor(APIToken, baseURL) {
-    this.APIToken = APIToken;
-    this.baseURL = baseURL;
-  }
-
-  get fetchConfiguration() {
-    const headers = {
-      Authorization: `Bearer ${this.APIToken}`,
-    };
-    const configuration = {
-      method: 'GET',
-      headers,
-    };
-
-    return configuration;
-  }
+class StationLoader extends BaseLoader {
 
   /**
 	 * Loads a singe station JSON from StaDa API.
@@ -31,10 +15,10 @@ class StationLoader {
     }
     const url = `${this.baseURL}${serviceURL}/stations/${stationNumber}`;
     const configuration = this.fetchConfiguration;
-    const promise = fetch(url, configuration)
-      .then(res => res.json())
+    const promise = this.fetch(url, configuration)
+      .then(res => StationLoader.parseJSON(res, "StaDa"))
       .then((result) => {
-        if (result && result.total > 0 && result.result) {
+        if (result && result.total) {
           return result.result[0];
         }
         return null;
@@ -51,9 +35,11 @@ class StationLoader {
   searchStations(searchTerm) {
     const url = `${this.baseURL}${serviceURL}/stations?searchstring=*${searchTerm}*`;
     const configuration = this.fetchConfiguration;
-    const promies = fetch(url, configuration)
-      .then(res => res.json())
-      .then(result => (result.result || []))
+    const promies = this.fetch(url, configuration)
+      .then(res => StationLoader.parseJSON(res, "StaDa"))
+      .then((result) => {
+        return (result.result || []);
+      });
 
     return promies;
   }

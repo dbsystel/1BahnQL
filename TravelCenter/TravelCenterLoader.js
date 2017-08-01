@@ -1,31 +1,14 @@
-const fetch = require('node-fetch');
+const BaseLoader = require('./../Core/BaseLoader');
 
 const serviceUrl = '/reisezentren/v1'
 
-class TravelCenterLoader {
-  constructor(APIToken, baseURL) {
-    this.APIToken = APIToken;
-    this.baseURL = baseURL
-  }
-
-  get fetchConfiguration() {
-    const headers = {
-      Authorization: `Bearer ${this.APIToken}`,
-    };
-    const configuration = {
-      method: 'GET',
-      headers,
-      'cache-control': 'force-cache'
-    };
-
-    return configuration;
-  }
+class TravelCenterLoader extends BaseLoader {
 
   travelCenterAtLocation(latitude, longitude) {
     const url = `${this.baseUrl}${serviceURL}/reisezentren/loc/${latitude}/${longitude}`;
 
-    return fetch(url, this.fetchConfiguration)
-      .then(res => res.json())
+    return this.fetch(url, this.fetchConfiguration)
+      .then(res => TravelCenterLoader.parseJSON(res, "Reisezentren"))
   }
 }
 
