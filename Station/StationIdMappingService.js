@@ -2,35 +2,33 @@ const stations = require('db-stations');
 
 class StationIdMappingService {
 
-  constructor() {
-    //In Memory map for mapping. Could be faster.
-    this.stationMap = new Promise((resolve) => {
-      let stationMap = {evaId: {}, ds100: {}, stationNumber: {}}
-      stations().on('data', (station) => {
-        stationMap.evaId[station.id] = {stationNumber: station.nr, ds100: station.ds100}
-        stationMap.ds100[station.ds100] = {stationNumber: station.nr, evaId: station.id}
-        stationMap.stationNumber[station.nr] = {ds100: station.ds100, evaId: station.id}
-      }).on('end', () => resolve(stationMap))
-    })
+  get stationMap() {
+    if (!this.stationMapPromise) {
+      this.stationMapPromise = new Promise((resolve) => {
+        let stationMap = {evaId: {}, ds100: {}, stationNumber: {}}
+        stations.full().on('data', (station) => {
+          
+          station.additionalIds.forEach(id => {
+            stationMap.evaId[id] = {stationNumber: station.nr, ds100: station.ds100}
+          })
+          stationMap.evaId[station.id] = {stationNumber: station.nr, ds100: station.ds100}
+          stationMap.ds100[station.ds100] = {stationNumber: station.nr, evaId: station.id}
+          stationMap.stationNumber[station.nr] = {ds100: station.ds100, evaId: station.id}
+        }).on('end', () => resolve(stationMap))
+      })
+    }
+
+    return this.stationMapPromise
   }
 
   stationNumberByAttribute(attibute, matchingAttribute) {
-    return this.stationMap.then(map => (map[attibute][matchingAttribute] || {}).stationNumber)
-
-    //Read alwasy file
-    // let bool = false;
-    // return new Promise((resolve) => {
-    //   stations().on('data', (station) => {
-  	//         if (station[attibute] === matchingAttribute) {
-    //       bool = true;
-  	//           	resolve(station.nr);
-  	//         }
-    //     	}).on('end', () => {
-    //     if (!bool) {
-    //       resolve(null);
-    //     }
-    //     	});
-    // });
+    return this.stationMap.then(map => {
+      let station = map[attibute];
+      if (!(map[attibute][matchingAttribute] || {}).stationNumber) {
+        console.log("Missing", attibute, matchingAttribute);
+      }
+      return (map[attibute][matchingAttribute] || {}).stationNumber;
+    });
   }
 
   stationNumberByEvaId(evaID) {
@@ -45,7 +43,7 @@ class StationIdMappingService {
     return new Promise((resolve) => {
       const result = [];
   	  stations().on('data', (station) => {
-  	      if (evaIDs.find(id => id === station.id)) {
+  	      if (evaIDs.find(id => id == station.id)) {
   	        result.push({ nr: station.nr, id: station.id });
   	      }
       }).on('end', () => {
