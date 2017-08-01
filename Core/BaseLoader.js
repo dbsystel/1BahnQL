@@ -23,16 +23,20 @@ class BaseLoader {
   static parseJSON(res, APIName) {
     return res.json()
       .catch(error => {
+      let errorMessage;
       switch (error.type) {
+
         case 'system': {
-          throw new Error(`${APIName}: Failed to load data`);
+          errorMessage = `${APIName}: Failed to load data`;
         }
         case 'invalid-json': {
-          throw new Error(`${APIName}: Failed to parse JSON`);
+          errorMessage = `${APIName}: Failed to parse JSON`;
         }
         default: {
-          throw new Error('Unknown Error');
+          errorMessage = '${APIName}: Unknown Error';
         }
+        console.warn(errorMessage, res);
+        throw new Error(errorMessage);
       }
     })
   }
