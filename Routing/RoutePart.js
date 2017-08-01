@@ -6,9 +6,13 @@ class RoutePart {
 		this.direction = route.direction;
 		this.start = route.start;
 		this.end = route.end;
-		this.product = new VehicleProduct(route.product);
-		this.fromEvaId = route.from.id;
-		this.toEvaId = route.to.id;
+		if(route.line) {
+			this.product = new VehicleProduct(route.line);
+		}
+		this.fromEvaId = route.origin.id;
+		this.toEvaId = route.destination.id;
+		this.arrivingPlatformNumber = route.arrivalPlatform;
+		this.departingPlatformNumber = route.departurePlatform;
 	}
 }
 

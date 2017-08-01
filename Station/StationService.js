@@ -1,7 +1,3 @@
-const hafas = require('db-hafas');
-const StationIdMappingService = require('./StationIdMappingService.js');
-const StationRelationships = require('./StationRelationships.js');
-
 // Models
 const Station = require('./Station.js');
 

@@ -1,0 +1,111 @@
+{
+    "type": "space",
+    "id": 100082,
+    "title": "Frankfurt (Main) Hbf P2 Frankfurt (Main) Hbf P2 Vorfahrt I",
+    "station": {
+        "id": 1866,
+        "name": "Frankfurt (Main) Hbf"
+    },
+    "label": "P2",
+    "spaceNumber": "57",
+    "responsibility": "dbbahnpark",
+    "source": "dbbahnpark",
+    "name": "Hauptbahnhof Vorfahrt I",
+    "nameDisplay": "Frankfurt (Main) Hbf P2 Vorfahrt I",
+    "spaceType": "Parkplatz",
+    "spaceTypeEn": "Surface car park",
+    "spaceTypeName": "Parkplatz",
+    "geoLocation": {
+        "longitude": 8.663243,
+        "latitude": 50.107951
+    },
+    "url": "http://www.dbbahnpark.info/content/fahrplanauskunft/bahnpark/pdf/8000105.pdf",
+    "operator": "Contipark Parkgaragengesellschaft mbH",
+    "operatorUrl": "www.contipark.de",
+    "address": {
+        "cityName": "Frankfurt am Main",
+        "postalCode": "60329",
+        "street": "Poststraße"
+    },
+    "distance": "<50",
+    "facilityType": "Schrankenanlage",
+    "facilityTypeEn": "Barrier system",
+    "openingHours": "24 Stunden, 7 Tage",
+    "openingHoursEn": "24 hours a day, 7 days a week",
+    "numberParkingPlaces": "43",
+    "numberHandicapedPlaces": "0",
+    "isSpecialProductDb": true,
+    "isOutOfService": false,
+    "spaceInfo": {
+        "clearanceWidth": "330",
+        "clearanceHeight": "500",
+        "allowedPropulsions": "Alle",
+        "chargingStation": "nein"
+    },
+    "spaceFlags": {},
+    "tariffFlags": {
+        "isDiscountDbBahnCard": false,
+        "isMonthVendingMachine": false,
+        "isDiscountDbBahnComfort": true,
+        "isDiscountDbParkAndRail": false,
+        "isMonthParkAndRide": false,
+        "isMonthSeason": false
+    },
+    "tariffInfo": {
+        "tariffDiscount": "Rabattierung mit bahn.comfort-Karte direkt am Kassenautomaten.",
+        "tariffFreeParkingTime": "nein",
+        "tariffDiscountEn": "Bahn.comfort card discount available directly at the pay station.",
+        "tariffPaymentOptions": "Münzen, Scheine, Kreditkarten (AMEX, MasterCard, VISA), P Card",
+        "tariffPointOfSale": "Nur mit gültiger bahn.comfort-Karte.",
+        "tariffPointOfSaleEn": "Only with a valid bahn.comfort card. ",
+        "tariffPaymentCustomerCards": "P Card",
+        "tariffFreeParkingTimeEn": "nein",
+        "tariffPaymentOptionsEn": "Coins, bills, credit cards (AMEX, MasterCard, VISA), P Card"
+    },
+    "tariffPrices": [
+        {
+            "id": 219182,
+            "duration": "20min"
+        },
+        {
+            "id": 219183,
+            "duration": "30min",
+            "price": 2
+        },
+        {
+            "id": 219184,
+            "duration": "1hour",
+            "price": 4
+        },
+        {
+            "id": 219185,
+            "duration": "1day",
+            "price": 29
+        },
+        {
+            "id": 219186,
+            "duration": "1dayDiscount",
+            "price": 24.5
+        },
+        {
+            "id": 219187,
+            "duration": "1week"
+        },
+        {
+            "id": 219188,
+            "duration": "1weekDiscount"
+        },
+        {
+            "id": 219189,
+            "duration": "1monthVendingMachine"
+        },
+        {
+            "id": 219190,
+            "duration": "1monthLongTerm"
+        },
+        {
+            "id": 219191,
+            "duration": "1monthReservation"
+        }
+    ]
+}

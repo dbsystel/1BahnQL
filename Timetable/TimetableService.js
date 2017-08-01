@@ -11,9 +11,9 @@ class TimetableService {
 
   timetableForEvaId(evaId) {
     return this.timetableLoader.timetableForEvaId(evaId)
-      .then(json => {
+      .then(timtetables => {
         var result = { nextDepatures: [], nextArrivals: [] };
-        json.elements[0].elements.map((element) => {
+        timtetables.map((element) => {
           const trainType = element.elements[0].attributes.c;
           const trainNumber = element.elements[0].attributes.n;
           let platform = element.elements[1].attributes.pp;
