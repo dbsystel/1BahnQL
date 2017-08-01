@@ -1,10 +1,11 @@
 const fetch = require('node-fetch');
 
-const baseURL = 'https://api.deutschebahn.com/bahnhofsfotos/v1';
+const servicePath = '/bahnhofsfotos/v1';
 
 class StationPictureLoader {
-  constructor(APIToken) {
+  constructor(APIToken, baseURL) {
     this.APIToken = APIToken;
+    this.baseURL = baseURL;
   }
 
   get fetchConfiguration() {
@@ -28,6 +29,7 @@ class StationPictureLoader {
     if (!stationNumber) {
       return Promise.resolve(null);
     }
+    // const url = `${this.baseURL}${servicePath}/de/stations/${stationNumber}`;
     const url = `http://api.railway-stations.org/de/stations/${stationNumber}`;
     const configuration = this.fetchConfiguration;
     const promise = fetch(url, configuration)

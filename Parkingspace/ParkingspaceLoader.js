@@ -1,10 +1,11 @@
 const fetch = require('node-fetch');
 
-const baseURL = 'https://api.deutschebahn.com/bahnpark/v1';
+const serviceURL = '/bahnpark/v1';
 
 class ParkingspaceLoader {
-  constructor(APIToken) {
+  constructor(APIToken, baseURL) {
     this.APIToken = APIToken;
+    this.baseURL = baseURL;
   }
 
   get fetchConfiguration() {
@@ -20,28 +21,28 @@ class ParkingspaceLoader {
   }
 
   spaceById(spaceId) {
-    const url = `${baseURL}/spaces/${spaceId}`;
+    const url = `${this.baseURL}${serviceURL}/spaces/${spaceId}`;
     const configuration = this.fetchConfiguration;
 
     return fetch(url, configuration).then(res => res.json())
   }
 
   occupancyForId(spaceId) {
-    const url = `${baseURL}/spaces/${spaceId}/occupancies`;
+    const url = `${this.baseURL}${serviceURL}/spaces/${spaceId}/occupancies`;
     const configuration = this.fetchConfiguration;
 
     return fetch(url, configuration).then(res => res.json())
   }
 
   spacesForStationNumber(stationNumber) {
-    const url = `${baseURL}/spaces?limit=1000`;
+    const url = `${this.baseURL}${serviceURL}/spaces?limit=1000`;
     const configuration = this.fetchConfiguration;
 
     return fetch(url, configuration).then(res => res.json())
   }
 
   nearbyParkingspaces(latitude, longitude, radius) {
-    const url = `${baseURL}/spaces?limit=1000`;
+    const url = `${this.baseURL}${serviceURL}/spaces?limit=1000`;
     const configuration = this.fetchConfiguration;
 
     return fetch(url, configuration).then(res => res.json());
