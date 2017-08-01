@@ -48,7 +48,9 @@ class ParkingspaceService {
 
   parkingspacesForStationNumber(stationNumber) {
     const self = this;
-    return this.parkingspaceLoader.spacesForStationNumber(stationNumber).then(parkingspaces => parkingspaces.items.filter((parkingspace) => {
+    return this.parkingspaceLoader.spacesForStationNumber(stationNumber)
+    .then(parkingspaces => parkingspaces.items || [])
+    .then(parkingspaces => parkingspaces.filter((parkingspace) => {
       if (parkingspace.station.id == stationNumber) {
         return self.transformResultIntoParkingspace(parkingspace);
       }
