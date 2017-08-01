@@ -33,10 +33,10 @@ class StationLoader extends BaseLoader {
 	 * @return {Promise<Station>} promise of a JSON station
 	 */
   stationByEvaId(evaId) {
-    const url = `${baseURL}/stations?eva=${evaId}`;
+    const url = `${this.baseURL}${serviceURL}/stations?eva=${evaId}`;
     const configuration = this.fetchConfiguration;
-    const promise = fetch(url, configuration)
-      .then(res => res.json())
+    const promise = this.fetch(url, configuration)
+      .then(res => StationLoader.parseJSON(res, "StaDa"))
       .then((result) => {
         if (result && result.total > 0 && result.result) {
           return result.result[0];
@@ -53,10 +53,10 @@ class StationLoader extends BaseLoader {
 	 * @return {Promise<Station>} promise of a JSON station
 	 */
   stationByRil100(ril100) {
-    const url = `${baseURL}/stations?ril=${ril100}`;
+    const url = `${this.baseURL}${serviceURL}/stations?ril=${ril100}`;
     const configuration = this.fetchConfiguration;
-    const promise = fetch(url, configuration)
-      .then(res => res.json())
+    const promise = this.fetch(url, configuration)
+      .then(res => StationLoader.parseJSON(res, "StaDa"))
       .then((result) => {
         if (result && result.total > 0 && result.result) {
           return result.result[0];
