@@ -28,12 +28,22 @@ class FlinksterService {
 
   nearbyFlinksterCars(latitude, longitude, radius, count, offset) {
     const self = this;
-    return this.flinksterLoader.nearbyFlinksters(1, latitude, longitude, radius, count, offset).then(flinksterCars => flinksterCars.map(car => self.transformResultIntoFlinksterCar(car)));
+    return this.flinksterLoader.nearbyFlinksters(1, latitude, longitude, radius, count, offset).then(flinksterCars => {
+      if (flinksterCars.size > 0) {
+        return flinksterCars.items.map(car => self.transformResultIntoFlinksterCar(car));
+      }
+      return [];
+    });
   }
 
   nearbyFlinksterBikes(latitude, longitude, radius, count, offset) {
     const self = this;
-    return this.flinksterLoader.nearbyFlinksters(2, latitude, longitude, radius, count, offset).then(flinksterBikes => flinksterBikes.map(bike => self.transformResultIntoFlinksterBike(bike)));
+    return this.flinksterLoader.nearbyFlinksters(2, latitude, longitude, radius, count, offset).then(flinksterBikes => {
+      if (flinksterBikes.size > 0) {
+        return flinksterBikes.items.map(bike => self.transformResultIntoFlinksterBike(bike));
+      }
+      return [];
+    });
   }
 }
 

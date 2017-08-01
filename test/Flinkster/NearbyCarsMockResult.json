@@ -1,0 +1,1643 @@
+{
+    "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/bookingproposals?lat=50.11&lon=8.66&radius=1000&offset=0&limit=10&providernetwork=1&expand=area,rentalobject,price",
+    "offset": 0,
+    "limit": 10,
+    "size": 56,
+    "items": [
+        {
+            "expand": "area,rentalobject,price",
+            "rentalObject": {
+                "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providernetworks/1/rentalobjects/4A8EF25D7CDBC02BB9D79823A847A3A6D717C6E7",
+                "uid": "4A8EF25D7CDBC02BB9D79823A847A3A6D717C6E7",
+                "name": "Seat Leon Kombi",
+                "description": "ST 1.6 TDI Navi",
+                "providerRentalObjectId": 161822,
+                "rentalModel": "stationbased",
+                "type": "vehicle",
+                "provider": {
+                    "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providers/book-n-drive"
+                },
+                "category": {
+                    "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providernetworks/1/categories/1002"
+                },
+                "attributes": {
+                    "seats": 5,
+                    "fillLevel": 40,
+                    "doors": 5,
+                    "transmissionType": "manual",
+                    "colour": "schwarz",
+                    "fuel": "diesel",
+                    "licenseplate": "WI-J 4642"
+                },
+                "equipment": {
+                    "cdPlayer": true,
+                    "emissionsStickers": [
+                        "emissionsDEGreen"
+                    ],
+                    "childSeats": {
+                        "boosterSeat": 1
+                    },
+                    "airConditioning": true,
+                    "navigationSystem": true,
+                    "roofRailing": true,
+                    "particulateFilter": true,
+                    "audioInline": true,
+                    "tyreType": "allSeason",
+                    "bluetoothHandsFreeCalling": true,
+                    "cruiseControl": true,
+                    "passengerAirbagTurnOff": true,
+                    "isofixSeatFittings": true
+                }
+            },
+            "area": {
+                "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/areas/A3AC41DEEC5B023B0D91A58F1B1B109A6FE3F12C",
+                "uid": "A3AC41DEEC5B023B0D91A58F1B1B109A6FE3F12C",
+                "name": "Hauptbahnhof Frankfurt",
+                "provider": {
+                    "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providers/book-n-drive"
+                },
+                "providerAreaId": 217,
+                "providerNetworkIds": [
+                    1
+                ],
+                "type": "station",
+                "geometry": {
+                    "position": {
+                        "type": "Point",
+                        "coordinates": [
+                            8.663564622,
+                            50.107877685
+                        ]
+                    }
+                },
+                "address": {
+                    "street": "Am Hauptbahnhof",
+                    "number": 1,
+                    "zip": 60329,
+                    "city": "Frankfurt am Main",
+                    "district": "Bahnhofsviertel",
+                    "isoCountryCode": "DE"
+                },
+                "attributes": {
+                    "parking": "Die Autos befinden sich im UNBESCHRANKTEN Bereich des Taxistandes nördlich des Haupteingangs. Da sich in diesen Fahrzeugen keine Parkkarte befindet, müssen sie unbedingt dort geparkt sein und dürfen NICHT auf dem beschrankten Bereich des Busbahnhofes südlich des Haupteingangs stehen!\r\n\r\n BITTE NICHT DEN BESCHRANKTEN PARKPLATZ SÜDLICH DES HAUPTEINGANGS BENUTZEN UND PARKTICKET ZIEHEN!!! BEI EINLÖSUNG EINES PARKTICKETS --> MIND. 39 EURO GEBÜHR!\r\n\r\nZu- und Abfahrt der Parkplätze erfolgt für PKW über den Taxiwarteplatz. Die Parkplätze liegen entlang der von der Straße aus gesehen letzten Taxispur.\r\n\r\nBitte stellen Sie sicher, dass Ihre aktuelle Handynummer bei Ihren Kundenstammdaten korrekt im Feld Mobiltelefon (und nicht etwa bei Festnetz privat) erfasst ist, damit Sie zuverlässig per SMS über das zugeteilte Pool-Fahrzeug informiert werden können.",
+                    "access": "Fahrzeuge mit Bordcomputer. Einfach Zugangsmedium an den Kartenleser der Windschutzscheibe halten.\r\n(Der ehemalige Schlüsseltresor wird nicht mehr benötigt und ist derzeit funktionslos!)",
+                    "locationnote": "Parkreihe am Taxistand des Hauptbahnhofes Frankfurt (nördlich vom Ausgang City). \r\nVon den Zügen kommend verlassen Sie den Hauptbahnhof durch den Ausgang City und wenden sich nach links (Norden) in Richtung Taxistand. Sie erreichen den Taxistand auch direkt, wenn Sie den Hauptbahnhof durch den Nebenausgang in Höhe der Gleise 17/18 verlassen.\r\nWenn Sie vor dem Hauptbahnhof stehen (mit Blick zum Haupteingang), wenden Sie sich bitte nach rechts (Norden) in Richtung Taxistand.\r\n",
+                    "publictransportation": "Frankfurt (Main) Hbf: Fern- und Regionalverkehr, S7\r\nFrankfurt (Main) Hbf tief: S-Bahn S1-S6, S8-S9\r\nHauptbahnhof: U-Bahn U4, U5; Straßenbahn 11, 16, 17, 21; Bus 33, 35, 37, 46, n8, n83\r\nHauptbahnhof/Münchener Straße: Straßenbahn 12"
+                },
+                "rentalObjectTypes": [
+                    "vehicle"
+                ]
+            },
+            "position": {
+                "type": "Point",
+                "coordinates": [
+                    8.663564622,
+                    50.107877685
+                ]
+            },
+            "distance": 0,
+            "price": {
+                "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providernetworks/1/prices?isoCountryCode=DE&providerCategoryId=1002",
+                "size": 3,
+                "items": [
+                    {
+                        "interval": 60,
+                        "type": "time",
+                        "grossamount": 6,
+                        "currency": "EUR",
+                        "taxrate": 0.19,
+                        "preferredprice": true
+                    },
+                    {
+                        "interval": 1440,
+                        "type": "time",
+                        "grossamount": 60,
+                        "currency": "EUR",
+                        "taxrate": 0.19,
+                        "preferredprice": false
+                    },
+                    {
+                        "type": "distance",
+                        "grossamount": 0.18,
+                        "currency": "EUR",
+                        "taxrate": 0.19,
+                        "preferredprice": true
+                    }
+                ]
+            }
+        },
+        {
+            "expand": "area,rentalobject,price",
+            "rentalObject": {
+                "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providernetworks/1/rentalobjects/B93E5B50433D5FE814205B059B6F719D35FCE915",
+                "uid": "B93E5B50433D5FE814205B059B6F719D35FCE915",
+                "name": "Seat Mii ",
+                "description": 1,
+                "providerRentalObjectId": 151890,
+                "rentalModel": "stationbased",
+                "type": "vehicle",
+                "provider": {
+                    "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providers/book-n-drive"
+                },
+                "category": {
+                    "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providernetworks/1/categories/1000"
+                },
+                "attributes": {
+                    "transmissionType": "manual",
+                    "seats": 4,
+                    "colour": "rot",
+                    "fuel": "petrol",
+                    "doors": 3,
+                    "licenseplate": "WI-LV 572"
+                },
+                "equipment": {
+                    "cdPlayer": true,
+                    "emissionsStickers": [
+                        "emissionsDEGreen"
+                    ],
+                    "childSeats": {
+                        "boosterSeat": 1
+                    },
+                    "audioInline": true,
+                    "tyreType": "allSeason",
+                    "airConditioning": true,
+                    "passengerAirbagTurnOff": true,
+                    "isofixSeatFittings": true
+                }
+            },
+            "area": {
+                "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/areas/18A07910E8C2C79BE2D464DD37850E0B643BF862",
+                "uid": "18A07910E8C2C79BE2D464DD37850E0B643BF862",
+                "name": "Bettinastraße 43",
+                "provider": {
+                    "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providers/book-n-drive"
+                },
+                "providerAreaId": 403212,
+                "providerNetworkIds": [
+                    1
+                ],
+                "type": "station",
+                "geometry": {
+                    "position": {
+                        "type": "Point",
+                        "coordinates": [
+                            8.6589135,
+                            50.11262334
+                        ]
+                    }
+                },
+                "address": {
+                    "street": "Bettinastraße",
+                    "number": 43,
+                    "zip": 60325,
+                    "city": "Frankfurt am Main",
+                    "district": "Westend-Süd",
+                    "isoCountryCode": "DE"
+                },
+                "attributes": {
+                    "parking": "Der Stellplatz befindet sich auf der Hofzufahrt direkt an der Hauswand links. Die Zufahrt erfolgt über die Bettinastraße. Der Stellplatz ist mit Bodenmarkierung und einem Schild gekennzeichnet. Bitte rückwärts und innerhalb der Markierung parken.",
+                    "access": "Fahrzeug mit Bordcomputer und Kartenlesegerät",
+                    "locationnote": "Westend-Süd, Bettinastraße 43 (Eckhaus Rheinstraße 16a/Bettinastraße 43). Die Zufahrt zum Stellplatz erfolgt von der Bettinastraße neben Haus 45.\r\n\r\n\r\n Stationsbilder Bettinastraße 43 Frankfurt ",
+                    "publictransportation": "Tram: 16 und 17\r\n(H): Hohenstaufenstraße, 5 Gehminuten\r\n\r\nU-Bahn: U4\r\n(H): Festhalle/Messe, 10 Gehminuten"
+                },
+                "rentalObjectTypes": [
+                    "vehicle"
+                ]
+            },
+            "position": {
+                "type": "Point",
+                "coordinates": [
+                    8.6589135,
+                    50.11262334
+                ]
+            },
+            "distance": 0,
+            "price": {
+                "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providernetworks/1/prices?isoCountryCode=DE&providerCategoryId=1000",
+                "size": 3,
+                "items": [
+                    {
+                        "interval": 60,
+                        "type": "time",
+                        "grossamount": 2.3,
+                        "currency": "EUR",
+                        "taxrate": 0.19,
+                        "preferredprice": true
+                    },
+                    {
+                        "interval": 1440,
+                        "type": "time",
+                        "grossamount": 39,
+                        "currency": "EUR",
+                        "taxrate": 0.19,
+                        "preferredprice": false
+                    },
+                    {
+                        "type": "distance",
+                        "grossamount": 0.18,
+                        "currency": "EUR",
+                        "taxrate": 0.19,
+                        "preferredprice": true
+                    }
+                ]
+            }
+        },
+        {
+            "expand": "area,rentalobject,price",
+            "rentalObject": {
+                "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providernetworks/1/rentalobjects/20EA1D9EB21EB6AE0F1D8BA16CF4EC83029DC4EA",
+                "uid": "20EA1D9EB21EB6AE0F1D8BA16CF4EC83029DC4EA",
+                "name": "VW Golf Kombi",
+                "description": "Variant 1.6 TDI BlueMotion Automatik Navi",
+                "providerRentalObjectId": 437379,
+                "rentalModel": "stationbased",
+                "type": "vehiclepool",
+                "provider": {
+                    "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providers/book-n-drive"
+                },
+                "category": {
+                    "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providernetworks/1/categories/1002"
+                },
+                "attributes": {
+                    "transmissionType": "manual",
+                    "seats": 5,
+                    "colour": "silber",
+                    "doors": 5,
+                    "fuel": "diesel"
+                },
+                "equipment": null
+            },
+            "area": {
+                "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/areas/A3AC41DEEC5B023B0D91A58F1B1B109A6FE3F12C",
+                "uid": "A3AC41DEEC5B023B0D91A58F1B1B109A6FE3F12C",
+                "name": "Hauptbahnhof Frankfurt",
+                "provider": {
+                    "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providers/book-n-drive"
+                },
+                "providerAreaId": 217,
+                "providerNetworkIds": [
+                    1
+                ],
+                "type": "station",
+                "geometry": {
+                    "position": {
+                        "type": "Point",
+                        "coordinates": [
+                            8.663564622,
+                            50.107877685
+                        ]
+                    }
+                },
+                "address": {
+                    "street": "Am Hauptbahnhof",
+                    "number": 1,
+                    "zip": 60329,
+                    "city": "Frankfurt am Main",
+                    "district": "Bahnhofsviertel",
+                    "isoCountryCode": "DE"
+                },
+                "attributes": {
+                    "parking": "Die Autos befinden sich im UNBESCHRANKTEN Bereich des Taxistandes nördlich des Haupteingangs. Da sich in diesen Fahrzeugen keine Parkkarte befindet, müssen sie unbedingt dort geparkt sein und dürfen NICHT auf dem beschrankten Bereich des Busbahnhofes südlich des Haupteingangs stehen!\r\n\r\n BITTE NICHT DEN BESCHRANKTEN PARKPLATZ SÜDLICH DES HAUPTEINGANGS BENUTZEN UND PARKTICKET ZIEHEN!!! BEI EINLÖSUNG EINES PARKTICKETS --> MIND. 39 EURO GEBÜHR!\r\n\r\nZu- und Abfahrt der Parkplätze erfolgt für PKW über den Taxiwarteplatz. Die Parkplätze liegen entlang der von der Straße aus gesehen letzten Taxispur.\r\n\r\nBitte stellen Sie sicher, dass Ihre aktuelle Handynummer bei Ihren Kundenstammdaten korrekt im Feld Mobiltelefon (und nicht etwa bei Festnetz privat) erfasst ist, damit Sie zuverlässig per SMS über das zugeteilte Pool-Fahrzeug informiert werden können.",
+                    "access": "Fahrzeuge mit Bordcomputer. Einfach Zugangsmedium an den Kartenleser der Windschutzscheibe halten.\r\n(Der ehemalige Schlüsseltresor wird nicht mehr benötigt und ist derzeit funktionslos!)",
+                    "locationnote": "Parkreihe am Taxistand des Hauptbahnhofes Frankfurt (nördlich vom Ausgang City). \r\nVon den Zügen kommend verlassen Sie den Hauptbahnhof durch den Ausgang City und wenden sich nach links (Norden) in Richtung Taxistand. Sie erreichen den Taxistand auch direkt, wenn Sie den Hauptbahnhof durch den Nebenausgang in Höhe der Gleise 17/18 verlassen.\r\nWenn Sie vor dem Hauptbahnhof stehen (mit Blick zum Haupteingang), wenden Sie sich bitte nach rechts (Norden) in Richtung Taxistand.\r\n",
+                    "publictransportation": "Frankfurt (Main) Hbf: Fern- und Regionalverkehr, S7\r\nFrankfurt (Main) Hbf tief: S-Bahn S1-S6, S8-S9\r\nHauptbahnhof: U-Bahn U4, U5; Straßenbahn 11, 16, 17, 21; Bus 33, 35, 37, 46, n8, n83\r\nHauptbahnhof/Münchener Straße: Straßenbahn 12"
+                },
+                "rentalObjectTypes": [
+                    "vehicle"
+                ]
+            },
+            "position": {
+                "type": "Point",
+                "coordinates": [
+                    8.663564622,
+                    50.107877685
+                ]
+            },
+            "distance": 0,
+            "price": {
+                "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providernetworks/1/prices?isoCountryCode=DE&providerCategoryId=1002",
+                "size": 3,
+                "items": [
+                    {
+                        "interval": 60,
+                        "type": "time",
+                        "grossamount": 6,
+                        "currency": "EUR",
+                        "taxrate": 0.19,
+                        "preferredprice": true
+                    },
+                    {
+                        "interval": 1440,
+                        "type": "time",
+                        "grossamount": 60,
+                        "currency": "EUR",
+                        "taxrate": 0.19,
+                        "preferredprice": false
+                    },
+                    {
+                        "type": "distance",
+                        "grossamount": 0.18,
+                        "currency": "EUR",
+                        "taxrate": 0.19,
+                        "preferredprice": true
+                    }
+                ]
+            }
+        },
+        {
+            "expand": "area,rentalobject,price",
+            "rentalObject": {
+                "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providernetworks/1/rentalobjects/9C023A74F3CFB7FFAE71C00E17A54FCA8330573E",
+                "uid": "9C023A74F3CFB7FFAE71C00E17A54FCA8330573E",
+                "name": "Audi A3",
+                "description": "1.6 TDI Sportback Navi",
+                "providerRentalObjectId": 174488,
+                "rentalModel": "stationbased",
+                "type": "vehicle",
+                "provider": {
+                    "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providers/book-n-drive"
+                },
+                "category": {
+                    "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providernetworks/1/categories/1002"
+                },
+                "attributes": {
+                    "transmissionType": "manual",
+                    "seats": 5,
+                    "colour": "weiß",
+                    "fuel": "diesel",
+                    "doors": 5,
+                    "licenseplate": "WI-J 5122"
+                },
+                "equipment": {
+                    "cdPlayer": true,
+                    "parkDistanceControl": true,
+                    "emissionsStickers": [
+                        "emissionsDEGreen"
+                    ],
+                    "navigationSystem": true,
+                    "childSeats": {
+                        "boosterSeat": 1
+                    },
+                    "particulateFilter": true,
+                    "audioInline": true,
+                    "tyreType": "allSeason",
+                    "bluetoothHandsFreeCalling": true,
+                    "airConditioning": true,
+                    "passengerAirbagTurnOff": true,
+                    "isofixSeatFittings": true
+                }
+            },
+            "area": {
+                "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/areas/A3AC41DEEC5B023B0D91A58F1B1B109A6FE3F12C",
+                "uid": "A3AC41DEEC5B023B0D91A58F1B1B109A6FE3F12C",
+                "name": "Hauptbahnhof Frankfurt",
+                "provider": {
+                    "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providers/book-n-drive"
+                },
+                "providerAreaId": 217,
+                "providerNetworkIds": [
+                    1
+                ],
+                "type": "station",
+                "geometry": {
+                    "position": {
+                        "type": "Point",
+                        "coordinates": [
+                            8.663564622,
+                            50.107877685
+                        ]
+                    }
+                },
+                "address": {
+                    "street": "Am Hauptbahnhof",
+                    "number": 1,
+                    "zip": 60329,
+                    "city": "Frankfurt am Main",
+                    "district": "Bahnhofsviertel",
+                    "isoCountryCode": "DE"
+                },
+                "attributes": {
+                    "parking": "Die Autos befinden sich im UNBESCHRANKTEN Bereich des Taxistandes nördlich des Haupteingangs. Da sich in diesen Fahrzeugen keine Parkkarte befindet, müssen sie unbedingt dort geparkt sein und dürfen NICHT auf dem beschrankten Bereich des Busbahnhofes südlich des Haupteingangs stehen!\r\n\r\n BITTE NICHT DEN BESCHRANKTEN PARKPLATZ SÜDLICH DES HAUPTEINGANGS BENUTZEN UND PARKTICKET ZIEHEN!!! BEI EINLÖSUNG EINES PARKTICKETS --> MIND. 39 EURO GEBÜHR!\r\n\r\nZu- und Abfahrt der Parkplätze erfolgt für PKW über den Taxiwarteplatz. Die Parkplätze liegen entlang der von der Straße aus gesehen letzten Taxispur.\r\n\r\nBitte stellen Sie sicher, dass Ihre aktuelle Handynummer bei Ihren Kundenstammdaten korrekt im Feld Mobiltelefon (und nicht etwa bei Festnetz privat) erfasst ist, damit Sie zuverlässig per SMS über das zugeteilte Pool-Fahrzeug informiert werden können.",
+                    "access": "Fahrzeuge mit Bordcomputer. Einfach Zugangsmedium an den Kartenleser der Windschutzscheibe halten.\r\n(Der ehemalige Schlüsseltresor wird nicht mehr benötigt und ist derzeit funktionslos!)",
+                    "locationnote": "Parkreihe am Taxistand des Hauptbahnhofes Frankfurt (nördlich vom Ausgang City). \r\nVon den Zügen kommend verlassen Sie den Hauptbahnhof durch den Ausgang City und wenden sich nach links (Norden) in Richtung Taxistand. Sie erreichen den Taxistand auch direkt, wenn Sie den Hauptbahnhof durch den Nebenausgang in Höhe der Gleise 17/18 verlassen.\r\nWenn Sie vor dem Hauptbahnhof stehen (mit Blick zum Haupteingang), wenden Sie sich bitte nach rechts (Norden) in Richtung Taxistand.\r\n",
+                    "publictransportation": "Frankfurt (Main) Hbf: Fern- und Regionalverkehr, S7\r\nFrankfurt (Main) Hbf tief: S-Bahn S1-S6, S8-S9\r\nHauptbahnhof: U-Bahn U4, U5; Straßenbahn 11, 16, 17, 21; Bus 33, 35, 37, 46, n8, n83\r\nHauptbahnhof/Münchener Straße: Straßenbahn 12"
+                },
+                "rentalObjectTypes": [
+                    "vehicle"
+                ]
+            },
+            "position": {
+                "type": "Point",
+                "coordinates": [
+                    8.663564622,
+                    50.107877685
+                ]
+            },
+            "distance": 0,
+            "price": {
+                "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providernetworks/1/prices?isoCountryCode=DE&providerCategoryId=1002",
+                "size": 3,
+                "items": [
+                    {
+                        "interval": 60,
+                        "type": "time",
+                        "grossamount": 6,
+                        "currency": "EUR",
+                        "taxrate": 0.19,
+                        "preferredprice": true
+                    },
+                    {
+                        "interval": 1440,
+                        "type": "time",
+                        "grossamount": 60,
+                        "currency": "EUR",
+                        "taxrate": 0.19,
+                        "preferredprice": false
+                    },
+                    {
+                        "type": "distance",
+                        "grossamount": 0.18,
+                        "currency": "EUR",
+                        "taxrate": 0.19,
+                        "preferredprice": true
+                    }
+                ]
+            }
+        },
+        {
+            "expand": "area,rentalobject,price",
+            "rentalObject": {
+                "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providernetworks/1/rentalobjects/6CEEDD8118DAB8C81C2CEC421556CBDA87136511",
+                "uid": "6CEEDD8118DAB8C81C2CEC421556CBDA87136511",
+                "name": "VW Golf Kombi",
+                "description": "Variant 1.6 TDI BlueMotion Automatik Navi",
+                "providerRentalObjectId": 172643,
+                "rentalModel": "stationbased",
+                "type": "vehicle",
+                "provider": {
+                    "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providers/book-n-drive"
+                },
+                "category": {
+                    "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providernetworks/1/categories/1002"
+                },
+                "attributes": {
+                    "seats": 5,
+                    "fillLevel": 45,
+                    "doors": 5,
+                    "transmissionType": "automatic",
+                    "colour": "silber",
+                    "fuel": "diesel",
+                    "licenseplate": "WI-J 4955"
+                },
+                "equipment": {
+                    "cdPlayer": true,
+                    "parkDistanceControl": true,
+                    "emissionsStickers": [
+                        "emissionsDEGreen"
+                    ],
+                    "childSeats": {
+                        "boosterSeat": 1
+                    },
+                    "airConditioning": true,
+                    "navigationSystem": true,
+                    "roofRailing": true,
+                    "particulateFilter": true,
+                    "audioInline": true,
+                    "tyreType": "allSeason",
+                    "bluetoothHandsFreeCalling": true,
+                    "cruiseControl": true,
+                    "passengerAirbagTurnOff": true,
+                    "isofixSeatFittings": true
+                }
+            },
+            "area": {
+                "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/areas/A3AC41DEEC5B023B0D91A58F1B1B109A6FE3F12C",
+                "uid": "A3AC41DEEC5B023B0D91A58F1B1B109A6FE3F12C",
+                "name": "Hauptbahnhof Frankfurt",
+                "provider": {
+                    "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providers/book-n-drive"
+                },
+                "providerAreaId": 217,
+                "providerNetworkIds": [
+                    1
+                ],
+                "type": "station",
+                "geometry": {
+                    "position": {
+                        "type": "Point",
+                        "coordinates": [
+                            8.663564622,
+                            50.107877685
+                        ]
+                    }
+                },
+                "address": {
+                    "street": "Am Hauptbahnhof",
+                    "number": 1,
+                    "zip": 60329,
+                    "city": "Frankfurt am Main",
+                    "district": "Bahnhofsviertel",
+                    "isoCountryCode": "DE"
+                },
+                "attributes": {
+                    "parking": "Die Autos befinden sich im UNBESCHRANKTEN Bereich des Taxistandes nördlich des Haupteingangs. Da sich in diesen Fahrzeugen keine Parkkarte befindet, müssen sie unbedingt dort geparkt sein und dürfen NICHT auf dem beschrankten Bereich des Busbahnhofes südlich des Haupteingangs stehen!\r\n\r\n BITTE NICHT DEN BESCHRANKTEN PARKPLATZ SÜDLICH DES HAUPTEINGANGS BENUTZEN UND PARKTICKET ZIEHEN!!! BEI EINLÖSUNG EINES PARKTICKETS --> MIND. 39 EURO GEBÜHR!\r\n\r\nZu- und Abfahrt der Parkplätze erfolgt für PKW über den Taxiwarteplatz. Die Parkplätze liegen entlang der von der Straße aus gesehen letzten Taxispur.\r\n\r\nBitte stellen Sie sicher, dass Ihre aktuelle Handynummer bei Ihren Kundenstammdaten korrekt im Feld Mobiltelefon (und nicht etwa bei Festnetz privat) erfasst ist, damit Sie zuverlässig per SMS über das zugeteilte Pool-Fahrzeug informiert werden können.",
+                    "access": "Fahrzeuge mit Bordcomputer. Einfach Zugangsmedium an den Kartenleser der Windschutzscheibe halten.\r\n(Der ehemalige Schlüsseltresor wird nicht mehr benötigt und ist derzeit funktionslos!)",
+                    "locationnote": "Parkreihe am Taxistand des Hauptbahnhofes Frankfurt (nördlich vom Ausgang City). \r\nVon den Zügen kommend verlassen Sie den Hauptbahnhof durch den Ausgang City und wenden sich nach links (Norden) in Richtung Taxistand. Sie erreichen den Taxistand auch direkt, wenn Sie den Hauptbahnhof durch den Nebenausgang in Höhe der Gleise 17/18 verlassen.\r\nWenn Sie vor dem Hauptbahnhof stehen (mit Blick zum Haupteingang), wenden Sie sich bitte nach rechts (Norden) in Richtung Taxistand.\r\n",
+                    "publictransportation": "Frankfurt (Main) Hbf: Fern- und Regionalverkehr, S7\r\nFrankfurt (Main) Hbf tief: S-Bahn S1-S6, S8-S9\r\nHauptbahnhof: U-Bahn U4, U5; Straßenbahn 11, 16, 17, 21; Bus 33, 35, 37, 46, n8, n83\r\nHauptbahnhof/Münchener Straße: Straßenbahn 12"
+                },
+                "rentalObjectTypes": [
+                    "vehicle"
+                ]
+            },
+            "position": {
+                "type": "Point",
+                "coordinates": [
+                    8.663564622,
+                    50.107877685
+                ]
+            },
+            "distance": 0,
+            "price": {
+                "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providernetworks/1/prices?isoCountryCode=DE&providerCategoryId=1002",
+                "size": 3,
+                "items": [
+                    {
+                        "interval": 60,
+                        "type": "time",
+                        "grossamount": 6,
+                        "currency": "EUR",
+                        "taxrate": 0.19,
+                        "preferredprice": true
+                    },
+                    {
+                        "interval": 1440,
+                        "type": "time",
+                        "grossamount": 60,
+                        "currency": "EUR",
+                        "taxrate": 0.19,
+                        "preferredprice": false
+                    },
+                    {
+                        "type": "distance",
+                        "grossamount": 0.18,
+                        "currency": "EUR",
+                        "taxrate": 0.19,
+                        "preferredprice": true
+                    }
+                ]
+            }
+        },
+        {
+            "expand": "area,rentalobject,price",
+            "rentalObject": {
+                "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providernetworks/1/rentalobjects/14C9075A243B70612BF318BFF938B6290D05C42C",
+                "uid": "14C9075A243B70612BF318BFF938B6290D05C42C",
+                "name": "VW Passat Kombi",
+                "description": "Variant 2.0 TDI BlueMotion Navi AHK",
+                "providerRentalObjectId": 181508,
+                "rentalModel": "stationbased",
+                "type": "vehicle",
+                "provider": {
+                    "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providers/book-n-drive"
+                },
+                "category": {
+                    "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providernetworks/1/categories/1003"
+                },
+                "attributes": {
+                    "seats": 5,
+                    "fillLevel": 90,
+                    "doors": 5,
+                    "transmissionType": "manual",
+                    "colour": "silber",
+                    "fuel": "diesel",
+                    "licenseplate": "WI-J 5173"
+                },
+                "equipment": {
+                    "cdPlayer": true,
+                    "parkDistanceControl": true,
+                    "emissionsStickers": [
+                        "emissionsDEGreen"
+                    ],
+                    "childSeats": {
+                        "boosterSeat": 1
+                    },
+                    "airConditioning": true,
+                    "navigationSystem": true,
+                    "roofRailing": true,
+                    "particulateFilter": true,
+                    "trailerCoupling": true,
+                    "audioInline": true,
+                    "tyreType": "allSeason",
+                    "bluetoothHandsFreeCalling": true,
+                    "cruiseControl": true,
+                    "passengerAirbagTurnOff": true,
+                    "isofixSeatFittings": true
+                }
+            },
+            "area": {
+                "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/areas/A3AC41DEEC5B023B0D91A58F1B1B109A6FE3F12C",
+                "uid": "A3AC41DEEC5B023B0D91A58F1B1B109A6FE3F12C",
+                "name": "Hauptbahnhof Frankfurt",
+                "provider": {
+                    "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providers/book-n-drive"
+                },
+                "providerAreaId": 217,
+                "providerNetworkIds": [
+                    1
+                ],
+                "type": "station",
+                "geometry": {
+                    "position": {
+                        "type": "Point",
+                        "coordinates": [
+                            8.663564622,
+                            50.107877685
+                        ]
+                    }
+                },
+                "address": {
+                    "street": "Am Hauptbahnhof",
+                    "number": 1,
+                    "zip": 60329,
+                    "city": "Frankfurt am Main",
+                    "district": "Bahnhofsviertel",
+                    "isoCountryCode": "DE"
+                },
+                "attributes": {
+                    "parking": "Die Autos befinden sich im UNBESCHRANKTEN Bereich des Taxistandes nördlich des Haupteingangs. Da sich in diesen Fahrzeugen keine Parkkarte befindet, müssen sie unbedingt dort geparkt sein und dürfen NICHT auf dem beschrankten Bereich des Busbahnhofes südlich des Haupteingangs stehen!\r\n\r\n BITTE NICHT DEN BESCHRANKTEN PARKPLATZ SÜDLICH DES HAUPTEINGANGS BENUTZEN UND PARKTICKET ZIEHEN!!! BEI EINLÖSUNG EINES PARKTICKETS --> MIND. 39 EURO GEBÜHR!\r\n\r\nZu- und Abfahrt der Parkplätze erfolgt für PKW über den Taxiwarteplatz. Die Parkplätze liegen entlang der von der Straße aus gesehen letzten Taxispur.\r\n\r\nBitte stellen Sie sicher, dass Ihre aktuelle Handynummer bei Ihren Kundenstammdaten korrekt im Feld Mobiltelefon (und nicht etwa bei Festnetz privat) erfasst ist, damit Sie zuverlässig per SMS über das zugeteilte Pool-Fahrzeug informiert werden können.",
+                    "access": "Fahrzeuge mit Bordcomputer. Einfach Zugangsmedium an den Kartenleser der Windschutzscheibe halten.\r\n(Der ehemalige Schlüsseltresor wird nicht mehr benötigt und ist derzeit funktionslos!)",
+                    "locationnote": "Parkreihe am Taxistand des Hauptbahnhofes Frankfurt (nördlich vom Ausgang City). \r\nVon den Zügen kommend verlassen Sie den Hauptbahnhof durch den Ausgang City und wenden sich nach links (Norden) in Richtung Taxistand. Sie erreichen den Taxistand auch direkt, wenn Sie den Hauptbahnhof durch den Nebenausgang in Höhe der Gleise 17/18 verlassen.\r\nWenn Sie vor dem Hauptbahnhof stehen (mit Blick zum Haupteingang), wenden Sie sich bitte nach rechts (Norden) in Richtung Taxistand.\r\n",
+                    "publictransportation": "Frankfurt (Main) Hbf: Fern- und Regionalverkehr, S7\r\nFrankfurt (Main) Hbf tief: S-Bahn S1-S6, S8-S9\r\nHauptbahnhof: U-Bahn U4, U5; Straßenbahn 11, 16, 17, 21; Bus 33, 35, 37, 46, n8, n83\r\nHauptbahnhof/Münchener Straße: Straßenbahn 12"
+                },
+                "rentalObjectTypes": [
+                    "vehicle"
+                ]
+            },
+            "position": {
+                "type": "Point",
+                "coordinates": [
+                    8.663564622,
+                    50.107877685
+                ]
+            },
+            "distance": 0,
+            "price": {
+                "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providernetworks/1/prices?isoCountryCode=DE&providerCategoryId=1003",
+                "size": 3,
+                "items": [
+                    {
+                        "interval": 60,
+                        "type": "time",
+                        "grossamount": 7,
+                        "currency": "EUR",
+                        "taxrate": 0.19,
+                        "preferredprice": true
+                    },
+                    {
+                        "interval": 1440,
+                        "type": "time",
+                        "grossamount": 70,
+                        "currency": "EUR",
+                        "taxrate": 0.19,
+                        "preferredprice": false
+                    },
+                    {
+                        "type": "distance",
+                        "grossamount": 0.2,
+                        "currency": "EUR",
+                        "taxrate": 0.19,
+                        "preferredprice": true
+                    }
+                ]
+            }
+        },
+        {
+            "expand": "area,rentalobject,price",
+            "rentalObject": {
+                "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providernetworks/1/rentalobjects/DC3DEC3C43A542A7625606ABFBF0FC0D7678240C",
+                "uid": "DC3DEC3C43A542A7625606ABFBF0FC0D7678240C",
+                "name": "VW up! {cityFlitzer}",
+                "description": "1.0 BlueMotion Navi {cityFlitzer}",
+                "providerRentalObjectId": 162205,
+                "rentalModel": "freefloating",
+                "type": "vehicle",
+                "provider": {
+                    "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providers/book-n-drive"
+                },
+                "category": {
+                    "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providernetworks/1/categories/1000"
+                },
+                "attributes": {
+                    "seats": 4,
+                    "fillLevel": 90,
+                    "doors": 3,
+                    "transmissionType": "manual",
+                    "colour": "weiß",
+                    "fuel": "petrol",
+                    "licenseplate": "WI-J 4863"
+                },
+                "equipment": null
+            },
+            "area": {
+                "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/areas/C28750926AA7FBC253D6F100E9645C292AA28BB1",
+                "uid": "C28750926AA7FBC253D6F100E9645C292AA28BB1",
+                "name": "Frankfurt {cityFlitzer-Geschäftsgebiet inkl. Bonusbereich}",
+                "provider": {
+                    "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providers/book-n-drive"
+                },
+                "providerAreaId": 405388,
+                "providerNetworkIds": [
+                    1
+                ],
+                "type": "operationarea",
+                "geometry": {
+                    "position": {
+                        "type": "Polygon",
+                        "coordinates": [
+                            [
+                                [
+                                    8.6455536,
+                                    50.2010778
+                                ],
+                                [
+                                    8.6218643,
+                                    50.187121
+                                ],
+                                [
+                                    8.6191177,
+                                    50.184593
+                                ],
+                                [
+                                    8.6178226,
+                                    50.1831033
+                                ],
+                                [
+                                    8.5913086,
+                                    50.1353245
+                                ],
+                                [
+                                    8.5903859,
+                                    50.1307853
+                                ],
+                                [
+                                    8.5912656,
+                                    50.1271265
+                                ],
+                                [
+                                    8.6055994,
+                                    50.1053317
+                                ],
+                                [
+                                    8.6127663,
+                                    50.0986702
+                                ],
+                                [
+                                    8.614912,
+                                    50.0967431
+                                ],
+                                [
+                                    8.6167574,
+                                    50.0935495
+                                ],
+                                [
+                                    8.6184742,
+                                    50.0865693
+                                ],
+                                [
+                                    8.6184311,
+                                    50.0800846
+                                ],
+                                [
+                                    8.6228085,
+                                    50.0803325
+                                ],
+                                [
+                                    8.6234951,
+                                    50.0775785
+                                ],
+                                [
+                                    8.6342239,
+                                    50.077909
+                                ],
+                                [
+                                    8.6367666,
+                                    50.0804426
+                                ],
+                                [
+                                    8.641026,
+                                    50.0767385
+                                ],
+                                [
+                                    8.6513472,
+                                    50.0767798
+                                ],
+                                [
+                                    8.6553623,
+                                    50.0790501
+                                ],
+                                [
+                                    8.6607671,
+                                    50.088745
+                                ],
+                                [
+                                    8.6668396,
+                                    50.0871067
+                                ],
+                                [
+                                    8.6696505,
+                                    50.088924
+                                ],
+                                [
+                                    8.6719894,
+                                    50.082811
+                                ],
+                                [
+                                    8.6733627,
+                                    50.0844357
+                                ],
+                                [
+                                    8.674736,
+                                    50.0819298
+                                ],
+                                [
+                                    8.6745643,
+                                    50.0785149
+                                ],
+                                [
+                                    8.6816883,
+                                    50.077606
+                                ],
+                                [
+                                    8.6866236,
+                                    50.0800571
+                                ],
+                                [
+                                    8.6870098,
+                                    50.0804977
+                                ],
+                                [
+                                    8.6876535,
+                                    50.0806354
+                                ],
+                                [
+                                    8.6875677,
+                                    50.0813239
+                                ],
+                                [
+                                    8.6887264,
+                                    50.0813514
+                                ],
+                                [
+                                    8.688426,
+                                    50.082453
+                                ],
+                                [
+                                    8.6892843,
+                                    50.082453
+                                ],
+                                [
+                                    8.6893272,
+                                    50.083169
+                                ],
+                                [
+                                    8.6849928,
+                                    50.0831965
+                                ],
+                                [
+                                    8.6862802,
+                                    50.0864183
+                                ],
+                                [
+                                    8.6906576,
+                                    50.0861705
+                                ],
+                                [
+                                    8.6916446,
+                                    50.0824805
+                                ],
+                                [
+                                    8.6930609,
+                                    50.0827008
+                                ],
+                                [
+                                    8.6928034,
+                                    50.0836096
+                                ],
+                                [
+                                    8.6963653,
+                                    50.08394
+                                ],
+                                [
+                                    8.6957645,
+                                    50.085427
+                                ],
+                                [
+                                    8.6987257,
+                                    50.0844632
+                                ],
+                                [
+                                    8.7097978,
+                                    50.0867763
+                                ],
+                                [
+                                    8.7079096,
+                                    50.0897776
+                                ],
+                                [
+                                    8.7038326,
+                                    50.0903558
+                                ],
+                                [
+                                    8.6926746,
+                                    50.088153
+                                ],
+                                [
+                                    8.6924171,
+                                    50.0917875
+                                ],
+                                [
+                                    8.6986828,
+                                    50.0918976
+                                ],
+                                [
+                                    8.7037468,
+                                    50.0941002
+                                ],
+                                [
+                                    8.7051201,
+                                    50.0933293
+                                ],
+                                [
+                                    8.7069225,
+                                    50.0938249
+                                ],
+                                [
+                                    8.7040043,
+                                    50.0956419
+                                ],
+                                [
+                                    8.7050342,
+                                    50.0963027
+                                ],
+                                [
+                                    8.705163,
+                                    50.098973
+                                ],
+                                [
+                                    8.7098408,
+                                    50.0988904
+                                ],
+                                [
+                                    8.7095833,
+                                    50.0962476
+                                ],
+                                [
+                                    8.7332725,
+                                    50.0936597
+                                ],
+                                [
+                                    8.7409115,
+                                    50.0958071
+                                ],
+                                [
+                                    8.7412548,
+                                    50.0965504
+                                ],
+                                [
+                                    8.7409115,
+                                    50.0987252
+                                ],
+                                [
+                                    8.7398386,
+                                    50.1017258
+                                ],
+                                [
+                                    8.7389052,
+                                    50.1039623
+                                ],
+                                [
+                                    8.7386584,
+                                    50.1069969
+                                ],
+                                [
+                                    8.7369632,
+                                    50.1099557
+                                ],
+                                [
+                                    8.7341737,
+                                    50.1136985
+                                ],
+                                [
+                                    8.7327575,
+                                    50.1173861
+                                ],
+                                [
+                                    8.7257194,
+                                    50.1264662
+                                ],
+                                [
+                                    8.7247753,
+                                    50.1293825
+                                ],
+                                [
+                                    8.7256336,
+                                    50.1311982
+                                ],
+                                [
+                                    8.7247968,
+                                    50.1329794
+                                ],
+                                [
+                                    8.7237453,
+                                    50.1348431
+                                ],
+                                [
+                                    8.7219858,
+                                    50.1361635
+                                ],
+                                [
+                                    8.7208486,
+                                    50.1367068
+                                ],
+                                [
+                                    8.7182307,
+                                    50.1373876
+                                ],
+                                [
+                                    8.7121582,
+                                    50.1380477
+                                ],
+                                [
+                                    8.7107849,
+                                    50.1384878
+                                ],
+                                [
+                                    8.709197,
+                                    50.1390654
+                                ],
+                                [
+                                    8.7075019,
+                                    50.1403031
+                                ],
+                                [
+                                    8.7057853,
+                                    50.1423109
+                                ],
+                                [
+                                    8.7051201,
+                                    50.1437961
+                                ],
+                                [
+                                    8.7045622,
+                                    50.1448962
+                                ],
+                                [
+                                    8.7040794,
+                                    50.146175
+                                ],
+                                [
+                                    8.7040257,
+                                    50.1474264
+                                ],
+                                [
+                                    8.7042403,
+                                    50.1483339
+                                ],
+                                [
+                                    8.7052917,
+                                    50.1504376
+                                ],
+                                [
+                                    8.7068367,
+                                    50.1529262
+                                ],
+                                [
+                                    8.706665,
+                                    50.155126
+                                ],
+                                [
+                                    8.705635,
+                                    50.1569407
+                                ],
+                                [
+                                    8.7047338,
+                                    50.157848
+                                ],
+                                [
+                                    8.7035751,
+                                    50.1585904
+                                ],
+                                [
+                                    8.7020517,
+                                    50.1593328
+                                ],
+                                [
+                                    8.7000561,
+                                    50.1599651
+                                ],
+                                [
+                                    8.698597,
+                                    50.1601713
+                                ],
+                                [
+                                    8.6971593,
+                                    50.1603912
+                                ],
+                                [
+                                    8.6945629,
+                                    50.1600751
+                                ],
+                                [
+                                    8.6872673,
+                                    50.1590303
+                                ],
+                                [
+                                    8.6845529,
+                                    50.1589891
+                                ],
+                                [
+                                    8.6818385,
+                                    50.1591128
+                                ],
+                                [
+                                    8.6786413,
+                                    50.1595871
+                                ],
+                                [
+                                    8.6754441,
+                                    50.1603088
+                                ],
+                                [
+                                    8.6725688,
+                                    50.1613397
+                                ],
+                                [
+                                    8.6704552,
+                                    50.1623638
+                                ],
+                                [
+                                    8.6689425,
+                                    50.1632505
+                                ],
+                                [
+                                    8.6684489,
+                                    50.1635253
+                                ],
+                                [
+                                    8.6671829,
+                                    50.1645838
+                                ],
+                                [
+                                    8.6661101,
+                                    50.1654291
+                                ],
+                                [
+                                    8.6639857,
+                                    50.1670991
+                                ],
+                                [
+                                    8.660767,
+                                    50.1688722
+                                ],
+                                [
+                                    8.6561108,
+                                    50.1702466
+                                ],
+                                [
+                                    8.6526775,
+                                    50.1711674
+                                ],
+                                [
+                                    8.6505211,
+                                    50.1723562
+                                ],
+                                [
+                                    8.6487078,
+                                    50.1739848
+                                ],
+                                [
+                                    8.6480212,
+                                    50.1756888
+                                ],
+                                [
+                                    8.6481285,
+                                    50.1776952
+                                ],
+                                [
+                                    8.6508751,
+                                    50.1808556
+                                ],
+                                [
+                                    8.6560249,
+                                    50.1834938
+                                ],
+                                [
+                                    8.6575699,
+                                    50.1851426
+                                ],
+                                [
+                                    8.6584282,
+                                    50.1866814
+                                ],
+                                [
+                                    8.6570549,
+                                    50.1899786
+                                ],
+                                [
+                                    8.6513901,
+                                    50.1962428
+                                ],
+                                [
+                                    8.6492872,
+                                    50.1981933
+                                ],
+                                [
+                                    8.6477423,
+                                    50.1994845
+                                ],
+                                [
+                                    8.6455536,
+                                    50.2010778
+                                ]
+                            ]
+                        ]
+                    },
+                    "centroid": {
+                        "type": "Point",
+                        "coordinates": [
+                            8.682093654,
+                            50.108095777
+                        ]
+                    }
+                },
+                "address": {
+                    "city": "Frankfurt am Main",
+                    "isoCountryCode": "DE"
+                },
+                "attributes": {
+                    "parking": "Die cityFlitzer dürfen zurückgestellt werden:\r\n\r\n1. im Geschäftsgebiet Frankfurt an allen öffentlichen nicht beschränkten Parkplätzen, also insbesondere NICHT auf Bewohnerparkplätzen und NICHT auf Plätzen mit Parkraumbewirtschaftung (Parkscheinautomat usw.) und NICHT auf privaten Parkplätzen (z. B. von Geschäften). Bei zeitweisen Parkbeschränkungen muss das Parken noch für mindestens 72 Stunden möglich sein (z. B. bei angekündigten Baustellen, Markttagen oder Straßenreinigungen). Bitte beachten Sie, dass es in der Frankfurter Innenstadt, Altstadt und im Bahnhofsviertel (\"Zone 0\") praktisch keine Möglichkeit gibt, den CityFlitzer abzugeben, da dort alle öffentlichen Parkplätze bewirtschaftet sind.\r\n\r\n2. an folgenden cityFlitzer-Pools:\r\n- Frankfurt:\r\nFrankfurt Hauptbahnhof (HB): Am Taxistand nördlich vom Haupteingang (an der Station der buchbaren Autos)\r\nFrankfurt Flughafen (FRA): Terminal 1/P29 (in der Ankunftsebene direkt westlich des Terminals 1)\r\nPool Frankfurter Berg: Homburger Landstraße, Pool Kalbach: P+R, Pool Riederwald: Schäfflestraße, Pool Seckbach: Arolser Straße \r\n- Darmstadt:\r\nHauptbahnhof/Mobilitätszentrale (Zufahrt über Poststraße) (DH), Fraunhoferstraße 3 [darmstadtium] (DS), Elisabeth-Selbert-Straße 80 (K6), Kasinostraße 29 (KS), TU Lichtwiese (LW), Mercksplatz (MP), Schöfferstraße 2 [The FIZZ] (SC2), TU Darmstadt/Pankratiusstraße (TU) \r\n- Dieburg: \r\nParkplatz Auf der Leer (ADL), Max-Planck-Str. 31 [Mediencampus h_da] (MC)\r\n- Mainz:\r\nEmy-Roeder-Straße 11 [Recyclinghof Süd] (ER), Karcherweg [Betriebshof Grünamt] (GA), Am Gonsenheimer Spieß 51 (GS), Hechtsheimer Straße 31 [KDZ] (KDZ), Kaiser-Wilhelm-Ring 7 (KW), Bahnhof Mainz-Kastel (MK), Rheinallee 69 (RA), Zitadelle (ZD) \r\n- Offenbach:\r\nHauptbahnhof Offenbach (OH) :\r\n- Roßdorf (bei Darmstadt):  \r\nRoßdorf Rathaus (RR) \r\n- Wiesbaden:  \r\nBahnhof Mainz-Kastel (MK), Mühlhohle 10 (MÜ), ESWE (Hauptbahnhof/Ostseite) (WH), Yorckstraße 11 (YO) ",
+                    "access": "Alle cityFlitzer haben Bordcomputer. Die Fahrzeuge können direkt am Kartenleser durch Vorhalten der Kundenkarte geöffnet und bis zu 14 Tage lang genutzt werden. Darüber hinaus gehende Verlängerungen müssen mit dem book-n-drive Kundenservice, Tel. 0611-77877-77, abgestimmt werden. Die Autos dürfen von book-n-drive Kunden ausdrücklich auch für Einwegfahrten innerhalb des Geschäftsgebietes sowie an die definierten cityFlitzer-Pools in den Städten Darmstadt, Mainz, Wiesbaden sowie am Flughafen und Hauptbahnhof Frankfurt genutzt werden. Für Einwegfahrten wird ein Aufpreis von 3 EUR innerhalb der Stadt, 6 EUR zwischen den Städten und 10 EUR von bzw. zum Flughafen Frankfurt berechnet. Fahrten, die weniger als 500m vom Startpunkt entfernt beendet werden, sind keine Einwegfahrten und werden daher auch nicht mit einem Aufpreis belegt. \r\nACHTUNG: Für Kunden von fremden Organisationen im Rahmen der Flinkster-Quernutzung sind Einwegfahrten aus technischen und vertraglichen Gründen zur Zeit nicht vorgesehen. Sollte dies dennoch vorkommen, wird wegen des erhöhten Verwaltungsaufwands eine Gebühr wie bei einem Technikereinsatz berechnet (i. d. R. 25 EUR).",
+                    "locationnote": "Das Free-Floating-Geschäftsgebiet für die cityFlitzer in Frankfurt ist wie folgt begrenzt: im Westen durch die Autobahn A5, im Osten durch die Autobahn A661 und im Süden durch den Stadtwald südlich von Niederrad, Sachsenhausen und Oberrad. Die genaue Begrenzung ergibt sich aus der Stationsgrafik."
+                },
+                "rentalObjectTypes": [
+                    "vehicle"
+                ]
+            },
+            "position": {
+                "type": "Point",
+                "coordinates": [
+                    8.657285,
+                    50.109176667
+                ]
+            },
+            "distance": 0,
+            "price": {
+                "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providernetworks/1/prices?isoCountryCode=DE&providerCategoryId=1000",
+                "size": 3,
+                "items": [
+                    {
+                        "interval": 60,
+                        "type": "time",
+                        "grossamount": 2.3,
+                        "currency": "EUR",
+                        "taxrate": 0.19,
+                        "preferredprice": true
+                    },
+                    {
+                        "interval": 1440,
+                        "type": "time",
+                        "grossamount": 39,
+                        "currency": "EUR",
+                        "taxrate": 0.19,
+                        "preferredprice": false
+                    },
+                    {
+                        "type": "distance",
+                        "grossamount": 0.18,
+                        "currency": "EUR",
+                        "taxrate": 0.19,
+                        "preferredprice": true
+                    }
+                ]
+            }
+        },
+        {
+            "expand": "area,rentalobject,price",
+            "rentalObject": {
+                "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providernetworks/1/rentalobjects/FCE6A704C889BB897AA1C1486BE9F5609913DEAB",
+                "uid": "FCE6A704C889BB897AA1C1486BE9F5609913DEAB",
+                "name": "Audi A3",
+                "description": "1.6 TDI Sportback Navi",
+                "providerRentalObjectId": 452878,
+                "rentalModel": "stationbased",
+                "type": "vehiclepool",
+                "provider": {
+                    "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providers/book-n-drive"
+                },
+                "category": {
+                    "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providernetworks/1/categories/1002"
+                },
+                "attributes": {
+                    "transmissionType": "manual",
+                    "seats": 5,
+                    "colour": "weiß",
+                    "doors": 5,
+                    "fuel": "diesel"
+                },
+                "equipment": null
+            },
+            "area": {
+                "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/areas/A3AC41DEEC5B023B0D91A58F1B1B109A6FE3F12C",
+                "uid": "A3AC41DEEC5B023B0D91A58F1B1B109A6FE3F12C",
+                "name": "Hauptbahnhof Frankfurt",
+                "provider": {
+                    "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providers/book-n-drive"
+                },
+                "providerAreaId": 217,
+                "providerNetworkIds": [
+                    1
+                ],
+                "type": "station",
+                "geometry": {
+                    "position": {
+                        "type": "Point",
+                        "coordinates": [
+                            8.663564622,
+                            50.107877685
+                        ]
+                    }
+                },
+                "address": {
+                    "street": "Am Hauptbahnhof",
+                    "number": 1,
+                    "zip": 60329,
+                    "city": "Frankfurt am Main",
+                    "district": "Bahnhofsviertel",
+                    "isoCountryCode": "DE"
+                },
+                "attributes": {
+                    "parking": "Die Autos befinden sich im UNBESCHRANKTEN Bereich des Taxistandes nördlich des Haupteingangs. Da sich in diesen Fahrzeugen keine Parkkarte befindet, müssen sie unbedingt dort geparkt sein und dürfen NICHT auf dem beschrankten Bereich des Busbahnhofes südlich des Haupteingangs stehen!\r\n\r\n BITTE NICHT DEN BESCHRANKTEN PARKPLATZ SÜDLICH DES HAUPTEINGANGS BENUTZEN UND PARKTICKET ZIEHEN!!! BEI EINLÖSUNG EINES PARKTICKETS --> MIND. 39 EURO GEBÜHR!\r\n\r\nZu- und Abfahrt der Parkplätze erfolgt für PKW über den Taxiwarteplatz. Die Parkplätze liegen entlang der von der Straße aus gesehen letzten Taxispur.\r\n\r\nBitte stellen Sie sicher, dass Ihre aktuelle Handynummer bei Ihren Kundenstammdaten korrekt im Feld Mobiltelefon (und nicht etwa bei Festnetz privat) erfasst ist, damit Sie zuverlässig per SMS über das zugeteilte Pool-Fahrzeug informiert werden können.",
+                    "access": "Fahrzeuge mit Bordcomputer. Einfach Zugangsmedium an den Kartenleser der Windschutzscheibe halten.\r\n(Der ehemalige Schlüsseltresor wird nicht mehr benötigt und ist derzeit funktionslos!)",
+                    "locationnote": "Parkreihe am Taxistand des Hauptbahnhofes Frankfurt (nördlich vom Ausgang City). \r\nVon den Zügen kommend verlassen Sie den Hauptbahnhof durch den Ausgang City und wenden sich nach links (Norden) in Richtung Taxistand. Sie erreichen den Taxistand auch direkt, wenn Sie den Hauptbahnhof durch den Nebenausgang in Höhe der Gleise 17/18 verlassen.\r\nWenn Sie vor dem Hauptbahnhof stehen (mit Blick zum Haupteingang), wenden Sie sich bitte nach rechts (Norden) in Richtung Taxistand.\r\n",
+                    "publictransportation": "Frankfurt (Main) Hbf: Fern- und Regionalverkehr, S7\r\nFrankfurt (Main) Hbf tief: S-Bahn S1-S6, S8-S9\r\nHauptbahnhof: U-Bahn U4, U5; Straßenbahn 11, 16, 17, 21; Bus 33, 35, 37, 46, n8, n83\r\nHauptbahnhof/Münchener Straße: Straßenbahn 12"
+                },
+                "rentalObjectTypes": [
+                    "vehicle"
+                ]
+            },
+            "position": {
+                "type": "Point",
+                "coordinates": [
+                    8.663564622,
+                    50.107877685
+                ]
+            },
+            "distance": 0,
+            "price": {
+                "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providernetworks/1/prices?isoCountryCode=DE&providerCategoryId=1002",
+                "size": 3,
+                "items": [
+                    {
+                        "interval": 60,
+                        "type": "time",
+                        "grossamount": 6,
+                        "currency": "EUR",
+                        "taxrate": 0.19,
+                        "preferredprice": true
+                    },
+                    {
+                        "interval": 1440,
+                        "type": "time",
+                        "grossamount": 60,
+                        "currency": "EUR",
+                        "taxrate": 0.19,
+                        "preferredprice": false
+                    },
+                    {
+                        "type": "distance",
+                        "grossamount": 0.18,
+                        "currency": "EUR",
+                        "taxrate": 0.19,
+                        "preferredprice": true
+                    }
+                ]
+            }
+        },
+        {
+            "expand": "area,rentalobject,price",
+            "rentalObject": {
+                "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providernetworks/1/rentalobjects/AAF90165BD654789512B840DEBA12504F5815B12",
+                "uid": "AAF90165BD654789512B840DEBA12504F5815B12",
+                "name": "VW Beetle Cabrio",
+                "description": "2.0 TDI BlueMotion Navi 4-Sitzer",
+                "providerRentalObjectId": 453194,
+                "rentalModel": "stationbased",
+                "type": "vehiclepool",
+                "provider": {
+                    "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providers/book-n-drive"
+                },
+                "category": {
+                    "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providernetworks/1/categories/1002"
+                },
+                "attributes": {
+                    "transmissionType": "manual",
+                    "seats": 4,
+                    "colour": "weiß",
+                    "doors": 2,
+                    "fuel": "diesel"
+                },
+                "equipment": null
+            },
+            "area": {
+                "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/areas/A3AC41DEEC5B023B0D91A58F1B1B109A6FE3F12C",
+                "uid": "A3AC41DEEC5B023B0D91A58F1B1B109A6FE3F12C",
+                "name": "Hauptbahnhof Frankfurt",
+                "provider": {
+                    "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providers/book-n-drive"
+                },
+                "providerAreaId": 217,
+                "providerNetworkIds": [
+                    1
+                ],
+                "type": "station",
+                "geometry": {
+                    "position": {
+                        "type": "Point",
+                        "coordinates": [
+                            8.663564622,
+                            50.107877685
+                        ]
+                    }
+                },
+                "address": {
+                    "street": "Am Hauptbahnhof",
+                    "number": 1,
+                    "zip": 60329,
+                    "city": "Frankfurt am Main",
+                    "district": "Bahnhofsviertel",
+                    "isoCountryCode": "DE"
+                },
+                "attributes": {
+                    "parking": "Die Autos befinden sich im UNBESCHRANKTEN Bereich des Taxistandes nördlich des Haupteingangs. Da sich in diesen Fahrzeugen keine Parkkarte befindet, müssen sie unbedingt dort geparkt sein und dürfen NICHT auf dem beschrankten Bereich des Busbahnhofes südlich des Haupteingangs stehen!\r\n\r\n BITTE NICHT DEN BESCHRANKTEN PARKPLATZ SÜDLICH DES HAUPTEINGANGS BENUTZEN UND PARKTICKET ZIEHEN!!! BEI EINLÖSUNG EINES PARKTICKETS --> MIND. 39 EURO GEBÜHR!\r\n\r\nZu- und Abfahrt der Parkplätze erfolgt für PKW über den Taxiwarteplatz. Die Parkplätze liegen entlang der von der Straße aus gesehen letzten Taxispur.\r\n\r\nBitte stellen Sie sicher, dass Ihre aktuelle Handynummer bei Ihren Kundenstammdaten korrekt im Feld Mobiltelefon (und nicht etwa bei Festnetz privat) erfasst ist, damit Sie zuverlässig per SMS über das zugeteilte Pool-Fahrzeug informiert werden können.",
+                    "access": "Fahrzeuge mit Bordcomputer. Einfach Zugangsmedium an den Kartenleser der Windschutzscheibe halten.\r\n(Der ehemalige Schlüsseltresor wird nicht mehr benötigt und ist derzeit funktionslos!)",
+                    "locationnote": "Parkreihe am Taxistand des Hauptbahnhofes Frankfurt (nördlich vom Ausgang City). \r\nVon den Zügen kommend verlassen Sie den Hauptbahnhof durch den Ausgang City und wenden sich nach links (Norden) in Richtung Taxistand. Sie erreichen den Taxistand auch direkt, wenn Sie den Hauptbahnhof durch den Nebenausgang in Höhe der Gleise 17/18 verlassen.\r\nWenn Sie vor dem Hauptbahnhof stehen (mit Blick zum Haupteingang), wenden Sie sich bitte nach rechts (Norden) in Richtung Taxistand.\r\n",
+                    "publictransportation": "Frankfurt (Main) Hbf: Fern- und Regionalverkehr, S7\r\nFrankfurt (Main) Hbf tief: S-Bahn S1-S6, S8-S9\r\nHauptbahnhof: U-Bahn U4, U5; Straßenbahn 11, 16, 17, 21; Bus 33, 35, 37, 46, n8, n83\r\nHauptbahnhof/Münchener Straße: Straßenbahn 12"
+                },
+                "rentalObjectTypes": [
+                    "vehicle"
+                ]
+            },
+            "position": {
+                "type": "Point",
+                "coordinates": [
+                    8.663564622,
+                    50.107877685
+                ]
+            },
+            "distance": 0,
+            "price": {
+                "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providernetworks/1/prices?isoCountryCode=DE&providerCategoryId=1002",
+                "size": 3,
+                "items": [
+                    {
+                        "interval": 60,
+                        "type": "time",
+                        "grossamount": 6,
+                        "currency": "EUR",
+                        "taxrate": 0.19,
+                        "preferredprice": true
+                    },
+                    {
+                        "interval": 1440,
+                        "type": "time",
+                        "grossamount": 60,
+                        "currency": "EUR",
+                        "taxrate": 0.19,
+                        "preferredprice": false
+                    },
+                    {
+                        "type": "distance",
+                        "grossamount": 0.18,
+                        "currency": "EUR",
+                        "taxrate": 0.19,
+                        "preferredprice": true
+                    }
+                ]
+            }
+        },
+        {
+            "expand": "area,rentalobject,price",
+            "rentalObject": {
+                "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providernetworks/1/rentalobjects/6A0103947AF26B2D9373751C3C65F448947E2435",
+                "uid": "6A0103947AF26B2D9373751C3C65F448947E2435",
+                "name": "Audi A4 Kombi",
+                "description": "Avant 2.0 TDI Automatik Navi",
+                "providerRentalObjectId": 435745,
+                "rentalModel": "stationbased",
+                "type": "vehiclepool",
+                "provider": {
+                    "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providers/book-n-drive"
+                },
+                "category": {
+                    "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providernetworks/1/categories/1003"
+                },
+                "attributes": {
+                    "transmissionType": "manual",
+                    "seats": 5,
+                    "colour": "weiß",
+                    "doors": 5,
+                    "fuel": "diesel"
+                },
+                "equipment": null
+            },
+            "area": {
+                "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/areas/A3AC41DEEC5B023B0D91A58F1B1B109A6FE3F12C",
+                "uid": "A3AC41DEEC5B023B0D91A58F1B1B109A6FE3F12C",
+                "name": "Hauptbahnhof Frankfurt",
+                "provider": {
+                    "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providers/book-n-drive"
+                },
+                "providerAreaId": 217,
+                "providerNetworkIds": [
+                    1
+                ],
+                "type": "station",
+                "geometry": {
+                    "position": {
+                        "type": "Point",
+                        "coordinates": [
+                            8.663564622,
+                            50.107877685
+                        ]
+                    }
+                },
+                "address": {
+                    "street": "Am Hauptbahnhof",
+                    "number": 1,
+                    "zip": 60329,
+                    "city": "Frankfurt am Main",
+                    "district": "Bahnhofsviertel",
+                    "isoCountryCode": "DE"
+                },
+                "attributes": {
+                    "parking": "Die Autos befinden sich im UNBESCHRANKTEN Bereich des Taxistandes nördlich des Haupteingangs. Da sich in diesen Fahrzeugen keine Parkkarte befindet, müssen sie unbedingt dort geparkt sein und dürfen NICHT auf dem beschrankten Bereich des Busbahnhofes südlich des Haupteingangs stehen!\r\n\r\n BITTE NICHT DEN BESCHRANKTEN PARKPLATZ SÜDLICH DES HAUPTEINGANGS BENUTZEN UND PARKTICKET ZIEHEN!!! BEI EINLÖSUNG EINES PARKTICKETS --> MIND. 39 EURO GEBÜHR!\r\n\r\nZu- und Abfahrt der Parkplätze erfolgt für PKW über den Taxiwarteplatz. Die Parkplätze liegen entlang der von der Straße aus gesehen letzten Taxispur.\r\n\r\nBitte stellen Sie sicher, dass Ihre aktuelle Handynummer bei Ihren Kundenstammdaten korrekt im Feld Mobiltelefon (und nicht etwa bei Festnetz privat) erfasst ist, damit Sie zuverlässig per SMS über das zugeteilte Pool-Fahrzeug informiert werden können.",
+                    "access": "Fahrzeuge mit Bordcomputer. Einfach Zugangsmedium an den Kartenleser der Windschutzscheibe halten.\r\n(Der ehemalige Schlüsseltresor wird nicht mehr benötigt und ist derzeit funktionslos!)",
+                    "locationnote": "Parkreihe am Taxistand des Hauptbahnhofes Frankfurt (nördlich vom Ausgang City). \r\nVon den Zügen kommend verlassen Sie den Hauptbahnhof durch den Ausgang City und wenden sich nach links (Norden) in Richtung Taxistand. Sie erreichen den Taxistand auch direkt, wenn Sie den Hauptbahnhof durch den Nebenausgang in Höhe der Gleise 17/18 verlassen.\r\nWenn Sie vor dem Hauptbahnhof stehen (mit Blick zum Haupteingang), wenden Sie sich bitte nach rechts (Norden) in Richtung Taxistand.\r\n",
+                    "publictransportation": "Frankfurt (Main) Hbf: Fern- und Regionalverkehr, S7\r\nFrankfurt (Main) Hbf tief: S-Bahn S1-S6, S8-S9\r\nHauptbahnhof: U-Bahn U4, U5; Straßenbahn 11, 16, 17, 21; Bus 33, 35, 37, 46, n8, n83\r\nHauptbahnhof/Münchener Straße: Straßenbahn 12"
+                },
+                "rentalObjectTypes": [
+                    "vehicle"
+                ]
+            },
+            "position": {
+                "type": "Point",
+                "coordinates": [
+                    8.663564622,
+                    50.107877685
+                ]
+            },
+            "distance": 0,
+            "price": {
+                "href": "https://api.deutschebahn.com/flinkster-api-ng/v1/providernetworks/1/prices?isoCountryCode=DE&providerCategoryId=1003",
+                "size": 3,
+                "items": [
+                    {
+                        "interval": 60,
+                        "type": "time",
+                        "grossamount": 7,
+                        "currency": "EUR",
+                        "taxrate": 0.19,
+                        "preferredprice": true
+                    },
+                    {
+                        "interval": 1440,
+                        "type": "time",
+                        "grossamount": 70,
+                        "currency": "EUR",
+                        "taxrate": 0.19,
+                        "preferredprice": false
+                    },
+                    {
+                        "type": "distance",
+                        "grossamount": 0.2,
+                        "currency": "EUR",
+                        "taxrate": 0.19,
+                        "preferredprice": true
+                    }
+                ]
+            }
+        }
+    ],
+    "_links": [
+        {
+            "rel": "AppleAppStore",
+            "verb": "GET",
+            "href": "https://itunes.apple.com/de/app/flinkster/id421390893?mt=8"
+        },
+        {
+            "rel": "GooglePlayStore",
+            "verb": "GET",
+            "href": "https://play.google.com/store/apps/details?id=de.bahn.flinkster&hl=de"
+        }
+    ]
+}
