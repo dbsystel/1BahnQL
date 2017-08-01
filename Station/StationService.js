@@ -6,9 +6,8 @@ class StationService {
 	* A Stations service provides capability of loading stations via IDs and text search.
 	* @constructor
 	*/
-  constructor(stationLoader, stationIdMappingService) {
+  constructor(stationLoader) {
     this.stationLoader = stationLoader;
-    this.stationIdMappingService = stationIdMappingService;
     this.relationships;
   }
 
@@ -28,8 +27,18 @@ class StationService {
 	 */
   stationByEvaId(evaId) {
     const self = this;
-    return this.stationIdMappingService.stationNumberByEvaId(evaId)
-      .then(stationNumber => self.stationLoader.stationByBahnhofsnummer(stationNumber))
+    return this.stationLoader.stationByEvaId(evaId)
+      .then(station => self.transformStationResultIntoStation(station));
+  }
+
+  /**
+	 * Request a Station with a given evaId.
+	 * @param {int} evaId - The evaId of the requested station.
+	 * @return {Promise<Station>} promise of a station - A promise which resolves to the fetched Station or null if the Id is not valid.
+	 */
+  stationByRil100(ril100) {
+    const self = this;
+    return this.stationLoader.stationByRil100(ril100)
       .then(station => self.transformStationResultIntoStation(station));
   }
 

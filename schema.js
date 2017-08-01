@@ -36,7 +36,11 @@ const experimentalQuerys = experimental ? `
 const schema = buildSchema(`
   type Query {
     ${experimentalQuerys}
-    stationWith(evaId: Int): Station
+
+    stationWithEvaId(evaId: Int!): Station
+    stationWithStationNumber(stationNumber: Int!): Station
+    stationWithRill100(rill100: String!): Station
+
     search(searchTerm: String): Searchable!
     nearby(latitude: Float!, longitude: Float!, radius: Int = 10000): Nearby!
     parkingSpace(id: Int): ParkingSpace
