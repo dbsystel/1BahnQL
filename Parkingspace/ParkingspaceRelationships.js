@@ -1,15 +1,15 @@
 class ParkingspaceRelationships {
-  constructor(parkingsspaceService, stationService) {
-    this.parkingsspaceService = parkingsspaceService;
+  constructor(parkingspaceService, stationService) {
+    this.parkingspaceService = parkingspaceService;
     this.stationService = stationService;
   }
 
   resolve(parkingspace) {
-    const parkingsspaceService = this.parkingsspaceService;
+    const parkingspaceService = this.parkingspaceService;
     const stationService = this.stationService;
 
-    parkingspace.station = () => stationService.stationByBahnhofsnummer(parkingspace.parkraumBahnhofNummer);
-    parkingspace.occupancy = () => parkingsspaceService.occupancyForSpaceId(parkingspace.id);
+    parkingspace.station = () => stationService.stationByBahnhofsnummer(parkingspace.stationId);
+    parkingspace.occupancy = () => parkingspaceService.occupancyForSpaceId(parkingspace.id);
   }
 }
 

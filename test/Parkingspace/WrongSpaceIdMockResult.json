@@ -1,0 +1,6 @@
+{
+    "code": 4100,
+    "error": "STORAGE_ENTITY_NOT_FOUND",
+    "message": "No space with id '12345' found.",
+    "userMessage": "No space with id '12345' found."
+}

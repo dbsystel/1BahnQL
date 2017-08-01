@@ -2,15 +2,14 @@ const convert = require('xml-js');
 const moment = require('moment-timezone');
 const BaseLoader = require('./../Core/BaseLoader');
 
-
-const baseURL = 'https://api.deutschebahn.com/timetables/v1';
+const serviceURL = '/timetables/v1';
 
 class TimetableLoader extends BaseLoader {
 
   timetableForEvaId(evaId) {
     const now = moment();
     const nowString = now.format('YYMMDD/HH');
-    const url = `${baseURL}/plan/${evaId}/${nowString}`;
+    const url = `${this.baseURL}${serviceURL}/plan/${evaId}/${nowString}`;
     const configuration = this.fetchConfiguration;
     return this.fetch(url, configuration)
       .then(res => res.text())

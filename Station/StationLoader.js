@@ -1,7 +1,6 @@
 const BaseLoader = require('./../Core/BaseLoader');
 
-const baseURL = 'https://api.deutschebahn.com/stada/v2';
-
+const serviceURL = '/stada/v2';
 
 class StationLoader extends BaseLoader {
 
@@ -11,7 +10,10 @@ class StationLoader extends BaseLoader {
 	 * @return {Promise<Station>} promise of a JSO station
 	 */
   stationByBahnhofsnummer(stationNumber) {
-    const url = `${baseURL}/stations/${stationNumber}`;
+    if (!stationNumber) {
+      return Promise.resolve(null);
+    }
+    const url = `${this.baseURL}${serviceURL}/stations/${stationNumber}`;
     const configuration = this.fetchConfiguration;
     const promise = this.fetch(url, configuration)
       .then(res => StationLoader.parseJSON(res, "StaDa"))
@@ -31,7 +33,7 @@ class StationLoader extends BaseLoader {
 	 * @return {Promise<Array<StationJSON>>}
 	 */
   searchStations(searchTerm) {
-    const url = `${baseURL}/stations?searchstring=*${searchTerm}*`;
+    const url = `${this.baseURL}${serviceURL}/stations?searchstring=*${searchTerm}*`;
     const configuration = this.fetchConfiguration;
     const promies = this.fetch(url, configuration)
       .then(res => StationLoader.parseJSON(res, "StaDa"))

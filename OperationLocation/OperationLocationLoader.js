@@ -1,6 +1,6 @@
 const BaseLoader = require('./../Core/BaseLoader');
 
-const baseURL = "https://api.deutschebahn.com";
+const serviceURL = '/betriebsstellen/v1';
 
 class OperationLocationLoader extends BaseLoader {
 
@@ -10,7 +10,7 @@ class OperationLocationLoader extends BaseLoader {
 	 * @return {Promise<Array<BetriebsstellenJSON>>}
 	 */
 	search(name) {
-		const url = `${baseURL}/betriebsstellen/v1/betriebsstellen?name=${name}`;
+		const url = `${this.baseURL}${serviceURL}/betriebsstellen?name=${name}`;
 		const configuration = this.fetchConfiguration;
 		const promies = this.fetch(url, configuration)
 		.then(res => OperationLocationLoader.parseJSON(res, "FaSta"))
