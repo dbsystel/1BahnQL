@@ -1,10 +1,10 @@
 class VehicleProduct {
   constructor(payload) {
+    console.log(payload)
     this.name = payload.name;
-    this.number = payload.nr;
     this.class = payload.class;
     this.productCode = payload.productCode;
-    this.productName = payload.productName;
+    this.productName = payload.product;
   }
 }
 

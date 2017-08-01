@@ -13,10 +13,12 @@ type RoutePart {
   from: Station!
   to: Station!
   delay: Int
-  product: Product!
+  product: Product
   direction: String!
   start: String!
   end: String!
+  departingTrack: Track
+  arrivingTrack: Track
 }
 
 type Product {
