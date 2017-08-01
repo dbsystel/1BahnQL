@@ -1,30 +1,13 @@
-const fetch = require('node-fetch');
+const BaseLoader = require('./../Core/BaseLoader');
 
-const baseURL = 'https://api.deutschebahn.com/flinkster-api-ng/v1';
+const serviceURL = '/flinkster-api-ng/v1';
 
-class FlinksterLoader {
-  constructor(APIToken) {
-    this.APIToken = APIToken;
-  }
-
-  get fetchConfiguration() {
-    const headers = {
-      Authorization: `Bearer ${this.APIToken}`,
-    };
-    const configuration = {
-      method: 'GET',
-      headers,
-    };
-
-    return configuration;
-  }
-
-
+class FlinksterLoader extends BaseLoader {
   nearbyFlinksters(type, latitude, longitude, radius, count, offset) {
-    const url = `${baseURL}/bookingproposals?lat=${latitude}&lon=${longitude}&radius=${radius}&offset=${offset}&limit=${count}&providernetwork=${type}&expand=area%2Crentalobject%2Cprice`;
+    const url = `${this.baseURL}${serviceURL}/bookingproposals?lat=${latitude}&lon=${longitude}&radius=${radius}&offset=${offset}&limit=${count}&providernetwork=${type}&expand=area%2Crentalobject%2Cprice`;
     const configuration = this.fetchConfiguration;
 
-    return fetch(url, configuration).then(res => res.json());
+    return this.fetch(url, configuration).then(res => FlinksterLoader.parseJSON(res, "Flinkster"));
   }
 }
 
