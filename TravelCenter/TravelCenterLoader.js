@@ -1,6 +1,6 @@
 const BaseLoader = require('./../Core/BaseLoader');
 
-const serviceUrl = '/reisezentren/v1'
+const serviceURL = '/reisezentren/v1'
 
 class TravelCenterLoader extends BaseLoader {
 
