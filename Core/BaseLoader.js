@@ -33,7 +33,7 @@ class BaseLoader {
           errorMessage = `${APIName}: Failed to parse JSON`;
         }
         default: {
-          errorMessage = '${APIName}: Unknown Error';
+          errorMessage = `${APIName}: Unknown Error`;
         }
         console.warn(errorMessage, res);
         throw new Error(errorMessage);
