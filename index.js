@@ -1,7 +1,7 @@
 const { graphql } = require('graphql');
 const schema = require('./schema.js');
 const express = require('express');
-const graphqlHTTP = require('express-graphql');
+const graphqlHTTP = require('./express-graphql/dist/index');
 
 const ParkingspaceLoader = require('./Parkingspace/ParkingspaceLoader');
 const FlinksterLoader = require('./Flinkster/FlinksterLoader');
