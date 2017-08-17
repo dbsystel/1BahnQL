@@ -1,6 +1,6 @@
 const BaseLoader = require('./../Core/BaseLoader');
 
-const serviceURL = '/bahnhofsfotos/v1/';
+const serviceURL = '/bahnhofsfotos/v1';
 
 class StationPictureLoader extends BaseLoader {
 
