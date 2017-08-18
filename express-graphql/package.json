@@ -1,0 +1,181 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "express-graphql@^0.6.6",
+        "scope": null,
+        "escapedName": "express-graphql",
+        "name": "express-graphql",
+        "rawSpec": "^0.6.6",
+        "spec": ">=0.6.6 <0.7.0",
+        "type": "range"
+      },
+      "/Users/lukaslaschmidt/Developer/hackberlin"
+    ]
+  ],
+  "_from": "express-graphql@>=0.6.6 <0.7.0",
+  "_id": "express-graphql@0.6.6",
+  "_inCache": true,
+  "_location": "/express-graphql",
+  "_nodeVersion": "7.10.0",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/express-graphql-0.6.6.tgz_1495826697389_0.7526548514142632"
+  },
+  "_npmUser": {
+    "name": "leebyron",
+    "email": "lee@leebyron.com"
+  },
+  "_npmVersion": "4.2.0",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "express-graphql@^0.6.6",
+    "scope": null,
+    "escapedName": "express-graphql",
+    "name": "express-graphql",
+    "rawSpec": "^0.6.6",
+    "spec": ">=0.6.6 <0.7.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/express-graphql/-/express-graphql-0.6.6.tgz",
+  "_shasum": "fdf5c7b5af600b8ef920e4095e03dfc784f9094d",
+  "_shrinkwrap": null,
+  "_spec": "express-graphql@^0.6.6",
+  "_where": "/Users/lukaslaschmidt/Developer/hackberlin",
+  "babel": {
+    "presets": [
+      "es2015"
+    ],
+    "plugins": [
+      "transform-class-properties",
+      "transform-flow-strip-types"
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/graphql/express-graphql/issues"
+  },
+  "contributors": [
+    {
+      "name": "Lee Byron",
+      "email": "lee@leebyron.com",
+      "url": "http://leebyron.com/"
+    },
+    {
+      "name": "Daniel Schafer",
+      "email": "dschafer@fb.com"
+    },
+    {
+      "name": "Caleb Meredith",
+      "email": "calebmeredith8@gmail.com"
+    }
+  ],
+  "dependencies": {
+    "accepts": "^1.3.0",
+    "content-type": "^1.0.2",
+    "http-errors": "^1.3.0",
+    "prettier": "^1.3.1",
+    "raw-body": "^2.1.0"
+  },
+  "description": "Production ready GraphQL HTTP middleware.",
+  "devDependencies": {
+    "babel-cli": "6.24.1",
+    "babel-eslint": "7.2.3",
+    "babel-plugin-transform-async-to-generator": "6.24.1",
+    "babel-plugin-transform-class-properties": "6.24.1",
+    "babel-plugin-transform-flow-strip-types": "6.22.0",
+    "babel-plugin-transform-runtime": "6.22.0",
+    "babel-preset-es2015": "6.24.1",
+    "babel-register": "6.24.1",
+    "babel-runtime": "6.23.0",
+    "body-parser": "1.17.2",
+    "chai": "3.5.0",
+    "connect": "3.6.2",
+    "coveralls": "2.13.1",
+    "eslint": "3.19.0",
+    "eslint-plugin-flowtype": "2.33.0",
+    "express": "4.14.1",
+    "express3": "*",
+    "flow-bin": "0.47.0",
+    "graphql": "0.10.0",
+    "isparta": "4.0.0",
+    "mocha": "3.4.2",
+    "multer": "1.3.0",
+    "restify": "4.3.0",
+    "sane": "1.7.0",
+    "sinon": "2.3.1",
+    "supertest": "3.0.0"
+  },
+  "directories": {
+    "lib": "./dist"
+  },
+  "dist": {
+    "shasum": "fdf5c7b5af600b8ef920e4095e03dfc784f9094d",
+    "tarball": "https://registry.npmjs.org/express-graphql/-/express-graphql-0.6.6.tgz"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "PATENTS"
+  ],
+  "gitHead": "364db6457bd3de637773a7eb12bb7b850cf54a9e",
+  "homepage": "https://github.com/graphql/express-graphql#readme",
+  "keywords": [
+    "express",
+    "restify",
+    "connect",
+    "http",
+    "graphql",
+    "middleware",
+    "api"
+  ],
+  "license": "BSD-3-Clause",
+  "main": "dist/index.js",
+  "maintainers": [
+    {
+      "name": "fb",
+      "email": "opensource+npm@fb.com"
+    },
+    {
+      "name": "leebyron",
+      "email": "lee@leebyron.com"
+    },
+    {
+      "name": "wincent",
+      "email": "greg@hurrell.net"
+    }
+  ],
+  "name": "express-graphql",
+  "optionalDependencies": {},
+  "options": {
+    "mocha": "--require resources/mocha-bootload src/**/__tests__/**/*.js"
+  },
+  "peerDependencies": {
+    "graphql": "^0.10.0"
+  },
+  "readme": "GraphQL HTTP Server Middleware\n==============================\n\n[![Build Status](https://travis-ci.org/graphql/express-graphql.svg?branch=master)](https://travis-ci.org/graphql/express-graphql)\n[![Coverage Status](https://coveralls.io/repos/graphql/express-graphql/badge.svg?branch=master&service=github)](https://coveralls.io/github/graphql/express-graphql?branch=master)\n\nCreate a GraphQL HTTP server with any HTTP web framework that supports connect styled middleware, including [Connect](https://github.com/senchalabs/connect) itself, [Express](http://expressjs.com) and [Restify](http://restify.com/).\n\n## Installation\n\n```sh\nnpm install --save express-graphql\n```\n\n\n## Simple Setup\n\nJust mount `express-graphql` as a route handler:\n\n```js\nconst express = require('express');\nconst graphqlHTTP = require('express-graphql');\n\nconst app = express();\n\napp.use('/graphql', graphqlHTTP({\n  schema: MyGraphQLSchema,\n  graphiql: true\n}));\n\napp.listen(4000);\n```\n\n\n## Setup with Restify\n\nUse `.get` or `.post` (or both) rather than `.use` to configure your route handler. If you want to show GraphiQL in the browser, set `graphiql: true` on your `.get` handler.\n\n```js\nconst restify = require('restify');\nconst graphqlHTTP = require('express-graphql');\n\nconst app = restify.createServer();\n\napp.post('/graphql', graphqlHTTP({\n  schema: MyGraphQLSchema,\n  graphiql: false\n}));\n\napp.get('/graphql', graphqlHTTP({\n  schema: MyGraphQLSchema,\n  graphiql: true\n}));\n\napp.listen(4000);\n```\n\n\n## Options\n\nThe `graphqlHTTP` function accepts the following options:\n\n  * **`schema`**: A `GraphQLSchema` instance from [`GraphQL.js`][].\n    A `schema` *must* be provided.\n\n  * **`graphiql`**: If `true`, presents [GraphiQL][] when the GraphQL endpoint is\n    loaded in a browser. We recommend that you set\n    `graphiql` to `true` when your app is in development, because it's\n    quite useful. You may or may not want it in production.\n\n  * **`rootValue`**: A value to pass as the `rootValue` to the `graphql()`\n    function from [`GraphQL.js`][].\n\n  * **`context`**: A value to pass as the `context` to the `graphql()`\n    function from [`GraphQL.js`][]. If `context` is not provided, the\n    `request` object is passed as the context.\n\n  * **`pretty`**: If `true`, any JSON response will be pretty-printed.\n\n  * **`formatError`**: An optional function which will be used to format any\n    errors produced by fulfilling a GraphQL operation. If no function is\n    provided, GraphQL's default spec-compliant [`formatError`][] function will be used.\n\n  * **`extensions`**: An optional function for adding additional metadata to the\n    GraphQL response as a key-value object. The result will be added to\n    `\"extensions\"` field in the resulting JSON. This is often a useful place to\n    add development time metadata such as the runtime of a query or the amount\n    of resources consumed. This may be an async function. The function is\n    give one object as an argument: `{ document, variables, operationName, result }`.\n\n  * **`validationRules`**: Optional additional validation rules queries must\n    satisfy in addition to those defined by the GraphQL spec.\n\nIn addition to an object defining each option, options can also be provided as\na function (or async function) which returns this options object. This function\nis provided the arguments `(request, response, graphQLParams)` and is called\nafter the request has been parsed.\n\nThe `graphQLParams` is provided as the object `{ query, variables, operationName, raw }`.\n\n```js\napp.use('/graphql', graphqlHTTP(async (request, response, graphQLParams) => ({\n  schema: MyGraphQLSchema,\n  rootValue: await someFunctionToGetRootValue(request)\n  graphiql: true\n})));\n```\n\n\n## HTTP Usage\n\nOnce installed at a path, `express-graphql` will accept requests with\nthe parameters:\n\n  * **`query`**: A string GraphQL document to be executed.\n\n  * **`variables`**: The runtime values to use for any GraphQL query variables\n    as a JSON object.\n\n  * **`operationName`**: If the provided `query` contains multiple named\n    operations, this specifies which operation should be executed. If not\n    provided, a 400 error will be returned if the `query` contains multiple\n    named operations.\n\n  * **`raw`**: If the `graphiql` option is enabled and the `raw` parameter is\n    provided raw JSON will always be returned instead of GraphiQL even when\n    loaded from a browser.\n\nGraphQL will first look for each parameter in the URL's query-string:\n\n```\n/graphql?query=query+getUser($id:ID){user(id:$id){name}}&variables={\"id\":\"4\"}\n```\n\nIf not found in the query-string, it will look in the POST request body.\n\nIf a previous middleware has already parsed the POST body, the `request.body`\nvalue will be used. Use [`multer`][] or a similar middleware to add support\nfor `multipart/form-data` content, which may be useful for GraphQL mutations\ninvolving uploading files. See an [example using multer](https://github.com/graphql/express-graphql/blob/304b24b993c8f16fffff8d23b0fa4088e690874b/src/__tests__/http-test.js#L674-L741).\n\nIf the POST body has not yet been parsed, express-graphql will interpret it\ndepending on the provided *Content-Type* header.\n\n  * **`application/json`**: the POST body will be parsed as a JSON\n    object of parameters.\n\n  * **`application/x-www-form-urlencoded`**: this POST body will be\n    parsed as a url-encoded string of key-value pairs.\n\n  * **`application/graphql`**: The POST body will be parsed as GraphQL\n    query string, which provides the `query` parameter.\n\n\n## Combining with Other Express Middleware\n\nBy default, the express request is passed as the GraphQL `context`.\nSince most express middleware operates by adding extra data to the\nrequest object, this means you can use most express middleware just by inserting it before `graphqlHTTP` is mounted. This covers scenarios such as authenticating the user, handling file uploads, or mounting GraphQL on a dynamic endpoint.\n\nThis example uses [`express-session`][] to provide GraphQL with the currently logged-in session.\n\n```js\nconst session = require('express-session');\nconst graphqlHTTP = require('express-graphql');\n\nconst app = express();\n\napp.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}));\n\napp.use('/graphql', graphqlHTTP({\n  schema: MySessionAwareGraphQLSchema,\n  graphiql: true\n}));\n```\n\nThen in your type definitions, you can access the request via the third \"context\" argument in your `resolve` function:\n\n```js\nnew GraphQLObjectType({\n  name: 'MyType',\n  fields: {\n    myField: {\n      type: GraphQLString,\n      resolve(parentValue, args, request) {\n        // use `request.session` here\n      }\n    }\n  }\n});\n```\n\n\n## Providing Extensions\n\nThe GraphQL response allows for adding additional information in a response to\na GraphQL query via a field in the response called `\"extensions\"`. This is added\nby providing an `extensions` function when using `graphqlHTTP`. The function\nmust return a JSON-serializable Object.\n\nWhen called, this is provided an argument which you can use to get information\nabout the GraphQL request:\n\n`{ document, variables, operationName, result }`\n\nThis example illustrates adding the amount of time consumed by running the\nprovided query, which could perhaps be used by your development tools.\n\n```js\nconst graphqlHTTP = require('express-graphql');\n\nconst app = express();\n\napp.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}));\n\napp.use('/graphql', graphqlHTTP(request => {\n  const startTime = Date.now();\n  return {\n    schema: MyGraphQLSchema,\n    graphiql: true,\n    extensions({ document, variables, operationName, result }) {\n      return { runTime: Date.now() - startTime };\n    }\n  };\n}));\n```\n\nWhen querying this endpoint, it would include this information in the result,\nfor example:\n\n```js\n{\n  \"data\": { ... }\n  \"extensions\": {\n    \"runTime\": 135\n  }\n}\n```\n\n\n## Other Exports\n\n**`getGraphQLParams(request: Request): Promise<GraphQLParams>`**\n\nGiven an HTTP Request, this returns a Promise for the parameters relevant to\nrunning a GraphQL request. This function is used internally to handle the\nincoming request, you may use it directly for building other similar services.\n\n```js\nconst graphqlHTTP = require('express-graphql');\n\ngraphqlHTTP.getGraphQLParams(request).then(params => {\n  // do something...\n})\n```\n\n\n## Debugging Tips\n\nDuring development, it's useful to get more information from errors, such as\nstack traces. Providing a function to `formatError` enables this:\n\n```js\nformatError: error => ({\n  message: error.message,\n  locations: error.locations,\n  stack: error.stack,\n  path: error.path\n})\n```\n\n\n[`GraphQL.js`]: https://github.com/graphql/graphql-js\n[`formatError`]: https://github.com/graphql/graphql-js/blob/master/src/error/formatError.js\n[GraphiQL]: https://github.com/graphql/graphiql\n[`multer`]: https://github.com/expressjs/multer\n[`express-session`]: https://github.com/expressjs/session\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/graphql/express-graphql.git"
+  },
+  "scripts": {
+    "build": "rm -rf dist/* && babel src --ignore __tests__ --out-dir dist && npm run build:flow",
+    "build:flow": "find ./src -name '*.js' -not -path '*/__tests__*' | while read filepath; do cp $filepath `echo $filepath | sed 's/\\/src\\//\\/dist\\//g'`.flow; done",
+    "check": "flow check",
+    "cover": "babel-node node_modules/.bin/isparta cover --root src --report html node_modules/.bin/_mocha -- $npm_package_options_mocha",
+    "cover:lcov": "babel-node node_modules/.bin/isparta cover --root src --report lcovonly node_modules/.bin/_mocha -- $npm_package_options_mocha",
+    "lint": "eslint src",
+    "prepublish": ". ./resources/prepublish.sh",
+    "pretty": "node resources/pretty.js",
+    "pretty-check": "node resources/pretty.js --check",
+    "preversion": "npm test",
+    "test": "npm run lint && npm run pretty-check && npm run check && npm run testonly",
+    "testonly": "mocha $npm_package_options_mocha",
+    "watch": "node resources/watch.js"
+  },
+  "version": "0.6.6"
+}

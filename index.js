@@ -1,7 +1,7 @@
 const { graphql } = require('graphql');
 const schema = require('./schema.js');
 const express = require('express');
-const graphqlHTTP = require('express-graphql');
+const graphqlHTTP = require('./express-graphql/dist/index');
 
 const ParkingspaceLoader = require('./Parkingspace/ParkingspaceLoader');
 const FlinksterLoader = require('./Flinkster/FlinksterLoader');
@@ -83,12 +83,46 @@ if(experimental) {
   }
 }
 
+const introductionDemoQuery = `
+# Welcome to 1BahnQL
+#
+# GraphiQL is an in-browser IDE for writing, validating, and
+# testing GraphQL queries.
+#
+# Type queries into this side of the screen, and you will
+# see intelligent typeaheads aware of the current GraphQL type schema and
+# live syntax and validation errors highlighted within the text.
+#
+# To bring up the auto-complete at any point, just press Ctrl-Space.
+#
+# Press the run button above, or Cmd-Enter to execute the query, and the result
+# will appear in the pane to the right.
+#
+# Learning resources:
+# GraphQL: http://graphql.org
+# GraphiQL: https://github.com/graphql/graphiql
+# 1BahnQL: https://github.com/dbsystel/1BahnQL
+#
+#
+# Example queries:
+# Just comment out the query you would like to test and press the run button above,
+# or Cmd-Enter to execute the query
+{
+  stationWithEvaId(evaId: 8000105) {
+    name
+    location {
+      latitude
+      longitude
+    }
+  }
+}
+`
 
 const app = express();
 app.use('/graphql', graphqlHTTP({
   schema,
   rootValue: root,
-  graphiql: true,
+  graphiql: true
 }));
 // set the port of our application
 // process.env.PORT lets the port be set by Heroku
