@@ -64,7 +64,7 @@ const introductionDemoQuery = `# Welcome to 1BahnQL
 
 # More complex query examples:
 #
-# Queries 5 stations in a distance of 2000m with their corresponding facilities and location
+# Queries 5 stations within a distance of 2000m and their corresponding facilities and location
 # {
 #   nearby(latitude: 50.11, longitude: 8.66, radius: 2000) {
 #     stations(count: 5) {
@@ -84,7 +84,7 @@ const introductionDemoQuery = `# Welcome to 1BahnQL
 #   }
 # }
 #
-# Queries stations and operationLocations (Betriebsstellen) matching the searchterm "Flughafen"
+# Queries stations and operationLocations (Betriebsstellen) matching the search term "Flughafen"
 # {
 #   search(searchTerm: "Flughafen") {
 #     stations {
