@@ -42,16 +42,37 @@ class BaseLoader {
         console.error(errorMessage);
         throw new Error(errorMessage);
       });
-    } else if (between(resStatusCode, 400, 499)) {
-      const errorMessage = `${res.status}: ${res.statusText} while requesting ${res.url}`;
-      console.error(errorMessage);
-      throw new Error(errorMessage);
+    } else if (resStatusCode == 400) {
+      return apiErrorParser(APIName, res);
+    } else if (resStatusCode == 404) {
+      return apiErrorParser(APIName, res);
+    } else if (resStatusCode == 500) {
+      return apiErrorParser(APIName, res);
     } else {
-      const errorMessage = `${res.status}: ${res.statusText} while requesting ${res.url}`;
+      const errorMessage = `${res.status}: ${res.statusText} while requesting ${APIName}`;
       console.error(errorMessage);
       throw new Error(errorMessage);
     }
   }
+}
+
+function apiErrorParser(api, res) {
+  return res
+    .json()
+    .then(body => {
+      const allErrors = body.errors;
+      const firstError = allErrors[0];
+
+      const errorMessage = `${res.status} at ${api}: ${firstError.name}: ${firstError
+        .attributes
+        .constraintElementName} ${firstError.message}, was ${firstError
+        .attributes.constraintElementValue}`;
+      console.error(errorMessage, res.url, body, allErrors);
+      throw new Error(errorMessage);
+    })
+    .catch(error => {
+      throw new Error(error);
+    });
 }
 
 function between(x, min, max) {
