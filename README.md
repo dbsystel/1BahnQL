@@ -6,9 +6,14 @@ Single unified API for all DBOpenData APIs implemented with GraphQL. We implemen
 
 ## Usage
 ### Install
-`npm install`
+The installation requires node.js as the execution environment as well as npm as the package manager. Then run `npm install` as a command on your commandline interface.
+
 ### Run
-`DBDeveloperAuthorization=<Your DBOpenData Athetication Token> node index.js`
+You need an active authentication token to run your personal installation. You can get one on [developer.deutschebahn.com](https://developer.deutschebahn.com). After creating you account you also have to subscribe to desired services by your own.
+
+Use your "Zugangstoken" as the DBDeveloperAuthorization Token and run the server:
+
+`DBDeveloperAuthorization=<Your DBOpenData Authentication Token> node index.js`
 
 Optional parameters:
 - DBBaseURL
@@ -17,8 +22,10 @@ Optional parameters:
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/dennispost/1BahnQL])
 
 
-## Datenquellen
-### API:
+## Data Sources
+Following data sources are currently technically implemented. You need to subscribe to each service at [developer.deutschebahn.com](https://developer.deutschebahn.com) to use them with 1BahnQL.
+
+### API based sources:
 
 - [x] Stationen (StaDa)
 - [x] Fahrstühle (FaSta)
@@ -36,7 +43,7 @@ Optional parameters:
 - [ ] https://github.com/derhuerst/vbb-lines
 - [ ] https://github.com/derhuerst/db-stations
 
-### Statisch:
+### static sources:
 - [x] http://data.deutschebahn.com/dataset/data-bahnsteig
 - [ ] http://data.deutschebahn.com/dataset/data-bahnsteig-regio
 - [ ] http://data.deutschebahn.com/dataset/data-wagenreihungsplan-soll-daten
@@ -44,13 +51,15 @@ Optional parameters:
 
 ## Root Queries
 
-### Verbindungssuche
+### Connection Search
 
-### Textsuche
+tbi
+
+### Stringbased Search
 - [x] Station
 - [ ] Zug
 
-### Geosuche
+### Geo Search
 - [x] Station
 - [ ] Bahnsteig
 - [x] Flinkster

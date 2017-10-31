@@ -107,6 +107,8 @@ const introductionDemoQuery = `
 # Example queries:
 # Just comment out the query you would like to test and press the run button above,
 # or Cmd-Enter to execute the query
+# Requires api subscription: Stationen (StaDa)
+
 {
   stationWithEvaId(evaId: 8000105) {
     name
