@@ -1,4 +1,4 @@
-const fetch = require("node-fetch");
+const fetch = require('node-fetch');
 
 class BaseLoader {
   constructor(APIToken, baseURL) {
@@ -12,7 +12,7 @@ class BaseLoader {
       Authorization: `Bearer ${this.APIToken}`
     };
     const configuration = {
-      method: "GET",
+      method: 'GET',
       headers
     };
 
@@ -26,11 +26,11 @@ class BaseLoader {
       return res.json().catch(error => {
         let errorMessage;
         switch (error.type) {
-          case "system": {
+          case 'system': {
             errorMessage = `${APIName}: Failed to load data`;
             break;
           }
-          case "invalid-json": {
+          case 'invalid-json': {
             errorMessage = `${APIName}: Failed to parse JSON`;
             break;
           }
