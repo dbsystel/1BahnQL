@@ -2,6 +2,7 @@ const { graphql } = require('graphql');
 const schema = require('./schema.js');
 const express = require('express');
 const graphqlHTTP = require('./express-graphql/dist/index');
+const graphqlPlayground = require(`graphql-playground/middleware`);
 
 const ParkingspaceLoader = require('./Parkingspace/ParkingspaceLoader');
 const FlinksterLoader = require('./Flinkster/FlinksterLoader');
@@ -124,6 +125,7 @@ app.use('/graphql', graphqlHTTP({
   rootValue: root,
   graphiql: true
 }));
+app.use('/playground', graphqlPlayground.express({ endpoint: '/graphql' }))
 // set the port of our application
 // process.env.PORT lets the port be set by Heroku
 const port = process.env.PORT || 8080;
