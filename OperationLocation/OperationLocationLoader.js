@@ -13,7 +13,8 @@ class OperationLocationLoader extends BaseLoader {
 		const url = `${this.baseURL}${serviceURL}/betriebsstellen?name=${name}`;
 		const configuration = this.fetchConfiguration;
 		const promies = this.fetch(url, configuration)
-		.then(res => OperationLocationLoader.parseJSON(res, "FaSta"))
+		.then(res => OperationLocationLoader.parseJSON(res, "betriebsstellen"))
+		.then(result => result || [])
 
 		return promies;
 	}
