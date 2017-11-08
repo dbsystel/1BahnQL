@@ -1,5 +1,7 @@
 # 1BahnQL
-<div style="text-align:center"><img src="logo.svg" margin="auto" height="200" width="200" ></div>
+<p align="center">
+  <img src="logo.svg" margin="auto" height="200" width="200">
+</p>
 
 Single unified API for all DBOpenData APIs implemented with GraphQL. We implemented the following APIs: StaDa, FaSta, TimeTables, Flinkster, CallABike, ParkplätzeAPI, ReiseCenter
 
