@@ -2,6 +2,7 @@ const { graphql } = require('graphql');
 const schema = require('./schema.js');
 const express = require('express');
 const graphqlHTTP = require('./express-graphql/dist/index');
+const graphqlPlayground = require(`graphql-playground/middleware`);
 
 const ParkingspaceLoader = require('./Parkingspace/ParkingspaceLoader');
 const FlinksterLoader = require('./Flinkster/FlinksterLoader');
@@ -107,6 +108,8 @@ const introductionDemoQuery = `
 # Example queries:
 # Just comment out the query you would like to test and press the run button above,
 # or Cmd-Enter to execute the query
+# Requires api subscription: Stationen (StaDa)
+
 {
   stationWithEvaId(evaId: 8000105) {
     name
@@ -124,6 +127,7 @@ app.use('/graphql', graphqlHTTP({
   rootValue: root,
   graphiql: true
 }));
+app.use('/playground', graphqlPlayground.express({ endpoint: '/graphql' }))
 // set the port of our application
 // process.env.PORT lets the port be set by Heroku
 const port = process.env.PORT || 8080;

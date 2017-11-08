@@ -48,6 +48,7 @@ const introductionDemoQuery = `# Welcome to 1BahnQL
 # Example queries:
 # Just comment out the query you would like to test and press the run button above,
 # or Cmd-Enter to execute the query
+# *Requires api subscription*: Stationen (StaDa)
 
 {
   stationWithEvaId(evaId: 8000105) {
@@ -65,6 +66,7 @@ const introductionDemoQuery = `# Welcome to 1BahnQL
 # More complex query examples:
 #
 # Queries 5 stations within a distance of 2000m and their corresponding facilities and location
+# *Requires api subscription*: Stationen (StaDa)
 # {
 #   nearby(latitude: 50.11, longitude: 8.66, radius: 2000) {
 #     stations(count: 5) {
@@ -85,6 +87,7 @@ const introductionDemoQuery = `# Welcome to 1BahnQL
 # }
 #
 # Queries stations and operationLocations (Betriebsstellen) matching the search term "Flughafen"
+# Requires api subscription: Stationen (StaDa), Betriebsstellen
 # {
 #   search(searchTerm: "Flughafen") {
 #     stations {

@@ -16,7 +16,13 @@ class OperationLocationLoader extends BaseLoader {
         console.error(error);
         throw error;
       })
-    );
+	  .then(function(result) {
+		  if((!!result) && (result.constructor === Array)) {
+			  return result
+		  } else {
+			  return []
+		  }
+	   });
 
     return promies;
   }
