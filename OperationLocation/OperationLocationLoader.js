@@ -19,8 +19,7 @@ class OperationLocationLoader extends BaseLoader {
 		  } else {
 			  return []
 		  }
-	   })
-      .then(result => result || []);
+	   });
 
     return promies;
   }
