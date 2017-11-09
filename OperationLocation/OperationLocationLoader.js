@@ -15,7 +15,8 @@ class OperationLocationLoader extends BaseLoader {
       OperationLocationLoader.parseJSON(res, 'Betriebsstellen').catch(error => {
         console.error(error);
         throw error;
-      })
+	  })
+	)
 	  .then(function(result) {
 		  if((!!result) && (result.constructor === Array)) {
 			  return result
