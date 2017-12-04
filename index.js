@@ -127,7 +127,7 @@ app.use('/graphql', graphqlHTTP({
   rootValue: root,
   graphiql: true
 }));
-app.get('/playground', expressPlayground({ endpoint: '/graphql' }))
+app.get('/playground', expressPlayground({ endpoint: 'graphql' }))
 // set the port of our application
 // process.env.PORT lets the port be set by Heroku
 const port = process.env.PORT || 8080;
