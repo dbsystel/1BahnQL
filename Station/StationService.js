@@ -27,7 +27,8 @@ class StationService {
 	 */
   stationByEvaId(evaId) {
     const self = this;
-    return this.stationLoader.stationByEvaId(evaId)
+    return this.stationLoader
+      .stationByEvaId(evaId)
       .then(station => self.transformStationResultIntoStation(station));
   }
 
@@ -38,7 +39,8 @@ class StationService {
 	 */
   stationByRil100(ril100) {
     const self = this;
-    return this.stationLoader.stationByRil100(ril100)
+    return this.stationLoader
+      .stationByRil100(ril100)
       .then(station => self.transformStationResultIntoStation(station));
   }
 
@@ -49,7 +51,8 @@ class StationService {
 	 */
   stationByBahnhofsnummer(stationNumber) {
     const self = this;
-    return this.stationLoader.stationByBahnhofsnummer(stationNumber)
+    return this.stationLoader
+      .stationByBahnhofsnummer(stationNumber)
       .then(station => self.transformStationResultIntoStation(station));
   }
 
@@ -60,8 +63,11 @@ class StationService {
 	 */
   searchStations(searchTerm) {
     const self = this;
-    return this.stationLoader.searchStations(searchTerm)
-      .then(stations => stations.map(station => self.transformStationResultIntoStation(station)));
+    return this.stationLoader
+      .searchStations(searchTerm)
+      .then(stations =>
+        stations.map(station => self.transformStationResultIntoStation(station))
+      );
   }
 }
 
