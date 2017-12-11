@@ -84,6 +84,8 @@ class StationLoader extends BaseLoader {
       .then(result => {
         if (StationLoader.between(response.status, 200, 399)) {
           return result.result || [];
+        }else if (response.status == 404) {
+          return [];
         } else {
           const errorMessage = `${response.status} at StaDa: ${result.errMsg}`;
           console.error(errorMessage, response.url, result);
