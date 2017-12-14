@@ -13,7 +13,7 @@ class Station {
     this.name = station.name;
     const coordinates = access(station, 'evaNumbers[0].geographicCoordinates.coordinates');
     if (coordinates) {
-      this.location = new Location(coordinates[0], coordinates[1]);
+      this.location = new Location(coordinates[1], coordinates[0]);
     }
     this.category = station.category;
     this.hasParking = station.hasParking;

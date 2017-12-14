@@ -3,7 +3,7 @@ const Facility = require('./Facility.js')
 
 
 class FacilityService {
-  
+
   constructor(facilityLoader) {
     this.facilityLoader = facilityLoader
   }
@@ -19,7 +19,7 @@ class FacilityService {
       return facilities.map(facility => {
         let location;
         if (facility.geocoordY && facility.geocoordX) {
-          location = new Location(facility.geocoordY, facility.geocoordX);
+          location = new Location(facility.geocoordX, facility.geocoordY);
         }
         return new Facility(facility.description, facility.type,
           facility.state, location, facility.equipmentnumber);

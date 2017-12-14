@@ -15,7 +15,7 @@ class Parkingspace {
     this.spaceType = space.spaceType;
     this.spaceTypeEn = space.spaceTypeEn;
     this.spaceTypeName = space.spaceTypeName;
-    this.location = new Location(access(space, 'geoLocation.longitude'), access(space, 'geoLocation.latitude'));
+    this.location = new Location(access(space, 'geoLocation.latitude'), access(space, 'geoLocation.longitude'));
     this.url = space.url;
     this.operator = space.operator;
     this.operatorUrl = space.operatorUrl;
