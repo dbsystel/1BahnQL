@@ -28,7 +28,7 @@ describe('FacilityService', () => {
         expect(promise).to.eventually.have.property("type", "ELEVATOR"),
         expect(promise).to.eventually.have.property("description", "zu Gleis 6/7"),
         expect(promise).to.eventually.have.property("state", "ACTIVE"),
-        expect(promise).to.eventually.have.deep.property("location", {latitude: 6.09134, longitude: 50.767629})
+        expect(promise).to.eventually.have.deep.property("location", {latitude: 50.767629, longitude: 6.09134})
 
     ]);
   });

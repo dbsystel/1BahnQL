@@ -3,7 +3,7 @@ const Facility = require('./Facility.js')
 
 
 class FacilityService {
-  
+
   constructor(facilityLoader) {
     this.facilityLoader = facilityLoader
   }
