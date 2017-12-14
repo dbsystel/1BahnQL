@@ -31,7 +31,7 @@ class FlinksterBike {
     this.providerRentalObjectId = bike.rentalObject.providerRentalObjectId;
     this.type = bike.rentalObject.type;
     this.attributes = new Attributes(bike.rentalObject.attributes);
-    this.location = new Location(bike.position.coordinates[0], bike.position.coordinates[1]);
+    this.location = new Location(bike.position.coordinates[1], bike.position.coordinates[0]);
     this.address = new MailAddress(bike.area.address.city, bike.area.address.zip, bike.area.address.street);
     this.priceOptions = bike.price.items.map(price => new PriceOption(price));
     this.parkingArea = new FlinksterParkingArea(bike.area);

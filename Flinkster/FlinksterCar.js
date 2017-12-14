@@ -56,7 +56,7 @@ class FlinksterCar {
     this.type = car.rentalObject.type;
     this.attributes = new Attributes(car.rentalObject.attributes);
     this.equipment = new CarEquipment(car.rentalObject.equipment);
-    this.location = new Location(car.position.coordinates[0], car.position.coordinates[1]);
+    this.location = new Location(car.position.coordinates[1], car.position.coordinates[0]);
     this.parkingArea = new FlinksterParkingArea(car.area);
     this.priceOptions = car.price.items.map(price => new PriceOption(price));
     this.url = car.rentalObject.href;

@@ -19,7 +19,7 @@ class FacilityService {
       return facilities.map(facility => {
         let location;
         if (facility.geocoordY && facility.geocoordX) {
-          location = new Location(facility.geocoordX, facility.geocoordY);
+          location = new Location(facility.geocoordY, facility.geocoordX);
         }
         return new Facility(facility.description, facility.type,
           facility.state, location, facility.equipmentnumber);
