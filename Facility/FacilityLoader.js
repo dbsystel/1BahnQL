@@ -1,6 +1,6 @@
 const BaseLoader = require('./../Core/BaseLoader');
 
-const serviceURL = '/fasta/v1';
+const serviceURL = '/fasta/v2';
 
 class FacilityLoader extends BaseLoader {
 
