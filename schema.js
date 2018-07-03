@@ -146,6 +146,7 @@ const schema = buildSchema(`
   enum FacilityState {
     ACTIVE
     INACTIVE
+    UNKNOWN
   }
 
   enum FacilityType {
