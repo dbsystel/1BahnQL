@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const { graphql } = require('graphql');
 const schema = require('./schema.js');
 const express = require('express');
