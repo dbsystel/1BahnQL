@@ -1,17 +1,14 @@
-const hafas = require('db-hafas')
-const Route = require("./Route.js")
+const Route = require("./Route.js");
+const createHafas = require('db-hafas');
+const hafas = createHafas('routing-service');
 
 class RoutingService {
 
-	constructor() {
-		this.relationships;
+	routes(from, to) {
+		return hafas.journeys(from + "", to + "")
+			.then(result => result.journeys.map(element => new Route(element)));
 	}
 
-	routes(from, to) {
-		const self = this
-		return hafas.journeys(from + "", to + "")
-		.then(result => result.map(element => self.relationships.resolve(new Route(element))))
-	}
 }
 
-module.exports = RoutingService
+module.exports = RoutingService;

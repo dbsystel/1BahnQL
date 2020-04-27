@@ -1,24 +1,66 @@
 const { buildSchema } = require('graphql');
-const experimental = process.env.experimental
+const experimental = process.env.experimental;
 
 const experimentalTypes = experimental ? `
 type Route {
   parts: [RoutePart!]!
-  from: Station
-  to: Station
 }
 
 type RoutePart {
-  # Station where the part begins
-  from: Station!
-  to: Station!
-  delay: Int
-  product: Product
-  direction: String!
-  start: String!
-  end: String!
-  departingTrack: Track
-  arrivingTrack: Track
+  origin: RouteStop!
+  destination: RouteStop!
+  arrival: String!
+  plannedArrival: String
+  arrivalDelay: String
+  departure: String!
+  plannedDeparture: String
+  reachble: Boolean!
+  tripId: Int!
+  line: RouteLine
+  direction: String
+  arrivalPlatform: String
+  plannedArrivalPlatform: String
+  departurePlatform: String
+  plannedDeparturePlatform: String
+}
+
+type RouteStop {
+    type: String!
+    id: String!
+    name: String!
+    location: RouteLocation!
+    products: RouteProducts!
+}
+
+type RouteLocation {
+    type: String!
+    id: Int!
+    latitude: Float!
+    longitude: Float!
+}
+
+type RouteProducts {
+    nationalExpress: Boolean!
+    national: Boolean!
+    regionalExp: Boolean!
+    regional: Boolean!
+    suburban: Boolean!
+    bus: Boolean!
+    ferry: Boolean!
+    subway: Boolean!
+    tram: Boolean!
+    taxi: Boolean!
+}
+
+type RouteLine {
+    type: String!
+    id: String!
+    fahrtNr: Int!
+    name: String!
+    adminCode: String!
+    mode: String!
+    product: String!
+    additionalName: String
 }
 
 type Product {
@@ -27,11 +69,18 @@ type Product {
   productCode: Int
   productName: String
 }
-` : ''
+
+type HafasStation {
+    type: String!
+    id: Int!
+    name: String!
+    location: Location!
+}
+` : '';
 
 const experimentalQuerys = experimental ? `
   routing(from: Int!, to: Int!): [Route!]!
-` : ''
+` : '';
 
 const schema = buildSchema(`
   type Query {

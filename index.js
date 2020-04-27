@@ -4,7 +4,7 @@ const { graphql } = require('graphql');
 const schema = require('./schema.js');
 const express = require('express');
 const graphqlHTTP = require('./express-graphql/dist/index');
-const expressPlayground = require('graphql-playground-middleware-express').default
+const expressPlayground = require('graphql-playground-middleware-express').default;
 
 const ParkingspaceLoader = require('./Parkingspace/ParkingspaceLoader');
 const FlinksterLoader = require('./Flinkster/FlinksterLoader');
@@ -56,17 +56,17 @@ const stationIdMappingService = new StationIdMappingService();
 const stationService = new StationService(stationLoader, stationIdMappingService);
 const nearbyStationService = new NearbyStationService(stationService);
 const travelCenterService = new TravelCenterService(travelCenterLoader);
-const facilityService = new FacilityService(facilityLoader)
+const facilityService = new FacilityService(facilityLoader);
 const routingService = new RoutingService();
 const flinksterService = new FlinksterService(flinksterLoader);
 const timetableServcie = new TimetableService(timetableLoader);
 const trackService = new TrackService(stationIdMappingService);
-const stationPictureService = new StationPictureService(stationPictureLoader)
+const stationPictureService = new StationPictureService(stationPictureLoader);
 
 // Relationships
 stationService.relationships = new StationRelationships(parkingspaceService, facilityService, timetableServcie, trackService, stationPictureService);
 parkingspaceService.relationships = new ParkingspaceRelationships(parkingspaceService, stationService);
-routingService.relationships = new RouteRelationships(stationService, trackService);
+routingService.relationships = new RouteRelationships(stationService);
 
 // Queries
 const root = {

@@ -1,18 +1,24 @@
-const VehicleProduct = require("./VehicleProduct.js");
+const RouteStop = require("./RouteStop.js");
+const RouteLine = require("./RouteLine.js");
 
 class RoutePart {
 	constructor(route) {
-		this.delay = route.delay || 0;
+		this.origin = new RouteStop(route.origin);
+		this.destination = new RouteStop(route.destination);
+		this.arrival = route.arrival;
+		this.plannedArrival = route.plannedArrival;
+		this.arrivalDelay = route.arrivalDelay;
+		this.departure = route.departure;
+		this.plannedDeparture = route.plannedDeparture;
+		this.reachble = route.reachble;
+		this.tripId = route.tripId;
+		if(route.line)
+			this.line = new RouteLine(route.line);
 		this.direction = route.direction;
-		this.start = route.start;
-		this.end = route.end;
-		if(route.line) {
-			this.product = new VehicleProduct(route.line);
-		}
-		this.fromEvaId = route.origin.id;
-		this.toEvaId = route.destination.id;
-		this.arrivingPlatformNumber = route.arrivalPlatform;
-		this.departingPlatformNumber = route.departurePlatform;
+		this.arrivalPlatform = route.arrivalPlatform;
+		this.plannedArrivalPlatform = route.plannedArrivalPlatform;
+		this.departurePlatform = route.departurePlatform;
+		this.plannedDeparturePlatform = route.plannedDeparturePlatform;
 	}
 }
 
