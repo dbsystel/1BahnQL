@@ -81,8 +81,7 @@ const root = {
 const experimental = process.env.experimental
 if(experimental) {
   root.routing = (args) => {
-    const routeSearch = routingService.routes(args.from, args.to);
-    return routeSearch.then(options => [options[0]]);
+    return routeSearch = routingService.routes(args.from, args.to);
   }
 }
 
