@@ -1,4 +1,5 @@
-const { buildSchema } = require('graphql');
+const { GraphQLDateTime } = require('graphql-iso-date');
+const { makeExecutableSchema } = require('graphql-tools');
 const experimental = process.env.experimental;
 
 const experimentalTypes = experimental ? `
@@ -78,11 +79,16 @@ type HafasStation {
 }
 ` : '';
 
-const experimentalQuerys = experimental ? `
-  routing(from: Int!, to: Int!, departure: String, arrival: String): [Route!]!
+const experimentalScalars = experimental ? `
+  scalar DateTime
 ` : '';
 
-const schema = buildSchema(`
+const experimentalQuerys = experimental ? `
+  routing(from: Int!, to: Int!, departure: DateTime, arrival: DateTime): [Route!]!
+` : '';
+
+const schemaString = `
+  ${experimentalScalars}
   type Query {
     ${experimentalQuerys}
 
@@ -274,7 +280,6 @@ const schema = buildSchema(`
     isSpecialProductDb: Boolean!
     isOutOfService: Boolean!
     station: Station
-    occupancy: Occupancy
     outOfServiceText: String
     outOfServiceTextEn: String
     reservation: String
@@ -444,6 +449,12 @@ const schema = buildSchema(`
     taxrate: Float!
     preferredprice: Boolean!
   }
-`);
+`;
+
+const resolveFunctions = {
+    DateTime: GraphQLDateTime
+};
+
+const schema = makeExecutableSchema({ typeDefs: schemaString, resolvers: resolveFunctions });
 
 module.exports = schema;
