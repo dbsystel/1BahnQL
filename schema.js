@@ -79,7 +79,7 @@ type HafasStation {
 ` : '';
 
 const experimentalQuerys = experimental ? `
-  routing(from: Int!, to: Int!): [Route!]!
+  routing(from: Int!, to: Int!, departure: String, arrival: String): [Route!]!
 ` : '';
 
 const schema = buildSchema(`

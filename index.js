@@ -78,10 +78,10 @@ const root = {
   nearby: args => new NearbyQuery(args.latitude, args.longitude, args.radius, nearbyStationService, parkingspaceService, flinksterService, travelCenterService),
 };
 
-const experimental = process.env.experimental
+const experimental = process.env.experimental;
 if(experimental) {
   root.routing = (args) => {
-    return routeSearch = routingService.routes(args.from, args.to);
+    return routeSearch = routingService.routes(args.from, args.to, args.departure, args.arrival);
   }
 }
 
@@ -120,7 +120,7 @@ const introductionDemoQuery = `
     }
   }
 }
-`
+`;
 
 const app = express();
 app.use('/graphql', graphqlHTTP({
@@ -128,7 +128,7 @@ app.use('/graphql', graphqlHTTP({
   rootValue: root,
   graphiql: true
 }));
-app.get('/playground', expressPlayground({ endpoint: 'graphql' }))
+app.get('/playground', expressPlayground({ endpoint: 'graphql' }));
 // set the port of our application
 // process.env.PORT lets the port be set by Heroku
 const port = process.env.PORT || 8080;
