@@ -13,7 +13,7 @@ type RoutePart {
   arrival: String!
   plannedArrival: String
   arrivalDelay: String
-  departure: String!
+  departure: String
   plannedDeparture: String
   reachble: Boolean!
   tripId: Int!
