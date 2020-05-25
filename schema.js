@@ -10,7 +10,7 @@ type Route {
 type RoutePart {
   origin: RouteStop!
   destination: RouteStop!
-  arrival: String!
+  arrival: String
   plannedArrival: String
   arrivalDelay: String
   departure: String
