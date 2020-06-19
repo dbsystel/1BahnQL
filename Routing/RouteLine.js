@@ -1,4 +1,5 @@
 class RouteLine {
+
     constructor(payload) {
         this.type = payload.type;
         this.id = payload.id;
@@ -8,9 +9,9 @@ class RouteLine {
         this.adminCode = payload.adminCode;
         this.mode = payload.mode;
         this.product = payload.product;
-        // this.operator = payload.operator;
         this.additionalName = payload.additionalName;
     }
+
 }
 
 module.exports = RouteLine;

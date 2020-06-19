@@ -2,24 +2,25 @@ const RouteStop = require("./RouteStop.js");
 const RouteLine = require("./RouteLine.js");
 
 class RoutePart {
-	constructor(route) {
-		this.origin = new RouteStop(route.origin);
-		this.destination = new RouteStop(route.destination);
-		this.arrival = route.arrival;
-		this.plannedArrival = route.plannedArrival;
-		this.arrivalDelay = route.arrivalDelay;
-		this.departure = route.departure;
-		this.plannedDeparture = route.plannedDeparture;
-		this.reachble = route.reachble;
-		this.tripId = route.tripId;
-		if(route.line)
-			this.line = new RouteLine(route.line);
-		this.direction = route.direction;
-		this.arrivalPlatform = route.arrivalPlatform;
-		this.plannedArrivalPlatform = route.plannedArrivalPlatform;
-		this.departurePlatform = route.departurePlatform;
-		this.plannedDeparturePlatform = route.plannedDeparturePlatform;
+
+	constructor(payload) {
+		this.origin = new RouteStop(payload.origin);
+		this.destination = new RouteStop(payload.destination);
+		this.arrival = payload.arrival;
+		this.plannedArrival = payload.plannedArrival;
+		this.arrivalDelay = payload.arrivalDelay;
+		this.departure = payload.departure;
+		this.plannedDeparture = payload.plannedDeparture;
+		this.reachble = payload.reachble;
+		this.tripId = payload.tripId;
+		this.line = (payload.line) ? new RouteLine(payload.line) : null;
+		this.direction = payload.direction;
+		this.arrivalPlatform = payload.arrivalPlatform;
+		this.plannedArrivalPlatform = payload.plannedArrivalPlatform;
+		this.departurePlatform = payload.departurePlatform;
+		this.plannedDeparturePlatform = payload.plannedDeparturePlatform;
 	}
+
 }
 
 module.exports = RoutePart;

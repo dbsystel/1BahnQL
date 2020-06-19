@@ -1,4 +1,5 @@
 class RouteProducts {
+
     constructor(payload) {
         this.nationalExpress = payload.nationalExpress;
         this.national = payload.national;
@@ -11,6 +12,7 @@ class RouteProducts {
         this.tram = payload.tram;
         this.taxi = payload.taxi;
     }
+
 }
 
 module.exports = RouteProducts;

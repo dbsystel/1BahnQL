@@ -30,7 +30,6 @@ const StationPictureService = require('./StationPicture/StationPictureService');
 
 const StationRelationships = require('./Station/StationRelationships');
 const ParkingspaceRelationships = require('./Parkingspace/ParkingspaceRelationships');
-const RouteRelationships = require('./Routing/RouteRelationships');
 
 const NearbyQuery = require('./NearbyQuery');
 
@@ -66,7 +65,6 @@ const stationPictureService = new StationPictureService(stationPictureLoader);
 // Relationships
 stationService.relationships = new StationRelationships(parkingspaceService, facilityService, timetableServcie, trackService, stationPictureService);
 parkingspaceService.relationships = new ParkingspaceRelationships(parkingspaceService, stationService);
-routingService.relationships = new RouteRelationships(stationService);
 
 // Queries
 const root = {

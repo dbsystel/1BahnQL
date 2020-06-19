@@ -2,6 +2,7 @@ const RouteLocation = require("./RouteLocation.js");
 const RouteProducts = require("./RouteProducts.js");
 
 class RouteStop {
+
     constructor(payload) {
         this.type = payload.type;
         this.id = payload.id;
@@ -9,6 +10,7 @@ class RouteStop {
         this.location = new RouteLocation(payload.location);
         this.products = new RouteProducts(payload.products);
     }
+
 }
 
 module.exports = RouteStop;
