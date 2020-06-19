@@ -5,7 +5,9 @@ const hafas = createHafas('routing-service');
 class RoutingService {
 
 	routes(from, to, departure, arrival) {
-		let opt = {};
+		let opt = {
+			results: 10,
+		};
 		if(departure) {
 			opt.departure = new Date(departure);
 		}
